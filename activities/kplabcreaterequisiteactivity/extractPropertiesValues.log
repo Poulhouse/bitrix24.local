@@ -1,0 +1,1887 @@
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A80297_84388_43426_58384:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+            [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_ZAEMSCHIK}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_ZAEMSCHIK}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_ZAEMSCHIK}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_ZAEMSCHIK > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_ZAEMSCHIK}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => {=Document:UF_CRM_MK_SNILS_ZAEMSCHIK}
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_ZAEMSCHIK}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATEOF_BIRTH_ZAEMSCHIK > string}
+            [RQ_INN] => {=Document:UF_CRM_MK_INN_ZAEMSCHIK}
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A91444_63756_12458_60053:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_LASTNAME_SOZAEMSCHIK}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_NAME_SOZAEMSCHIK}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_MIDDLENAME_SOZAEMSCHIK}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SOZAEMSCHIK_SERIYA}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SOZAEMSCHIK_NOMER}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SOZAEMSCHIK_WHOM_TAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SOZAEMSCHIK_DATE_OF_TAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SOZAEMSCHIK_CODE}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_SOZAEMSCHIK}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATE_OF_BIRTH_SOZAEMSCHIK > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SOZAEMSCHIK_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SOZAEMSCHIK_GENDER_PRINTABLE}
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A24598_28768_30819_51597:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_PRINTABLE}
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A22340_95573_46616_31803:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME_2}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME_2}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME_2}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL_2}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL_2}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL_2}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL_2 > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL_2}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH_2}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH_2 > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_2_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_2_PRINTABLE}
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A14520_61260_90693_37105:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME_3}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME_3}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME_3}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL_3}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL_3}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL_3}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL_3 > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL_3}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH_3}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH_3 > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_3_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_3_PRINTABLE}
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A10820_35237_78962_1703:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A74843_75458_50862_97450:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME_2}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME_2}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME_2}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA_2}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER_2}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN_2}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN_2 > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT_2}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH_2}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH_2 > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_2_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_2_PRINTABLE}
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A23962_82895_63357_50237:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME_3}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME_3}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME_3}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA_3}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER_3}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN_3}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN_3 > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT_3}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH_3}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH_3 > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_3_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_3_PRINTABLE}
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 1
+    [RequisiteFields] => Array
+        (
+            [RQ_INN] => 
+            [RQ_COMPANY_NAME] => 
+            [RQ_COMPANY_FULL_NAME] => 
+            [RQ_OGRN] => 
+            [RQ_KPP] => 
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_OKPO] => 
+            [RQ_OKTMO] => 
+            [RQ_DIRECTOR] => 
+            [RQ_ACCOUNTANT] => 
+            [RQ_ADDR] => {=Document:UF_CRM_63_1690760047832}
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 1
+    [RequisiteFields] => Array
+        (
+            [RQ_INN] => 
+            [RQ_COMPANY_NAME] => 
+            [RQ_COMPANY_FULL_NAME] => 
+            [RQ_OGRN] => 
+            [RQ_KPP] => 
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_OKPO] => 
+            [RQ_OKTMO] => 
+            [RQ_DIRECTOR] => 
+            [RQ_ACCOUNTANT] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A65800_86745_94558_49646:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+            [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт Гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A65800_86745_94558_49646:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+            [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт Гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 1
+    [RequisiteFields] => Array
+        (
+            [RQ_INN] => 
+            [RQ_COMPANY_NAME] => 
+            [RQ_COMPANY_FULL_NAME] => 
+            [RQ_OGRN] => 
+            [RQ_KPP] => 
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_OKPO] => 
+            [RQ_OKTMO] => 
+            [RQ_DIRECTOR] => 
+            [RQ_ACCOUNTANT] => 
+            [RQ_ADDR] => {=Document:UF_CRM_39_1669718581}
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 1
+    [RequisiteFields] => Array
+        (
+            [RQ_INN] => 
+            [RQ_COMPANY_NAME] => 
+            [RQ_COMPANY_FULL_NAME] => 
+            [RQ_OGRN] => 
+            [RQ_KPP] => 
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_OKPO] => 
+            [RQ_OKTMO] => 
+            [RQ_DIRECTOR] => 
+            [RQ_ACCOUNTANT] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 1
+    [RequisiteFields] => Array
+        (
+            [RQ_INN] => 
+            [RQ_COMPANY_NAME] => 
+            [RQ_COMPANY_FULL_NAME] => 
+            [RQ_OGRN] => 
+            [RQ_KPP] => 
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_OKPO] => 
+            [RQ_OKTMO] => 
+            [RQ_DIRECTOR] => 
+            [RQ_ACCOUNTANT] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 1
+    [RequisiteFields] => Array
+        (
+            [RQ_INN] => 
+            [RQ_COMPANY_NAME] => 
+            [RQ_COMPANY_FULL_NAME] => 
+            [RQ_OGRN] => 
+            [RQ_KPP] => 
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_OKPO] => 
+            [RQ_OKTMO] => 
+            [RQ_DIRECTOR] => 
+            [RQ_ACCOUNTANT] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 1
+    [RequisiteFields] => Array
+        (
+            [RQ_INN] => 
+            [RQ_COMPANY_NAME] => 
+            [RQ_COMPANY_FULL_NAME] => 
+            [RQ_OGRN] => 
+            [RQ_KPP] => 
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_OKPO] => 
+            [RQ_OKTMO] => 
+            [RQ_DIRECTOR] => 
+            [RQ_ACCOUNTANT] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=A15210_33945_81837_63222:CompanyId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=A28106_72292_40597_46961:RQ_LAST_NAME}
+            [RQ_FIRST_NAME] => 
+            [RQ_SECOND_NAME] => 
+            [RQ_IDENT_DOC] => 
+            [RQ_IDENT_DOC_SER] => 
+            [RQ_IDENT_DOC_NUM] => 
+            [RQ_IDENT_DOC_ISSUED_BY] => 
+            [RQ_IDENT_DOC_DATE] => 
+            [RQ_IDENT_DOC_DEP_CODE] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => 
+            [UF_CRM_1684493639] => 
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=A15210_33945_81837_63222:CompanyId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=A28106_72292_40597_46961:RQ_FIRST_NAME}{=A28106_72292_40597_46961:RQ_LAST_NAME}
+            [RQ_FIRST_NAME] => 
+            [RQ_SECOND_NAME] => 
+            [RQ_IDENT_DOC] => 
+            [RQ_IDENT_DOC_SER] => 
+            [RQ_IDENT_DOC_NUM] => 
+            [RQ_IDENT_DOC_ISSUED_BY] => 
+            [RQ_IDENT_DOC_DATE] => 
+            [RQ_IDENT_DOC_DEP_CODE] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => 
+            [UF_CRM_1684493639] => 
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=A15210_33945_81837_63222:CompanyId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=A28106_72292_40597_46961:RQ_LAST_NAME}
+            [RQ_FIRST_NAME] => 
+            [RQ_SECOND_NAME] => 
+            [RQ_IDENT_DOC] => 
+            [RQ_IDENT_DOC_SER] => 
+            [RQ_IDENT_DOC_NUM] => 
+            [RQ_IDENT_DOC_ISSUED_BY] => 
+            [RQ_IDENT_DOC_DATE] => 
+            [RQ_IDENT_DOC_DEP_CODE] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => 
+            [UF_CRM_1684493639] => 
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=A15210_33945_81837_63222:CompanyId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=A28106_72292_40597_46961:RQ_LAST_NAME}
+            [RQ_FIRST_NAME] => {=A28106_72292_40597_46961:RQ_FIRST_NAME}
+            [RQ_SECOND_NAME] => 
+            [RQ_IDENT_DOC] => 
+            [RQ_IDENT_DOC_SER] => 
+            [RQ_IDENT_DOC_NUM] => 
+            [RQ_IDENT_DOC_ISSUED_BY] => 
+            [RQ_IDENT_DOC_DATE] => 
+            [RQ_IDENT_DOC_DEP_CODE] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => 
+            [UF_CRM_1684493639] => 
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=A15210_33945_81837_63222:CompanyId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=A28106_72292_40597_46961:RQ_LAST_NAME}
+            [RQ_FIRST_NAME] => {=A28106_72292_40597_46961:RQ_FIRST_NAME}
+            [RQ_SECOND_NAME] => {=A28106_72292_40597_46961:RQ_SECOND_NAME}
+            [RQ_IDENT_DOC] => {=A28106_72292_40597_46961:RQ_IDENT_DOC}
+            [RQ_IDENT_DOC_SER] => 
+            [RQ_IDENT_DOC_NUM] => 
+            [RQ_IDENT_DOC_ISSUED_BY] => 
+            [RQ_IDENT_DOC_DATE] => 
+            [RQ_IDENT_DOC_DEP_CODE] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => 
+            [UF_CRM_1684493639] => 
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=A15210_33945_81837_63222:CompanyId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=A28106_72292_40597_46961:RQ_LAST_NAME}
+            [RQ_FIRST_NAME] => {=A28106_72292_40597_46961:RQ_FIRST_NAME}
+            [RQ_SECOND_NAME] => {=A28106_72292_40597_46961:RQ_SECOND_NAME}
+            [RQ_IDENT_DOC] => {=A28106_72292_40597_46961:RQ_IDENT_DOC}
+            [RQ_IDENT_DOC_SER] => {=A28106_72292_40597_46961:RQ_IDENT_DOC_SER}
+            [RQ_IDENT_DOC_NUM] => {=A28106_72292_40597_46961:RQ_IDENT_DOC_NUM}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=A28106_72292_40597_46961:RQ_IDENT_DOC_ISSUED_BY}
+            [RQ_IDENT_DOC_DATE] => {=A28106_72292_40597_46961:RQ_IDENT_DOC_DATE}
+            [RQ_IDENT_DOC_DEP_CODE] => {=A28106_72292_40597_46961:RQ_IDENT_DOC_DEP_CODE}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=A28106_72292_40597_46961:UF_CRM_1647929611}
+            [UF_CRM_1684493639] => {=A28106_72292_40597_46961:UF_CRM_1684493639}
+            [RQ_INN] => {=A28106_72292_40597_46961:RQ_INN}
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A16769_29875_95840_18599:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A64138_86795_71488_88438:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A64138_86795_71488_88438:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=A85616_29915_50030_54416:COMPANY_ID}
+    [PresetId] => {=Variable:rightForm}
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=A85616_29915_50030_54416:COMPANY_ID}
+    [PresetId] => {=Variable:rightForm}
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=Document:CONTACT_ID}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=Document:CONTACT_ID}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A13768_33125_67424_41974:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A13768_33125_67424_41974:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=Document:CONTACT_ID}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A13768_33125_67424_41974:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A13768_33125_67424_41974:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=Document:CONTACT_ID}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 1
+    [RequisiteFields] => Array
+        (
+            [RQ_INN] => {=Document:UF_CRM_92_INN}
+            [RQ_COMPANY_NAME] => {=Document:UF_CRM_92_ABRENAMECOMPANY}
+            [RQ_COMPANY_FULL_NAME] => {=Document:UF_CRM_92_FULLNAMECOMPANY}
+            [RQ_OGRN] => {=Document:UF_CRM_92_OGRN}
+            [RQ_KPP] => 
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_OKPO] => 
+            [RQ_OKTMO] => 
+            [RQ_DIRECTOR] => 
+            [RQ_ACCOUNTANT] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 2
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_INN] => 
+            [RQ_OGRNIP] => 
+            [RQ_OKPO] => 
+            [RQ_OKVED] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 2
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_INN] => 
+            [RQ_OGRNIP] => 
+            [RQ_OKPO] => 
+            [RQ_OKVED] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => Y
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 1
+    [RequisiteFields] => Array
+        (
+            [RQ_INN] => {=Document:UF_CRM_92_INN}
+            [RQ_COMPANY_NAME] => {=Document:UF_CRM_92_ABRENAMECOMPANY}
+            [RQ_COMPANY_FULL_NAME] => {=Document:UF_CRM_92_FULLNAMECOMPANY}
+            [RQ_OGRN] => {=Document:UF_CRM_92_OGRN}
+            [RQ_KPP] => 
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_OKPO] => 
+            [RQ_OKTMO] => 
+            [RQ_DIRECTOR] => 
+            [RQ_ACCOUNTANT] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 2
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_INN] => 
+            [RQ_OGRNIP] => 
+            [RQ_OKPO] => 
+            [RQ_OKVED] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => Y
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 2
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_INN] => 
+            [RQ_OGRNIP] => 
+            [RQ_OKPO] => 
+            [RQ_OKVED] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => Y
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A80297_84388_43426_58384:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+            [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_ZAEMSCHIK}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_ZAEMSCHIK}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_ZAEMSCHIK}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_ZAEMSCHIK > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_ZAEMSCHIK}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => {=Document:UF_CRM_MK_SNILS_ZAEMSCHIK}
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_ZAEMSCHIK}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATEOF_BIRTH_ZAEMSCHIK > string}
+            [RQ_INN] => {=Document:UF_CRM_MK_INN_ZAEMSCHIK}
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A80297_84388_43426_58384:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+            [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_ZAEMSCHIK}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_ZAEMSCHIK}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_ZAEMSCHIK}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_ZAEMSCHIK > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_ZAEMSCHIK}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => {=Document:UF_CRM_MK_SNILS_ZAEMSCHIK}
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_ZAEMSCHIK}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATEOF_BIRTH_ZAEMSCHIK > string}
+            [RQ_INN] => {=Document:UF_CRM_MK_INN_ZAEMSCHIK}
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A80297_84388_43426_58384:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+            [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_ZAEMSCHIK}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_ZAEMSCHIK}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_ZAEMSCHIK}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_ZAEMSCHIK > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_ZAEMSCHIK}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => {=Document:UF_CRM_MK_SNILS_ZAEMSCHIK}
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_ZAEMSCHIK}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATEOF_BIRTH_ZAEMSCHIK > string}
+            [RQ_INN] => {=Document:UF_CRM_MK_INN_ZAEMSCHIK}
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=Document:CONTACT_ID}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+            [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_ZAEMSCHIK}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_ZAEMSCHIK}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_ZAEMSCHIK}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_ZAEMSCHIK > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_ZAEMSCHIK}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => {=Document:UF_CRM_MK_SNILS_ZAEMSCHIK}
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_ZAEMSCHIK}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATEOF_BIRTH_ZAEMSCHIK > string}
+            [RQ_INN] => {=Document:UF_CRM_MK_INN_ZAEMSCHIK}
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=Document:UF_MK_SOZAEMSHIKI}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_LASTNAME_SOZAEMSCHIK}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_NAME_SOZAEMSCHIK}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_MIDDLENAME_SOZAEMSCHIK}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SOZAEMSCHIK_SERIYA}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SOZAEMSCHIK_NOMER}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SOZAEMSCHIK_WHOM_TAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SOZAEMSCHIK_DATE_OF_TAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SOZAEMSCHIK_CODE}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_SOZAEMSCHIK}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATE_OF_BIRTH_SOZAEMSCHIK > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SOZAEMSCHIK_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SOZAEMSCHIK_GENDER_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A52496_95117_38450_26142:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A7705_7900_46197_87945:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME_2}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME_2}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME_2}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL_2}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL_2}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL_2}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL_2 > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL_2}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH_2}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH_2 > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_2_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_2_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A7705_7900_46197_87945:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME_2}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME_2}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME_2}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL_2}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL_2}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL_2}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL_2 > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL_2}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH_2}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH_2 > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_2_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_2_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A82953_23170_33894_50297:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME_3}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME_3}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME_3}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL_3}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL_3}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL_3}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL_3 > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL_3}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH_3}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH_3 > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_3_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_3_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A35333_54326_22419_68415:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A9706_73679_4407_71461:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME_2}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME_2}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME_2}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA_2}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER_2}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN_2}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN_2 > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT_2}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH_2}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH_2 > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_2_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_2_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=A69077_7790_11537_99680:ContactId}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME_3}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME_3}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME_3}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA_3}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER_3}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN_3}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN_3 > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT_3}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH_3}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH_3 > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_3_PRINTABLE}
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_3_PRINTABLE}
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=Document:CONTACT_ID}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 3
+    [EntityId] => {=Document:CONTACT_ID}
+    [PresetId] => 3
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+            [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+            [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+            [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+            [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+            [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+            [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+            [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+            [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+            [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+            [RQ_INN] => 
+            [UF_CRM_1692611956] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 2
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => 
+            [RQ_FIRST_NAME] => 
+            [RQ_SECOND_NAME] => 
+            [RQ_INN] => {=Document:UF_CRM_1708944218}
+            [RQ_OGRNIP] => 
+            [RQ_OKPO] => 
+            [RQ_OKVED] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => 
+            [RQ_IDENT_DOC] => 
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_IDENT_DOC_SER] => 
+            [RQ_IDENT_DOC_NUM] => 
+            [RQ_IDENT_DOC_ISSUED_BY] => 
+            [RQ_IDENT_DOC_DATE] => 
+            [RQ_IDENT_DOC_DEP_CODE] => 
+            [UF_CRM_1684493639] => 
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 2
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => 
+            [RQ_FIRST_NAME] => 
+            [RQ_SECOND_NAME] => 
+            [RQ_INN] => {=Document:UF_CRM_1708944218}
+            [RQ_OGRNIP] => 
+            [RQ_OKPO] => 
+            [RQ_OKVED] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => 
+            [RQ_IDENT_DOC] => 
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_IDENT_DOC_SER] => 
+            [RQ_IDENT_DOC_NUM] => 
+            [RQ_IDENT_DOC_ISSUED_BY] => 
+            [RQ_IDENT_DOC_DATE] => 
+            [RQ_IDENT_DOC_DEP_CODE] => 
+            [UF_CRM_1684493639] => 
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+
+extractPropertiesValues:
+Array
+(
+    [EntityTypeId] => 4
+    [EntityId] => {=Document:COMPANY_ID}
+    [PresetId] => 2
+    [RequisiteFields] => Array
+        (
+            [RQ_LAST_NAME] => 
+            [RQ_FIRST_NAME] => 
+            [RQ_SECOND_NAME] => 
+            [RQ_INN] => {=Document:UF_CRM_1708944218}
+            [RQ_OGRNIP] => 
+            [RQ_OKPO] => 
+            [RQ_OKVED] => 
+            [RQ_ADDR] => 
+            [RQ_SIGNATURE] => 
+            [RQ_STAMP] => 
+            [UF_CRM_1684476607] => 
+            [UF_CRM_1647929611] => 
+            [RQ_IDENT_DOC] => 
+            [RQ_COMPANY_REG_DATE] => 
+            [RQ_IDENT_DOC_SER] => 
+            [RQ_IDENT_DOC_NUM] => 
+            [RQ_IDENT_DOC_ISSUED_BY] => 
+            [RQ_IDENT_DOC_DATE] => 
+            [RQ_IDENT_DOC_DEP_CODE] => 
+            [UF_CRM_1684493639] => 
+            [UF_CRM_1688964741] => 
+            [UF_CRM_1692611897] => 
+            [UF_CRM_1697782220] => 
+            [UF_CRM_1697782233] => 
+            [UF_CRM_DIRECT_CHECKOUT] => 
+        )
+
+)
+

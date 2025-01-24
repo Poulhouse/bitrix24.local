@@ -1,0 +1,23 @@
+<?php
+$MESS["CT_BLL_SELECTED"] = "Conteggio record";
+$MESS["TEL_STAT_ACTION_CLOSE"] = "Chiudi";
+$MESS["TEL_STAT_ACTION_DOWNLOAD"] = "Carica le registrazioni su Bitrix24";
+$MESS["TEL_STAT_ACTION_EXECUTE"] = "Esegui";
+$MESS["TEL_STAT_ACTION_STOP"] = "Interrompi";
+$MESS["TEL_STAT_BACK"] = "Indietro";
+$MESS["TEL_STAT_BACK_TITLE"] = "Indietro";
+$MESS["TEL_STAT_CANCEL"] = "Annulla";
+$MESS["TEL_STAT_DOWNLOAD_VOX_RECORD_ERROR"] = "Errore durante il caricamento dei dati. Riprova più tardi.";
+$MESS["TEL_STAT_ERROR"] = "Errore";
+$MESS["TEL_STAT_EXPORT_DETAIL_TO_EXCEL"] = "Esporta dettagli chiamata in Microsoft Excel";
+$MESS["TEL_STAT_EXPORT_DETAIL_TO_EXCEL_DESCRIPTION"] = "In questo modo verrà creato un file di esportazione dei dettagli della chiamata.";
+$MESS["TEL_STAT_EXPORT_DETAIL_TO_EXCEL_LONG_PROCESS"] = "L'esportazione di una notevole quantità di dati potrebbe richiedere del tempo.";
+$MESS["TEL_STAT_EXPORT_ERROR"] = "Si è verificato un errore. Riprova più tardi o contatta l'amministratore del tuo Bitrix24.";
+$MESS["TEL_STAT_EXPORT_TO_EXCEL"] = "Esporta in Excel";
+$MESS["TEL_STAT_FILTER_CANCEL"] = "Reimposta filtro";
+$MESS["TEL_STAT_FILTER_CANCEL_TITLE"] = "Reimposta filtro";
+$MESS["TEL_STAT_LOADING"] = "Caricamento";
+$MESS["TEL_STAT_SHOW_COUNT"] = "Mostra quantità";
+$MESS["TEL_STAT_TOTAL"] = "Totale";
+$MESS["TEL_STAT_USER_ID_CANCEL"] = "Reimposta filtro dipendenti";
+$MESS["TEL_STAT_USER_ID_CANCEL_TITLE"] = "Reimposta filtro dipendenti";

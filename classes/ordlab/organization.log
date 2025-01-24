@@ -1,0 +1,1799 @@
+Host: crm.sodeistvie.su:443
+Date: 2024-08-20 17:07:24
+Module: GetPlatforms (МАССИВ)
+array (
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:531
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:494
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:478
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-20 18:09:41
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform938020',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка Виолетта Викторовна ',
+    'url' => 'https://bendasphoto.ru',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:531
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:494
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:478
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-20 18:15:27
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform938020',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка Виолетта Викторовна ',
+    'url' => 'https://bendasphoto.ru',
+  ),
+  1 => 
+  array (
+    'externalId' => 'platform938061',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка Виолетта Викторовна ',
+    'url' => 'https://bendasphoto.ru',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:531
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:494
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:478
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-21 09:02:34
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform938020',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка Виолетта Викторовна ',
+    'url' => 'https://bendasphoto.ru',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:531
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:494
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:478
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-21 09:04:05
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform938020',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка Виолетта Викторовна ',
+    'url' => 'https://bendasphoto.ru',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:531
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:494
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:478
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-22 18:08:01
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform963173',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ИП Трофимов  Евгений  Вячеславович',
+    'url' => 'e-zh.ru',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-22 18:08:03
+Module: Ответ с ошибками (МАССИВ)
+array (
+  'code' => 'invalid-json',
+  'detail' => 'name: o14: неверный формат данных для наименования контрагента (name).',
+  'requestId' => 'eabcd182-6ff7-4937-9120-702e6722eef7',
+  'status' => 400,
+  'title' => 'JSON parsing or content problem',
+)
+#0: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-23 09:06:22
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform963173',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ИП Трофимов  Евгений  Вячеславович',
+    'url' => 'e-zh.ru',
+  ),
+  1 => 
+  array (
+    'externalId' => 'platform963570',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка +79697775071 ',
+    'url' => 'e-zh.ru',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-23 09:06:22
+Module: Ответ с ошибками (МАССИВ)
+array (
+  'code' => 'invalid-json',
+  'detail' => 'name: o14: неверный формат данных для наименования контрагента (name).',
+  'requestId' => 'f24f12b8-655b-4a36-a75e-7207b7f03ea2',
+  'status' => 400,
+  'title' => 'JSON parsing or content problem',
+)
+#0: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-23 09:30:45
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform963173',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ИП Трофимов  Евгений  Вячеславович',
+    'url' => 'e-zh.ru',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-23 09:30:45
+Module: Ответ с ошибками (МАССИВ)
+array (
+  'code' => 'invalid-json',
+  'detail' => 'name: o14: неверный формат данных для наименования контрагента (name).',
+  'requestId' => 'f68563b5-9977-43e8-beaf-6de25a6facd9',
+  'status' => 400,
+  'title' => 'JSON parsing or content problem',
+)
+#0: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-23 09:31:34
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform963173',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ИП Трофимов  Евгений  Вячеславович',
+    'url' => 'e-zh.ru',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-23 09:31:34
+Module: Ответ с ошибками (МАССИВ)
+array (
+  'code' => 'invalid-json',
+  'detail' => 'name: o14: неверный формат данных для наименования контрагента (name).',
+  'requestId' => '12c20dbd-9d81-4d39-9113-3304c279f46a',
+  'status' => 400,
+  'title' => 'JSON parsing or content problem',
+)
+#0: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-23 09:39:54
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform963173',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ИП Трофимов Евгений Вячеславович',
+    'url' => 'e-zh.ru',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-26 08:45:26
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform963173',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ИП Трофимов Евгений Вячеславович',
+    'url' => 'https://e-zh.ru/',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:187
+#1: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-26 08:45:34
+Module: Ответ (МАССИВ)
+array (
+  'success' => '"id":"6ebb581d-d0ba-4bd2-90d2-3839b33e06f5","state":"ACCEPTED","erirRegisteredAt":"2024-08-26T06:45:34+03:00"',
+  'header' => 'HTTP/1.1 307 Temporary Redirect
+Server: nginx/1.23.1
+Date: Mon, 26 Aug 2024 03:45:27 GMT
+Content-Length: 0
+Connection: keep-alive
+Location: /api/v2/organizations/6ebb581d-d0ba-4bd2-90d2-3839b33e06f5
+
+HTTP/1.1 202 Accepted
+Server: nginx/1.23.1
+Date: Mon, 26 Aug 2024 03:45:34 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 111
+Connection: keep-alive
+Ord-Erir-Registered-At: 2024-08-26T06:45:34+03:00
+Ord-State: ACCEPTED
+
+',
+  'error' => '',
+)
+#0: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2024-08-26 14:26:21
+Module: Входящийе данные
+array (
+  0 => 
+  array (
+    'externalId' => 'platform963173',
+    'type' => 'site',
+    'isOwned' => true,
+    'name' => 'Площадка ИП Трофимов Евгений Вячеславович',
+    'url' => 'https://e-zh.ru/',
+    'platformId' => 'b395e9bb-16b5-419c-ad33-1a879094f475',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::updatePlatforms
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-08-29 15:36:09
+Module: Входящийе данные
+array (
+  0 => 
+  array (
+    'externalId' => 'platform899588',
+    'type' => 'site',
+    'isOwned' => false,
+    'name' => 'Площадка ООО Бизнес Система 899588',
+    'url' => 'https://bs-rko.ru/',
+    'platformId' => '4ff9cadc-da21-475e-9ff7-4ce667e27a83',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::updatePlatforms
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-09-02 17:04:06
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1063759',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО Финансовый Компас  1063759',
+    'url' => 'https://fin-compas.ru/',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-09-02 17:04:07
+Module: Ответ с ошибками (МАССИВ)
+array (
+  'code' => 'invalid-json',
+  'detail' => 'name: o14: неверный формат данных для наименования контрагента (name).',
+  'requestId' => '29d2e6c8-f38f-4354-b84d-b5b43844b633',
+  'status' => 400,
+  'title' => 'JSON parsing or content problem',
+)
+#0: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-09-02 17:04:18
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1063764',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ИП Антонова Марина Сергеевна 1063764',
+    'url' => 'https://pro-bayer.ru/',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-09-02 17:10:35
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1063759',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО Финансовый Компас 1063759',
+    'url' => 'https://fin-compas.ru/',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: 
+Date: 2024-09-02 23:08:11
+Module: Входящийе данные
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1063764',
+    'type' => 'site',
+    'isOwned' => false,
+    'name' => 'Площадка ИП Антонова Марина Сергеевна 1063764',
+    'url' => 'https://pro-bayer.ru/',
+    'platformId' => 'ba79450a-09f5-4829-9b76-bf89d6592175',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::updatePlatforms
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2024-09-02 23:14:07
+Module: Входящийе данные
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1063759',
+    'type' => 'site',
+    'isOwned' => false,
+    'name' => 'Площадка ООО Финансовый Компас 1063759',
+    'url' => 'https://fin-compas.ru/',
+    'platformId' => '9e0ac259-1751-4cfd-9be1-3b3ba65df7a8',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::updatePlatforms
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-09-09 11:48:21
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1116987',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка  1116987',
+    'url' => 'https://ver-max.ru/',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-09-09 11:48:21
+Module: Ответ с ошибками (МАССИВ)
+array (
+  'code' => 'invalid-json',
+  'detail' => 'alternativeInn: invalid argument; epayNumber: invalid argument; inn: legal type not defined; isRr: is required; name: provided name is incorrect; regNumber: invalid argument; type: cannot be blank.',
+  'requestId' => 'a35514b9-2b9c-4dfa-b48b-cdbc6fbfe422',
+  'status' => 400,
+  'title' => 'JSON parsing or content problem',
+)
+#0: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-09-09 12:32:37
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1117202',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ИП Карпачев Дмитрий Владимирович ',
+    'url' => 'https://ver-max.ru/',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: 
+Date: 2024-09-09 18:36:12
+Module: Входящийе данные
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1117202',
+    'type' => 'site',
+    'isOwned' => true,
+    'name' => 'Площадка ИП Карпачев Дмитрий Владимирович ',
+    'url' => 'https://ver-max.ru/',
+    'platformId' => 'd185e633-021c-45c8-b441-78e09dae78b1',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::updatePlatforms
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-09-10 12:07:45
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1129150',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО Информационное агентство Банки.ру 1129150',
+    'url' => 'https://www.banki.ru',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: 
+Date: 2024-09-10 17:10:24
+Module: Входящийе данные
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1129150',
+    'type' => 'site',
+    'isOwned' => false,
+    'name' => 'Площадка ООО Информационное агентство Банки.ру 1129150',
+    'url' => 'https://www.banki.ru',
+    'platformId' => '305d669d-e7a3-4ced-ab3c-a45cd62426b8',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::updatePlatforms
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-10-25 10:15:22
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1559916',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ИП Ахматова Татьяна Николаевна 1559916',
+    'url' => 'sistema-razvitie.ru',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-10-25 10:15:22
+Module: Ответ с ошибками (МАССИВ)
+array (
+  'code' => 'invalid-json',
+  'detail' => 'platforms: (0: (url: P_13: Неверный формат данных для URL площадки или приложения (url). Отсутствует протокол http|https.).).',
+  'requestId' => 'e77d531a-9ca1-417c-90ce-85e7060d6760',
+  'status' => 400,
+  'title' => 'JSON parsing or content problem',
+)
+#0: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-10-25 10:21:30
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1559916',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ИП Ахматова Татьяна Николаевна 1559916',
+    'url' => 'https://sistema-razvitie.ru/',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: 
+Date: 2024-10-25 16:27:10
+Module: Входящийе данные
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1559916',
+    'type' => 'site',
+    'isOwned' => false,
+    'name' => 'Площадка ИП Ахматова Татьяна Николаевна 1559916',
+    'url' => 'https://sistema-razvitie.ru/',
+    'platformId' => '76a41733-01ef-4e54-8e96-1367a36392a8',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::updatePlatforms
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-10-25 17:06:36
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1564447',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО Финарди 1564447',
+    'url' => 'https://t.me/kazan_trans',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: 
+Date: 2024-10-26 00:13:09
+Module: Входящийе данные
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1564447',
+    'type' => 'site',
+    'isOwned' => false,
+    'name' => 'Площадка ООО Финарди 1564447',
+    'url' => 'https://t.me/kazan_trans',
+    'platformId' => '5e983ac5-d968-454f-acb7-68a9951b121b',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::updatePlatforms
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-05 14:53:06
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'platformId' => 'a9f74796-01a3-4dec-bf39-94b6928b118a',
+    'externalId' => 'platform312759',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт” 312759',
+    'url' => 'https://кредит-на-бизнес.рф',
+  ),
+  1 => 
+  array (
+    'externalId' => 'platform1665717',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт”',
+    'url' => 'https://t.me/sellers_wb_ads',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:187
+#1: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-05 14:53:07
+Module: Ответ (МАССИВ)
+array (
+  'success' => '"id":"afe1d59f-af26-4093-8f31-fc2d3753a907","state":"ACCEPTED","erirRegisteredAt":"2024-11-05T12:53:06+03:00"',
+  'header' => 'HTTP/1.1 307 Temporary Redirect
+Server: nginx/1.23.1
+Date: Tue, 05 Nov 2024 09:53:06 GMT
+Content-Length: 0
+Connection: keep-alive
+Location: /api/v2/organizations/afe1d59f-af26-4093-8f31-fc2d3753a907
+
+HTTP/1.1 202 Accepted
+Server: nginx/1.23.1
+Date: Tue, 05 Nov 2024 09:53:06 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 111
+Connection: keep-alive
+Ord-Erir-Registered-At: 2024-11-05T12:53:06+03:00
+Ord-State: ACCEPTED
+
+',
+  'error' => '',
+)
+#0: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-05 14:53:44
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'platformId' => 'a9f74796-01a3-4dec-bf39-94b6928b118a',
+    'externalId' => 'platform312759',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт” 312759',
+    'url' => 'https://кредит-на-бизнес.рф',
+  ),
+  1 => 
+  array (
+    'externalId' => 'platform1665717',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт”',
+    'url' => 'https://t.me/sellers_wb_ads',
+  ),
+  2 => 
+  array (
+    'externalId' => 'platform1665723',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт”',
+    'url' => 'https://t.me/Stolitsainvest24',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:187
+#1: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-05 14:53:44
+Module: Ответ (МАССИВ)
+array (
+  'success' => '"id":"afe1d59f-af26-4093-8f31-fc2d3753a907","state":"ACCEPTED","erirRegisteredAt":"2024-11-05T12:53:44+03:00"',
+  'header' => 'HTTP/1.1 307 Temporary Redirect
+Server: nginx/1.23.1
+Date: Tue, 05 Nov 2024 09:53:44 GMT
+Content-Length: 0
+Connection: keep-alive
+Location: /api/v2/organizations/afe1d59f-af26-4093-8f31-fc2d3753a907
+
+HTTP/1.1 202 Accepted
+Server: nginx/1.23.1
+Date: Tue, 05 Nov 2024 09:53:44 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 111
+Connection: keep-alive
+Ord-Erir-Registered-At: 2024-11-05T12:53:44+03:00
+Ord-State: ACCEPTED
+
+',
+  'error' => '',
+)
+#0: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-06 14:37:25
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'platformId' => 'a9f74796-01a3-4dec-bf39-94b6928b118a',
+    'externalId' => 'platform312759',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт” 312759',
+    'url' => 'https://кредит-на-бизнес.рф',
+  ),
+  1 => 
+  array (
+    'externalId' => 'platform1665717',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт”',
+    'url' => 'https://t.me/sellers_wb_ads',
+  ),
+  2 => 
+  array (
+    'externalId' => 'platform1665723',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт”',
+    'url' => 'https://t.me/Stolitsainvest24',
+  ),
+  3 => 
+  array (
+    'externalId' => 'platform1673701',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт” ',
+    'url' => 'https://t.me/creditbrokers',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:187
+#1: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-06 14:37:26
+Module: Ответ (МАССИВ)
+array (
+  'success' => '',
+  'header' => 'HTTP/1.1 307 Temporary Redirect
+Server: nginx/1.23.1
+Date: Wed, 06 Nov 2024 09:37:26 GMT
+Content-Length: 0
+Connection: keep-alive
+Location: /api/v2/organizations/afe1d59f-af26-4093-8f31-fc2d3753a907
+
+HTTP/1.1 400 Bad Request
+Server: nginx/1.23.1
+Date: Wed, 06 Nov 2024 09:37:26 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 272
+Connection: keep-alive
+
+',
+  'error' => '{"code":"invalid-json","detail":"platforms: (3: (name: P_11: Неверный формат данных для наименования площадки (name).).).","requestId":"9f61c82a-eafa-4e7d-9861-d2453b61a99f","status":400,"title":"JSON parsing or content problem"}',
+)
+#0: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-06 15:02:08
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'platformId' => 'a9f74796-01a3-4dec-bf39-94b6928b118a',
+    'externalId' => 'platform312759',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт” 312759',
+    'url' => 'https://кредит-на-бизнес.рф',
+  ),
+  1 => 
+  array (
+    'platformId' => '234be3f7-ed98-4dd2-8a2c-8491894c519e',
+    'externalId' => 'platform1665717',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт”',
+    'url' => 'https://t.me/sellers_wb_ads',
+  ),
+  2 => 
+  array (
+    'platformId' => '23610d7f-cf83-4ffd-8a45-c87df457554b',
+    'externalId' => 'platform1665723',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт”',
+    'url' => 'https://t.me/Stolitsainvest24',
+  ),
+  3 => 
+  array (
+    'externalId' => 'platform1673941',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт” ',
+    'url' => 'https://t.me/creditbrokers',
+  ),
+  4 => 
+  array (
+    'externalId' => 'platform1673944',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ “Эксперт” ',
+    'url' => 'https://t.me/p2bbank',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:187
+#1: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-06 15:02:08
+Module: Ответ (МАССИВ)
+array (
+  'success' => '',
+  'header' => 'HTTP/1.1 100 Continue
+
+HTTP/1.1 307 Temporary Redirect
+Server: nginx/1.23.1
+Date: Wed, 06 Nov 2024 10:02:08 GMT
+Content-Length: 0
+Connection: keep-alive
+Location: /api/v2/organizations/afe1d59f-af26-4093-8f31-fc2d3753a907
+
+HTTP/1.1 100 Continue
+
+HTTP/1.1 400 Bad Request
+Server: nginx/1.23.1
+Date: Wed, 06 Nov 2024 10:02:08 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 390
+Connection: keep-alive
+
+',
+  'error' => '{"code":"invalid-json","detail":"platforms: (3: (name: P_11: Неверный формат данных для наименования площадки (name).); 4: (name: P_11: Неверный формат данных для наименования площадки (name).).).","requestId":"d4882d3e-7e7f-4664-b837-94f0e5fa9f08","status":400,"title":"JSON parsing or content problem"}',
+)
+#0: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-06 15:55:51
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1673683',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка Комбарова Анна Анатольевна 1673683',
+    'url' => 'https://servisy-marketpleysov.ru/',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-06 15:59:34
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'platformId' => 'a9f74796-01a3-4dec-bf39-94b6928b118a',
+    'externalId' => 'platform312759',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ Эксперт 312759',
+    'url' => 'https://кредит-на-бизнес.рф',
+  ),
+  1 => 
+  array (
+    'platformId' => '234be3f7-ed98-4dd2-8a2c-8491894c519e',
+    'externalId' => 'platform1665717',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ Эксперт',
+    'url' => 'https://t.me/sellers_wb_ads',
+  ),
+  2 => 
+  array (
+    'platformId' => '23610d7f-cf83-4ffd-8a45-c87df457554b',
+    'externalId' => 'platform1665723',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ Эксперт',
+    'url' => 'https://t.me/Stolitsainvest24',
+  ),
+  3 => 
+  array (
+    'externalId' => 'platform1673941',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ Эксперт',
+    'url' => 'https://t.me/creditbrokers',
+  ),
+  4 => 
+  array (
+    'externalId' => 'platform1673944',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО ФГ Эксперт',
+    'url' => 'https://t.me/p2bbank',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:187
+#1: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-06 15:59:35
+Module: Ответ (МАССИВ)
+array (
+  'success' => '"id":"afe1d59f-af26-4093-8f31-fc2d3753a907","state":"ACCEPTED","erirRegisteredAt":"2024-11-06T13:59:35+03:00"',
+  'header' => 'HTTP/1.1 100 Continue
+
+HTTP/1.1 307 Temporary Redirect
+Server: nginx/1.23.1
+Date: Wed, 06 Nov 2024 10:59:35 GMT
+Content-Length: 0
+Connection: keep-alive
+Location: /api/v2/organizations/afe1d59f-af26-4093-8f31-fc2d3753a907
+
+HTTP/1.1 100 Continue
+
+HTTP/1.1 202 Accepted
+Server: nginx/1.23.1
+Date: Wed, 06 Nov 2024 10:59:35 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 111
+Connection: keep-alive
+Ord-Erir-Registered-At: 2024-11-06T13:59:35+03:00
+Ord-State: ACCEPTED
+
+',
+  'error' => '',
+)
+#0: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-12 11:33:50
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1728679',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка Выберу.Ру Маркетплейс 1728679',
+    'url' => 'https://ekaterinburg.vbr.ru/?utm_referrer=https%3A%2F%2Fyandex.ru%2F',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-14 16:53:48
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1749053',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ООО АРСфин 1749053',
+    'url' => 'https://bankiros.ru/',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-14 17:21:58
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform1749369',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ООО МАНИСЕЛЛЕРС 1749369',
+    'url' => 'https://moneysellers.ru/',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-28 21:50:40
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'platformId' => '13976447-ea3e-4ce4-8dfa-a67c94720cee',
+    'externalId' => 'platform809541',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ИП Шаймердинова Дина Александровна ',
+    'url' => 'https://kbaspekt.ru/',
+  ),
+  1 => 
+  array (
+    'externalId' => 'platform1925067',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ИП Шаймердинова Дина Александровна ',
+    'url' => 'https://vk.com/kbaspekt',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:187
+#1: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-11-28 21:50:41
+Module: Ответ (МАССИВ)
+array (
+  'success' => '',
+  'header' => 'HTTP/1.1 307 Temporary Redirect
+Server: nginx/1.23.1
+Date: Thu, 28 Nov 2024 16:50:40 GMT
+Content-Length: 0
+Connection: keep-alive
+Location: /api/v2/organizations/180f0fdb-433e-4c67-8fa8-0b7116959d20
+
+HTTP/1.1 400 Bad Request
+Server: nginx/1.23.1
+Date: Thu, 28 Nov 2024 16:50:41 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 390
+Connection: keep-alive
+
+',
+  'error' => '{"code":"invalid-json","detail":"platforms: (0: (name: P_11: Неверный формат данных для наименования площадки (name).); 1: (name: P_11: Неверный формат данных для наименования площадки (name).).).","requestId":"34c2a9ba-dca2-4fff-8269-06df5b5e40f0","status":400,"title":"JSON parsing or content problem"}',
+)
+#0: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-09 15:39:39
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'platformId' => 'ceda5d0f-816f-4d88-a202-b7b4574f2975',
+    'externalId' => 'platform698305',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка ИП Ванюшова Надежда Владимировна',
+    'url' => 'https://t.me/nayaprobusiness',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:187
+#1: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-09 15:39:40
+Module: Ответ (МАССИВ)
+array (
+  'success' => '"id":"89f2b12d-f5d7-4f90-922e-b148002cbb80","state":"ACCEPTED","erirRegisteredAt":"2024-12-09T13:39:40+03:00"',
+  'header' => 'HTTP/1.1 307 Temporary Redirect
+Server: nginx/1.23.1
+Date: Mon, 09 Dec 2024 10:39:40 GMT
+Content-Length: 0
+Connection: keep-alive
+Location: /api/v2/organizations/89f2b12d-f5d7-4f90-922e-b148002cbb80
+
+HTTP/1.1 202 Accepted
+Server: nginx/1.23.1
+Date: Mon, 09 Dec 2024 10:39:40 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 111
+Connection: keep-alive
+Ord-Erir-Registered-At: 2024-12-09T13:39:40+03:00
+Ord-State: ACCEPTED
+
+',
+  'error' => '',
+)
+#0: KPLab\OrdLab\Organizations::Update
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-11 14:00:57
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform2044393',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ИП КОПЫЛОВА ЕЛЕНА АРТУРОВНА 2044393',
+    'url' => 'https://t.me/mp_recruiting',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-11 14:04:17
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform2044387',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка Ручкин Алексей Сергеевич 2044387',
+    'url' => 'https://t.me/packagingcenterbot',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-10 15:09:30
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform2224573',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка Сайт 0 ИП Валишова Альбина Зуфаровна',
+    'url' => 'https://t.me/kazan_trans',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-10 15:09:31
+Module: Ответ с ошибками (МАССИВ)
+array (
+  'code' => 'invalid-json',
+  'detail' => 'alternativeInn: invalid argument; epayNumber: invalid argument; inn: legal type not defined; isRr: is required; name: provided name is incorrect; regNumber: invalid argument; type: cannot be blank.',
+  'requestId' => '3dc3531a-0cd1-4690-a5f8-8eaed2f7e3cd',
+  'status' => 400,
+  'title' => 'JSON parsing or content problem',
+)
+#0: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-10 15:27:10
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform2314456',
+    'isOwned' => false,
+    'type' => 'site',
+    'name' => 'Площадка ТГ0 ИП Валишова Альбина Зуфаровна',
+    'url' => 'https://t.me/kazan_trans',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-16 11:58:33
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform2369432',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка Сайт 0 ИП Урахчин Владислав Игоревич',
+    'url' => 'https://ffmarketbox.ru/',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-21 10:21:39
+Module: GetPlatforms (МАССИВ)
+array (
+  0 => 
+  array (
+    'externalId' => 'platform2388236',
+    'isOwned' => true,
+    'type' => 'site',
+    'name' => 'Площадка Сайт 0 ООО Хочу купить',
+    'url' => 'https://canihave.ru/',
+  ),
+)
+#0: KPLab\OrdLab\Organizations::GetPlatforms
+	/home/bitrix/www/local/classes/ordlab/organizations.php:77
+#1: KPLab\OrdLab\Organizations::Registration
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:3
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------

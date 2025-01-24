@@ -1,0 +1,360 @@
+Host: crm.sodeistvie.su:443
+Date: 2024-10-17 18:00:46
+Module: leadStage
+UC_CQ8PVB
+#0: KPLab\API\V2\Controller\KPK->setLeadsAction
+	
+#1: ReflectionMethod->invokeArgs
+	/home/bitrix/www/bitrix/modules/main/lib/engine/autowire/binder.php:207
+#2: Bitrix\Main\Engine\AutoWire\Binder->invoke
+	/home/bitrix/www/bitrix/modules/main/lib/engine/action.php:117
+#3: Bitrix\Main\Engine\Action->runWithSourceParametersList
+	/home/bitrix/www/bitrix/modules/main/lib/engine/controller.php:425
+#4: Bitrix\Main\Engine\Controller->run
+	/home/bitrix/www/bitrix/modules/main/lib/httpapplication.php:140
+#5: Bitrix\Main\HttpApplication->runController
+	/home/bitrix/www/bitrix/modules/main/include/routing_index.php:135
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-10-17 18:00:46
+Module: leadSource
+array (
+  'ID' => '1117',
+  'TIMESTAMP_X' => '2024-10-17 17:40:36',
+  'IBLOCK_ID' => '183',
+  'NAME' => 'Какой источник указать?',
+  'ACTIVE' => 'Y',
+  'SORT' => '90',
+  'CODE' => 'SOURCE',
+  'DEFAULT_VALUE' => '',
+  'PROPERTY_TYPE' => 'L',
+  'ROW_COUNT' => '1',
+  'COL_COUNT' => '30',
+  'LIST_TYPE' => 'L',
+  'MULTIPLE' => 'N',
+  'XML_ID' => '',
+  'FILE_TYPE' => '',
+  'MULTIPLE_CNT' => '5',
+  'TMP_ID' => NULL,
+  'LINK_IBLOCK_ID' => '0',
+  'WITH_DESCRIPTION' => 'N',
+  'SEARCHABLE' => 'N',
+  'FILTRABLE' => 'Y',
+  'IS_REQUIRED' => 'N',
+  'VERSION' => '1',
+  'USER_TYPE' => NULL,
+  'USER_TYPE_SETTINGS' => 'a:0:{}',
+  'HINT' => '',
+  'PROPERTY_VALUE_ID' => '3778864',
+  'VALUE' => 'MyFi (Содействие)',
+  'DESCRIPTION' => NULL,
+  'VALUE_ENUM' => 'MyFi (Содействие)',
+  'VALUE_XML_ID' => '114',
+  'VALUE_SORT' => '500',
+  'VALUE_ENUM_ID' => '809',
+  '~VALUE' => 'MyFi (Содействие)',
+  '~DESCRIPTION' => NULL,
+  '~NAME' => 'Какой источник указать?',
+  '~DEFAULT_VALUE' => '',
+)
+#0: KPLab\API\V2\Controller\KPK->setLeadsAction
+	
+#1: ReflectionMethod->invokeArgs
+	/home/bitrix/www/bitrix/modules/main/lib/engine/autowire/binder.php:207
+#2: Bitrix\Main\Engine\AutoWire\Binder->invoke
+	/home/bitrix/www/bitrix/modules/main/lib/engine/action.php:117
+#3: Bitrix\Main\Engine\Action->runWithSourceParametersList
+	/home/bitrix/www/bitrix/modules/main/lib/engine/controller.php:425
+#4: Bitrix\Main\Engine\Controller->run
+	/home/bitrix/www/bitrix/modules/main/lib/httpapplication.php:140
+#5: Bitrix\Main\HttpApplication->runController
+	/home/bitrix/www/bitrix/modules/main/include/routing_index.php:135
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-10-17 19:02:59
+Module: leadStage
+UC_CQ8PVB
+#0: KPLab\API\V2\Controller\KPK->setLeadsAction
+	
+#1: ReflectionMethod->invokeArgs
+	/home/bitrix/www/bitrix/modules/main/lib/engine/autowire/binder.php:207
+#2: Bitrix\Main\Engine\AutoWire\Binder->invoke
+	/home/bitrix/www/bitrix/modules/main/lib/engine/action.php:117
+#3: Bitrix\Main\Engine\Action->runWithSourceParametersList
+	/home/bitrix/www/bitrix/modules/main/lib/engine/controller.php:425
+#4: Bitrix\Main\Engine\Controller->run
+	/home/bitrix/www/bitrix/modules/main/lib/httpapplication.php:140
+#5: Bitrix\Main\HttpApplication->runController
+	/home/bitrix/www/bitrix/modules/main/include/routing_index.php:135
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-10-17 19:02:59
+Module: leadSource
+array (
+  'ID' => '1117',
+  'TIMESTAMP_X' => '2024-10-17 17:40:36',
+  'IBLOCK_ID' => '183',
+  'NAME' => 'Какой источник указать?',
+  'ACTIVE' => 'Y',
+  'SORT' => '90',
+  'CODE' => 'SOURCE',
+  'DEFAULT_VALUE' => '',
+  'PROPERTY_TYPE' => 'L',
+  'ROW_COUNT' => '1',
+  'COL_COUNT' => '30',
+  'LIST_TYPE' => 'L',
+  'MULTIPLE' => 'N',
+  'XML_ID' => '',
+  'FILE_TYPE' => '',
+  'MULTIPLE_CNT' => '5',
+  'TMP_ID' => NULL,
+  'LINK_IBLOCK_ID' => '0',
+  'WITH_DESCRIPTION' => 'N',
+  'SEARCHABLE' => 'N',
+  'FILTRABLE' => 'Y',
+  'IS_REQUIRED' => 'N',
+  'VERSION' => '1',
+  'USER_TYPE' => NULL,
+  'USER_TYPE_SETTINGS' => 'a:0:{}',
+  'HINT' => '',
+  'PROPERTY_VALUE_ID' => '3778864',
+  'VALUE' => 'MyFi (Содействие)',
+  'DESCRIPTION' => NULL,
+  'VALUE_ENUM' => 'MyFi (Содействие)',
+  'VALUE_XML_ID' => '114',
+  'VALUE_SORT' => '500',
+  'VALUE_ENUM_ID' => '809',
+  '~VALUE' => 'MyFi (Содействие)',
+  '~DESCRIPTION' => NULL,
+  '~NAME' => 'Какой источник указать?',
+  '~DEFAULT_VALUE' => '',
+)
+#0: KPLab\API\V2\Controller\KPK->setLeadsAction
+	
+#1: ReflectionMethod->invokeArgs
+	/home/bitrix/www/bitrix/modules/main/lib/engine/autowire/binder.php:207
+#2: Bitrix\Main\Engine\AutoWire\Binder->invoke
+	/home/bitrix/www/bitrix/modules/main/lib/engine/action.php:117
+#3: Bitrix\Main\Engine\Action->runWithSourceParametersList
+	/home/bitrix/www/bitrix/modules/main/lib/engine/controller.php:425
+#4: Bitrix\Main\Engine\Controller->run
+	/home/bitrix/www/bitrix/modules/main/lib/httpapplication.php:140
+#5: Bitrix\Main\HttpApplication->runController
+	/home/bitrix/www/bitrix/modules/main/include/routing_index.php:135
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-10-17 19:04:19
+Module: leadStage
+UC_CQ8PVB
+#0: KPLab\API\V2\Controller\KPK->setLeadsAction
+	
+#1: ReflectionMethod->invokeArgs
+	/home/bitrix/www/bitrix/modules/main/lib/engine/autowire/binder.php:207
+#2: Bitrix\Main\Engine\AutoWire\Binder->invoke
+	/home/bitrix/www/bitrix/modules/main/lib/engine/action.php:117
+#3: Bitrix\Main\Engine\Action->runWithSourceParametersList
+	/home/bitrix/www/bitrix/modules/main/lib/engine/controller.php:425
+#4: Bitrix\Main\Engine\Controller->run
+	/home/bitrix/www/bitrix/modules/main/lib/httpapplication.php:140
+#5: Bitrix\Main\HttpApplication->runController
+	/home/bitrix/www/bitrix/modules/main/include/routing_index.php:135
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-10-17 19:04:19
+Module: leadSource
+array (
+  'ID' => '1117',
+  'TIMESTAMP_X' => '2024-10-17 17:40:36',
+  'IBLOCK_ID' => '183',
+  'NAME' => 'Какой источник указать?',
+  'ACTIVE' => 'Y',
+  'SORT' => '90',
+  'CODE' => 'SOURCE',
+  'DEFAULT_VALUE' => '',
+  'PROPERTY_TYPE' => 'L',
+  'ROW_COUNT' => '1',
+  'COL_COUNT' => '30',
+  'LIST_TYPE' => 'L',
+  'MULTIPLE' => 'N',
+  'XML_ID' => '',
+  'FILE_TYPE' => '',
+  'MULTIPLE_CNT' => '5',
+  'TMP_ID' => NULL,
+  'LINK_IBLOCK_ID' => '0',
+  'WITH_DESCRIPTION' => 'N',
+  'SEARCHABLE' => 'N',
+  'FILTRABLE' => 'Y',
+  'IS_REQUIRED' => 'N',
+  'VERSION' => '1',
+  'USER_TYPE' => NULL,
+  'USER_TYPE_SETTINGS' => 'a:0:{}',
+  'HINT' => '',
+  'PROPERTY_VALUE_ID' => '3778864',
+  'VALUE' => 'MyFi (Содействие)',
+  'DESCRIPTION' => NULL,
+  'VALUE_ENUM' => 'MyFi (Содействие)',
+  'VALUE_XML_ID' => '114',
+  'VALUE_SORT' => '500',
+  'VALUE_ENUM_ID' => '809',
+  '~VALUE' => 'MyFi (Содействие)',
+  '~DESCRIPTION' => NULL,
+  '~NAME' => 'Какой источник указать?',
+  '~DEFAULT_VALUE' => '',
+)
+#0: KPLab\API\V2\Controller\KPK->setLeadsAction
+	
+#1: ReflectionMethod->invokeArgs
+	/home/bitrix/www/bitrix/modules/main/lib/engine/autowire/binder.php:207
+#2: Bitrix\Main\Engine\AutoWire\Binder->invoke
+	/home/bitrix/www/bitrix/modules/main/lib/engine/action.php:117
+#3: Bitrix\Main\Engine\Action->runWithSourceParametersList
+	/home/bitrix/www/bitrix/modules/main/lib/engine/controller.php:425
+#4: Bitrix\Main\Engine\Controller->run
+	/home/bitrix/www/bitrix/modules/main/lib/httpapplication.php:140
+#5: Bitrix\Main\HttpApplication->runController
+	/home/bitrix/www/bitrix/modules/main/include/routing_index.php:135
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-17 19:32:29
+Module: leadStage
+UC_CQ8PVB
+#0: KPLab\API\V2\Controller\KPK->setLeadsAction
+	
+#1: ReflectionMethod->invokeArgs
+	/home/bitrix/www/bitrix/modules/main/lib/engine/autowire/binder.php:207
+#2: Bitrix\Main\Engine\AutoWire\Binder->invoke
+	/home/bitrix/www/bitrix/modules/main/lib/engine/action.php:117
+#3: Bitrix\Main\Engine\Action->runWithSourceParametersList
+	/home/bitrix/www/bitrix/modules/main/lib/engine/controller.php:425
+#4: Bitrix\Main\Engine\Controller->run
+	/home/bitrix/www/bitrix/modules/main/lib/httpapplication.php:140
+#5: Bitrix\Main\HttpApplication->runController
+	/home/bitrix/www/bitrix/modules/main/include/routing_index.php:135
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-17 19:32:29
+Module: leadSource
+array (
+  'ID' => '1117',
+  'TIMESTAMP_X' => '2024-10-17 19:34:22',
+  'IBLOCK_ID' => '183',
+  'NAME' => 'Какой источник указать?',
+  'ACTIVE' => 'Y',
+  'SORT' => '90',
+  'CODE' => 'SOURCE',
+  'DEFAULT_VALUE' => '',
+  'PROPERTY_TYPE' => 'L',
+  'ROW_COUNT' => '1',
+  'COL_COUNT' => '30',
+  'LIST_TYPE' => 'L',
+  'MULTIPLE' => 'N',
+  'XML_ID' => '',
+  'FILE_TYPE' => '',
+  'MULTIPLE_CNT' => '5',
+  'TMP_ID' => NULL,
+  'LINK_IBLOCK_ID' => '0',
+  'WITH_DESCRIPTION' => 'N',
+  'SEARCHABLE' => 'N',
+  'FILTRABLE' => 'Y',
+  'IS_REQUIRED' => 'N',
+  'VERSION' => '1',
+  'USER_TYPE' => NULL,
+  'USER_TYPE_SETTINGS' => 'a:0:{}',
+  'HINT' => '',
+  'PROPERTY_VALUE_ID' => '3779576',
+  'VALUE' => 'MyFi (Содействие)',
+  'DESCRIPTION' => NULL,
+  'VALUE_ENUM' => 'MyFi (Содействие)',
+  'VALUE_XML_ID' => '114',
+  'VALUE_SORT' => '500',
+  'VALUE_ENUM_ID' => '809',
+  '~VALUE' => 'MyFi (Содействие)',
+  '~DESCRIPTION' => NULL,
+  '~NAME' => 'Какой источник указать?',
+  '~DEFAULT_VALUE' => '',
+)
+#0: KPLab\API\V2\Controller\KPK->setLeadsAction
+	
+#1: ReflectionMethod->invokeArgs
+	/home/bitrix/www/bitrix/modules/main/lib/engine/autowire/binder.php:207
+#2: Bitrix\Main\Engine\AutoWire\Binder->invoke
+	/home/bitrix/www/bitrix/modules/main/lib/engine/action.php:117
+#3: Bitrix\Main\Engine\Action->runWithSourceParametersList
+	/home/bitrix/www/bitrix/modules/main/lib/engine/controller.php:425
+#4: Bitrix\Main\Engine\Controller->run
+	/home/bitrix/www/bitrix/modules/main/lib/httpapplication.php:140
+#5: Bitrix\Main\HttpApplication->runController
+	/home/bitrix/www/bitrix/modules/main/include/routing_index.php:135
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-17 19:35:09
+Module: leadStage
+UC_CQ8PVB
+#0: KPLab\API\V2\Controller\KPK->setLeadsAction
+	
+#1: ReflectionMethod->invokeArgs
+	/home/bitrix/www/bitrix/modules/main/lib/engine/autowire/binder.php:207
+#2: Bitrix\Main\Engine\AutoWire\Binder->invoke
+	/home/bitrix/www/bitrix/modules/main/lib/engine/action.php:117
+#3: Bitrix\Main\Engine\Action->runWithSourceParametersList
+	/home/bitrix/www/bitrix/modules/main/lib/engine/controller.php:425
+#4: Bitrix\Main\Engine\Controller->run
+	/home/bitrix/www/bitrix/modules/main/lib/httpapplication.php:140
+#5: Bitrix\Main\HttpApplication->runController
+	/home/bitrix/www/bitrix/modules/main/include/routing_index.php:135
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-17 19:35:09
+Module: leadSource
+array (
+  'ID' => '1117',
+  'TIMESTAMP_X' => '2024-10-17 19:34:22',
+  'IBLOCK_ID' => '183',
+  'NAME' => 'Какой источник указать?',
+  'ACTIVE' => 'Y',
+  'SORT' => '90',
+  'CODE' => 'SOURCE',
+  'DEFAULT_VALUE' => '',
+  'PROPERTY_TYPE' => 'L',
+  'ROW_COUNT' => '1',
+  'COL_COUNT' => '30',
+  'LIST_TYPE' => 'L',
+  'MULTIPLE' => 'N',
+  'XML_ID' => '',
+  'FILE_TYPE' => '',
+  'MULTIPLE_CNT' => '5',
+  'TMP_ID' => NULL,
+  'LINK_IBLOCK_ID' => '0',
+  'WITH_DESCRIPTION' => 'N',
+  'SEARCHABLE' => 'N',
+  'FILTRABLE' => 'Y',
+  'IS_REQUIRED' => 'N',
+  'VERSION' => '1',
+  'USER_TYPE' => NULL,
+  'USER_TYPE_SETTINGS' => 'a:0:{}',
+  'HINT' => '',
+  'PROPERTY_VALUE_ID' => '3779576',
+  'VALUE' => 'MyFi (Содействие)',
+  'DESCRIPTION' => NULL,
+  'VALUE_ENUM' => 'MyFi (Содействие)',
+  'VALUE_XML_ID' => '114',
+  'VALUE_SORT' => '500',
+  'VALUE_ENUM_ID' => '809',
+  '~VALUE' => 'MyFi (Содействие)',
+  '~DESCRIPTION' => NULL,
+  '~NAME' => 'Какой источник указать?',
+  '~DEFAULT_VALUE' => '',
+)
+#0: KPLab\API\V2\Controller\KPK->setLeadsAction
+	
+#1: ReflectionMethod->invokeArgs
+	/home/bitrix/www/bitrix/modules/main/lib/engine/autowire/binder.php:207
+#2: Bitrix\Main\Engine\AutoWire\Binder->invoke
+	/home/bitrix/www/bitrix/modules/main/lib/engine/action.php:117
+#3: Bitrix\Main\Engine\Action->runWithSourceParametersList
+	/home/bitrix/www/bitrix/modules/main/lib/engine/controller.php:425
+#4: Bitrix\Main\Engine\Controller->run
+	/home/bitrix/www/bitrix/modules/main/lib/httpapplication.php:140
+#5: Bitrix\Main\HttpApplication->runController
+	/home/bitrix/www/bitrix/modules/main/include/routing_index.php:135
+----------

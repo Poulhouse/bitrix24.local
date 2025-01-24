@@ -1,0 +1,1260 @@
+Host: crm.sodeistvie.su:443
+Date: 2024-12-18 16:06:58
+Module: getCompany properties
+array (
+  0 => 31717,
+  1 => 572,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-18 16:07:32
+Module: getCompany properties
+array (
+  0 => 31717,
+  1 => 572,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-18 16:08:01
+Module: getCompany properties
+array (
+  0 => 31717,
+  1 => 572,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-18 16:08:43
+Module: getCompany properties
+array (
+  0 => 31717,
+  1 => 572,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-18 16:09:06
+Module: getCompany properties
+array (
+  0 => 31717,
+  1 => 572,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-20 10:01:40
+Module: getCompany properties
+array (
+  0 => 295,
+  1 => 220,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-20 10:08:35
+Module: getCompany properties
+array (
+  0 => 295,
+  1 => 220,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2024-12-20 12:04:13
+Module: getCompany properties
+array (
+  0 => 35710,
+  1 => 301,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-23 14:24:40
+Module: getCompany properties
+array (
+  0 => 30690,
+  1 => 223,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-23 15:45:14
+Module: getCompany properties
+array (
+  0 => 31259,
+  1 => 98,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-23 16:13:11
+Module: getCompany properties
+array (
+  0 => 49388,
+  1 => 654,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-23 16:26:32
+Module: getCompany properties
+array (
+  0 => 30690,
+  1 => 223,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-24 14:28:40
+Module: getCompany properties
+array (
+  0 => 36782,
+  1 => 335,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-24 15:59:35
+Module: getCompany properties
+array (
+  0 => 32995,
+  1 => 262,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-24 17:28:01
+Module: getCompany properties
+array (
+  0 => 32995,
+  1 => 262,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 13:10:30
+Module: getCompany properties
+array (
+  0 => 36782,
+  1 => 335,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-26 16:07:57
+Module: getCompany properties
+array (
+  0 => 45948,
+  1 => 431,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-26 16:59:47
+Module: getCompany properties
+array (
+  0 => 45948,
+  1 => 431,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 18:06:25
+Module: getCompany properties
+array (
+  0 => 49022,
+  1 => 651,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 19:46:41
+Module: getCompany properties
+array (
+  0 => 30731,
+  1 => 176,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2024-12-30 10:01:50
+Module: getCompany properties
+array (
+  0 => 46164,
+  1 => 439,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2024-12-30 10:05:57
+Module: getCompany properties
+array (
+  0 => 48529,
+  1 => 562,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2024-12-30 10:07:40
+Module: getCompany properties
+array (
+  0 => 36823,
+  1 => 331,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2024-12-30 10:11:14
+Module: getCompany properties
+array (
+  0 => 33020,
+  1 => 263,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2025-01-06 10:01:39
+Module: getCompany properties
+array (
+  0 => 36350,
+  1 => 312,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-09 09:54:28
+Module: getCompany properties
+array (
+  0 => 32255,
+  1 => 248,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-09 09:55:15
+Module: getCompany properties
+array (
+  0 => 32255,
+  1 => 248,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-09 11:12:51
+Module: getCompany properties
+array (
+  0 => 49022,
+  1 => 651,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-09 12:00:07
+Module: getCompany properties
+array (
+  0 => 31574,
+  1 => 446,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2025-01-10 10:02:28
+Module: getCompany properties
+array (
+  0 => 32959,
+  1 => 563,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2025-01-10 10:03:37
+Module: getCompany properties
+array (
+  0 => 10234,
+  1 => 192,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-10 11:31:58
+Module: getCompany properties
+array (
+  0 => 31574,
+  1 => 446,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2025-01-10 13:39:13
+Module: getCompany properties
+array (
+  0 => 10234,
+  1 => 192,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-10 18:01:23
+Module: getCompany properties
+array (
+  0 => 49944,
+  1 => 716,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-10 18:01:56
+Module: getCompany properties
+array (
+  0 => 49944,
+  1 => 716,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-10 19:22:56
+Module: getCompany properties
+array (
+  0 => 49944,
+  1 => 716,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2025-01-13 10:04:06
+Module: getCompany properties
+array (
+  0 => 41202,
+  1 => 438,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-13 14:26:33
+Module: getCompany properties
+array (
+  0 => 49944,
+  1 => 716,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-13 14:46:27
+Module: getCompany properties
+array (
+  0 => 17141,
+  1 => 138,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-14 14:30:40
+Module: getCompany properties
+array (
+  0 => 41874,
+  1 => 429,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-14 14:31:46
+Module: getCompany properties
+array (
+  0 => 17141,
+  1 => 138,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-15 04:48:36
+Module: getCompany properties
+array (
+  0 => 48586,
+  1 => 624,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-15 10:28:33
+Module: getCompany properties
+array (
+  0 => 48586,
+  1 => 624,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-15 11:54:20
+Module: getCompany properties
+array (
+  0 => 46962,
+  1 => 453,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-15 11:54:44
+Module: getCompany properties
+array (
+  0 => 46962,
+  1 => 453,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-15 12:11:28
+Module: getCompany properties
+array (
+  0 => 46962,
+  1 => 453,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-15 12:42:21
+Module: getCompany properties
+array (
+  0 => 46962,
+  1 => 453,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-15 14:23:19
+Module: getCompany properties
+array (
+  0 => 41874,
+  1 => 429,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-16 16:22:01
+Module: getCompany properties
+array (
+  0 => 46962,
+  1 => 453,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: 
+Date: 2025-01-17 10:04:59
+Module: getCompany properties
+array (
+  0 => 30731,
+  1 => 176,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2025-01-17 13:07:50
+Module: getCompany properties
+array (
+  0 => 49944,
+  1 => 716,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-20 17:06:15
+Module: getCompany properties
+array (
+  0 => 43345,
+  1 => 686,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-20 18:25:40
+Module: getCompany properties
+array (
+  0 => 43345,
+  1 => 686,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 10:25:40
+Module: getCompany properties
+array (
+  0 => 37203,
+  1 => 545,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 10:33:41
+Module: getCompany properties
+array (
+  0 => 48379,
+  1 => 547,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 13:26:24
+Module: getCompany properties
+array (
+  0 => 30820,
+  1 => 407,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 15:42:13
+Module: getCompany properties
+array (
+  0 => 37203,
+  1 => 545,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 15:43:35
+Module: getCompany properties
+array (
+  0 => 30820,
+  1 => 407,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 17:24:06
+Module: getCompany properties
+array (
+  0 => 37203,
+  1 => 545,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 17:47:15
+Module: getCompany properties
+array (
+  0 => 48379,
+  1 => 547,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 17:43:05
+Module: getCompany properties
+array (
+  0 => 32995,
+  1 => 262,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 18:17:25
+Module: getCompany properties
+array (
+  0 => 32995,
+  1 => 262,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 19:25:10
+Module: getCompany properties
+array (
+  0 => 10938,
+  1 => 143,
+)
+#0: KPLab\SellerCapitalOSK->getCompany
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:6
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------

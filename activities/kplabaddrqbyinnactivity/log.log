@@ -1,0 +1,58 @@
+Host: crm.sodeistvie.su:443
+Date: 2024-09-10 18:34:34
+ИНН или ID компании не указаны
+#0: CBPKPLabAddRqByINNActivity->Execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#1: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#2: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#3: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#4: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:341
+#5: CBPDocument::startWorkflow
+	/home/bitrix/www/bitrix/modules/bizproc/lib/automation/engine/runtime.php:158
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-09-10 18:34:34
+Module: arParams
+array (
+  'fields' => 
+  array (
+    'ENTITY_TYPE_ID' => 4,
+    'ENTITY_ID' => NULL,
+    'PRESET_ID' => 1,
+    'RQ_INN' => NULL,
+  ),
+)
+#0: CBPKPLabAddRqByINNActivity->Execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#1: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#2: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#3: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#4: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:341
+#5: CBPDocument::startWorkflow
+	/home/bitrix/www/bitrix/modules/bizproc/lib/automation/engine/runtime.php:158
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-09-10 18:34:34
+Module: response
+NULL
+#0: CBPKPLabAddRqByINNActivity->Execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:536
+#1: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:499
+#2: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:483
+#3: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#4: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:341
+#5: CBPDocument::startWorkflow
+	/home/bitrix/www/bitrix/modules/bizproc/lib/automation/engine/runtime.php:158
+----------

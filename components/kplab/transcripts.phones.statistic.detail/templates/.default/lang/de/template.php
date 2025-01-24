@@ -1,0 +1,23 @@
+<?php
+$MESS["CT_BLL_SELECTED"] = "Anzahl Einträge";
+$MESS["TEL_STAT_ACTION_CLOSE"] = "Schließen";
+$MESS["TEL_STAT_ACTION_DOWNLOAD"] = "Aufzeichnungen in Bitrix24 hochladen";
+$MESS["TEL_STAT_ACTION_EXECUTE"] = "Starten";
+$MESS["TEL_STAT_ACTION_STOP"] = "Stoppen";
+$MESS["TEL_STAT_BACK"] = "Zurück";
+$MESS["TEL_STAT_BACK_TITLE"] = "Zurück";
+$MESS["TEL_STAT_CANCEL"] = "Abbrechen";
+$MESS["TEL_STAT_DOWNLOAD_VOX_RECORD_ERROR"] = "Fehler beim Hochladen von Daten. Versuchen Se bitte später erneut.";
+$MESS["TEL_STAT_ERROR"] = "Fehler";
+$MESS["TEL_STAT_EXPORT_DETAIL_TO_EXCEL"] = "Anrufdetails nach Microsoft Excel exportieren";
+$MESS["TEL_STAT_EXPORT_DETAIL_TO_EXCEL_DESCRIPTION"] = "Dabei wird eine Datei zum Export der Anrufdetails erstellt.";
+$MESS["TEL_STAT_EXPORT_DETAIL_TO_EXCEL_LONG_PROCESS"] = "Exportieren von vielen Daten kann einige Zeit in Anspruch nehmen.";
+$MESS["TEL_STAT_EXPORT_ERROR"] = "Es gab einen Fehler. Versuchen Sie bitte später erneut oder kontaktieren Sie Ihren Bitrix24 Administrator.";
+$MESS["TEL_STAT_EXPORT_TO_EXCEL"] = "Nach Excel exportieren";
+$MESS["TEL_STAT_FILTER_CANCEL"] = "Filter zurücksetzen";
+$MESS["TEL_STAT_FILTER_CANCEL_TITLE"] = "Filter zurücksetzen";
+$MESS["TEL_STAT_LOADING"] = "Wird hochgeladen";
+$MESS["TEL_STAT_SHOW_COUNT"] = "Menge anzeigen";
+$MESS["TEL_STAT_TOTAL"] = "Gesamt";
+$MESS["TEL_STAT_USER_ID_CANCEL"] = "Filter nach Mitarbeiter zurücksetzen";
+$MESS["TEL_STAT_USER_ID_CANCEL_TITLE"] = "Filter nach Mitarbeiter zurücksetzen";

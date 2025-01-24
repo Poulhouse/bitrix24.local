@@ -1,0 +1,2337 @@
+Initial values: Array
+(
+    [sessid] => df2ea988c5ac9a91aa70ebfea7839526
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A83866_73483_28914_37696
+    [current_site_id] => s1
+    [title] => Заёмщик реквизиты
+    [activity_id] => A83866_73483_28914_37696
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A80297_84388_43426_58384:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+    [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_ZAEMSCHIK}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_ZAEMSCHIK}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_ZAEMSCHIK}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_ZAEMSCHIK > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_ZAEMSCHIK}
+    [UF_CRM_1684476607] => {=Document:UF_CRM_MK_SNILS_ZAEMSCHIK}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_ZAEMSCHIK}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATEOF_BIRTH_ZAEMSCHIK > string}
+    [RQ_INN] => {=Document:UF_CRM_MK_INN_ZAEMSCHIK}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => df2ea988c5ac9a91aa70ebfea7839526
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A280_73190_47081_12996
+    [current_site_id] => s1
+    [title] => Созаемщик создание реквизитов
+    [activity_id] => A280_73190_47081_12996
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A91444_63756_12458_60053:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_LASTNAME_SOZAEMSCHIK}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_NAME_SOZAEMSCHIK}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_MIDDLENAME_SOZAEMSCHIK}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SOZAEMSCHIK_SERIYA}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SOZAEMSCHIK_NOMER}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SOZAEMSCHIK_WHOM_TAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SOZAEMSCHIK_DATE_OF_TAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SOZAEMSCHIK_CODE}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_SOZAEMSCHIK}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATE_OF_BIRTH_SOZAEMSCHIK > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SOZAEMSCHIK_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SOZAEMSCHIK_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => df2ea988c5ac9a91aa70ebfea7839526
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A98114_89454_72008_59726
+    [current_site_id] => s1
+    [title] => Реквизит Поручитель 1
+    [activity_id] => A98114_89454_72008_59726
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A24598_28768_30819_51597:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => df2ea988c5ac9a91aa70ebfea7839526
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A46122_16490_75384_92949
+    [current_site_id] => s1
+    [title] => Реквизит Поручитель 2
+    [activity_id] => A46122_16490_75384_92949
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A22340_95573_46616_31803:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME_2}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME_2}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME_2}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL_2}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL_2}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL_2}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL_2 > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL_2}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH_2}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH_2 > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_2_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_2_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => df2ea988c5ac9a91aa70ebfea7839526
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A48182_33260_97466_24605
+    [current_site_id] => s1
+    [title] => Поручитель 3 Реквизиты
+    [activity_id] => A48182_33260_97466_24605
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A14520_61260_90693_37105:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME_3}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME_3}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME_3}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL_3}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL_3}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL_3}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL_3 > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL_3}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH_3}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH_3 > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_3_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_3_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => df2ea988c5ac9a91aa70ebfea7839526
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A28125_52783_91007_5792
+    [current_site_id] => s1
+    [title] => Продавец 1 реквизиты
+    [activity_id] => A28125_52783_91007_5792
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A10820_35237_78962_1703:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => df2ea988c5ac9a91aa70ebfea7839526
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A56113_1228_21124_87571
+    [current_site_id] => s1
+    [title] => Продавец 2 Создание реквизитов
+    [activity_id] => A56113_1228_21124_87571
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A74843_75458_50862_97450:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME_2}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME_2}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME_2}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA_2}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER_2}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN_2}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN_2 > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT_2}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH_2}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH_2 > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_2_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_2_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => df2ea988c5ac9a91aa70ebfea7839526
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A15987_8413_71310_31840
+    [current_site_id] => s1
+    [title] => Продавец 3 Реквизиты
+    [activity_id] => A15987_8413_71310_31840
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A23962_82895_63357_50237:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME_3}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME_3}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME_3}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA_3}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER_3}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN_3}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN_3 > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT_3}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH_3}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH_3 > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_3_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_3_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 6cade29a4602ab6c384790d7a98537f5
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_174
+    [id] => A43882_13410_28803_53247
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A43882_13410_28803_53247
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 1
+    [preset_id_text] => 
+    [RQ_ADDR] => {=Document:UF_CRM_63_1690760047832}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 6cade29a4602ab6c384790d7a98537f5
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_174
+    [id] => A63903_96565_83986_85961
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A63903_96565_83986_85961
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 1
+    [preset_id_text] => 
+    [RQ_ADDR] => 
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => f9a02a8ae9d7f86ea6364bbe2f962717
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A265_54243_46546_80072
+    [current_site_id] => s1
+    [title] => Продавец 1 реквизиты
+    [activity_id] => A265_54243_46546_80072
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A65800_86745_94558_49646:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+    [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт Гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => f9a02a8ae9d7f86ea6364bbe2f962717
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A265_54243_46546_80072
+    [current_site_id] => s1
+    [title] => Продавец 1 реквизиты
+    [activity_id] => A265_54243_46546_80072
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A65800_86745_94558_49646:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+    [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт Гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 68a382ef05cc2e94c7425c274084670b
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_129
+    [id] => A71295_27262_71757_43134
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A71295_27262_71757_43134
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 1
+    [preset_id_text] => 
+    [RQ_ADDR] => {=Document:UF_CRM_39_1669718581}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 68a382ef05cc2e94c7425c274084670b
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_129
+    [id] => A99660_63701_70452_62732
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A99660_63701_70452_62732
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 1
+    [preset_id_text] => 
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 68a382ef05cc2e94c7425c274084670b
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_129
+    [id] => A99660_63701_70452_62732
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A99660_63701_70452_62732
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 1
+    [preset_id_text] => 
+    [RQ_ADDR] => 
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 68a382ef05cc2e94c7425c274084670b
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_129
+    [id] => A4031_72183_21032_6616
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A4031_72183_21032_6616
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 1
+    [preset_id_text] => 
+    [RQ_INN] => 
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 1528231b351fe55f9dbff95bcfe91c76
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_174
+    [id] => A4031_72183_21032_6616
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A4031_72183_21032_6616
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 1
+    [preset_id_text] => 
+    [RQ_INN] => 
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => e962935dd0f5e1341a449925ea6f7ecf
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => CONTACT
+    [id] => A27575_58072_504_58256
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A27575_58072_504_58256
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=A15210_33945_81837_63222:CompanyId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=A28106_72292_40597_46961:RQ_LAST_NAME}
+    [RQ_FIRST_NAME] => 
+    [RQ_SECOND_NAME] => 
+    [RQ_IDENT_DOC] => 
+    [RQ_IDENT_DOC_SER] => 
+    [RQ_IDENT_DOC_NUM] => 
+    [RQ_IDENT_DOC_ISSUED_BY] => 
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => e962935dd0f5e1341a449925ea6f7ecf
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => CONTACT
+    [id] => A27575_58072_504_58256
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A27575_58072_504_58256
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=A15210_33945_81837_63222:CompanyId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=A28106_72292_40597_46961:RQ_FIRST_NAME}{=A28106_72292_40597_46961:RQ_LAST_NAME}
+    [RQ_FIRST_NAME] => 
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => e962935dd0f5e1341a449925ea6f7ecf
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => CONTACT
+    [id] => A83815_6116_41544_64191
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A83815_6116_41544_64191
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=A15210_33945_81837_63222:CompanyId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=A28106_72292_40597_46961:RQ_LAST_NAME}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => e962935dd0f5e1341a449925ea6f7ecf
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => CONTACT
+    [id] => A83815_6116_41544_64191
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A83815_6116_41544_64191
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=A15210_33945_81837_63222:CompanyId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=A28106_72292_40597_46961:RQ_LAST_NAME}
+    [RQ_FIRST_NAME] => {=A28106_72292_40597_46961:RQ_FIRST_NAME}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => e962935dd0f5e1341a449925ea6f7ecf
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => CONTACT
+    [id] => A83815_6116_41544_64191
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A83815_6116_41544_64191
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=A15210_33945_81837_63222:CompanyId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=A28106_72292_40597_46961:RQ_LAST_NAME}
+    [RQ_FIRST_NAME] => {=A28106_72292_40597_46961:RQ_FIRST_NAME}
+    [RQ_SECOND_NAME] => {=A28106_72292_40597_46961:RQ_SECOND_NAME}
+    [RQ_IDENT_DOC] => {=A28106_72292_40597_46961:RQ_IDENT_DOC}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => e962935dd0f5e1341a449925ea6f7ecf
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => CONTACT
+    [id] => A83815_6116_41544_64191
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A83815_6116_41544_64191
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=A15210_33945_81837_63222:CompanyId}
+    [preset_id] => 3
+    [preset_id_text] => {=A28106_72292_40597_46961:RQ_INN}
+    [RQ_LAST_NAME] => {=A28106_72292_40597_46961:RQ_LAST_NAME}
+    [RQ_FIRST_NAME] => {=A28106_72292_40597_46961:RQ_FIRST_NAME}
+    [RQ_SECOND_NAME] => {=A28106_72292_40597_46961:RQ_SECOND_NAME}
+    [RQ_IDENT_DOC] => {=A28106_72292_40597_46961:RQ_IDENT_DOC}
+    [RQ_IDENT_DOC_SER] => {=A28106_72292_40597_46961:RQ_IDENT_DOC_SER}
+    [RQ_IDENT_DOC_NUM] => {=A28106_72292_40597_46961:RQ_IDENT_DOC_NUM}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=A28106_72292_40597_46961:RQ_IDENT_DOC_ISSUED_BY}
+    [RQ_IDENT_DOC_DATE] => {=A28106_72292_40597_46961:RQ_IDENT_DOC_DATE}
+    [RQ_IDENT_DOC_DEP_CODE] => {=A28106_72292_40597_46961:RQ_IDENT_DOC_DEP_CODE}
+    [UF_CRM_1647929611] => {=A28106_72292_40597_46961:UF_CRM_1647929611}
+    [UF_CRM_1684493639] => {=A28106_72292_40597_46961:UF_CRM_1684493639}
+    [RQ_INN] => {=A28106_72292_40597_46961:RQ_INN}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => b4cdbc11339a594096f2629e15c9086e
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A18138_13479_17525_49554
+    [current_site_id] => s1
+    [title] => Реквизит Поручитель 1
+    [activity_id] => A18138_13479_17525_49554
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A16769_29875_95840_18599:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => b4cdbc11339a594096f2629e15c9086e
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A30748_50384_20205_13925
+    [current_site_id] => s1
+    [title] => Продавец 1 реквизиты
+    [activity_id] => A30748_50384_20205_13925
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A64138_86795_71488_88438:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => b4cdbc11339a594096f2629e15c9086e
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A30748_50384_20205_13925
+    [current_site_id] => s1
+    [title] => Продавец реквизиты
+    [activity_id] => A30748_50384_20205_13925
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A64138_86795_71488_88438:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 3f46901d21a374db9e5139e004001319
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A33084_36009_46693_46913
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A33084_36009_46693_46913
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=A85616_29915_50030_54416:COMPANY_ID}
+    [preset_id] => 
+    [preset_id_text] => {=Variable:rightForm}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 3f46901d21a374db9e5139e004001319
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A33084_36009_46693_46913
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A33084_36009_46693_46913
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=A85616_29915_50030_54416:COMPANY_ID}
+    [preset_id] => 
+    [preset_id_text] => {=Variable:rightForm}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 3f46901d21a374db9e5139e004001319
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A11165_24339_61132_22710
+    [current_site_id] => s1
+    [title] => Добавить реквизиты в контакт
+    [activity_id] => A11165_24339_61132_22710
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:CONTACT_ID}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 3f46901d21a374db9e5139e004001319
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A11165_24339_61132_22710
+    [current_site_id] => s1
+    [title] => Добавить реквизиты в контакт
+    [activity_id] => A11165_24339_61132_22710
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:CONTACT_ID}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 3f46901d21a374db9e5139e004001319
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A27081_71078_43930_89180
+    [current_site_id] => s1
+    [title] => Добавить реквизиты в контакт
+    [activity_id] => A27081_71078_43930_89180
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A13768_33125_67424_41974:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 3f46901d21a374db9e5139e004001319
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A27081_71078_43930_89180
+    [current_site_id] => s1
+    [title] => Добавить реквизиты в контакт
+    [activity_id] => A27081_71078_43930_89180
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A13768_33125_67424_41974:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 1e20aed738e1754ebdf295d3ce765ca4
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A11165_24339_61132_22710
+    [current_site_id] => s1
+    [title] => Добавить реквизиты в контакт
+    [activity_id] => A11165_24339_61132_22710
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:CONTACT_ID}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 1e20aed738e1754ebdf295d3ce765ca4
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A27081_71078_43930_89180
+    [current_site_id] => s1
+    [title] => Добавить реквизиты в контакт
+    [activity_id] => A27081_71078_43930_89180
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A13768_33125_67424_41974:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 1e20aed738e1754ebdf295d3ce765ca4
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A27081_71078_43930_89180
+    [current_site_id] => s1
+    [title] => Добавить реквизиты партнера
+    [activity_id] => A27081_71078_43930_89180
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A13768_33125_67424_41974:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 1e20aed738e1754ebdf295d3ce765ca4
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A11165_24339_61132_22710
+    [current_site_id] => s1
+    [title] => Добавить реквизиты агента
+    [activity_id] => A11165_24339_61132_22710
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:CONTACT_ID}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => b5ed6ad56222b3b409917848e5b36470
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A69465_74406_88429_69887
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A69465_74406_88429_69887
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 
+    [preset_id_text] => 
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => b5ed6ad56222b3b409917848e5b36470
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A69465_74406_88429_69887
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A69465_74406_88429_69887
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 1
+    [preset_id_text] => 
+    [RQ_INN] => {=Document:UF_CRM_92_INN}
+    [RQ_COMPANY_NAME] => {=Document:UF_CRM_92_ABRENAMECOMPANY}
+    [RQ_COMPANY_FULL_NAME] => {=Document:UF_CRM_92_FULLNAMECOMPANY}
+    [RQ_OGRN] => {=Document:UF_CRM_92_OGRN}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => b5ed6ad56222b3b409917848e5b36470
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A85952_76022_10206_73473
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A85952_76022_10206_73473
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 2
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => b5ed6ad56222b3b409917848e5b36470
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A85952_76022_10206_73473
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A85952_76022_10206_73473
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 2
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+    [UF_CRM_1697782233] => Y
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => b5ed6ad56222b3b409917848e5b36470
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A69465_74406_88429_69887
+    [current_site_id] => s1
+    [title] => Создание реквизитов ЮР
+    [activity_id] => A69465_74406_88429_69887
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 1
+    [preset_id_text] => 
+    [RQ_INN] => {=Document:UF_CRM_92_INN}
+    [RQ_COMPANY_NAME] => {=Document:UF_CRM_92_ABRENAMECOMPANY}
+    [RQ_COMPANY_FULL_NAME] => {=Document:UF_CRM_92_FULLNAMECOMPANY}
+    [RQ_OGRN] => {=Document:UF_CRM_92_OGRN}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => b5ed6ad56222b3b409917848e5b36470
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A85952_76022_10206_73473
+    [current_site_id] => s1
+    [title] => Создание реквизитов ИП
+    [activity_id] => A85952_76022_10206_73473
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 2
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE}
+    [UF_CRM_1697782233] => Y
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => b5ed6ad56222b3b409917848e5b36470
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A85952_76022_10206_73473
+    [current_site_id] => s1
+    [title] => Создание реквизитов ИП
+    [activity_id] => A85952_76022_10206_73473
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 2
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+    [UF_CRM_1697782233] => Y
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => b94dc1681e6a1c5af9955d67b3569b54
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A83866_73483_28914_37696
+    [current_site_id] => s1
+    [title] => Заёмщик реквизиты
+    [activity_id] => A83866_73483_28914_37696
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A80297_84388_43426_58384:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+    [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_ZAEMSCHIK}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_ZAEMSCHIK}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_ZAEMSCHIK}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_ZAEMSCHIK > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_ZAEMSCHIK}
+    [UF_CRM_1684476607] => {=Document:UF_CRM_MK_SNILS_ZAEMSCHIK}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_ZAEMSCHIK}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATEOF_BIRTH_ZAEMSCHIK > string}
+    [RQ_INN] => {=Document:UF_CRM_MK_INN_ZAEMSCHIK}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => b94dc1681e6a1c5af9955d67b3569b54
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A83866_73483_28914_37696
+    [current_site_id] => s1
+    [title] => Заёмщик реквизиты
+    [activity_id] => A83866_73483_28914_37696
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A80297_84388_43426_58384:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+    [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_ZAEMSCHIK}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_ZAEMSCHIK}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_ZAEMSCHIK}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_ZAEMSCHIK > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_ZAEMSCHIK}
+    [UF_CRM_1684476607] => {=Document:UF_CRM_MK_SNILS_ZAEMSCHIK}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_ZAEMSCHIK}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATEOF_BIRTH_ZAEMSCHIK > string}
+    [RQ_INN] => {=Document:UF_CRM_MK_INN_ZAEMSCHIK}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => d701889a01bc678dfa8531db73d4ed9e
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A83866_73483_28914_37696
+    [current_site_id] => s1
+    [title] => Заёмщик реквизиты
+    [activity_id] => A83866_73483_28914_37696
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A80297_84388_43426_58384:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+    [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_ZAEMSCHIK}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_ZAEMSCHIK}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_ZAEMSCHIK}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_ZAEMSCHIK > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_ZAEMSCHIK}
+    [UF_CRM_1684476607] => {=Document:UF_CRM_MK_SNILS_ZAEMSCHIK}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_ZAEMSCHIK}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATEOF_BIRTH_ZAEMSCHIK > string}
+    [RQ_INN] => {=Document:UF_CRM_MK_INN_ZAEMSCHIK}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 6c0a24e0931543ab11abe36d94cbbc3c
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A68133_89402_59447_82708
+    [current_site_id] => s1
+    [title] => 2.0 Заёмщик реквизиты
+    [activity_id] => A68133_89402_59447_82708
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:CONTACT_ID}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_MK_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_MK_FIRSTNAME}
+    [RQ_SECOND_NAME] => {=Document:UF_MK_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_ZAEMSCHIK}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_ZAEMSCHIK}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_ZAEMSCHIK}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_ZAEMSCHIK > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_ZAEMSCHIK}
+    [UF_CRM_1684476607] => {=Document:UF_CRM_MK_SNILS_ZAEMSCHIK}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_ZAEMSCHIK}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATEOF_BIRTH_ZAEMSCHIK > string}
+    [RQ_INN] => {=Document:UF_CRM_MK_INN_ZAEMSCHIK}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 6c0a24e0931543ab11abe36d94cbbc3c
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A46442_24218_93903_90999
+    [current_site_id] => s1
+    [title] => 2.0 Созаемщик создание реквизитов
+    [activity_id] => A46442_24218_93903_90999
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:UF_MK_SOZAEMSHIKI}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_LASTNAME_SOZAEMSCHIK}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_NAME_SOZAEMSCHIK}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_MIDDLENAME_SOZAEMSCHIK}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SOZAEMSCHIK_SERIYA}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SOZAEMSCHIK_NOMER}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SOZAEMSCHIK_WHOM_TAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SOZAEMSCHIK_DATE_OF_TAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SOZAEMSCHIK_CODE}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PLACE_OF_BIRTH_SOZAEMSCHIK}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_DATE_OF_BIRTH_SOZAEMSCHIK > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SOZAEMSCHIK_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SOZAEMSCHIK_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 6c0a24e0931543ab11abe36d94cbbc3c
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A59236_57264_10506_69071
+    [current_site_id] => s1
+    [title] => 2.0 Реквизит Поручитель 1
+    [activity_id] => A59236_57264_10506_69071
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A52496_95117_38450_26142:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 6c0a24e0931543ab11abe36d94cbbc3c
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A8395_95313_26527_45313
+    [current_site_id] => s1
+    [title] => 2.0 Реквизит Поручитель 2
+    [activity_id] => A8395_95313_26527_45313
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A7705_7900_46197_87945:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME_2}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME_2}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME_2}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL_2}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL_2}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL_2}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL_2 > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL_2}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH_2}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH_2 > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_2_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_2_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 6c0a24e0931543ab11abe36d94cbbc3c
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A8395_95313_26527_45313
+    [current_site_id] => s1
+    [title] => 2.0 Реквизит Поручитель 2
+    [activity_id] => A8395_95313_26527_45313
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A7705_7900_46197_87945:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME_2}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME_2}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME_2}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL_2}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL_2}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL_2}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL_2 > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL_2}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH_2}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH_2 > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_2_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_2_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 6c0a24e0931543ab11abe36d94cbbc3c
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A79263_54929_44002_87918
+    [current_site_id] => s1
+    [title] => 2.0 Поручитель 3 Реквизиты
+    [activity_id] => A79263_54929_44002_87918
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A82953_23170_33894_50297:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_LASTNAME_3}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_NAME_3}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_PORUCHITEL_MIDDLENAME_3}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_PASSPORT_SERIYA_PORUCHITEL_3}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_NOMER_PASSPORT_PORUCHITEL_3}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_WHOM_TAKEN_PASSPORT_PORUCHITEL_3}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_DATE_TAKEN_PORUCHITEL_3 > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_CODE_PASSPORT_PORUCHITEL_3}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_PORUCHITEL_PLACE_OF_BIRTH_3}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_PORUCHITEL_DATE_OF_BIRTH_3 > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_3_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_PORUCHITEL_GENDER_3_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 6c0a24e0931543ab11abe36d94cbbc3c
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A68908_53285_32583_14519
+    [current_site_id] => s1
+    [title] => 2.0 Продавец 1 реквизиты
+    [activity_id] => A68908_53285_32583_14519
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A35333_54326_22419_68415:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 6c0a24e0931543ab11abe36d94cbbc3c
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A11512_36687_2266_47106
+    [current_site_id] => s1
+    [title] => 2.0 Продавец 2 Создание реквизитов
+    [activity_id] => A11512_36687_2266_47106
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A9706_73679_4407_71461:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME_2}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME_2}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME_2}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA_2}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER_2}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN_2}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN_2 > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT_2}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH_2}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH_2 > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_2_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_2_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 6c0a24e0931543ab11abe36d94cbbc3c
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_137
+    [id] => A24753_96549_30437_16591
+    [current_site_id] => s1
+    [title] => 2.0 Продавец 3 Реквизиты
+    [activity_id] => A24753_96549_30437_16591
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=A69077_7790_11537_99680:ContactId}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_MK_SELLER_LASTNAME_3}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_MK_SELLER_NAME_3}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_MK_SELLER_MIDDLENAME_3}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_MK_SELLER_SERIYA_3}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_MK_SELLER_NOMER_3}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_MK_SELLER_WHOM_TAKEN_3}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_MK_SELLER_DATE_TAKEN_3 > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_MK_SELLER_CODE_PASSPORT_3}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_MK_SELLER_PLACE_OF_BIRTH_3}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_MK_SELLER_DATE_OF_BIRTH_3 > string}
+    [UF_CRM_1692611956] => {=Document:UF_CRM_MK_SELLER_GENDER_3_PRINTABLE}
+    [UF_CRM_1692611897] => {=Document:UF_CRM_MK_SELLER_GENDER_3_PRINTABLE}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 4c66df785c8ecd3f76148eeedda96c35
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A51534_25200_26335_92287
+    [current_site_id] => s1
+    [title] => 2 Добавить реквизиты агента
+    [activity_id] => A51534_25200_26335_92287
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:CONTACT_ID}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => dd759b8ff90b7fa4e41513443398097f
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DYNAMIC_1076
+    [id] => A27081_71078_43930_89180
+    [current_site_id] => s1
+    [title] => Добавить реквизиты партнера
+    [activity_id] => A27081_71078_43930_89180
+    [activity_editor_comment] => 
+    [entity_type_id] => 3
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:CONTACT_ID}
+    [preset_id] => 3
+    [preset_id_text] => 
+    [RQ_LAST_NAME] => {=Document:UF_CRM_92_FULLNAME}
+    [RQ_FIRST_NAME] => {=Document:UF_CRM_92_NAME}
+    [RQ_SECOND_NAME] => {=Document:UF_CRM_92_MIDDLENAME}
+    [RQ_IDENT_DOC] => Паспорт гражданина Российской Федерации
+    [RQ_IDENT_DOC_SER] => {=Document:UF_CRM_92_SERIAPASSPORT}
+    [RQ_IDENT_DOC_NUM] => {=Document:UF_CRM_92_NOMERPASSPORT}
+    [RQ_IDENT_DOC_ISSUED_BY] => {=Document:UF_CRM_92_WHOMTAKEN}
+    [RQ_IDENT_DOC_DATE] => {=Document:UF_CRM_92_DATETAKEN > string}
+    [RQ_IDENT_DOC_DEP_CODE] => {=Document:UF_CRM_92_CODEDEPARTMENT}
+    [UF_CRM_1647929611] => {=Document:UF_CRM_92_PLACE_BIRTH}
+    [UF_CRM_1684493639] => {=Document:UF_CRM_92_BIRTH_DATE > string}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 2a920029e6eb74daeeec9646b220be32
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DEAL
+    [id] => A9474_79371_73871_14562
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A9474_79371_73871_14562
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 2
+    [preset_id_text] => 
+    [RQ_INN] => {=Document:UF_CRM_1708944218}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 2a920029e6eb74daeeec9646b220be32
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DEAL
+    [id] => A9474_79371_73871_14562
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A9474_79371_73871_14562
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 2
+    [preset_id_text] => 
+    [RQ_INN] => {=Document:UF_CRM_1708944218}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)
+Initial values: Array
+(
+    [sessid] => 0213c72a6572429e285bcd34d9f47226
+    [activity] => KplabCreateRequisiteActivity
+    [document_type] => DEAL
+    [id] => A17712_42548_3578_63553
+    [current_site_id] => s1
+    [title] => Создание реквизитов
+    [activity_id] => A17712_42548_3578_63553
+    [activity_editor_comment] => 
+    [entity_type_id] => 4
+    [entity_type_id_text] => 
+    [entity_id] => {=Document:COMPANY_ID}
+    [preset_id] => 2
+    [preset_id_text] => 
+    [RQ_INN] => {=Document:UF_CRM_1708944218}
+    [save] => Y
+    [postback] => Y
+    [arWorkflowGlobalVariables] => Array
+        (
+        )
+
+    [arWorkflowGlobalConstants] => Array
+        (
+        )
+
+    [USER_PARAMS] => Array
+        (
+        )
+
+)

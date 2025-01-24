@@ -1,0 +1,1028 @@
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 15:09:17
+Module: data
+array (
+  0 => 
+  array (
+    'innFl' => '',
+    'passportSeries' => '4522',
+    'passportNumber' => '874541',
+    'surname' => 'Гайдамакин',
+    'name' => 'Денис',
+    'patronymic' => 'Анатольевич',
+    'birthday' => '16.01.1977',
+    'birthPlace' => 'гор. Новосибирск',
+    'passportIssuer' => 'ГУ МВД России по г. Москве',
+    'passportIssuerCode' => '770-097',
+    'passportIssuedAt' => '11.05.2022',
+    'clientType' => '',
+    'creditAmount' => 0,
+    'bkiReportConsentDate' => '22.01.2025',
+    'bkiReportDealDate' => '22.01.2025',
+    'bkiReportBirthPlaceCode' => '643',
+    'bkiReportStateCode' => '643',
+    'guarantorType' => 3,
+    'nbkiReportConsentPeriod' => '1',
+    'registrationAddressFiasId' => '2e0b1fc3-60ba-427b-9de9-e2dc37d9cb81',
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 15:09:17
+Module: dataItem
+array (
+  'innFl' => '',
+  'passportSeries' => '4522',
+  'passportNumber' => '874541',
+  'surname' => 'Гайдамакин',
+  'name' => 'Денис',
+  'patronymic' => 'Анатольевич',
+  'birthday' => '16.01.1977',
+  'birthPlace' => 'гор. Новосибирск',
+  'passportIssuer' => 'ГУ МВД России по г. Москве',
+  'passportIssuerCode' => '770-097',
+  'passportIssuedAt' => '11.05.2022',
+  'clientType' => '',
+  'creditAmount' => 0,
+  'bkiReportConsentDate' => '22.01.2025',
+  'bkiReportDealDate' => '22.01.2025',
+  'bkiReportBirthPlaceCode' => '643',
+  'bkiReportStateCode' => '643',
+  'guarantorType' => 3,
+  'nbkiReportConsentPeriod' => '1',
+  'registrationAddressFiasId' => '2e0b1fc3-60ba-427b-9de9-e2dc37d9cb81',
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 15:09:17
+Module: guarantorType
+3
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 15:09:17
+Module: ДАнные для отправки
+array (
+  'beneficiarInn' => '7743402016',
+  'guarantorsLE' => 
+  array (
+  ),
+  'guarantorsFL' => 
+  array (
+    0 => 
+    array (
+      'innFl' => '',
+      'passportSeries' => '4522',
+      'passportNumber' => '874541',
+      'surname' => 'Гайдамакин',
+      'name' => 'Денис',
+      'patronymic' => 'Анатольевич',
+      'birthday' => '16.01.1977',
+      'birthPlace' => 'гор. Новосибирск',
+      'passportIssuer' => 'ГУ МВД России по г. Москве',
+      'passportIssuerCode' => '770-097',
+      'passportIssuedAt' => '11.05.2022',
+      'clientType' => '',
+      'creditAmount' => 0,
+      'bkiReportConsentDate' => '22.01.2025',
+      'bkiReportDealDate' => '22.01.2025',
+      'bkiReportBirthPlaceCode' => '643',
+      'bkiReportStateCode' => '643',
+      'guarantorType' => 3,
+      'nbkiReportConsentPeriod' => '1',
+      'registrationAddressFiasId' => '2e0b1fc3-60ba-427b-9de9-e2dc37d9cb81',
+    ),
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 15:10:07
+Module: jsonResponse
+array (
+  'status' => 'Failed',
+  'response' => '',
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 15:49:37
+Module: data
+array (
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 15:49:37
+Module: ДАнные для отправки
+array (
+  'beneficiarInn' => '571502033578',
+  'guarantorsLE' => 
+  array (
+  ),
+  'guarantorsFL' => 
+  array (
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 15:49:37
+Module: jsonResponse
+array (
+  'status' => 'Success',
+  'response' => '[]',
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:13:45
+Module: data
+array (
+  0 => 
+  array (
+    'innFl' => '246110029188',
+    'passportSeries' => '3616',
+    'passportNumber' => '281713',
+    'surname' => 'Утов',
+    'name' => 'Александр',
+    'patronymic' => 'Алексеевич',
+    'birthday' => '17.05.1982',
+    'birthPlace' => 'С. ПИРОВСКОЕ ПИРОВСКОГО Р-НА КРАСНОЯРСКИЙ КРАЙ',
+    'passportIssuer' => 'ОТДЕЛЕНИЕМ УФМС РОССИИ ПО САМАРСКОЙ ОБЛАСТИ В СТАВРОПОЛЬСКОМ РАЙОНЕ',
+    'passportIssuerCode' => '630-027',
+    'passportIssuedAt' => '15.11.2016',
+    'clientType' => '',
+    'creditAmount' => 0,
+    'bkiReportConsentDate' => '02.05.2024',
+    'bkiReportDealDate' => '02.05.2024',
+    'bkiReportBirthPlaceCode' => '643',
+    'bkiReportStateCode' => '643',
+    'guarantorType' => 3,
+    'nbkiReportConsentPeriod' => '1',
+    'registrationAddressFiasId' => 'ad25938c-2699-49cd-86ca-dddc679700fd',
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:13:45
+Module: dataItem
+array (
+  'innFl' => '246110029188',
+  'passportSeries' => '3616',
+  'passportNumber' => '281713',
+  'surname' => 'Утов',
+  'name' => 'Александр',
+  'patronymic' => 'Алексеевич',
+  'birthday' => '17.05.1982',
+  'birthPlace' => 'С. ПИРОВСКОЕ ПИРОВСКОГО Р-НА КРАСНОЯРСКИЙ КРАЙ',
+  'passportIssuer' => 'ОТДЕЛЕНИЕМ УФМС РОССИИ ПО САМАРСКОЙ ОБЛАСТИ В СТАВРОПОЛЬСКОМ РАЙОНЕ',
+  'passportIssuerCode' => '630-027',
+  'passportIssuedAt' => '15.11.2016',
+  'clientType' => '',
+  'creditAmount' => 0,
+  'bkiReportConsentDate' => '02.05.2024',
+  'bkiReportDealDate' => '02.05.2024',
+  'bkiReportBirthPlaceCode' => '643',
+  'bkiReportStateCode' => '643',
+  'guarantorType' => 3,
+  'nbkiReportConsentPeriod' => '1',
+  'registrationAddressFiasId' => 'ad25938c-2699-49cd-86ca-dddc679700fd',
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:13:45
+Module: guarantorType
+3
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:13:45
+Module: ДАнные для отправки
+array (
+  'beneficiarInn' => '731101939975',
+  'guarantorsLE' => 
+  array (
+  ),
+  'guarantorsFL' => 
+  array (
+    0 => 
+    array (
+      'innFl' => '246110029188',
+      'passportSeries' => '3616',
+      'passportNumber' => '281713',
+      'surname' => 'Утов',
+      'name' => 'Александр',
+      'patronymic' => 'Алексеевич',
+      'birthday' => '17.05.1982',
+      'birthPlace' => 'С. ПИРОВСКОЕ ПИРОВСКОГО Р-НА КРАСНОЯРСКИЙ КРАЙ',
+      'passportIssuer' => 'ОТДЕЛЕНИЕМ УФМС РОССИИ ПО САМАРСКОЙ ОБЛАСТИ В СТАВРОПОЛЬСКОМ РАЙОНЕ',
+      'passportIssuerCode' => '630-027',
+      'passportIssuedAt' => '15.11.2016',
+      'clientType' => '',
+      'creditAmount' => 0,
+      'bkiReportConsentDate' => '02.05.2024',
+      'bkiReportDealDate' => '02.05.2024',
+      'bkiReportBirthPlaceCode' => '643',
+      'bkiReportStateCode' => '643',
+      'guarantorType' => 3,
+      'nbkiReportConsentPeriod' => '1',
+      'registrationAddressFiasId' => 'ad25938c-2699-49cd-86ca-dddc679700fd',
+    ),
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:14:35
+Module: jsonResponse
+array (
+  'status' => 'Failed',
+  'response' => '',
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:28:13
+Module: data
+array (
+  'errorFields' => 
+  array (
+    'Романова Алиса Александровна (223689)' => 'Нет данных о ФИАС ID',
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:46:09
+Module: data
+array (
+  0 => 
+  array (
+    'innFl' => '390406198438',
+    'passportSeries' => '2724',
+    'passportNumber' => '079869',
+    'surname' => 'Романов',
+    'name' => 'Андрей',
+    'patronymic' => 'Олегович',
+    'birthday' => '19.03.1979',
+    'birthPlace' => 'гор. Калининград',
+    'passportIssuer' => 'УМВД РОССИИ ПО КАЛИНИНГРАДСКОЙ ОБЛАСТИ',
+    'passportIssuerCode' => '390-003',
+    'passportIssuedAt' => '19.06.2024',
+    'clientType' => '',
+    'creditAmount' => 0,
+    'bkiReportConsentDate' => '09.02.2024',
+    'bkiReportDealDate' => '09.02.2024',
+    'bkiReportBirthPlaceCode' => '643',
+    'bkiReportStateCode' => '643',
+    'guarantorType' => 3,
+    'nbkiReportConsentPeriod' => '1',
+    'registrationAddressFiasId' => '8d0e4a7a-d025-4068-bb55-3bcc06c31005',
+  ),
+  1 => 
+  array (
+    'innFl' => '390508491234',
+    'passportSeries' => '4524',
+    'passportNumber' => '135040',
+    'surname' => 'Романова',
+    'name' => 'Алиса',
+    'patronymic' => 'Александровна',
+    'birthday' => '16.01.1998',
+    'birthPlace' => 'гор. Калининград',
+    'passportIssuer' => 'ГУ МВД РОССИИ ПО Г. МОСКВЕ',
+    'passportIssuerCode' => '770-066',
+    'passportIssuedAt' => '19.04.2024',
+    'clientType' => '',
+    'creditAmount' => 0,
+    'bkiReportConsentDate' => '22.05.2024',
+    'bkiReportDealDate' => '22.05.2024',
+    'bkiReportBirthPlaceCode' => '643',
+    'bkiReportStateCode' => '643',
+    'guarantorType' => 3,
+    'nbkiReportConsentPeriod' => '1',
+    'registrationAddressFiasId' => 'fde851f7-1724-4df7-a799-c9cd75194cc6',
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:46:09
+Module: dataItem
+array (
+  'innFl' => '390406198438',
+  'passportSeries' => '2724',
+  'passportNumber' => '079869',
+  'surname' => 'Романов',
+  'name' => 'Андрей',
+  'patronymic' => 'Олегович',
+  'birthday' => '19.03.1979',
+  'birthPlace' => 'гор. Калининград',
+  'passportIssuer' => 'УМВД РОССИИ ПО КАЛИНИНГРАДСКОЙ ОБЛАСТИ',
+  'passportIssuerCode' => '390-003',
+  'passportIssuedAt' => '19.06.2024',
+  'clientType' => '',
+  'creditAmount' => 0,
+  'bkiReportConsentDate' => '09.02.2024',
+  'bkiReportDealDate' => '09.02.2024',
+  'bkiReportBirthPlaceCode' => '643',
+  'bkiReportStateCode' => '643',
+  'guarantorType' => 3,
+  'nbkiReportConsentPeriod' => '1',
+  'registrationAddressFiasId' => '8d0e4a7a-d025-4068-bb55-3bcc06c31005',
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:46:09
+Module: guarantorType
+3
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:46:09
+Module: dataItem
+array (
+  'innFl' => '390508491234',
+  'passportSeries' => '4524',
+  'passportNumber' => '135040',
+  'surname' => 'Романова',
+  'name' => 'Алиса',
+  'patronymic' => 'Александровна',
+  'birthday' => '16.01.1998',
+  'birthPlace' => 'гор. Калининград',
+  'passportIssuer' => 'ГУ МВД РОССИИ ПО Г. МОСКВЕ',
+  'passportIssuerCode' => '770-066',
+  'passportIssuedAt' => '19.04.2024',
+  'clientType' => '',
+  'creditAmount' => 0,
+  'bkiReportConsentDate' => '22.05.2024',
+  'bkiReportDealDate' => '22.05.2024',
+  'bkiReportBirthPlaceCode' => '643',
+  'bkiReportStateCode' => '643',
+  'guarantorType' => 3,
+  'nbkiReportConsentPeriod' => '1',
+  'registrationAddressFiasId' => 'fde851f7-1724-4df7-a799-c9cd75194cc6',
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:46:09
+Module: guarantorType
+3
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:46:09
+Module: ДАнные для отправки
+array (
+  'beneficiarInn' => '9704091427',
+  'guarantorsLE' => 
+  array (
+  ),
+  'guarantorsFL' => 
+  array (
+    0 => 
+    array (
+      'innFl' => '390406198438',
+      'passportSeries' => '2724',
+      'passportNumber' => '079869',
+      'surname' => 'Романов',
+      'name' => 'Андрей',
+      'patronymic' => 'Олегович',
+      'birthday' => '19.03.1979',
+      'birthPlace' => 'гор. Калининград',
+      'passportIssuer' => 'УМВД РОССИИ ПО КАЛИНИНГРАДСКОЙ ОБЛАСТИ',
+      'passportIssuerCode' => '390-003',
+      'passportIssuedAt' => '19.06.2024',
+      'clientType' => '',
+      'creditAmount' => 0,
+      'bkiReportConsentDate' => '09.02.2024',
+      'bkiReportDealDate' => '09.02.2024',
+      'bkiReportBirthPlaceCode' => '643',
+      'bkiReportStateCode' => '643',
+      'guarantorType' => 3,
+      'nbkiReportConsentPeriod' => '1',
+      'registrationAddressFiasId' => '8d0e4a7a-d025-4068-bb55-3bcc06c31005',
+    ),
+    1 => 
+    array (
+      'innFl' => '390508491234',
+      'passportSeries' => '4524',
+      'passportNumber' => '135040',
+      'surname' => 'Романова',
+      'name' => 'Алиса',
+      'patronymic' => 'Александровна',
+      'birthday' => '16.01.1998',
+      'birthPlace' => 'гор. Калининград',
+      'passportIssuer' => 'ГУ МВД РОССИИ ПО Г. МОСКВЕ',
+      'passportIssuerCode' => '770-066',
+      'passportIssuedAt' => '19.04.2024',
+      'clientType' => '',
+      'creditAmount' => 0,
+      'bkiReportConsentDate' => '22.05.2024',
+      'bkiReportDealDate' => '22.05.2024',
+      'bkiReportBirthPlaceCode' => '643',
+      'bkiReportStateCode' => '643',
+      'guarantorType' => 3,
+      'nbkiReportConsentPeriod' => '1',
+      'registrationAddressFiasId' => 'fde851f7-1724-4df7-a799-c9cd75194cc6',
+    ),
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-22 16:46:59
+Module: jsonResponse
+array (
+  'status' => 'Failed',
+  'response' => '',
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 13:03:14
+Module: data
+array (
+  0 => 
+  array (
+    'innFl' => '',
+    'passportSeries' => '2420',
+    'passportNumber' => '004954',
+    'surname' => 'Агафонова',
+    'name' => 'Наталья',
+    'patronymic' => 'Геннадьевна',
+    'birthday' => '27.04.1975',
+    'birthPlace' => 'Г. ИВАНОВО',
+    'passportIssuer' => 'УМВД РОССИИ ПО ИВАНОВСКОЙ ОБЛАСТИ',
+    'passportIssuerCode' => '360-005',
+    'passportIssuedAt' => '28.07.2020',
+    'clientType' => '',
+    'creditAmount' => 0,
+    'bkiReportConsentDate' => '23.01.2025',
+    'bkiReportDealDate' => '23.01.2025',
+    'bkiReportBirthPlaceCode' => '643',
+    'bkiReportStateCode' => '643',
+    'guarantorType' => 3,
+    'nbkiReportConsentPeriod' => '1',
+    'registrationAddressFiasId' => '5004e49c-2945-40d0-9994-0db852a8f8b4',
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 13:03:14
+Module: dataItem
+array (
+  'innFl' => '',
+  'passportSeries' => '2420',
+  'passportNumber' => '004954',
+  'surname' => 'Агафонова',
+  'name' => 'Наталья',
+  'patronymic' => 'Геннадьевна',
+  'birthday' => '27.04.1975',
+  'birthPlace' => 'Г. ИВАНОВО',
+  'passportIssuer' => 'УМВД РОССИИ ПО ИВАНОВСКОЙ ОБЛАСТИ',
+  'passportIssuerCode' => '360-005',
+  'passportIssuedAt' => '28.07.2020',
+  'clientType' => '',
+  'creditAmount' => 0,
+  'bkiReportConsentDate' => '23.01.2025',
+  'bkiReportDealDate' => '23.01.2025',
+  'bkiReportBirthPlaceCode' => '643',
+  'bkiReportStateCode' => '643',
+  'guarantorType' => 3,
+  'nbkiReportConsentPeriod' => '1',
+  'registrationAddressFiasId' => '5004e49c-2945-40d0-9994-0db852a8f8b4',
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 13:03:14
+Module: guarantorType
+3
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 13:03:14
+Module: ДАнные для отправки
+array (
+  'beneficiarInn' => '3711019540',
+  'guarantorsLE' => 
+  array (
+  ),
+  'guarantorsFL' => 
+  array (
+    0 => 
+    array (
+      'innFl' => '',
+      'passportSeries' => '2420',
+      'passportNumber' => '004954',
+      'surname' => 'Агафонова',
+      'name' => 'Наталья',
+      'patronymic' => 'Геннадьевна',
+      'birthday' => '27.04.1975',
+      'birthPlace' => 'Г. ИВАНОВО',
+      'passportIssuer' => 'УМВД РОССИИ ПО ИВАНОВСКОЙ ОБЛАСТИ',
+      'passportIssuerCode' => '360-005',
+      'passportIssuedAt' => '28.07.2020',
+      'clientType' => '',
+      'creditAmount' => 0,
+      'bkiReportConsentDate' => '23.01.2025',
+      'bkiReportDealDate' => '23.01.2025',
+      'bkiReportBirthPlaceCode' => '643',
+      'bkiReportStateCode' => '643',
+      'guarantorType' => 3,
+      'nbkiReportConsentPeriod' => '1',
+      'registrationAddressFiasId' => '5004e49c-2945-40d0-9994-0db852a8f8b4',
+    ),
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 13:03:22
+Module: jsonResponse
+array (
+  'status' => 'Success',
+  'response' => '["c83b386d-6bc7-40ac-98da-1f0310b38e19"]',
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 14:09:55
+Module: data
+array (
+  'errorFields' => 
+  array (
+    'Манасанян Артем Артурович (247823)' => 'Нет данных о регистрационном адресе',
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 14:15:40
+Module: data
+array (
+  0 => 
+  array (
+    'innFl' => '500308481036',
+    'passportSeries' => '0314',
+    'passportNumber' => '579160',
+    'surname' => 'Манасанян',
+    'name' => 'Артем',
+    'patronymic' => 'Артурович',
+    'birthday' => '25.01.1994',
+    'birthPlace' => 'гор. Кисловодск Ставропольского края ',
+    'passportIssuer' => 'ОТДЕЛ УФМС РОССИИ ПО КРАСНОДАРСКОМУ КРАЮ В ПРИКУБАНСКОМ ОКРУГЕ Г. КРАСНОДАРА',
+    'passportIssuerCode' => '230-007',
+    'passportIssuedAt' => '22.04.2014',
+    'clientType' => '',
+    'creditAmount' => 0,
+    'bkiReportConsentDate' => '23.01.2025',
+    'bkiReportDealDate' => '23.01.2025',
+    'bkiReportBirthPlaceCode' => '643',
+    'bkiReportStateCode' => '643',
+    'guarantorType' => 3,
+    'nbkiReportConsentPeriod' => '1',
+    'registrationAddressFiasId' => '5d50ce75-2e73-43c4-b4f3-1ebd1ca8a909',
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 14:15:40
+Module: dataItem
+array (
+  'innFl' => '500308481036',
+  'passportSeries' => '0314',
+  'passportNumber' => '579160',
+  'surname' => 'Манасанян',
+  'name' => 'Артем',
+  'patronymic' => 'Артурович',
+  'birthday' => '25.01.1994',
+  'birthPlace' => 'гор. Кисловодск Ставропольского края ',
+  'passportIssuer' => 'ОТДЕЛ УФМС РОССИИ ПО КРАСНОДАРСКОМУ КРАЮ В ПРИКУБАНСКОМ ОКРУГЕ Г. КРАСНОДАРА',
+  'passportIssuerCode' => '230-007',
+  'passportIssuedAt' => '22.04.2014',
+  'clientType' => '',
+  'creditAmount' => 0,
+  'bkiReportConsentDate' => '23.01.2025',
+  'bkiReportDealDate' => '23.01.2025',
+  'bkiReportBirthPlaceCode' => '643',
+  'bkiReportStateCode' => '643',
+  'guarantorType' => 3,
+  'nbkiReportConsentPeriod' => '1',
+  'registrationAddressFiasId' => '5d50ce75-2e73-43c4-b4f3-1ebd1ca8a909',
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 14:15:40
+Module: guarantorType
+3
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 14:15:40
+Module: ДАнные для отправки
+array (
+  'beneficiarInn' => '090100401363',
+  'guarantorsLE' => 
+  array (
+  ),
+  'guarantorsFL' => 
+  array (
+    0 => 
+    array (
+      'innFl' => '500308481036',
+      'passportSeries' => '0314',
+      'passportNumber' => '579160',
+      'surname' => 'Манасанян',
+      'name' => 'Артем',
+      'patronymic' => 'Артурович',
+      'birthday' => '25.01.1994',
+      'birthPlace' => 'гор. Кисловодск Ставропольского края ',
+      'passportIssuer' => 'ОТДЕЛ УФМС РОССИИ ПО КРАСНОДАРСКОМУ КРАЮ В ПРИКУБАНСКОМ ОКРУГЕ Г. КРАСНОДАРА',
+      'passportIssuerCode' => '230-007',
+      'passportIssuedAt' => '22.04.2014',
+      'clientType' => '',
+      'creditAmount' => 0,
+      'bkiReportConsentDate' => '23.01.2025',
+      'bkiReportDealDate' => '23.01.2025',
+      'bkiReportBirthPlaceCode' => '643',
+      'bkiReportStateCode' => '643',
+      'guarantorType' => 3,
+      'nbkiReportConsentPeriod' => '1',
+      'registrationAddressFiasId' => '5d50ce75-2e73-43c4-b4f3-1ebd1ca8a909',
+    ),
+  ),
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------
+Host: crm.seller-capital.ru:443
+Date: 2025-01-23 14:16:30
+Module: jsonResponse
+array (
+  'status' => 'Failed',
+  'response' => '',
+)
+#0: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#1: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#2: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#3: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#4: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+#5: CBPWorkflow->start
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/document.php:343
+----------

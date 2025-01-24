@@ -1,0 +1,3 @@
+<?if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();?>
+
+<div id="deal_block" class="request_detail_edit zoom-anim-dialog mfp-hide" data-ajax_cache_id="<?=$arResult["AJAX_CACHE_ID"]?>"></div>

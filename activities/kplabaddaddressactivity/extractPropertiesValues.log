@@ -1,0 +1,1003 @@
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A80297_84388_43426_58384:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A83866_73483_28914_37696:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_REGADD_INDEX_ZAEMSCHIK}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_REGADD_REGION_ZAEMSCHIK}
+    [Region] => {=Document:UF_CRM_MK_REGADD_RAYON_ZAEMSCHIK}
+    [City] => {=Document:UF_CRM_MK_REGADD_NASPUNKT_ZAEMSCHIK}
+    [Street] => {=Document:UF_CRM_MK_REGADD_STREET_ZAEMSCHIK}
+    [Building] => {=Document:UF_CRM_MK_REGADD_HOME_ZAEMSCHIK}
+    [Address2] => {=Document:UF_CRM_MK_REGADD_FLAT_ZAEMSCHIK}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A80297_84388_43426_58384:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A83866_73483_28914_37696:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_FACTADD_INDEX_ZAEMSCHIK}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_FACTADD_REGION_ZAEMSCHIK}
+    [Region] => {=Document:UF_CRM_MK_FACTADD_RAYON_ZAEMSCHIK}
+    [City] => {=Document:UF_CRM_MK_FACTADD_NASPUNKT_ZAEMSCHIK}
+    [Street] => {=Document:UF_CRM_MK_FACTADD_STREET_ZAEMSCHIK}
+    [Building] => {=Document:UF_CRM_MK_FACTADD_HOME_ZAEMSCHIK}
+    [Address2] => {=Document:UF_CRM_MK_FACTADD_FLAT_ZAEMSCHIK}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A91444_63756_12458_60053:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A280_73190_47081_12996:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_INDEX}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_REGION}
+    [Region] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_RAYON}
+    [City] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_NASPUNKT}
+    [Street] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_STREET}
+    [Building] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_HOUSE}
+    [Address2] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_FLAT}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A91444_63756_12458_60053:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A280_73190_47081_12996:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_INDEX}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_REGION}
+    [Region] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_RAYON}
+    [City] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_NASPUNKT}
+    [Street] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_STREET}
+    [Building] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_HOUSE}
+    [Address2] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_FLAT}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A24598_28768_30819_51597:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A98114_89454_72008_59726:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_REGADD_INDEX_PORUCHITEL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_REGADD_REGION_PORUCHITEL}
+    [Region] => {=Document:UF_CRM_MK_REGADD_RAYON_PORUCHITEL}
+    [City] => {=Document:UF_CRM_MK_REGADD_NASPUNKT_PORUCHITEL}
+    [Street] => {=Document:UF_CRM_MK_REGADD_STREET_PORUCHITEL}
+    [Building] => {=Document:UF_CRM_MK_REGADD_HOME_PORUCHITEL}
+    [Address2] => {=Document:UF_CRM_MK_REGADD_FLAT_PORUCHITEL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A24598_28768_30819_51597:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A98114_89454_72008_59726:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_FACTADD_INDEX_PORUCHITEL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_FACTADD_REGION_PORUCHITEL}
+    [Region] => {=Document:UF_CRM_MK_FACTADD_RAYON_PORUCHITEL}
+    [City] => {=Document:UF_CRM_MK_FACTADD_NASPUNKT_PORUCHITEL}
+    [Street] => {=Document:UF_CRM_MK_FACTADD_STREET_PORUCHITEL}
+    [Building] => {=Document:UF_CRM_MK_FACTADD_HOME_PORUCHITEL}
+    [Address2] => {=Document:UF_CRM_MK_FACTADD_FLAT_PORUCHITEL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A22340_95573_46616_31803:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A46122_16490_75384_92949:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_REGADD_INDEX_PORUCHITEL_2}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_REGADD_REGION_PORUCHITEL_2}
+    [Region] => {=Document:UF_CRM_MK_REGADD_RAYON_PORUCHITEL_2}
+    [City] => {=Document:UF_CRM_MK_REGADD_NASPUNKT_PORUCHITEL_2}
+    [Street] => {=Document:UF_CRM_MK_REGADD_STREET_PORUCHITEL_2}
+    [Building] => {=Document:UF_CRM_MK_REGADD_HOME_PORUCHITEL_2}
+    [Address2] => {=Document:UF_CRM_MK_REGADD_FLAT_PORUCHITEL_2}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A22340_95573_46616_31803:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A46122_16490_75384_92949:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_FACTADD_INDEX_PORUCHITEL_2}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_FACTADD_REGION_PORUCHITEL_2}
+    [Region] => {=Document:UF_CRM_MK_FACTADD_RAYON_PORUCHITEL_2}
+    [City] => {=Document:UF_CRM_MK_FACTADD_NASPUNKT_PORUCHITEL_2}
+    [Street] => {=Document:UF_CRM_MK_FACTADD_STREET_PORUCHITEL_2}
+    [Building] => {=Document:UF_CRM_MK_FACTADD_HOME_PORUCHITEL_2}
+    [Address2] => {=Document:UF_CRM_MK_FACTADD_FLAT_PORUCHITEL_2}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A22894_81742_90635_91598:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A45869_24636_7267_12080:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_REGADD_INDEX_ZAEMSCHIK}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_REGADD_REGION_ZAEMSCHIK}
+    [Region] => {=Document:UF_CRM_MK_REGADD_RAYON_ZAEMSCHIK}
+    [City] => {=Document:UF_CRM_MK_REGADD_NASPUNKT_ZAEMSCHIK}
+    [Street] => {=Document:UF_CRM_MK_REGADD_STREET_ZAEMSCHIK}
+    [Building] => {=Document:UF_CRM_MK_REGADD_HOME_ZAEMSCHIK}
+    [Address2] => {=Document:UF_CRM_MK_REGADD_FLAT_ZAEMSCHIK}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A22894_81742_90635_91598:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A45869_24636_7267_12080:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_FACTADD_INDEX_ZAEMSCHIK}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_FACTADD_REGION_ZAEMSCHIK}
+    [Region] => {=Document:UF_CRM_MK_FACTADD_RAYON_ZAEMSCHIK}
+    [City] => {=Document:UF_CRM_MK_FACTADD_NASPUNKT_ZAEMSCHIK}
+    [Street] => {=Document:UF_CRM_MK_FACTADD_STREET_ZAEMSCHIK}
+    [Building] => {=Document:UF_CRM_MK_FACTADD_HOME_ZAEMSCHIK}
+    [Address2] => {=Document:UF_CRM_MK_FACTADD_FLAT_ZAEMSCHIK}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A14520_61260_90693_37105:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A48182_33260_97466_24605:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_REGADD_INDEX_PORUCHITEL_3}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_REGADD_REGION_PORUCHITEL_3}
+    [Region] => {=Document:UF_CRM_MK_REGADD_RAYON_PORUCHITEL_3}
+    [City] => {=Document:UF_CRM_MK_REGADD_NASPUNKT_PORUCHITEL_3}
+    [Street] => {=Document:UF_CRM_MK_REGADD_STREET_PORUCHITEL_3}
+    [Building] => {=Document:UF_CRM_MK_REGADD_HOME_PORUCHITEL_3}
+    [Address2] => {=Document:UF_CRM_MK_REGADD_HOME_PORUCHITEL_3}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A14520_61260_90693_37105:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A48182_33260_97466_24605:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_FACTADD_INDEX_PORUCHITEL_3}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_FACTADD_REGION_PORUCHITEL_3}
+    [Region] => {=Document:UF_CRM_MK_FACTADD_RAYON_PORUCHITEL_3}
+    [City] => {=Document:UF_CRM_MK_FACTADD_NASPUNKT_PORUCHITEL_3}
+    [Street] => {=Document:UF_CRM_MK_FACTADD_STREET_PORUCHITEL_3}
+    [Building] => {=Document:UF_CRM_MK_FACTADD_HOME_PORUCHITEL_3}
+    [Address2] => {=Document:UF_CRM_MK_FACTADD_FLAT_PORUCHITEL_3}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A14520_61260_90693_37105:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A48182_33260_97466_24605:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_REGADD_INDEX_PORUCHITEL_3}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_REGADD_REGION_PORUCHITEL_3}
+    [Region] => {=Document:UF_CRM_MK_REGADD_RAYON_PORUCHITEL_3}
+    [City] => {=Document:UF_CRM_MK_REGADD_NASPUNKT_PORUCHITEL_3}
+    [Street] => {=Document:UF_CRM_MK_REGADD_STREET_PORUCHITEL_3}
+    [Building] => {=Document:UF_CRM_MK_REGADD_HOME_PORUCHITEL_3}
+    [Address2] => {=Document:UF_CRM_MK_REGADD_FLAT_PORUCHITEL_3}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A10820_35237_78962_1703:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A28125_52783_91007_5792:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_SELLER_INDEX}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SELLER_REGADD_REGION}
+    [Region] => {=Document:UF_CRM_MK_SELLER_REGADD_RAYON}
+    [City] => {=Document:UF_CRM_MK_SELLER_REGADD_NASPUNKT}
+    [Street] => {=Document:UF_CRM_MK_SELLER_REGADD_STREET}
+    [Building] => {=Document:UF_CRM_MK_SELLER_REGADD_HOUSE}
+    [Address2] => {=Document:UF_CRM_MK_SELLER_REGADD_FLAT}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A74843_75458_50862_97450:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A56113_1228_21124_87571:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_SELLER_REGADD_INDEX_2}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SELLER_REGADD_REGION_2}
+    [Region] => {=Document:UF_CRM_MK_SELLER_REGADD_RAYON_2}
+    [City] => {=Document:UF_CRM_MK_SELLER_REGADD_NASPUNKT_2}
+    [Street] => {=Document:UF_CRM_MK_SELLER_REGADD_STREET_2}
+    [Building] => {=Document:UF_CRM_MK_SELLER_REGADD_HOUSE_2}
+    [Address2] => {=Document:UF_CRM_MK_SELLER_REGADD_FLAT_2}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A23962_82895_63357_50237:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A15987_8413_71310_31840:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_SELLER_REGADD_INDEX_3}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SELLER_REGADD_REGION_3}
+    [Region] => {=Document:UF_CRM_MK_SELLER_REGADD_RAYON_3}
+    [City] => {=Document:UF_CRM_MK_SELLER_REGADD_NASPUNKT_3}
+    [Street] => {=Document:UF_CRM_MK_SELLER_REGADD_STREET_3}
+    [Building] => {=Document:UF_CRM_MK_SELLER_REGADD_HOUSE_3}
+    [Address2] => {=Document:UF_CRM_MK_SELLER_REGADD_FLAT_3}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 
+    [RequisiteId] => {=A83866_73483_28914_37696:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_FACTADD_INDEX_ZAEMSCHIK}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_FACTADD_REGION_ZAEMSCHIK}
+    [Region] => {=Document:UF_CRM_MK_FACTADD_RAYON_ZAEMSCHIK}
+    [City] => {=Document:UF_CRM_MK_FACTADD_NASPUNKT_ZAEMSCHIK}
+    [Street] => {=Document:UF_CRM_MK_FACTADD_STREET_ZAEMSCHIK}
+    [Building] => {=Document:UF_CRM_MK_FACTADD_HOME_ZAEMSCHIK}
+    [Address2] => {=Document:UF_CRM_MK_FACTADD_FLAT_ZAEMSCHIK}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A83866_73483_28914_37696:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_FACTADD_INDEX_ZAEMSCHIK}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_FACTADD_REGION_ZAEMSCHIK}
+    [Region] => {=Document:UF_CRM_MK_FACTADD_RAYON_ZAEMSCHIK}
+    [City] => {=Document:UF_CRM_MK_FACTADD_NASPUNKT_ZAEMSCHIK}
+    [Street] => {=Document:UF_CRM_MK_FACTADD_STREET_ZAEMSCHIK}
+    [Building] => {=Document:UF_CRM_MK_FACTADD_HOME_ZAEMSCHIK}
+    [Address2] => {=Document:UF_CRM_MK_FACTADD_FLAT_ZAEMSCHIK}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A63903_96565_83986_85961:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => Индекс
+    [Country] => Страна
+    [Province] => Регион
+    [Region] => Район:
+    [City] => Город/Населенный пункт:
+    [Street] => Улица:
+    [Building] => Номер дома:	
+    [Address2] => Квартира, офис, комната, этаж:
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A63903_96565_83986_85961:RequisiteId}
+    [AddressType] => 11
+    [PostalCode] => 
+    [Country] => 
+    [Province] => 
+    [Region] => 
+    [City] => 
+    [Street] => 
+    [Building] => 
+    [Address2] => 
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A63903_96565_83986_85961:RequisiteId}
+    [AddressType] => 11
+    [PostalCode] => {=Variable:Variable1}
+    [Country] => {=Variable:Variable1}
+    [Province] => {=Variable:Variable1}
+    [Region] => {=Variable:Variable1}
+    [City] => {=Variable:Variable1}
+    [Street] => {=Variable:Variable1}
+    [Building] => {=Variable:Variable1}
+    [Address2] => {=Variable:Variable1}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A63903_96565_83986_85961:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Variable:Variable1}
+    [Country] => {=Variable:Variable1}
+    [Province] => {=Variable:Variable1}
+    [Region] => {=Variable:Variable1}
+    [City] => {=Variable:Variable1}
+    [Street] => {=Variable:Variable1}
+    [Building] => {=Variable:Variable1}
+    [Address2] => {=Variable:Variable1}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A63903_96565_83986_85961:RequisiteId}
+    [AddressType] => 6
+    [PostalCode] => {=Variable:Variable1}
+    [Country] => {=Variable:Variable1}
+    [Province] => {=Variable:Variable1}
+    [Region] => {=Variable:Variable1}
+    [City] => {=Variable:Variable1}
+    [Street] => {=Variable:Variable1}
+    [Building] => {=Variable:Variable1}
+    [Address2] => {=Variable:Variable1}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A4031_72183_21032_6616:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => 
+    [Country] => 
+    [Province] => {=Variable:jgd}
+    [Region] => 
+    [City] => {=Variable:City}
+    [Street] => {=Variable:asda}
+    [Building] => {=Variable:saf}
+    [Address2] => {=Variable:jkhdd}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A4031_72183_21032_6616:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Variable:Variable1}
+    [Country] => {=Variable:Variable1}
+    [Province] => {=Variable:jgd}
+    [Region] => {=Variable:Variable1}
+    [City] => {=Variable:City}
+    [Street] => {=Variable:asda}
+    [Building] => {=Variable:saf}
+    [Address2] => {=Variable:jkhdd}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A4031_72183_21032_6616:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => 
+    [Country] => 
+    [Province] => {=Document:UF_CRM_63_1724147913}
+    [Region] => {=Document:UF_CRM_63_1724147919}
+    [City] => {=Document:UF_CRM_63_1724147926}
+    [Street] => {=Document:UF_CRM_63_1724147931}
+    [Building] => {=Document:UF_CRM_63_1724147936}
+    [Address2] => {=Document:UF_CRM_63_1724147943}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A4031_72183_21032_6616:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_63_1724147913}
+    [Country] => {=Document:UF_CRM_63_1724147913}
+    [Province] => {=Document:UF_CRM_63_1724147913}
+    [Region] => {=Document:UF_CRM_63_1724147919}
+    [City] => {=Document:UF_CRM_63_1724147926}
+    [Street] => {=Document:UF_CRM_63_1724147931}
+    [Building] => {=Document:UF_CRM_63_1724147936}
+    [Address2] => {=Document:UF_CRM_63_1724147943}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A4031_72183_21032_6616:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Variable:Variable1}
+    [Country] => {=Variable:Variable1}
+    [Province] => {=Document:UF_CRM_63_1724147913}
+    [Region] => {=Document:UF_CRM_63_1724147919}
+    [City] => {=Document:UF_CRM_63_1724147926}
+    [Street] => {=Document:UF_CRM_63_1724147931}
+    [Building] => {=Document:UF_CRM_63_1724147936}
+    [Address2] => {=Document:UF_CRM_63_1724147943}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A16769_29875_95840_18599:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A18138_13479_17525_49554:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_REGADD_INDEX_PORUCHITEL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_REGADD_REGION_PORUCHITEL}
+    [Region] => {=Document:UF_CRM_MK_REGADD_RAYON_PORUCHITEL}
+    [City] => {=Document:UF_CRM_MK_REGADD_NASPUNKT_PORUCHITEL}
+    [Street] => {=Document:UF_CRM_MK_REGADD_STREET_PORUCHITEL}
+    [Building] => {=Document:UF_CRM_MK_REGADD_HOME_PORUCHITEL}
+    [Address2] => {=Document:UF_CRM_MK_REGADD_FLAT_PORUCHITEL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A16769_29875_95840_18599:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A18138_13479_17525_49554:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_FACTADD_INDEX_PORUCHITEL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_FACTADD_REGION_PORUCHITEL}
+    [Region] => {=Document:UF_CRM_MK_FACTADD_RAYON_PORUCHITEL}
+    [City] => {=Document:UF_CRM_MK_FACTADD_NASPUNKT_PORUCHITEL}
+    [Street] => {=Document:UF_CRM_MK_FACTADD_STREET_PORUCHITEL}
+    [Building] => {=Document:UF_CRM_MK_FACTADD_HOME_PORUCHITEL}
+    [Address2] => {=Document:UF_CRM_MK_FACTADD_FLAT_PORUCHITEL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A64138_86795_71488_88438:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A30748_50384_20205_13925:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_SELLER_INDEX}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SELLER_REGADD_REGION}
+    [Region] => {=Document:UF_CRM_MK_SELLER_REGADD_RAYON}
+    [City] => {=Document:UF_CRM_MK_SELLER_REGADD_NASPUNKT}
+    [Street] => {=Document:UF_CRM_MK_SELLER_REGADD_STREET}
+    [Building] => {=Document:UF_CRM_MK_SELLER_REGADD_HOUSE}
+    [Address2] => {=Document:UF_CRM_MK_SELLER_REGADD_FLAT}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A64138_86795_71488_88438:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A30748_50384_20205_13925:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_SELLER_INDEX}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SELLER_REGADD_REGION}
+    [Region] => {=Document:UF_CRM_MK_SELLER_REGADD_RAYON}
+    [City] => {=Document:UF_CRM_MK_SELLER_REGADD_NASPUNKT}
+    [Street] => {=Document:UF_CRM_MK_SELLER_REGADD_STREET}
+    [Building] => {=Document:UF_CRM_MK_SELLER_REGADD_HOUSE}
+    [Address2] => {=Document:UF_CRM_MK_SELLER_REGADD_FLAT}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A4031_72183_21032_6616:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Variable:Variable1}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_63_1724147913}
+    [Region] => {=Document:UF_CRM_63_1724147919}
+    [City] => {=Document:UF_CRM_63_1724147926}
+    [Street] => {=Document:UF_CRM_63_1724147931}
+    [Building] => {=Document:UF_CRM_63_1724147936}
+    [Address2] => {=Document:UF_CRM_63_1724147943}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A13768_33125_67424_41974:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A27081_71078_43930_89180:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => 
+    [Country] => 
+    [Province] => 
+    [Region] => 
+    [City] => {=Document:UF_CRM_92_REGISTRATION}
+    [Street] => 
+    [Building] => 
+    [Address2] => 
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A13768_33125_67424_41974:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A27081_71078_43930_89180:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_92_INDEX_FACT_FL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_92_REGION_FACT_FL}
+    [Region] => {=Document:UF_CRM_92_RAYON_FACT_FL}
+    [City] => {=Document:UF_CRM_92_NASPUNKT_FACT_FL}
+    [Street] => {=Document:UF_CRM_92_STREET_FACT_FL}
+    [Building] => {=Document:UF_CRM_92_HOUSE_FACT_FL}
+    [Address2] => 
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A13768_33125_67424_41974:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A27081_71078_43930_89180:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_92_INDEX_FACT_FL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_92_REGION_FACT_FL}
+    [Region] => {=Document:UF_CRM_92_RAYON_FACT_FL}
+    [City] => {=Document:UF_CRM_92_NASPUNKT_FACT_FL}
+    [Street] => {=Document:UF_CRM_92_STREET_FACT_FL}
+    [Building] => {=Document:UF_CRM_92_HOUSE_FACT_FL}
+    [Address2] => {=Document:UF_CRM_92_FLAT_FACT_FL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A13768_33125_67424_41974:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A27081_71078_43930_89180:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_92_INDEX_REG_FL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_92_REGION_REG_FL}
+    [Region] => {=Document:UF_CRM_92_RAYON_REG_FL}
+    [City] => {=Document:UF_CRM_92_NASPUNKT_REG_FL}
+    [Street] => {=Document:UF_CRM_92_STREET_REG_FL}
+    [Building] => {=Document:UF_CRM_92_HOUSE_REG_FL}
+    [Address2] => {=Document:UF_CRM_92_FLAT_REG_FL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A1425_44577_64554_55469:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A11165_24339_61132_22710:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_92_INDEX_REG_FL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_92_REGION_REG_FL}
+    [Region] => {=Document:UF_CRM_92_RAYON_REG_FL}
+    [City] => {=Document:UF_CRM_92_NASPUNKT_REG_FL}
+    [Street] => {=Document:UF_CRM_92_STREET_REG_FL}
+    [Building] => {=Document:UF_CRM_92_HOUSE_REG_FL}
+    [Address2] => {=Document:UF_CRM_92_FLAT_REG_FL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A1425_44577_64554_55469:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A11165_24339_61132_22710:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_92_INDEX_FACT_FL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_92_REGION_FACT_FL}
+    [Region] => {=Document:UF_CRM_92_RAYON_FACT_FL}
+    [City] => {=Document:UF_CRM_92_NASPUNKT_FACT_FL}
+    [Street] => {=Document:UF_CRM_92_STREET_FACT_FL}
+    [Building] => {=Document:UF_CRM_92_HOUSE_FACT_FL}
+    [Address2] => {=Document:UF_CRM_92_FLAT_FACT_FL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A69465_74406_88429_69887:RequisiteId}
+    [AddressType] => 6
+    [PostalCode] => {=Document:UF_CRM_92_INDEX_REG_COMPANY}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_92_REGION_REG_COMPANY}
+    [Region] => {=Document:UF_CRM_92_RAYON_REG_COMPANY}
+    [City] => {=Document:UF_CRM_92_NASPUNKT_REG_COMPANY}
+    [Street] => {=Document:UF_CRM_92_STREET_REG_COMPANY}
+    [Building] => {=Document:UF_CRM_92_HOUSE_REG_COMPANY}
+    [Address2] => {=Document:UF_CRM_92_FLAT_REG_COMPANY}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:CONTACT_ID}
+    [ElementType] => 3
+    [RequisiteId] => {=A68133_89402_59447_82708:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_REGADD_INDEX_ZAEMSCHIK}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_REGADD_REGION_ZAEMSCHIK}
+    [Region] => {=Document:UF_CRM_MK_REGADD_RAYON_ZAEMSCHIK}
+    [City] => {=Document:UF_CRM_MK_REGADD_NASPUNKT_ZAEMSCHIK}
+    [Street] => {=Document:UF_CRM_MK_REGADD_STREET_ZAEMSCHIK}
+    [Building] => {=Document:UF_CRM_MK_REGADD_HOME_ZAEMSCHIK}
+    [Address2] => {=Document:UF_CRM_MK_REGADD_FLAT_ZAEMSCHIK}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:CONTACT_ID}
+    [ElementType] => 3
+    [RequisiteId] => {=A68133_89402_59447_82708:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_FACTADD_INDEX_ZAEMSCHIK}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_FACTADD_REGION_ZAEMSCHIK}
+    [Region] => {=Document:UF_CRM_MK_FACTADD_RAYON_ZAEMSCHIK}
+    [City] => {=Document:UF_CRM_MK_FACTADD_NASPUNKT_ZAEMSCHIK}
+    [Street] => {=Document:UF_CRM_MK_FACTADD_STREET_ZAEMSCHIK}
+    [Building] => {=Document:UF_CRM_MK_FACTADD_HOME_ZAEMSCHIK}
+    [Address2] => {=Document:UF_CRM_MK_FACTADD_FLAT_ZAEMSCHIK}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:UF_MK_SOZAEMSHIKI}
+    [ElementType] => 3
+    [RequisiteId] => {=A46442_24218_93903_90999:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_INDEX}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_REGION}
+    [Region] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_RAYON}
+    [City] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_NASPUNKT}
+    [Street] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_STREET}
+    [Building] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_HOUSE}
+    [Address2] => {=Document:UF_CRM_MK_SOZAEMSCHIK_REGADD_FLAT}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:UF_MK_SOZAEMSHIKI}
+    [ElementType] => 3
+    [RequisiteId] => {=A46442_24218_93903_90999:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_INDEX}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_REGION}
+    [Region] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_RAYON}
+    [City] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_NASPUNKT}
+    [Street] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_STREET}
+    [Building] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_HOUSE}
+    [Address2] => {=Document:UF_CRM_MK_SOZAEMSCHIK_FACTADD_FLAT}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A52496_95117_38450_26142:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A59236_57264_10506_69071:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_REGADD_INDEX_PORUCHITEL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_REGADD_REGION_PORUCHITEL}
+    [Region] => {=Document:UF_CRM_MK_REGADD_RAYON_PORUCHITEL}
+    [City] => {=Document:UF_CRM_MK_REGADD_NASPUNKT_PORUCHITEL}
+    [Street] => {=Document:UF_CRM_MK_REGADD_STREET_PORUCHITEL}
+    [Building] => {=Document:UF_CRM_MK_REGADD_HOME_PORUCHITEL}
+    [Address2] => {=Document:UF_CRM_MK_REGADD_FLAT_PORUCHITEL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A52496_95117_38450_26142:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A59236_57264_10506_69071:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_FACTADD_INDEX_PORUCHITEL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_FACTADD_REGION_PORUCHITEL}
+    [Region] => {=Document:UF_CRM_MK_FACTADD_RAYON_PORUCHITEL}
+    [City] => {=Document:UF_CRM_MK_FACTADD_NASPUNKT_PORUCHITEL}
+    [Street] => {=Document:UF_CRM_MK_FACTADD_STREET_PORUCHITEL}
+    [Building] => {=Document:UF_CRM_MK_FACTADD_HOME_PORUCHITEL}
+    [Address2] => {=Document:UF_CRM_MK_FACTADD_FLAT_PORUCHITEL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A7705_7900_46197_87945:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A8395_95313_26527_45313:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_REGADD_INDEX_PORUCHITEL_2}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_REGADD_REGION_PORUCHITEL_2}
+    [Region] => {=Document:UF_CRM_MK_REGADD_RAYON_PORUCHITEL_2}
+    [City] => {=Document:UF_CRM_MK_REGADD_NASPUNKT_PORUCHITEL_2}
+    [Street] => {=Document:UF_CRM_MK_REGADD_STREET_PORUCHITEL_2}
+    [Building] => {=Document:UF_CRM_MK_REGADD_HOME_PORUCHITEL_2}
+    [Address2] => {=Document:UF_CRM_MK_REGADD_FLAT_PORUCHITEL_2}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A7705_7900_46197_87945:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A8395_95313_26527_45313:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_FACTADD_INDEX_PORUCHITEL_2}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_FACTADD_REGION_PORUCHITEL_2}
+    [Region] => {=Document:UF_CRM_MK_FACTADD_RAYON_PORUCHITEL_2}
+    [City] => {=Document:UF_CRM_MK_FACTADD_NASPUNKT_PORUCHITEL_2}
+    [Street] => {=Document:UF_CRM_MK_FACTADD_STREET_PORUCHITEL_2}
+    [Building] => {=Document:UF_CRM_MK_FACTADD_HOME_PORUCHITEL_2}
+    [Address2] => {=Document:UF_CRM_MK_FACTADD_FLAT_PORUCHITEL_2}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A82953_23170_33894_50297:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A79263_54929_44002_87918:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_REGADD_INDEX_PORUCHITEL_3}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_REGADD_REGION_PORUCHITEL_3}
+    [Region] => {=Document:UF_CRM_MK_REGADD_RAYON_PORUCHITEL_3}
+    [City] => {=Document:UF_CRM_MK_REGADD_NASPUNKT_PORUCHITEL_3}
+    [Street] => {=Document:UF_CRM_MK_REGADD_STREET_PORUCHITEL_3}
+    [Building] => {=Document:UF_CRM_MK_REGADD_HOME_PORUCHITEL_3}
+    [Address2] => {=Document:UF_CRM_MK_REGADD_FLAT_PORUCHITEL_3}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A82953_23170_33894_50297:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A79263_54929_44002_87918:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_MK_FACTADD_INDEX_PORUCHITEL_3}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_FACTADD_REGION_PORUCHITEL_3}
+    [Region] => {=Document:UF_CRM_MK_FACTADD_RAYON_PORUCHITEL_3}
+    [City] => {=Document:UF_CRM_MK_FACTADD_NASPUNKT_PORUCHITEL_3}
+    [Street] => {=Document:UF_CRM_MK_FACTADD_STREET_PORUCHITEL_3}
+    [Building] => {=Document:UF_CRM_MK_FACTADD_HOME_PORUCHITEL_3}
+    [Address2] => {=Document:UF_CRM_MK_FACTADD_FLAT_PORUCHITEL_3}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A35333_54326_22419_68415:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A68908_53285_32583_14519:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_SELLER_INDEX}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SELLER_REGADD_REGION}
+    [Region] => {=Document:UF_CRM_MK_SELLER_REGADD_RAYON}
+    [City] => {=Document:UF_CRM_MK_SELLER_REGADD_NASPUNKT}
+    [Street] => {=Document:UF_CRM_MK_SELLER_REGADD_STREET}
+    [Building] => {=Document:UF_CRM_MK_SELLER_REGADD_HOUSE}
+    [Address2] => {=Document:UF_CRM_MK_SELLER_REGADD_FLAT}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A9706_73679_4407_71461:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A11512_36687_2266_47106:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_SELLER_REGADD_INDEX_2}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SELLER_REGADD_REGION_2}
+    [Region] => {=Document:UF_CRM_MK_SELLER_REGADD_RAYON_2}
+    [City] => {=Document:UF_CRM_MK_SELLER_REGADD_NASPUNKT_2}
+    [Street] => {=Document:UF_CRM_MK_SELLER_REGADD_STREET_2}
+    [Building] => {=Document:UF_CRM_MK_SELLER_REGADD_HOUSE_2}
+    [Address2] => {=Document:UF_CRM_MK_SELLER_REGADD_FLAT_2}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A69077_7790_11537_99680:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A24753_96549_30437_16591:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_SELLER_REGADD_INDEX_3}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SELLER_REGADD_REGION_3}
+    [Region] => {=Document:UF_CRM_MK_SELLER_REGADD_RAYON_3}
+    [City] => {=Document:UF_CRM_MK_SELLER_REGADD_NASPUNKT_3}
+    [Street] => {=Document:UF_CRM_MK_SELLER_REGADD_STREET_3}
+    [Building] => {=Document:UF_CRM_MK_SELLER_REGADD_HOUSE_3}
+    [Address2] => {=Document:UF_CRM_MK_SELLER_REGADD_FLAT_3}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=A69077_7790_11537_99680:ContactId}
+    [ElementType] => 3
+    [RequisiteId] => {=A24753_96549_30437_16591:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_MK_SELLER_REGADD_INDEX_3}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_MK_SELLER_REGADD_REGION_3}
+    [Region] => {=Document:UF_CRM_MK_SELLER_REGADD_RAYON_3}
+    [City] => {=Document:UF_CRM_MK_SELLER_REGADD_NASPUNKT_3}
+    [Street] => {=Document:UF_CRM_MK_SELLER_REGADD_STREET_3}
+    [Building] => {=Document:UF_CRM_MK_SELLER_REGADD_HOUSE_3}
+    [Address2] => {=Document:UF_CRM_MK_SELLER_REGADD_FLAT_3}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:COMPANY_ID}
+    [ElementType] => 4
+    [RequisiteId] => {=A4031_72183_21032_6616:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Variable:Variable1}
+    [Country] => Россия
+    [Province] => {=Variable:jgd}
+    [Region] => {=Variable:Variable1}
+    [City] => {=Variable:City}
+    [Street] => {=Variable:asda}
+    [Building] => {=Variable:saf}
+    [Address2] => {=Variable:jkhdd}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:CONTACT_ID}
+    [ElementType] => 3
+    [RequisiteId] => {=A51534_25200_26335_92287:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_92_INDEX_REG_FL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_92_REGION_REG_FL}
+    [Region] => {=Document:UF_CRM_92_RAYON_REG_FL}
+    [City] => {=Document:UF_CRM_92_NASPUNKT_REG_FL}
+    [Street] => {=Document:UF_CRM_92_STREET_REG_FL}
+    [Building] => {=Document:UF_CRM_92_HOUSE_REG_FL}
+    [Address2] => {=Document:UF_CRM_92_FLAT_REG_FL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:CONTACT_ID}
+    [ElementType] => 3
+    [RequisiteId] => {=A51534_25200_26335_92287:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_92_INDEX_FACT_FL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_92_REGION_FACT_FL}
+    [Region] => {=Document:UF_CRM_92_RAYON_FACT_FL}
+    [City] => {=Document:UF_CRM_92_NASPUNKT_FACT_FL}
+    [Street] => {=Document:UF_CRM_92_STREET_FACT_FL}
+    [Building] => {=Document:UF_CRM_92_HOUSE_FACT_FL}
+    [Address2] => {=Document:UF_CRM_92_FLAT_FACT_FL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:CONTACT_ID}
+    [ElementType] => 3
+    [RequisiteId] => {=A27081_71078_43930_89180:RequisiteId}
+    [AddressType] => 4
+    [PostalCode] => {=Document:UF_CRM_92_INDEX_REG_FL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_92_REGION_REG_FL}
+    [Region] => {=Document:UF_CRM_92_RAYON_REG_FL}
+    [City] => {=Document:UF_CRM_92_NASPUNKT_REG_FL}
+    [Street] => {=Document:UF_CRM_92_STREET_REG_FL}
+    [Building] => {=Document:UF_CRM_92_HOUSE_REG_FL}
+    [Address2] => {=Document:UF_CRM_92_FLAT_REG_FL}
+)
+
+extractPropertiesValues:
+Array
+(
+    [ElementId] => {=Document:CONTACT_ID}
+    [ElementType] => 3
+    [RequisiteId] => {=A27081_71078_43930_89180:RequisiteId}
+    [AddressType] => 1
+    [PostalCode] => {=Document:UF_CRM_92_INDEX_FACT_FL}
+    [Country] => Россия
+    [Province] => {=Document:UF_CRM_92_REGION_FACT_FL}
+    [Region] => {=Document:UF_CRM_92_RAYON_FACT_FL}
+    [City] => {=Document:UF_CRM_92_NASPUNKT_FACT_FL}
+    [Street] => {=Document:UF_CRM_92_STREET_FACT_FL}
+    [Building] => {=Document:UF_CRM_92_HOUSE_FACT_FL}
+    [Address2] => {=Document:UF_CRM_92_FLAT_FACT_FL}
+)
+

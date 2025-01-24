@@ -1,0 +1,20 @@
+.ss-b24-app-block{
+	box-sizing:border-box;
+	/*font-family:"OpenSans-Bold", 'Open Sans', sans-serif;*/
+	padding:0;
+	margin:3px 0 20px;
+}
+.ss-b24-app-block-header{
+	font-size:12px;
+	color:#fff;
+	line-height:19px;
+	font-weight:bold;
+	text-transform:uppercase;
+	padding:7px 20px 6px;
+}
+.ss-b24-app-desktop .ss-b24-app-block-header{background:#47E4C2;}
+.ss-b24-app-mobile  .ss-b24-app-block-header{background:#48c2f9;}
+
+.ss-b24-app-block-content{padding:13px 8px;/*font-weight:bold;*/}
+.ss-b24-app-desktop .ss-b24-app-block-content{background:#FFF;}
+.ss-b24-app-mobile  .ss-b24-app-block-content{background:#FFF;}

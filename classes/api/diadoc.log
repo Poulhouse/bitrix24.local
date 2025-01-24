@@ -1,0 +1,918 @@
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:50
+Module: counteragentList
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:50
+Module: organization
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:51
+Module: queryUrl acquireCounteragent
+https://diadoc-api.kontur.ru/V3/AcquireCounteragent?myBoxId=
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:51
+Module: postData acquireCounteragent
+{"Inn":"662350077657","MessageToCounteragent":"Примите приглашение к сотрудничеству"}
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:51
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:51
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:52
+Module: counteragentList
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:52
+Module: organization
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:53
+Module: queryUrl acquireCounteragent
+https://diadoc-api.kontur.ru/V3/AcquireCounteragent?myBoxId=
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:53
+Module: postData acquireCounteragent
+{"Inn":"662350077657","MessageToCounteragent":"Примите приглашение к сотрудничеству"}
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:53
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:53
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:54
+Module: counteragentList
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:54
+Module: organization
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:55
+Module: queryUrl acquireCounteragent
+https://diadoc-api.kontur.ru/V3/AcquireCounteragent?myBoxId=
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:55
+Module: postData acquireCounteragent
+{"Inn":"662350077657","MessageToCounteragent":"Примите приглашение к сотрудничеству"}
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:55
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:55
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:56
+Module: counteragentList
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:56
+Module: organization
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:57
+Module: queryUrl acquireCounteragent
+https://diadoc-api.kontur.ru/V3/AcquireCounteragent?myBoxId=
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:57
+Module: postData acquireCounteragent
+{"Inn":"662350077657","MessageToCounteragent":"Примите приглашение к сотрудничеству"}
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:57
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:57
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:58
+Module: counteragentList
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:58
+Module: organization
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:59
+Module: queryUrl acquireCounteragent
+https://diadoc-api.kontur.ru/V3/AcquireCounteragent?myBoxId=
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:59
+Module: postData acquireCounteragent
+{"Inn":"662350077657","MessageToCounteragent":"Примите приглашение к сотрудничеству"}
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:59
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:46:59
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:47:00
+Module: counteragentList
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:47:00
+Module: organization
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:47:01
+Module: queryUrl acquireCounteragent
+https://diadoc-api.kontur.ru/V3/AcquireCounteragent?myBoxId=
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:47:01
+Module: postData acquireCounteragent
+{"Inn":"662350077657","MessageToCounteragent":"Примите приглашение к сотрудничеству"}
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:47:01
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:47:01
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:47:02
+Module: counteragentList
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:47:02
+Module: organization
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:47:03
+Module: queryUrl acquireCounteragent
+https://diadoc-api.kontur.ru/V3/AcquireCounteragent?myBoxId=
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:47:03
+Module: postData acquireCounteragent
+{"Inn":"662350077657","MessageToCounteragent":"Примите приглашение к сотрудничеству"}
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:47:04
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-25 17:47:04
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 12:30:38
+Module: counteragentList
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 12:30:38
+Module: organization
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 12:30:39
+Module: queryUrl acquireCounteragent
+https://diadoc-api.kontur.ru/V3/AcquireCounteragent?myBoxId=
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 12:30:39
+Module: postData acquireCounteragent
+{"Inn":"662350077657","MessageToCounteragent":"Примите приглашение к сотрудничеству"}
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 12:30:39
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 12:30:39
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 12:36:02
+Module: counteragentList
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 12:36:02
+Module: organization
+NULL
+#0: KPLab\DiadocApi->getCounteragents
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:7
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 12:36:03
+Module: queryUrl acquireCounteragent
+https://diadoc-api.kontur.ru/V3/AcquireCounteragent?myBoxId=
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 12:36:03
+Module: postData acquireCounteragent
+{"Inn":"662350077657","MessageToCounteragent":"Примите приглашение к сотрудничеству"}
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 12:36:03
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->acquireCounteragent
+	/home/bitrix/www/local/classes/diadoc/diadocapi.php:395
+#1: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#2: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#3: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#4: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#5: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+----------
+Host: crm.sodeistvie.su:443
+Date: 2024-12-27 12:36:03
+Module: response acquireCounteragent
+NULL
+#0: KPLab\DiadocApi->startAcquireCounteragent
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php(25) : eval()'d code:4
+#1: eval
+	/home/bitrix/www/bitrix/activities/bitrix/codeactivity/codeactivity.php:25
+#2: CBPCodeActivity->execute
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:546
+#3: CBPWorkflow->runQueuedItem
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:509
+#4: CBPWorkflow->runStep
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:493
+#5: CBPWorkflow->runQueue
+	/home/bitrix/www/bitrix/modules/bizproc/classes/general/workflow.php:230
+----------
