@@ -1,0 +1,9 @@
+<?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetTitle("Кампании");
+$APPLICATION->IncludeComponent("whatasoft:campaigns.list",
+  ".default",
+  [],
+  false
+);?>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
