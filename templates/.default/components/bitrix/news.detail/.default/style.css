@@ -1,0 +1,32 @@
+div.news-detail
+{
+	word-wrap: break-word;
+}
+div.news-detail img.detail_picture
+{
+	float:left;
+	margin:0 8px 6px 1px;
+}
+.news-date-time
+{
+	color:#486DAA;
+}
+
+.news-detail button {
+    width: 200px;
+    height: 50px;
+    background-color: #00a650;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+	margin-top:35px;
+	margin-right:40px;
+	float: right;
+	}
+
+.news-detail button:hover {
+ background-color: #0d7840;
+}
