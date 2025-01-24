@@ -13,7 +13,7 @@ define("LOG_INIT", $_SERVER['DOCUMENT_ROOT']."/local/init.log");
 \Bitrix\Main\Loader::includeModule("location");
 \Bitrix\Main\Loader::includeModule('iblock');
 
-require_once ($_SERVER['DOCUMENT_ROOT'].'/crest/crest.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/local/crest/crest.php');
 require_once ($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/autoload.php');
 require_once ($_SERVER['DOCUMENT_ROOT'].'/services_sodeistvie/lib/functions.php');
 require_once ($_SERVER['DOCUMENT_ROOT'].'/services_sodeistvie/lib/ss_sync.php');
