@@ -4,6 +4,7 @@ define("LOG_LK", $_SERVER['DOCUMENT_ROOT']."/local/classes/api/seller_engine_lk.
 define('API_KEY','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIiLCJTZXJ2aWNlIjoiQml0cml4In0.CpUj1LJ_otMm6_slHFRAVnqsQtLeswkSVu7_jIgedTU');
 define("TOKEN_LK", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIiLCJTZXJ2aWNlIjoiQml0cml4In0.CpUj1LJ_otMm6_slHFRAVnqsQtLeswkSVu7_jIgedTU");
 
+use AllowDynamicProperties;
 use Bitrix\Main\Web\HttpClient;
 use \KPLab\Logs;
 
@@ -28,6 +29,9 @@ class SellerCapitalLK
 	public $sellerPhone;
 	public $sellerFirstName;
 	public $sellerLastName;
+	public $lastName;
+	public $firstName;
+	public $secondName;
 	public $sellerPatronymic;
 	public $isPartner;
 	public $isSeller;
@@ -37,13 +41,14 @@ class SellerCapitalLK
 	public $post_lkUserCreate_testUrl;
     public $arrayPingResponse;
     public $domain;
+    public $typeOfClient;
 
-    public function __construct()
+    public function __construct($isTest = false)
     {
         // Определяем текущий домен
         $this->domain = $_SERVER['HTTP_HOST'];
 
-        if (strpos($this->domain, 'test') !== false) {
+        if ($isTest !== false) {
             $this -> apiUrl = "https://api.dev.seller-capital.ru/";
             $this -> internalUrl = "https://internal.dev.seller-capital.ru/";
             $this -> internalUserUrl = "https://internal.dev.seller-capital.ru/lk/user/Authenticate";
@@ -111,6 +116,19 @@ class SellerCapitalLK
             }
             $this->passwordRecoveryToken = $item->getData()['UF_CRM_29_1720813039867'];
             $this->passwordForMigration = $item->getData()['UF_CRM_PASSWORD_FOR_MIGRATION'];
+
+            $typeClientArrayId = $item->getData()['UF_CRM_29_TIP_KLIENTA'];
+            $itemSQL = "SELECT * FROM b_user_field_enum  WHERE ID='{$typeClientArrayId}' ORDER BY ID ASC;";
+            $resItemsQuery = $DB->query($itemSQL);
+            while($resItem = $resItemsQuery->Fetch()) {
+                $this->typeClient[] = (string) $resItem['XML_ID'];
+            }
+
+            foreach($this->typeClient as $type) {
+                if($type == "SZ") $this->typeOfClient = "SZ";
+                if($type == "UL") $this->typeOfClient = "UL";
+                if($type == "IP") $this->typeOfClient = "IP";
+            }
 		}
 	}
 	protected function UpdateInfoSmartLK($smartLKId, $params) {
@@ -258,15 +276,25 @@ class SellerCapitalLK
 
 		self::setCURLObjectData($this->companyId);
 		self::getInfoSmart($this->smartLKId);
+        $requisiteData = self::getRequisiteData((int)$this->companyId, 4); // 4 - тип сущности для компании
+        if (!empty($requisiteData['RQ_LAST_NAME']) && !empty($requisiteData['RQ_FIRST_NAME'])) {
+            $this->lastName = $requisiteData['RQ_LAST_NAME'];
+            $this->firstName = $requisiteData['RQ_FIRST_NAME'];
+            $this->secondName = $requisiteData['RQ_SECOND_NAME'];
+        }
 		$this->CURLObjectData['ITEM_TITLE'] = "ЛК[Создание аккаунта ЛК и привязка к селлеру]: ". $this->itemDatatitle ." | ".$this->sellerId;
 		$this->CURLObjectData['METHOD'] = "POST";
 
 		$this->jsonData = json_encode([
+            "lastName" => (string) $this->lastName,
+            "firstName" => (string) $this->firstName,
+            "patronymic" => (string) $this->secondName,
 			"phone" => (string) $this->sellerPhone,
 			"legalEntityInn" => (string) $this->sellerInn,
 			"crmId" => (string) $this->smartLKId,
             "isPartner" => (bool) $this->isPartner,
-            "isSeller" => (bool) $this->isSeller
+            "isSeller" => (bool) $this->isSeller,
+            "typeOfClient" => (string) $this->typeOfClient
 		]);
 		$this->post_lkUserCreate_Url = $this->internalUrl . "lk/user/Create";
 
@@ -288,6 +316,27 @@ class SellerCapitalLK
         $jsonResponse = \KPLab\ApiRequest::sendRequest($this->post_lkUserCreate_Url, 'POST', $headersRequest, $this->jsonData, $logData);
         return $jsonResponse;
 	}
+
+    public static function getRequisiteData($entityId, int $entityTypeId): ?array
+    {
+        try {
+            $req = new \Bitrix\Crm\EntityRequisite();
+            $result = $req->getList([
+                'filter' => ['ENTITY_ID' => $entityId, 'ENTITY_TYPE_ID' => $entityTypeId],
+                'select' => ['*', 'UF_*']
+            ])->fetch();
+
+            if ($result) {
+                return $result;
+            } else {
+                Logs\File::AddMessage("Реквизиты не найдены для ENTITY_ID {$entityId}", "getRequisiteData warning", LOG_LK);
+                return null;
+            }
+        } catch (\Exception $e) {
+            Logs\File::AddMessage($e->getMessage(), "getRequisiteData error", LOG_LK);
+            return null;
+        }
+    }
 
     public function POST_PingSE() {
         $timeData = Logs\TimeData::start();
