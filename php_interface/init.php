@@ -5,7 +5,7 @@ use   \Bitrix\Main\Loader;
 use Bitrix\Main\EventManager;
 use Bitrix\Main\Mail\Event;
 use KPLab\Logs;
-
+define("LANGUAGE_ID", "ru");
 define("LOG_INIT", $_SERVER['DOCUMENT_ROOT']."/local/init.log");
 \Bitrix\Main\Loader::includeModule("crm");
 \Bitrix\Main\Loader::includeModule("mail");

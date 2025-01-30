@@ -1,4 +1,4 @@
-<?php namespace KPLab\API\Controller;
+<?php namespace KPLab\API\V2\Controller;
 
 use Bitrix\Main\Engine\ActionFilter\Base;
 use Bitrix\Main\Engine\Controller;

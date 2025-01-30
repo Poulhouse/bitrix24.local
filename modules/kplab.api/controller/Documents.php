@@ -1,4 +1,4 @@
-<?php namespace KPLab\API\Controller;
+<?php namespace KPLab\API\V2\Controller;
 
 use Bitrix\Main\Application;
 use Bitrix\Main\Context;
@@ -106,7 +106,7 @@ class Documents extends \Bitrix\Main\Engine\Controller
 				$token = str_replace('BitrixAuth ', '', $authorization);
 
 				Loader ::includeModule('iblock');
-				if($serverName == "crm.sodeistvie.su") {
+				if($serverName == "crm.seller-capital.ru") {
 					$IBLOCK_ID = 183;
 					$arOrder = ['ID' => 'ASC'];
 					$arFilter = ["IBLOCK_ID" => $IBLOCK_ID, "PROPERTY_1112" => $token, "ACTIVE_DATE" => "Y", "ACTIVE" => "Y"];
@@ -115,7 +115,7 @@ class Documents extends \Bitrix\Main\Engine\Controller
 					$arSelect = ["*", "PROPERTY_*"];
 					$res = \CIBlockElement ::GetList($arOrder, $arFilter, $arGroupBy, $arNavStartParams, $arSelect);
 				}
-				elseif ($serverName == "testcrm.sodeistvie.su") {
+				elseif ($serverName == "testcrm.seller-capital.ru") {
 					$IBLOCK_ID = 188;
 					$arOrder = ['ID' => 'ASC'];
 					$arFilter = ["IBLOCK_ID" => $IBLOCK_ID, "PROPERTY_1109" => $token, "ACTIVE_DATE" => "Y", "ACTIVE" => "Y"];

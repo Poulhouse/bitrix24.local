@@ -1,4 +1,4 @@
-<?php namespace KPLab\API\Controller;
+<?php namespace KPLab\API\V2\Controller;
 
 use Bitrix\Main\Engine\ActionFilter\Base;
 use Bitrix\Main\Engine\Controller;
@@ -22,7 +22,7 @@ class Leads extends \Bitrix\Main\Engine\Controller
 	public function getDefaultPreFilters()
 	{
 		return [
-			new \KPLab\API\Controller\ActionFilter\Authentication(),
+			new \KPLab\API\V2\Controller\ActionFilter\Authentication(),
 		];
 	}
 	public function getDefaultPostFilters()
@@ -499,7 +499,7 @@ class Leads extends \Bitrix\Main\Engine\Controller
 			$token = str_replace('BitrixAuth ', '', $authorization);
 
 			Loader::includeModule('iblock');
-			if($serverName == "crm.sodeistvie.su") {
+			if($serverName == "crm.seller-capital.ru") {
 				$IBLOCK_ID = 183;
 				$arOrder = ['ID' => 'ASC'];
 				$arFilter = ["IBLOCK_ID" => $IBLOCK_ID, "PROPERTY_1112" => $token, "ACTIVE_DATE" => "Y", "ACTIVE" => "Y"];
@@ -508,7 +508,7 @@ class Leads extends \Bitrix\Main\Engine\Controller
 				$arSelect = ["*", "PROPERTY_*"];
 				$res = \CIBlockElement ::GetList($arOrder, $arFilter, $arGroupBy, $arNavStartParams, $arSelect);
 			}
-			elseif ($serverName == "testcrm.sodeistvie.su") {
+			elseif ($serverName == "testcrm.seller-capital.ru") {
 				$IBLOCK_ID = 183;
 				$arOrder = ['ID' => 'ASC'];
 				$arFilter = ["IBLOCK_ID" => $IBLOCK_ID, "PROPERTY_1112" => $token, "ACTIVE_DATE" => "Y", "ACTIVE" => "Y"];

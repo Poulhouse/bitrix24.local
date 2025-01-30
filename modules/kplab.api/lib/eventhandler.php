@@ -1,6 +1,6 @@
 <?php
 
-namespace KPLab\API;
+namespace KPLab\API\V2;
 
 use Bitrix\Main\Application;
 use Bitrix\Main\Error;
@@ -22,7 +22,7 @@ class EventHandler
 		if (is_array($c) && !empty($c[0])) {
 			//Logs\File::AddMessage($c,"route->getController()", LOG_API_SYNC_EVENT);
 			$controller_name = $c[0];
-			$is_my_controller = str_starts_with($controller_name, 'KPLab\API\Controller');
+			$is_my_controller = str_starts_with($controller_name, 'KPLab\API\V2\Controller');
 
 			$context = Application::getInstance()->getContext();
 			$request = $context->getRequest();

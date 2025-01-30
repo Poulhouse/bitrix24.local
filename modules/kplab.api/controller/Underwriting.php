@@ -1,4 +1,4 @@
-<?php namespace KPLab\API\Controller;
+<?php namespace KPLab\API\V2\Controller;
 
 use Bitrix\Main\Engine\ActionFilter\Base;
 use Bitrix\Main\Engine\Controller;
@@ -18,7 +18,7 @@ class Underwriting extends \Bitrix\Main\Engine\Controller
 	public function getDefaultPreFilters()
 	{
 		return [
-			new \KPLab\API\Controller\ActionFilter\Authentication(),
+			new \KPLab\API\V2\Controller\ActionFilter\Authentication(),
 		];
 	}
 

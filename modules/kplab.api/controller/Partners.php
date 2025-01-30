@@ -1,4 +1,4 @@
-<?php namespace KPLab\API\Controller;
+<?php namespace KPLab\API\V2\Controller;
 
 use Bitrix\Main\Engine\ActionFilter\Base;
 use Bitrix\Main\Engine\Controller;
@@ -11,7 +11,6 @@ use Bitrix\Main\Loader;
 use Bitrix\Main\Web\JWT;
 use KPLab\Logs;
 use Bitrix\Main\Context;
-use KPLab\API\Controller\Sellers;
 
 \CBitrixComponent::includeComponentClass("kplab:scpreward");
 
@@ -22,7 +21,7 @@ class Partners extends \Bitrix\Main\Engine\Controller
 	public function getDefaultPreFilters()
 	{
 		return [
-			new \KPLab\API\Controller\ActionFilter\Authentication(),
+			new \KPLab\API\V2\Controller\ActionFilter\Authentication(),
 		];
 	}
 
@@ -243,7 +242,6 @@ class Partners extends \Bitrix\Main\Engine\Controller
 			return $jsonRes['success'];
 		}
 	}
-
 	public static function getSumScp($referralSumDeal, $referralId,$requestTime) {
 		$leadDateFrom = "";
 		$leadDateTo = "";
@@ -282,7 +280,6 @@ class Partners extends \Bitrix\Main\Engine\Controller
 
 		return $sellerTotalSum;
 	}
-
 	public function getSellersAction(array $params = []) {
 		$timeData = Logs\TimeData::start();
 		$context = Application ::getInstance() -> getContext();
@@ -306,21 +303,29 @@ class Partners extends \Bitrix\Main\Engine\Controller
 		$requestArray = json_decode($request->getInput(),true);
 		parse_str($QUERY_STRING, $queryArray);
 
+        Logs\File ::AddMessage($queryArray, "queryArray", LOG_API_SYNC_PARTNER_CONTROLLER);
+
 		if(isset($queryArray['startDate'])) {
 			$startDate = date('Y-m-d', strtotime($queryArray['startDate']));
-		} else {
+		}
+        else {
 			$startDate = date('Y-m-d', strtotime('2000-01-01'));
 		}
+
 		if(isset($queryArray['endDate'])) {
 			$endDate = date('Y-m-d', strtotime($queryArray['endDate']));
-		} else {
+		}
+        else {
 			$endDate = date('Y-m-d', strtotime('now'));
 		}
+
 		if(isset($queryArray['qty'])) {
 			$qty = $queryArray['qty'];
-		} else {
+		}
+        else {
 			$qty = 50;
 		}
+
 		if(isset($queryArray['page'])) {
 			$offset = ($queryArray['page'] - 1) * $qty;
 		} else {
@@ -361,12 +366,18 @@ class Partners extends \Bitrix\Main\Engine\Controller
 			$partnerInn = null;
 		}
 
-		$_sellers = new Sellers;
-		$referralId = $_sellers->findCard($partnerInn);
+		$referralId = self::findCard($partnerInn);
 
 		Logs\File ::AddMessage($referralId, "referralId", LOG_API_SYNC_PARTNER_CONTROLLER);
+        if (!$referralId) {
+            $errorMessage = 'Ошибка `partnerInn` не известен';
 
-		if (isset($queryArray['status']) && !empty($queryArray['status']))
+            Context::getCurrent()->getResponse()->setStatus(404);
+            $this -> addError(new Error($errorMessage, "invalid_request"));
+            return new EventResult(EventResult::ERROR, null, null, $this);
+        }
+
+		if (!empty($queryArray['status']))
 		{
 			$status = $queryArray['status'];
 		} else
@@ -610,7 +621,7 @@ class Partners extends \Bitrix\Main\Engine\Controller
 						$resultLeads[] = array_merge($arProp, $arFields);
 					}
 
-					Logs\File ::AddMessage($resultLeads, "resultLeads", LOG_API_SYNC_PARTNER_CONTROLLER);
+					//Logs\File ::AddMessage($resultLeads, "resultLeads", LOG_API_SYNC_PARTNER_CONTROLLER);
 					$result = $resultLeads;
 				}
 				elseif($statusLead == "Выдан")
@@ -802,4 +813,50 @@ class Partners extends \Bitrix\Main\Engine\Controller
 
 
 	}
+    public function findCard($dataInn, $crmId = false) {
+        $cardId = false;
+        $entityTypeIdCompany = \CCrmOwnerType::Company;
+        $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdCompany);
+        if (!$factoryCompany)
+        {
+            Context::getCurrent()->getResponse()->setStatus(500);
+            $this -> addError(new Error('Ошибка на сервере', "invalid_server"));
+            return new EventResult(EventResult::ERROR, null, null, $this);
+        }
+
+
+        if(!$crmId) {
+            $params = [
+                'filter' => [
+                    'UF_CRM_6433D7C925893' => $dataInn,
+                ],
+                'select' => ['ID']
+            ];
+            $itemsCompany = $factoryCompany -> getItems($params);
+            //Logs\File ::AddMessage($itemsCompany, "itemsCompany", LOG_API_SYNC_SELLER_CONTROLLER);
+            foreach ($itemsCompany as $itemCompany)
+            {
+                $cardId = $itemCompany->getId();
+            }
+
+            return $cardId;
+        }
+        else {
+            $entityTypeId = 128;
+            $factory = \Bitrix\Crm\Service\Container::getInstance() -> getFactory($entityTypeId);
+            $itemLK = $factory -> getItem($crmId);
+            if($itemLK) {
+                $itemLKData = $factory -> getItem($crmId)->getData();
+                $cardId = $itemLKData['COMPANY_ID'];
+
+                return $cardId;
+            } else {
+                $errorMessage = 'Ошибка `crmId` не известен';
+
+                Context::getCurrent()->getResponse()->setStatus(404);
+                $this -> addError(new Error($errorMessage, "invalid_request"));
+                return new EventResult(EventResult::ERROR, null, null, $this);
+            }
+        }
+    }
 }

@@ -1,13 +1,12 @@
 <?php
 //region CRest
 \Bitrix\Main\Loader::registerAutoLoadClasses(null, [
-	'\CRest' => '/crest/crest.php',
-	'CRest' => '/crest/crest.php',
+	'\CRest' => '/local/crest/crest.php',
+	'CRest' => '/local/crest/crest.php',
 
 	'\RestTest' => '/local/php_interface/class-resttest.php',
 ]);
 //endregion CRest
-
 
 //region Seller_Engine
 \Bitrix\Main\Loader::registerAutoLoadClasses(null, [

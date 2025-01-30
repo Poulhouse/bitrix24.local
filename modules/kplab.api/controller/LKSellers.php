@@ -1,4 +1,4 @@
-<?php namespace KPLab\API\Controller;
+<?php namespace KPLab\API\V2\Controller;
 
 use Bitrix\Main\Engine\ActionFilter\Base;
 use Bitrix\Main\Engine\Controller;
@@ -20,7 +20,7 @@ class LKSellers extends \Bitrix\Main\Engine\Controller
 	public function getDefaultPreFilters()
 	{
 		return [
-			new \KPLab\API\Controller\ActionFilter\Authentication(),
+			new \KPLab\API\V2\Controller\ActionFilter\Authentication(),
 		];
 	}
 
@@ -131,12 +131,31 @@ class LKSellers extends \Bitrix\Main\Engine\Controller
 			}
 			//endregion
 
-			$itemLk->set("UF_CRM_LKSC_STATUS", $UF_CRM_LKSC_STATUS);
+
+            $itemLk->set("UF_CRM_LKSC_STATUS", $UF_CRM_LKSC_STATUS);
 
 			if($accountState == "AgreementSignProcessing") {
 				$itemLk->setStageId("DT128_42:UC_0NAIJ4"); //Получение Согласия
 			}
 
+            if($accountState == "GuarantorsAdding") {
+                $params = [
+                    'filter' => [
+                        '=UF_CRM_CRMID' => $crmId,
+                        'CATEGORY_ID' => 226 //ID Воронки ЛК
+                    ]
+                ];
+                $itemsScoringTransh = $factory -> getItems($params);
+
+                foreach ($itemsScoringTransh as $element)
+                {
+                    $lastElementLKId = $element->getId();
+                }
+
+                $itemScoringTransh = $factory -> getItem($lastElementLKId);
+                $itemScoringTransh->set("UF_CRM_LKSC_STATUS", $UF_CRM_LKSC_STATUS);
+            }
+            
 			if($accountState == "GuarantorsAgreement") {
 				$params = [
 					'filter' => [
@@ -153,6 +172,7 @@ class LKSellers extends \Bitrix\Main\Engine\Controller
 
 				$itemScoringTransh = $factory -> getItem($lastElementLKId);
 				$itemScoringTransh->setStageId("DT128_226:UC_4P8Q15"); //Добавление поручителей
+                $itemScoringTransh->set("UF_CRM_LKSC_STATUS", $UF_CRM_LKSC_STATUS);
 			}
 
 			if($accountState == "SignDocsBeforeContract") {
@@ -170,8 +190,11 @@ class LKSellers extends \Bitrix\Main\Engine\Controller
 				}
 
 				$itemScoringTransh = $factory -> getItem($lastElementLKId);
-				$itemScoringTransh->setStageId("DT128_226:UC_7ZID5F"); //Подписание документов
+                $itemScoringTransh->set("UF_CRM_LKSC_STATUS", $UF_CRM_LKSC_STATUS);
+				//$itemScoringTransh->setStageId("DT128_226:UC_7ZID5F"); //Подписание документов
 			}
+
+
 
 			if($itemScoringTransh) {
 				$operationScoringTransh = $factory->getUpdateOperation($itemScoringTransh);
@@ -252,7 +275,7 @@ class LKSellers extends \Bitrix\Main\Engine\Controller
 
 		}
 	}
-	public function sendSMSAction(array $params = []): string|EventResult
+	public function sendSMSAction(array $params = [])
 	{
 		$timeData = Logs\TimeData ::start();
 		$context = Application ::getInstance() -> getContext();
@@ -317,7 +340,7 @@ class LKSellers extends \Bitrix\Main\Engine\Controller
 			$arWorkflowParameters = array("message" => $message);
 			$arErrorsTmp = array();
 			$wfId = \CBPDocument::StartWorkflow(
-				2944,
+				3430,
 				array("crm", "Bitrix\Crm\Integration\BizProc\Document\Dynamic", $documentId),
 				array_merge($arWorkflowParameters, array("TargetUser" => "user_".intval($GLOBALS["USER"]->GetID()))),
 				$arErrorsTmp
