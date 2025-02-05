@@ -44,9 +44,10 @@ class MyClass
                 $linktocrm = 'CO_' . $entityId;
                 break;
             default:
+                $EntityAbbreviation = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeId)->getEntityAbbreviation();
                 // Обработка случая, когда $entityTypeId не соответствует ни одному из известных значений
                 // Можно добавить логирование или другую обработку ошибок
-                $linktocrm = 'DYNAMIC'. $entityTypeId.'_'.$entityId;
+                $linktocrm = $EntityAbbreviation.'_'.$entityId;
                 break;
         }
 
