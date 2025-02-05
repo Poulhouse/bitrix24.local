@@ -26,6 +26,81 @@ define("LOG_MYCLASS", $_SERVER['DOCUMENT_ROOT']."/local/classes/myclass.log");
 
 class MyClass
 {
+    public static function getDataOfForm($entityId, $entityTypeId): void
+    {
+        $linktocrm = '';
+
+        switch ($entityTypeId) {
+            case 1:
+                $linktocrm = 'L_' . $entityId;
+                break;
+            case 2:
+                $linktocrm = 'D_' . $entityId;
+                break;
+            case 3:
+                $linktocrm = 'C_' . $entityId;
+                break;
+            case 4:
+                $linktocrm = 'CO_' . $entityId;
+                break;
+            default:
+                // Обработка случая, когда $entityTypeId не соответствует ни одному из известных значений
+                // Можно добавить логирование или другую обработку ошибок
+                $linktocrm = 'DYNAMIC'. $entityTypeId.'_'.$entityId;
+                break;
+        }
+
+        $listActivity = \CCrmActivity::GetList([],['OWNER_TYPE_ID' => $entityTypeId,'OWNER_ID' => $entityId],false,false,[],[]);
+        while ($activity = $listActivity->Fetch()) {
+            if($activity['PROVIDER_ID'] == 'CRM_WEBFORM') {
+                $fields = $activity['PROVIDER_PARAMS']['FIELDS'];
+                $formProps = $activity['PROVIDER_PARAMS']['FORM'];
+                $agreementsForm = $formProps['AGREEMENTS'];
+
+                $formFields = [];
+                $type = 6;
+
+                $arFilter = array(
+                    "IBLOCK_ID" => 16,
+                    "CODE" => "TYPE" // Код вашего свойства типа "Список"
+                );
+                $rsPropsType = \CIBlockPropertyEnum::GetList(array(), $arFilter);
+                while ($arPropType = $rsPropsType->Fetch()) {
+                    $arTypeId[$arPropType["XML_ID"]] = $arPropType["ID"];
+                    $arTypeName[$arPropType["XML_ID"]] = $arPropType["VALUE"];
+                }
+
+                foreach ($fields as $field) {
+                    // Добавляем значение поля в массив
+                    $formFields[$field['caption']] = isset($field['value'][0]) ? $field['value'][0] : '';
+                }
+                foreach($agreementsForm as $agreementForm) {
+                    $agreement = new \Bitrix\Main\UserConsent\Agreement($agreementForm);
+                    $agreementData = $agreement->getData();
+                    $docName = $agreementData['NAME'];
+                    $docLink = $agreementData['URL'];
+
+                    $arProperties = [
+                        'TYPE' => $arTypeId[$type],
+                        'IP_ADDRESS' => $formProps['IP'],
+                        'FORM_DATA' => json_encode($formFields,JSON_UNESCAPED_UNICODE),
+                        'DOC_LINK' => $docLink,
+                        'LINKTOCRM' => $linktocrm
+                    ];
+                    // Добавление нового элемента в инфоблок
+                    $arFields = [
+                        "IBLOCK_ID" => 16,
+                        "NAME" => "Новое согласие $docName", // Название элемента
+                        "ACTIVE" => "Y",
+                        "PROPERTY_VALUES" => $arProperties
+                    ];
+                    $el = new \CIBlockElement;
+                    $el->Add($arFields);
+                }
+            }
+        }
+    }
+
     public static function my_onMailMessageModified(&$event, &$fields, &$filter)
     {
         Logs\File::AddMessage($event, "event", LOG_MYCLASS);
