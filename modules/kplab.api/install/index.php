@@ -6,8 +6,7 @@ use Bitrix\Main\Loader;
 
 class kplab_api extends CModule
 {
-    const MODULE_ID = 'kplab.api';
-    var $MODULE_ID = self::MODULE_ID;
+    var $MODULE_ID = 'kplab.api';
     var $MODULE_VERSION;
     var $MODULE_VERSION_DATE;
     var $MODULE_NAME;
@@ -30,7 +29,7 @@ class kplab_api extends CModule
 
     public function installDB()
     {
-        RegisterModuleDependences('main', 'OnBuildGlobalMenu', self::MODULE_ID, 'CKPLabApi', 'OnBuildGlobalMenu');
+        RegisterModuleDependences('main', 'OnBuildGlobalMenu', $this->MODULE_ID, 'CKPLabApi', 'OnBuildGlobalMenu');
         $connection = Application::getConnection();
         $connection->queryExecute("
             CREATE TABLE IF NOT EXISTS kplab_api_logs (
@@ -95,7 +94,7 @@ class kplab_api extends CModule
 
     public function unInstallDB()
     {
-        UnRegisterModuleDependences('main', 'OnBuildGlobalMenu', self::MODULE_ID, 'CKPLabApi', 'OnBuildGlobalMenu');
+        UnRegisterModuleDependences('main', 'OnBuildGlobalMenu', $this->MODULE_ID, 'CKPLabApi', 'OnBuildGlobalMenu');
         $connection = Application::getConnection();
         $connection->queryExecute("DROP TABLE IF EXISTS kplab_api_logs");
         $connection->queryExecute("DROP TABLE IF EXISTS kplab_api_request_types");
@@ -147,7 +146,7 @@ class kplab_api extends CModule
         global $APPLICATION;
         $this->installDB();
         $this->installFiles();
-        RegisterModule(self::MODULE_ID);
+        RegisterModule($this->MODULE_ID);
 
         // Регистрация обработчика событий
         \Bitrix\Main\EventManager::getInstance()->registerEventHandler(
@@ -178,7 +177,7 @@ class kplab_api extends CModule
                    }
                 }
             }
-            UnRegisterModule(self::MODULE_ID);
+            UnRegisterModule($this->MODULE_ID);
 
             // Удаление обработчика событий
             \Bitrix\Main\EventManager::getInstance()->unRegisterEventHandler(

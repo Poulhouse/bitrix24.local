@@ -1,5 +1,4 @@
 <?php
-const MODULE_ID = 'kplab.api';
 //\Bitrix\Main\Loader::registerNamespace('KPLab\API\V2\Controller', $_SERVER["DOCUMENT_ROOT"] . '/local/modules/kplab.api.v2/controller');
 \Bitrix\Main\Loader::registerNamespace('\KPLab\API\V2\Helpers', dirname(__FILE__) . '/helpers');
 
