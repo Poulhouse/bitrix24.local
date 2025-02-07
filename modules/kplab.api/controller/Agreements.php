@@ -103,12 +103,15 @@ class Agreements extends \Bitrix\Main\Engine\Controller
 
         Loader::includeModule('iblock');
 
+        $IBLOCK_ID = 16;
+
         $ipAddress = $arRequest['ipAddress'];
         $inn = $arRequest['inn'];
         $type = $arRequest['type'];
+        $siteUrl = $arRequest['siteUrl'];
 
         $arFilter = array(
-            "IBLOCK_ID" => 16,
+            "IBLOCK_ID" => $IBLOCK_ID,
             "CODE" => "TYPE" // Код вашего свойства типа "Список"
         );
         $rsPropsType = \CIBlockPropertyEnum::GetList(array(), $arFilter);
@@ -126,12 +129,13 @@ class Agreements extends \Bitrix\Main\Engine\Controller
             'INN' => $inn,
             'IP_ADDRESS' => $ipAddress,
             'FORM_DATA' => json_encode($arRequest['formData'],JSON_UNESCAPED_UNICODE), // Если FORM_DATA - HTML/текст, то можно использовать json_encode или просто строковое представление
-            'DOC_LINK' => $arRequest['docLink']
+            'DOC_LINK' => $arRequest['docLink'],
+            'SITE_URL' => $siteUrl
         ];
 
         // Добавление нового элемента в инфоблок
         $arFields = [
-            "IBLOCK_ID" => 16,
+            "IBLOCK_ID" => $IBLOCK_ID,
             "NAME" => "Новое $arTypeName[$type] для $inn", // Название элемента
             "ACTIVE" => "Y",
             "PROPERTY_VALUES" => $arProperties
