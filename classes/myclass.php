@@ -179,21 +179,41 @@ class MyClass
         return true;
     }
 
-    public static function OnActivityAddHandler($id) {
-        $listActivity = \CCrmActivity::GetList(
-            $arOrder = [],
-            $arFilter = [
-                'ID' => $id
-            ],
-            $arGroupBy = false,
-            $arNavStartParams = false,
-            $arSelectFields = [],
-            $arOptions = []
-        );
-        while ($activity = $listActivity->Fetch()) {
+    public static function OnActivityAddHandler($activityId, $arFields): void
+    {
+        $companyId = 0;
+        $bindings = $arFields['BINDINGS'];
+        Logs\File::AddMessage($bindings, "bindings {$activityId} Activity", LOG_MYCLASS);
 
-            Logs\File::AddMessage($activity, "arFields {$id} Activity", LOG_MYCLASS);
+        foreach ($bindings as $binding) {
+            if ($binding['OWNER_TYPE_ID'] == 1054) {
+                break;
+            }
+            elseif ($binding['OWNER_TYPE_ID'] == \CCrmOwnerType::Company) {
+                $companyId = $binding['OWNER_ID'];
+                break;
+            }
         }
+        if (!$companyId) {
+            return;
+        }
+
+        $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Company);
+        $item = $factory->getItem($companyId);
+        $SCP_itemId = $item->getData()['UF_CRM_SCP'] ?? 0;
+        Logs\File::AddMessage($SCP_itemId, "SCP_itemId {$companyId} Company", LOG_MYCLASS);
+
+        if (!$SCP_itemId) {
+            return;
+        }
+        // Используем старое ядро для установки привязок
+
+        $bindings[] = [
+            'OWNER_TYPE_ID' => 1054, // Тип смарт-процесса SCP
+            'OWNER_ID' => $SCP_itemId, // ID смарт-процесса
+        ];
+
+        \CCrmActivity::SaveBindings($activityId, $bindings, false, false, true);
     }
 
 	public static function openForm($idZayavki) {
