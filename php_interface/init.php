@@ -24,6 +24,7 @@ AddEventHandler("crm", "OnAfterCrmLeadUpdate", Array("MyClass", "OnAfterCrmLeadU
 AddEventHandler("main", "OnProlog", Array("MyClass", "MyOnPrologHandler"), 50);
 AddEventHandler('rest', 'OnRestServiceBuildDescription', array('RestTest', 'OnRestServiceBuildDescription'));
 AddEventHandler("im", "OnBeforeChatMessageAdd", Array("MyClass", "OnBeforeChatMessageAddHandler"));
+AddEventHandler("crm", "OnActivityAdd", Array("MyClass", "OnActivityAddHandler"));
 //AddEventHandler("main", 'OnBeforeMailSend', array("MyClass", "OnBeforeMailSend"));
 /*
 EventManager::getInstance()->addEventHandler('main', 'OnBeforeMailSend', function(&$event) {

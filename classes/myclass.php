@@ -22,12 +22,13 @@ Loader::includeModule('im');
 Loader::includeModule('socialnetwork');
 Loader::includeModule('kplab.jwt');
 
-define("LOG_MYCLASS", $_SERVER['DOCUMENT_ROOT']."/local/classes/myclass.log");
+define("LOG_MYCLASS", $_SERVER['DOCUMENT_ROOT']."/local/logs/myclass.log");
 
 class MyClass
 {
     public static function getDataOfForm($entityId, $entityTypeId): void
     {
+        Logs\File::AddMessage([$entityId, $entityTypeId], "Сущность", LOG_MYCLASS);
         $linktocrm = '';
 
         switch ($entityTypeId) {
@@ -52,6 +53,9 @@ class MyClass
         }
 
         $listActivity = \CCrmActivity::GetList([],['OWNER_TYPE_ID' => $entityTypeId,'OWNER_ID' => $entityId],false,false,[],[]);
+
+        Logs\File::AddMessage($listActivity, "listActivity", LOG_MYCLASS);
+
         while ($activity = $listActivity->Fetch()) {
             if($activity['PROVIDER_ID'] == 'CRM_WEBFORM') {
                 $fields = $activity['PROVIDER_PARAMS']['FIELDS'];
@@ -173,6 +177,23 @@ class MyClass
 
         }
         return true;
+    }
+
+    public static function OnActivityAddHandler($id) {
+        $listActivity = \CCrmActivity::GetList(
+            $arOrder = [],
+            $arFilter = [
+                'ID' => $id
+            ],
+            $arGroupBy = false,
+            $arNavStartParams = false,
+            $arSelectFields = [],
+            $arOptions = []
+        );
+        while ($activity = $listActivity->Fetch()) {
+
+            Logs\File::AddMessage($activity, "arFields {$id} Activity", LOG_MYCLASS);
+        }
     }
 
 	public static function openForm($idZayavki) {
