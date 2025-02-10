@@ -44,6 +44,7 @@ class Partners extends \Bitrix\Main\Engine\Controller
 		$server = $context -> getServer();
 		$serverArray = $server->toArray();
 		$serverName = $serverArray['SERVER_NAME'];
+        $totalPartners = 0;
 
 		\Bitrix\Main\Loader ::IncludeModule('crm');
 		$point = "EXTRANET_BX";
@@ -106,141 +107,259 @@ class Partners extends \Bitrix\Main\Engine\Controller
 				}
 		*/
 
-		/*if(empty($requestArray['partnerInn'])) {
-			Context::getCurrent()->getResponse()->setStatus(400);
-			$errorMessage = "400 Bad Request | Этот запрос не поддерживается. Пустой `partnerInn`";
-			$this->addError(new Error($errorMessage, "invalid_request"));
-			$jsonRes['success'] = null;
-			$jsonRes['error'] = $errorMessage;
-			Logs\IBlock::setData($url, json_encode($requestArray), $jsonRes, $objectData, $timeData, $point, $headersValues);
-			return new EventResult(EventResult::ERROR, null, null, $this);
-		}*/
+        if(isset($queryArray['partnerInn'])) {
+            $partnerInn = $queryArray['partnerInn'];
+        } else {
+            $partnerInn = 0;
+        }
 
-		else
-		{
-			/*$authorization = $server -> get('REMOTE_USER');
-			$token = str_replace('BitrixAuth ', '', $authorization);*/
+        $entityId = false;
+        $entityTypeIdSCP = 1054;
+        $entityTypeCategoryIdSCP = 237;
+        $entityTypeIdLead = \CCrmOwnerType::Lead;
+        $entityTypeIdCompany = \CCrmOwnerType::Company;
 
-			$arSelect = ['ID','NAME','CODE','ACTIVE_DATE','ACTIVE','IBLOCK_ID','IBLOCK_TYPE_ID','PROPERTY_INN_REFERRAL'];
-			$arOrder = ['ID' => 'ASC'];
+        $userFields = \Bitrix\Main\UserFieldTable::getList([
+            'select' => ['ID'],
+            'filter' => [
+                '=ENTITY_ID' => 'CRM_LEAD',
+                'FIELD_NAME' => 'UF_CRM_LEAD_STATUS_FOR_PARTNER'
+            ]
+        ]);
+        $arUserFieldValues = [];
+        while ($arUserField = $userFields->fetch()){
+            $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID']]);
+            while ($arUserFieldData = $res->fetch()) {
+                $arUserFieldValues[] = $arUserFieldData;
+            }
+        }
+        foreach($arUserFieldValues as $arUserFieldValue){
+            $statusLead = $arUserFieldValue['XML_ID'];
+            if($statusLead == 'issued') {
+                $statusLeadId = $arUserFieldValue['ID'];
+            }
+        }
 
-			\Bitrix\Main\Loader::includeModule('iblock');
+        $factorySCP = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdSCP);
+        $factoryLead = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdLead);
+        $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdCompany);
+        if (!$factorySCP)
+        {
+            Context::getCurrent()->getResponse()->setStatus(500);
+            $this -> addError(new Error('Ошибка на сервере', "invalid_server"));
+            return new EventResult(EventResult::ERROR, null, null, $this);
+        }
 
-			//$arSelect = Array("ID", "NAME", "DATE_ACTIVE_FROM");
-			if(isset($queryArray['partnerInn'])) {
-				$arFilter = array("IBLOCK_ID"=>166, "ACTIVE_DATE"=>"Y", "ACTIVE"=>"Y", "=PROPERTY_INN_REFERRAL" => $queryArray['partnerInn']);
-			} else {
-				$arFilter = array("IBLOCK_ID"=>166, "ACTIVE_DATE"=>"Y", "ACTIVE"=>"Y");
-			}
+        if(!$partnerInn) {
+            $filterSCP = [];
+            $params = [
+                'filter' => $filterSCP,
+                'select' => ['ID']
+            ];
+        }
+        else {
+            $filterSCP = [
+                'UF_CRM_87_1723615916' => $partnerInn,
+                'CATEGORY_ID' => $entityTypeCategoryIdSCP,
+            ];
+            $params = [
+                'filter' => $filterSCP,
+                'select' => ['*']
+            ];
+        }
 
-			$res = \CIBlockElement::GetList(
-				$arOrder,
-				$arFilter,
-				false,
-				array(
-					"nTopCount"=>$qty,
-					//"nPageSize"=>$qty,
-					"nOffset"=>$offset
-				),
-				$arSelect
-			);
-			$res2 = \CIBlockElement::GetList(
-				$arOrder,
-				$arFilter,
-				false,
-				array(
-					//"nTopCount"=>$qty,
-					//"nPageSize"=>$qty,
-					//"bShowAll"
-				),
-				['ID']
-			);
-			while ($row = $res2->Fetch())
-			{
-				$totalPartners++;
-			}
+        Logs\File ::AddMessage($params, "params", LOG_API_SYNC_PARTNER_CONTROLLER);
+        $result = [];
+        $itemsSCP = $factorySCP -> getItems($params);
+        $totalPartners = $factorySCP -> getItemsCount($filterSCP);
+        if($itemsSCP) {
+            foreach ($itemsSCP as $itemSCP)
+            {
 
-			$resultReferrals = array();
-			while($el = $res->GetNextElement())
-			{
+                $itemSCPData = $itemSCP->getData();
+                //$totalPartners++;
+                //Logs\File ::AddMessage($itemSCPData, "itemSCP", LOG_API_SYNC_PARTNER_CONTROLLER);
+                $entityId = $itemSCP->getId();
+                $companyId = $itemSCPData['COMPANY_ID'];
+                $companyTitle = $factoryCompany->getItem($companyId)->getTitle();
+                $last_sum_scp = (float) str_replace("|RUB","", $itemSCPData['UF_CRM_87_1723631985']);
+                $referral_link = $itemSCPData['UF_CRM_87_1723616716'];
+                $qr = $itemSCPData['UF_CRM_87_1723616830'];
+                $inn = $itemSCPData['UF_CRM_87_1723615916'];
+                $all_sum_scp = 0;
 
-				$arFields = $el->GetFields();
-				$arProps = $el->GetProperties();
-				$SUM_SCP_KB = 0;
-				$SUM_DEALS = 0;
-				if($arProps['SUM_SCP_KB']['VALUE'] !== "") $SUM_SCP_KB = str_replace('|RUB', '', $arProps['SUM_SCP_KB']['VALUE']);
-				if($arProps['SUM_DEALS']['VALUE'] !== "") $SUM_DEALS = str_replace('|RUB', '', $arProps['SUM_DEALS']['VALUE']);
+                $filterAllLeads = [
+                    'UF_CRM_1689230879' => true,
+                    'UTM_CONTENT.VALUE' => (string) $inn,
+                ];
+                $filterAllDeals = [
+                    'UF_CRM_1689230879' => true,
+                    'UTM_CONTENT.VALUE' => (string) $inn,
+                    '!UF_CRM_63DBAB918A894' => null,
+                ];
+                $paramsLeads = [
+                    'filter' => [
+                        'UF_CRM_1689230879' => true,
+                        'UTM_CONTENT.VALUE' => (string) $inn,
+                        'UF_CRM_LEAD_STATUS_FOR_PARTNER' => $statusLeadId,
+                    ],
+                    'select' => ['ID']
+                ];
+                $all_leads = $factoryLead -> getItemsCount($filterAllLeads);
+                $all_deals = $factoryLead -> getItemsCount($filterAllDeals);
+                $itemsLead = $factoryLead -> getItems($paramsLeads);
 
-				$arProp['ASSIGN'] = $arProps['ASSIGN']['VALUE'];
-				$arProp['COUNT_DEALS'] = $arProps['COUNT_DEALS']['VALUE'];
-				$arProp['COUNT_LEADS'] = $arProps['COUNT_LEADS']['VALUE'];
-				$arProp['ID_REFERRAL'] = $arProps['ID_REFERRAL']['VALUE'];
-				$arProp['ID_SDELKI_SCP'] = $arProps['ID_SDELKI_SCP']['VALUE'];
-				$arProp['INN_REFERRAL'] = $arProps['INN_REFERRAL']['VALUE'];
-				$arProp['QR_KOD'] = $arProps['QR_KOD']['VALUE'];
-				$arProp['QR_LINK'] = $arProps['QR_LINK']['VALUE'];
-				$arProp['REFERRAL_LINK'] = $arProps['REFERRAL_LINK']['VALUE'];
-				$arProp['SCP_KB'] = $arProps['SCP_KB']['VALUE'];
-				$arProp['SUM_SCP_KB'] = number_format($SUM_SCP_KB,2,'.',' ');
-				$arProp['SUM_DEALS'] = number_format($SUM_DEALS,2,'.',' ');
-				$resultReferrals[] = array_merge($arProp, $arFields);
-			}
+                $itemSCP->set('UF_CRM_87_1723628572', $all_leads);
+                $itemSCP->set('UF_CRM_87_1723628880', $all_deals);
 
-			//$resultReferrals = \CRest::call('lists.referral.get')['result'];
+                Logs\File ::AddMessage($all_leads, "all_leads", LOG_API_SYNC_PARTNER_CONTROLLER);
+                Logs\File ::AddMessage($all_deals, "all_deals", LOG_API_SYNC_PARTNER_CONTROLLER);
 
-			foreach ($resultReferrals as $resultReferral) {
-				if(isset($queryArray['partnerInn']) && $resultReferral['INN_REFERRAL'] == $queryArray['partnerInn']) {
-					$idReferral = $resultReferral['ID_REFERRAL'];
-					$sumDeals = $resultReferral['SUM_DEALS'];
-					$resultPartner['all_deals'] = $resultReferral['COUNT_DEALS'];
-					$resultPartner['all_leads'] = $resultReferral['COUNT_LEADS'];
-					$resultPartner['all_sum_scp'] = $resultReferral['SUM_SCP_KB'];
-					$resultPartner['inn'] = $resultReferral['INN_REFERRAL'];
-					$resultPartner['qr'] = $resultReferral['QR_LINK'];
-					$resultPartner['referral_link'] = $resultReferral['REFERRAL_LINK'];
-					// Считаем сумму вознагрождений за предыдущий месяц
-					$resultPartner['last_sum_scp'] = $this->getSumScp($sumDeals, $idReferral, $REQUEST_TIME);
-					$result = $resultPartner;
-				} else {
-					$idReferral = $resultReferral['ID_REFERRAL'];
-					$sumDeals = $resultReferral['SUM_DEALS'];
-					$result[$idReferral]['all_deals'] = $resultReferral['COUNT_DEALS'];
-					$result[$idReferral]['all_leads'] = $resultReferral['COUNT_LEADS'];
-					$result[$idReferral]['all_sum_scp'] = $resultReferral['SUM_SCP_KB'];
-					$result[$idReferral]['inn'] = $resultReferral['INN_REFERRAL'];
-					$result[$idReferral]['qr'] = $resultReferral['QR_LINK'];
-					$result[$idReferral]['referral_link'] = $resultReferral['REFERRAL_LINK'];
-					// Считаем сумму вознагрождений за предыдущий месяц
-					$result[$idReferral]['last_sum_scp'] = $this->getSumScp($sumDeals, $idReferral, $REQUEST_TIME);
-				}
-			}
+                if($itemsLead) {
+                    foreach ($itemsLead as $itemLead) {
+                        $sum_scp = $itemLead->getData()['UF_CRM_1595501790987'];
+                        $all_sum_scp += (float) str_replace("|RUB","", $sum_scp);
+                        //Logs\File ::AddMessage($itemLead->getData(), "itemLeadData", LOG_API_SYNC_PARTNER_CONTROLLER);
+                    }
+                } //'UTM_CONTENT' => '7721546864',*/
+                $itemSCP->set('UF_CRM_87_1723632160', "{$all_sum_scp}|RUB");
+                $result = [
+                    'inn' => $inn,
+                    'companyTitle' => $companyTitle,
+                    'all_deals' => $all_deals,
+                    'all_leads' => $all_leads,
+                    'last_sum_scp' => number_format($last_sum_scp, 2,"."," "),
+                    'all_sum_scp' => number_format($all_sum_scp, 2,"."," "),
+                    'qr' => $qr,
+                    'referral_link' => $referral_link,
+                ];
+                $operation = $factorySCP->getUpdateOperation($itemSCP);
+                $operation->disableAllChecks();
+                $saveResult = $operation->launch();
+            }
+        }
 
-			//$totalPartners = count($result);
 
-			/*$partnerInn = $requestArray['partnerInn'];
-			$crmId = (int)$requestArray['crmId'];*/
 
-			$objectData['ITEM_TITLE'] = "Получение парнеров";
-			$arPartners['object'] = (string) "partner";
-			$arPartners['results'][] = $result;
+        /*$arSelect = ['ID','NAME','CODE','ACTIVE_DATE','ACTIVE','IBLOCK_ID','IBLOCK_TYPE_ID','PROPERTY_INN_REFERRAL'];
+        $arOrder = ['ID' => 'ASC'];
 
-			//Logs\File ::AddMessage($crmId, "crmId", LOG_API_SYNC_PARTNER_CONTROLLER);
-			$totalPages = ceil($totalPartners / $qty);
-			$arPartners['total'] = (integer) $totalPartners;
-			$arPartners['total_pages'] = (integer) $totalPages;
+        \Bitrix\Main\Loader::includeModule('iblock');*/
 
-			if ($offset + $qty >= $totalPartners) {
-				$arPartners['has_more'] = false;
-			} else {
-				$arPartners['has_more'] = true;
-			}
+        //$arSelect = Array("ID", "NAME", "DATE_ACTIVE_FROM");
+        /*if(isset($queryArray['partnerInn'])) {
+            $arFilter = array("IBLOCK_ID"=>166, "ACTIVE_DATE"=>"Y", "ACTIVE"=>"Y", "=PROPERTY_INN_REFERRAL" => $queryArray['partnerInn']);
+        } else {
+            $arFilter = array("IBLOCK_ID"=>166, "ACTIVE_DATE"=>"Y", "ACTIVE"=>"Y");
+        }
 
-			$jsonRes['success'] = $arPartners;
-			$jsonRes['error'] = "";
-			Logs\IBlock::setData($url, json_encode($requestArray), $jsonRes, $objectData, $timeData,
-				$point, $headersValues);
-			return $jsonRes['success'];
-		}
+        $res = \CIBlockElement::GetList(
+            $arOrder,
+            $arFilter,
+            false,
+            array(
+                "nTopCount"=>$qty,
+                //"nPageSize"=>$qty,
+                "nOffset"=>$offset
+            ),
+            $arSelect
+        );
+        $res2 = \CIBlockElement::GetList(
+            $arOrder,
+            $arFilter,
+            false,
+            array(
+                //"nTopCount"=>$qty,
+                //"nPageSize"=>$qty,
+                //"bShowAll"
+            ),
+            ['ID']
+        );
+        while ($row = $res2->Fetch())
+        {
+            $totalPartners++;
+        }
+
+        $resultReferrals = array();
+        while($el = $res->GetNextElement())
+        {
+
+            $arFields = $el->GetFields();
+            $arProps = $el->GetProperties();
+            $SUM_SCP_KB = 0;
+            $SUM_DEALS = 0;
+            if($arProps['SUM_SCP_KB']['VALUE'] !== "") $SUM_SCP_KB = str_replace('|RUB', '', $arProps['SUM_SCP_KB']['VALUE']);
+            if($arProps['SUM_DEALS']['VALUE'] !== "") $SUM_DEALS = str_replace('|RUB', '', $arProps['SUM_DEALS']['VALUE']);
+
+            $arProp['ASSIGN'] = $arProps['ASSIGN']['VALUE'];
+            $arProp['COUNT_DEALS'] = $arProps['COUNT_DEALS']['VALUE'];
+            $arProp['COUNT_LEADS'] = $arProps['COUNT_LEADS']['VALUE'];
+            $arProp['ID_REFERRAL'] = $arProps['ID_REFERRAL']['VALUE'];
+            $arProp['ID_SDELKI_SCP'] = $arProps['ID_SDELKI_SCP']['VALUE'];
+            $arProp['INN_REFERRAL'] = $arProps['INN_REFERRAL']['VALUE'];
+            $arProp['QR_KOD'] = $arProps['QR_KOD']['VALUE'];
+            $arProp['QR_LINK'] = $arProps['QR_LINK']['VALUE'];
+            $arProp['REFERRAL_LINK'] = $arProps['REFERRAL_LINK']['VALUE'];
+            $arProp['SCP_KB'] = $arProps['SCP_KB']['VALUE'];
+            $arProp['SUM_SCP_KB'] = number_format($SUM_SCP_KB,2,'.',' ');
+            $arProp['SUM_DEALS'] = number_format($SUM_DEALS,2,'.',' ');
+            $resultReferrals[] = array_merge($arProp, $arFields);
+        }
+
+        //$resultReferrals = \CRest::call('lists.referral.get')['result'];
+
+        foreach ($resultReferrals as $resultReferral) {
+            if(isset($queryArray['partnerInn']) && $resultReferral['INN_REFERRAL'] == $queryArray['partnerInn']) {
+                $idReferral = $resultReferral['ID_REFERRAL'];
+                $sumDeals = $resultReferral['SUM_DEALS'];
+                $resultPartner['all_deals'] = $resultReferral['COUNT_DEALS'];
+                $resultPartner['all_leads'] = $resultReferral['COUNT_LEADS'];
+                $resultPartner['all_sum_scp'] = $resultReferral['SUM_SCP_KB'];
+                $resultPartner['inn'] = $resultReferral['INN_REFERRAL'];
+                $resultPartner['qr'] = $resultReferral['QR_LINK'];
+                $resultPartner['referral_link'] = $resultReferral['REFERRAL_LINK'];
+                // Считаем сумму вознагрождений за предыдущий месяц
+                $resultPartner['last_sum_scp'] = $this->getSumScp($sumDeals, $idReferral, $REQUEST_TIME);
+                $result = $resultPartner;
+            } else {
+                $idReferral = $resultReferral['ID_REFERRAL'];
+                $sumDeals = $resultReferral['SUM_DEALS'];
+                $result[$idReferral]['all_deals'] = $resultReferral['COUNT_DEALS'];
+                $result[$idReferral]['all_leads'] = $resultReferral['COUNT_LEADS'];
+                $result[$idReferral]['all_sum_scp'] = $resultReferral['SUM_SCP_KB'];
+                $result[$idReferral]['inn'] = $resultReferral['INN_REFERRAL'];
+                $result[$idReferral]['qr'] = $resultReferral['QR_LINK'];
+                $result[$idReferral]['referral_link'] = $resultReferral['REFERRAL_LINK'];
+                // Считаем сумму вознагрождений за предыдущий месяц
+                $result[$idReferral]['last_sum_scp'] = $this->getSumScp($sumDeals, $idReferral, $REQUEST_TIME);
+            }
+        }*/
+
+        //$totalPartners = count($result);
+
+        /*$partnerInn = $requestArray['partnerInn'];
+        $crmId = (int)$requestArray['crmId'];*/
+
+        $objectData['ITEM_TITLE'] = "Получение парнеров";
+        $arPartners['object'] = (string) "partner";
+        $arPartners['results'][] = $result;
+
+        //Logs\File ::AddMessage($crmId, "crmId", LOG_API_SYNC_PARTNER_CONTROLLER);
+        $totalPages = ceil($totalPartners / $qty);
+        $arPartners['total'] = (integer) $totalPartners;
+        $arPartners['total_pages'] = (integer) $totalPages;
+
+        if ($offset + $qty >= $totalPartners) {
+            $arPartners['has_more'] = false;
+        } else {
+            $arPartners['has_more'] = true;
+        }
+
+        $jsonRes['success'] = $arPartners;
+        $jsonRes['error'] = "";
+        Logs\IBlock::setData($url, json_encode($requestArray), $jsonRes, $objectData, $timeData,
+            $point, $headersValues);
+        return $jsonRes['success'];
 	}
 	public static function getSumScp($referralSumDeal, $referralId,$requestTime) {
 		$leadDateFrom = "";
@@ -306,17 +425,17 @@ class Partners extends \Bitrix\Main\Engine\Controller
         Logs\File ::AddMessage($queryArray, "queryArray", LOG_API_SYNC_PARTNER_CONTROLLER);
 
 		if(isset($queryArray['startDate'])) {
-			$startDate = date('Y-m-d', strtotime($queryArray['startDate']));
+			$startDate = date('d.m.Y', strtotime($queryArray['startDate']));
 		}
         else {
-			$startDate = date('Y-m-d', strtotime('2000-01-01'));
+			$startDate = date('d.m.Y', strtotime('2000-01-01'));
 		}
 
 		if(isset($queryArray['endDate'])) {
-			$endDate = date('Y-m-d', strtotime($queryArray['endDate']));
+			$endDate = date('d.m.Y', strtotime($queryArray['endDate']));
 		}
         else {
-			$endDate = date('Y-m-d', strtotime('now'));
+			$endDate = date('d.m.Y', strtotime('now'));
 		}
 
 		if(isset($queryArray['qty'])) {
@@ -335,19 +454,18 @@ class Partners extends \Bitrix\Main\Engine\Controller
 		$curM = date('m', $REQUEST_TIME);
 		$curY = date('Y', $REQUEST_TIME);
 
-		if ($startDate !== NULL && $endDate !== NULL)
-		{
-			$leadDateStart = $startDate."T00:00:00";
-			$leadDateEnd = $endDate."T23:59:59";
 
-			$tasksFrom = "01-".$curM.'-'.$curY;
-			$tasksTo = "31-".$curM.'-'.$curY;
+        /*$endDate = date('d.m.Y', strtotime($endDate));
+        $startDate = date('d.m.Y', strtotime($startDate));*/
+        Logs\File ::AddMessage([$startDate, $endDate], "dateLead", LOG_API_SYNC_PARTNER_CONTROLLER);
 
-		}
-		else {
-			$leadDateStart = $startDate."T00:00:00";
-			$leadDateEnd = $endDate."T23:59:59";
-		}
+        $leadDateStart = $startDate."T00:00:00";
+        $leadDateEnd = $endDate."T23:59:59";
+
+        $tasksFrom = "01-".$curM.'-'.$curY;
+        $tasksTo = "31-".$curM.'-'.$curY;
+
+
 
 		$dateFromTo = [
 			"FROM" => [
@@ -360,49 +478,133 @@ class Partners extends \Bitrix\Main\Engine\Controller
 			]
 		];
 
-		if(isset($queryArray['partnerInn'])) {
-			$partnerInn = $queryArray['partnerInn'];
-		} else {
-			$partnerInn = null;
-		}
-
-		$referralId = self::findCard($partnerInn);
-
-		Logs\File ::AddMessage($referralId, "referralId", LOG_API_SYNC_PARTNER_CONTROLLER);
-        if (!$referralId) {
-            $errorMessage = 'Ошибка `partnerInn` не известен';
-
-            Context::getCurrent()->getResponse()->setStatus(404);
-            $this -> addError(new Error($errorMessage, "invalid_request"));
-            return new EventResult(EventResult::ERROR, null, null, $this);
+        if(isset($queryArray['partnerInn'])) {
+            $partnerInn = $queryArray['partnerInn'];
+        } else {
+            $partnerInn = 0;
         }
 
-		if (!empty($queryArray['status']))
-		{
-			$status = $queryArray['status'];
-		} else
-		{
-			$status = "";
-		}
+        $statusLeadXMLId = (!empty($queryArray['status']) && $queryArray['status'] !== 'all') ? $queryArray['status'] : 0;
 
-/*
-		$arParams = array(
-			'order' => ['PROPERTY_DATE_LEAD' => 'ASC'],
-			'leadDate' => [
-				'DATE_FROM' => $leadDateStart,
-				'DATE_TO' => $leadDateEnd
-			],
-			'period' => [
-				'DATE_FROM' => $leadDateStart,
-				'DATE_TO' => $leadDateEnd
-			],
-			'statusLead' => $status,
-			'referralId' => $referralId
-		);
-*/
+        if(!$statusLeadXMLId) {
+            $statusLeadId = 0;
+        } else {
+            $userFields = \Bitrix\Main\UserFieldTable::getList([
+                'select' => ['ID'],
+                'filter' => [
+                    '=ENTITY_ID' => 'CRM_LEAD',
+                    'FIELD_NAME' => 'UF_CRM_LEAD_STATUS_FOR_PARTNER'
+                ]
+            ]);
+
+            while ($arUserField = $userFields->fetch()){
+                $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID'], 'XML_ID' => $statusLeadXMLId]);
+                while ($arUserFieldData = $res->fetch()) {
+                    $statusLeadId = $arUserFieldData['ID'];
+                }
+            }
+        }
+
+
+        $entityTypeIdLead = \CCrmOwnerType::Lead;
+        $factoryLead = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdLead);
+        if (!$partnerInn)
+        {
+            Context::getCurrent()->getResponse()->setStatus(400);
+            $this -> addError(new Error('Ошибка параметра запроса, `partnerInn` не может быть равен 0', "invalid_request"));
+            return new EventResult(EventResult::ERROR, null, null, $this);
+        }
+        else {
+            if(!$statusLeadId) {
+                $filter = [
+                    '>=UF_CRM_1712815273' => $startDate,
+                    '<=UF_CRM_1712815273' => $endDate,
+                    'UF_CRM_1689230879' => true,
+                    'UTM_CONTENT.VALUE' => (string) $partnerInn,
+                ];
+                $paramsLeads = [
+                    'filter' => $filter,
+                    'select' => ['*','UF_*']
+                ];
+            }
+            else {
+                $filter = [
+                    '>=UF_CRM_1712815273' => $startDate,
+                    '<=UF_CRM_1712815273' => $endDate,
+                    'UF_CRM_1689230879' => true,
+                    'UTM_CONTENT.VALUE' => (string) $partnerInn,
+                    'UF_CRM_LEAD_STATUS_FOR_PARTNER' => $statusLeadId,
+                ];
+                $paramsLeads = [
+                    'filter' => $filter,
+                    'select' => ['*','UF_*']
+                ];
+            }
+
+            $totalPartnerSellers = $factoryLead -> getItemsCount($filter);
+            $itemsLead = $factoryLead -> getItems($paramsLeads);
+            $sellerTotalSum = 0;
+            $result = [];
+
+            if($itemsLead) {
+                foreach ($itemsLead as $itemLead) {
+                    $itemLeadData = $itemLead->getData();
+                    $itemLeadId = $itemLead->getId();
+                    $name = $itemLead->getTitle();
+                    $dateLead = date('d.m.Y', strtotime($itemLeadData['UF_CRM_1712815273']));
+                    $dateDeal = date('d.m.Y', strtotime($itemLeadData['UF_CRM_63DBAB918A894']));
+                    $sumDeal = (float) str_replace("|RUB","", $itemLeadData['UF_CRM_1595501790987']);
+                    $scp_kb = $itemLeadData['UF_CRM_1682069017302']; //коэффициент вознаграждения
+                    $sumSCP = $sumDeal * ($scp_kb/100);
+                    $statusLeadId = $itemLeadData['UF_CRM_LEAD_STATUS_FOR_PARTNER'];
+                    $userFields = \Bitrix\Main\UserFieldTable::getList([
+                        'select' => ['ID'],
+                        'filter' => [
+                            '=ENTITY_ID' => 'CRM_LEAD',
+                            'FIELD_NAME' => 'UF_CRM_LEAD_STATUS_FOR_PARTNER'
+                        ]
+                    ]);
+                    Logs\File ::AddMessage($itemLeadId, "itemLeadId", LOG_API_SYNC_PARTNER_CONTROLLER);
+                    Logs\File ::AddMessage($name, "name", LOG_API_SYNC_PARTNER_CONTROLLER);
+                    Logs\File ::AddMessage($statusLeadId, "statusLeadId", LOG_API_SYNC_PARTNER_CONTROLLER);
+
+                    while ($arUserField = $userFields->fetch()){
+                        $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID'], 'ID' => $statusLeadId]);
+                        while ($arUserFieldData = $res->fetch()) {
+                            $statusLeadXMLId = $arUserFieldData['XML_ID'];
+                            //Logs\File ::AddMessage($statusLeadXMLId, "statusLeadXMLId", LOG_API_SYNC_PARTNER_CONTROLLER);
+                        }
+                    }
+                    if($statusLeadXMLId == "new" || ($statusLeadXMLId == "in_processed") || ($statusLeadXMLId == "refused") || ($statusLeadXMLId == "approved")) {
+                        $result[] = [
+                            'status' => $statusLeadXMLId,
+                            'seller_id' => $itemLeadId,
+                            'name' => null,
+                            'dateLead' => $dateLead,
+                            'dateDeal' => null,
+                            'sumDeal' => null,
+                            'sumSCP' => null,
+                        ];
+                    }
+                    else {
+                        $result[] = [
+                            'status' => $statusLeadXMLId,
+                            'seller_id' => $itemLeadId,
+                            'name' => "Лид",
+                            'dateLead' => $dateLead,
+                            'dateDeal' => $dateDeal,
+                            'sumDeal' => $sumDeal,
+                            'sumSCP' => $sumSCP,
+                        ];
+                    }
+                    $sellerTotalSum = $sellerTotalSum + $sumSCP;
+                    Logs\File ::AddMessage($result, "result", LOG_API_SYNC_PARTNER_CONTROLLER);
+                }
+            }
+        }
 
 		//Logs\File ::AddMessage($arParams, "arParams", LOG_API_SYNC_PARTNER_CONTROLLER);
-
+        /*
 		\Bitrix\Main\Loader::includeModule('iblock');
 
 		$leadFrom = date('2000-01-01');
@@ -438,8 +640,8 @@ class Partners extends \Bitrix\Main\Engine\Controller
 		}
 		else {
 			$statusLead = "";
-		}
-
+		}*/
+        /*
 		$result = array();
 
 		if(!empty($arPeriod))
@@ -543,34 +745,35 @@ class Partners extends \Bitrix\Main\Engine\Controller
 					{
 						$totalPartnerSellers++;
 					}
-/*
-					$arFilterDeal = array(
-						"IBLOCK_ID" => 167,
-						"=PROPERTY_REFERRAL_ID" => $referralId,
-						">=PROPERTY_DATA_DOGOVORA_ZAYMA" => $arPeriod['DATE_FROM'],
-						"<=PROPERTY_DATA_DOGOVORA_ZAYMA" => $arPeriod['DATE_TO']
-					);
-					$resDeal = \CIBlockElement::GetList(
-						$arOrder,
-						$arFilterDeal,
-						false,
-						array(
-							"nTopCount"=>$qty,
-							//"nPageSize"=>$qty,
-							"nOffset"=>$offset
-						),
-						$arSelect
-					);
-*/
-/*					if (!$resLead && !$resDeal)
-					{
-						return [
-							'error' => 'ERROR_METHOD_NOT_FOUND',
-							'error_description' => 'Method not found! ' . __LINE__,
-						];
-					}
-*/
-					/*
+        */
+        /*
+                            $arFilterDeal = array(
+                                "IBLOCK_ID" => 167,
+                                "=PROPERTY_REFERRAL_ID" => $referralId,
+                                ">=PROPERTY_DATA_DOGOVORA_ZAYMA" => $arPeriod['DATE_FROM'],
+                                "<=PROPERTY_DATA_DOGOVORA_ZAYMA" => $arPeriod['DATE_TO']
+                            );
+                            $resDeal = \CIBlockElement::GetList(
+                                $arOrder,
+                                $arFilterDeal,
+                                false,
+                                array(
+                                    "nTopCount"=>$qty,
+                                    //"nPageSize"=>$qty,
+                                    "nOffset"=>$offset
+                                ),
+                                $arSelect
+                            );
+        */
+        /*					if (!$resLead && !$resDeal)
+                            {
+                                return [
+                                    'error' => 'ERROR_METHOD_NOT_FOUND',
+                                    'error_description' => 'Method not found! ' . __LINE__,
+                                ];
+                            }
+        */
+        /*
 					while($el = $resDeal->GetNextElement())
 					{
 						$arFields = $el->GetFields();
@@ -596,6 +799,7 @@ class Partners extends \Bitrix\Main\Engine\Controller
 						$resultDeals[] = array_merge($arProp, $arFields);
 					}
 					*/
+        /*
 					while($el = $resLead->GetNextElement())
 					{
 						$arFields = $el->GetFields();
@@ -712,7 +916,8 @@ class Partners extends \Bitrix\Main\Engine\Controller
 
 		if(!empty($result)) {
 			$sellers = $result;
-		} elseif(!empty($res))
+		}
+        elseif(!empty($res))
 		{
 			while ($el = $res -> GetNextElement())
 			{
@@ -784,19 +989,18 @@ class Partners extends \Bitrix\Main\Engine\Controller
 				$r_res[$k]['sumDeal'] = $sellersSumDeal;
 				$r_res[$k]['sumSCP'] = $sellersSumSCP;
 			}
-		}
+		}*/
 
 		$sellerTotalSum = number_format($sellerTotalSum, 2, '.', ' ');
 
 		$objectData['ITEM_TITLE'] = "Получение селлеров от партнера";
-		$arPartnerSellers['object'] = (string) "partnerSellers";
-		$arPartnerSellers['results'] = $r_res;
+		$arPartnerSellers['object'] = "partnerSellers";
+		$arPartnerSellers['results'] = $result;
 		$arPartnerSellers['sumSCPDeals'] = $sellerTotalSum;
 
-		//Logs\File ::AddMessage($crmId, "crmId", LOG_API_SYNC_PARTNER_CONTROLLER);
 		$totalPages = ceil($totalPartnerSellers / $qty);
-		$arPartnerSellers['total'] = (integer) $totalPartnerSellers;
-		$arPartnerSellers['total_pages'] = (integer) $totalPages;
+		$arPartnerSellers['total'] = $totalPartnerSellers;
+		$arPartnerSellers['total_pages'] = $totalPages;
 
 		if ($offset + $qty >= $totalPartnerSellers) {
 			$arPartnerSellers['has_more'] = false;
@@ -806,8 +1010,8 @@ class Partners extends \Bitrix\Main\Engine\Controller
 
 		$jsonRes['success'] = $arPartnerSellers;
 		$jsonRes['error'] = "";
-		Logs\IBlock::setData($url, json_encode($requestArray), $jsonRes, $objectData, $timeData,
-			$point, $headersValues);
+		/*Logs\IBlock::setData($url, json_encode($requestArray), $jsonRes, $objectData, $timeData,
+			$point, $headersValues);*/
 		return $jsonRes['success'];
 
 
