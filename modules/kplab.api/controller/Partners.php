@@ -154,7 +154,9 @@ class Partners extends \Bitrix\Main\Engine\Controller
             $filterSCP = [];
             $params = [
                 'filter' => $filterSCP,
-                'select' => ['ID']
+                'select' => ['*'],
+                'limit' => $qty,
+                'offset' => $offset,
             ];
         }
         else {
