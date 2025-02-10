@@ -164,7 +164,9 @@ class Partners extends \Bitrix\Main\Engine\Controller
             ];
             $params = [
                 'filter' => $filterSCP,
-                'select' => ['*']
+                'select' => ['*'],
+                'limit' => $qty,
+                'offset' => $offset,
             ];
         }
 
@@ -524,7 +526,9 @@ class Partners extends \Bitrix\Main\Engine\Controller
                 ];
                 $paramsLeads = [
                     'filter' => $filter,
-                    'select' => ['*','UF_*']
+                    'select' => ['*','UF_*'],
+                    'limit' => $qty,
+                    'offset' => $offset,
                 ];
             }
             else {
@@ -537,7 +541,9 @@ class Partners extends \Bitrix\Main\Engine\Controller
                 ];
                 $paramsLeads = [
                     'filter' => $filter,
-                    'select' => ['*','UF_*']
+                    'select' => ['*','UF_*'],
+                    'limit' => $qty,
+                    'offset' => $offset,
                 ];
             }
 
