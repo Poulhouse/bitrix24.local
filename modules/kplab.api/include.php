@@ -1,6 +1,8 @@
 <?php
 //\Bitrix\Main\Loader::registerNamespace('KPLab\API\V2\Controller', $_SERVER["DOCUMENT_ROOT"] . '/local/modules/kplab.api.v2/controller');
-\Bitrix\Main\Loader::registerNamespace('\KPLab\API\V2\Helpers', dirname(__FILE__) . '/helpers');
+
+
+\Bitrix\Main\Loader::registerNamespace('\\KPLab\\API\\V2\\Helpers\\', dirname(__FILE__) . '/helpers');
 
 file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/local/logs/namespace_debug.log", "Регистрация namespace выполняется!\n", FILE_APPEND);
 

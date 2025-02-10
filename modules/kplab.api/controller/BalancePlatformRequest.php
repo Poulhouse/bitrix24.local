@@ -762,6 +762,7 @@ class BalancePlatformRequest extends \Bitrix\Main\Engine\Controller {
         if($statusType_checklistData == 'CreditCommittee') $statusType_checklistID = 20877;
         if($statusType_checklistData == 'AutomaticApprove') $statusType_checklistID = 20875;
         if($statusType_checklistData == 'NotEnoughDocuments') $statusType_checklistID = 20878;
+        if($statusType_checklistData == 'Bizmoll') $statusType_checklistID = 21865;
 
         return [
             'UF_CRM_CHKLST' => $statusType_checklistID,

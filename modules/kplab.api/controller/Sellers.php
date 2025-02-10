@@ -29,20 +29,12 @@ class Sellers extends \Bitrix\Main\Engine\Controller
     public string $rqId;
     public string $itemDatatitle;
 
-    public function getDefaultPreFilters()
+    protected function getDefaultPreFilters()
     {
+        // Возвращаем пустой массив или только нужные фильтры
         return [
             new \KPLab\API\V2\Controller\ActionFilter\Authentication(),
         ];
-    }
-    public function getDefaultPostFilters()
-    {
-        return array();
-    }
-
-    protected function prepareParams()
-    {
-        return parent::prepareParams();
     }
 
     /**
@@ -71,7 +63,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         }
 
         // Получаем имя текущего контроллера и метода
-        $HandlerResponse = new HandlerResponse(
+        $HandlerResponse = (new HandlerResponse())->handleInit(
             $this,
             __FUNCTION__,
             "SE",
@@ -79,7 +71,8 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $url,
             $timeData,
             $headersValues,
-            $requestJson
+            $requestJson,
+            $context
         );
         /*$controllerName = get_class($this);
         $methodName = __FUNCTION__;
@@ -248,7 +241,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         }
 
         // Получаем имя текущего контроллера и метода
-        $HandlerResponse = new HandlerResponse(
+        $HandlerResponse = (new HandlerResponse())->handleInit(
             $this,
             __FUNCTION__,
             "SE",
@@ -256,7 +249,8 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $url,
             $timeData,
             $headersValues,
-            $requestJson
+            $requestJson,
+            $context
         );
 
         $arRequest = json_decode($requestJson,true);
@@ -351,7 +345,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         }
 
         // Получаем имя текущего контроллера и метода
-        $HandlerResponse = new HandlerResponse(
+        $HandlerResponse = (new HandlerResponse())->handleInit(
             $this,
             __FUNCTION__,
             "SE",
@@ -359,7 +353,8 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $url,
             $timeData,
             $headersValues,
-            $requestJson
+            $requestJson,
+            $context
         );
 
         $requestArray = json_decode($requestJson,true);
@@ -458,7 +453,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         }
 
         // Получаем имя текущего контроллера и метода
-        $HandlerResponse = new HandlerResponse(
+        $HandlerResponse = (new HandlerResponse())->handleInit(
             $this,
             __FUNCTION__,
             "SE",
@@ -466,7 +461,8 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $url,
             $timeData,
             $headersValues,
-            $requestJson
+            $requestJson,
+            $context
         );
         $arRequest = json_decode($requestJson,true);
         //endregion
@@ -553,7 +549,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         }
 
         // Получаем имя текущего контроллера и метода
-        $HandlerResponse = new HandlerResponse(
+        $HandlerResponse = (new HandlerResponse())->handleInit(
             $this,
             __FUNCTION__,
             "SE",
@@ -561,7 +557,8 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $url,
             $timeData,
             $headersValues,
-            $requestJson
+            $requestJson,
+            $context
         );
 
         $requestArray = json_decode($requestJson,true);
@@ -676,7 +673,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         }
 
         // Получаем имя текущего контроллера и метода
-        $HandlerResponse = new HandlerResponse(
+        $HandlerResponse = (new HandlerResponse())->handleInit(
             $this,
             __FUNCTION__,
             "SE",
@@ -684,7 +681,8 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $url,
             $timeData,
             $headersValues,
-            $requestJson
+            $requestJson,
+            $context
         );
 
         $requestArray = json_decode($requestJson,true);
@@ -720,18 +718,18 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             //$adjAccount = $bankAccount['adjAccount'];
 
             $this->CURLObjectData['ITEM_TITLE'] = "SE:Получение банковских реквизитов по ИНН: {$sellerInn}";
-
-            if($crmId > 0) {
-                $sellerCardId = self::findCard($sellerInn, $crmId); //поиск клиента
-            } else {
-                $sellerCardId = self::findCard($sellerInn);
-            }
+            $sellerCardId = self::findCard($sellerInn);
 
             Logs\File ::AddMessage($sellerCardId, "sellerCardId", LOG_API_SYNC_SELLER_CONTROLLER);
 
             if(!is_int($sellerCardId)) {
-                $errorMessage = 'Не существует Селлера с таким ИНН или CRMID';
-                return $HandlerResponse->handleError(404, $errorMessage, "invalid_request", $objectData);
+                if($crmId > 0) {
+                    $sellerCardId = self::findCard($sellerInn, $crmId); //поиск клиента
+                }
+                if(!is_int($sellerCardId)) {
+                    $errorMessage = 'Не существует Селлера с таким ИНН или CRMID';
+                    return $HandlerResponse->handleError(404, $errorMessage, "invalid_request", $objectData);
+                }
             }
 
             $requisite = \CRest::call(
@@ -822,7 +820,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         }
 
         // Получаем имя текущего контроллера и метода
-        $HandlerResponse = new HandlerResponse(
+        $HandlerResponse = (new HandlerResponse())->handleInit(
             $this,
             __FUNCTION__,
             "SE",
@@ -830,7 +828,8 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $url,
             $timeData,
             $headersValues,
-            $requestJson
+            $requestJson,
+            $context
         );
 
         $requestArray = json_decode($requestJson, true);
@@ -1037,7 +1036,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         $taskId = $requestArray['Id'];
 
         // Получаем имя текущего контроллера и метода
-        $HandlerResponse = new HandlerResponse(
+        $HandlerResponse = (new HandlerResponse())->handleInit(
             $this,
             __FUNCTION__,
             "SE",
@@ -1045,7 +1044,11 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $url,
             $timeData,
             $headersValues,
-            $requestJson,false, $taskId
+            $requestJson,
+            $context,
+            false,
+            false,
+            $taskId
         );
         //endregion
 
@@ -1141,7 +1144,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         $arRequest = json_decode($requestJson,true);
 
         // Получаем имя текущего контроллера и метода
-        $HandlerResponse = new HandlerResponse(
+        $HandlerResponse = (new HandlerResponse())->handleInit(
             $this,
             __FUNCTION__,
             "SE",
@@ -1149,7 +1152,8 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $url,
             $timeData,
             $headersValues,
-            $requestJson
+            $requestJson,
+            $context
         );
         //endregion
 
@@ -1267,7 +1271,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         $requestArray = json_decode($requestJson,true);
 
         // Получаем имя текущего контроллера и метода
-        $HandlerResponse = new HandlerResponse(
+        $HandlerResponse = (new HandlerResponse())->handleInit(
             $this,
             __FUNCTION__,
             "SE",
@@ -1275,7 +1279,8 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $url,
             $timeData,
             $headersValues,
-            $requestJson
+            $requestJson,
+            $context
         );
         //endregion
 
@@ -1440,7 +1445,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         $objectData = $this->CURLObjectData;
 
         // Получаем имя текущего контроллера и метода
-        $HandlerResponse = new HandlerResponse(
+        $HandlerResponse = (new HandlerResponse())->handleInit(
             $this,
             __FUNCTION__,
             "SE",
@@ -1449,6 +1454,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $timeData,
             $headersValues,
             $requestJson,
+            $context,
             true
         );
         //endregion
@@ -1549,7 +1555,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         $objectData = $this->CURLObjectData;
 
         // Получаем имя текущего контроллера и метода
-        $HandlerResponse = new HandlerResponse(
+        $HandlerResponse = (new HandlerResponse())->handleInit(
             $this,
             __FUNCTION__,
             "SE",
@@ -1558,6 +1564,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $timeData,
             $headersValues,
             $requestJson,
+            $context,
             true
         );
         //endregion
@@ -2736,9 +2743,6 @@ class Sellers extends \Bitrix\Main\Engine\Controller
         }
 
     }
-
-
-
     private function saveAllData($factory, $item, $services): array
     {
         $crmUpdateResult = $this->crmUpdate($factory, $item, $services);

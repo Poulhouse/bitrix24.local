@@ -13,7 +13,7 @@ use \KPLab\JWT\Controller\Loans;
 
 use \Bitrix\Main\Routing\RoutingConfigurator;
 use KPLab\API\V2\RoutesTable;
-use KPLab\API\V2\Helpers\ControllerGenerator;
+use \KPLab\API\V2\Helpers\ControllerGenerator;
 use \Bitrix\Main\Routing\Controllers\PublicPageController;
 
 return function (RoutingConfigurator $routes) {

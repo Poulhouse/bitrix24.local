@@ -18,22 +18,13 @@ define("LOG_API_SYNC_PARTNER_CONTROLLER", $_SERVER['DOCUMENT_ROOT']."/local/clas
 
 class Partners extends \Bitrix\Main\Engine\Controller
 {
-	public function getDefaultPreFilters()
-	{
-		return [
-			new \KPLab\API\V2\Controller\ActionFilter\Authentication(),
-		];
-	}
-
-	public function getDefaultPostFilters()
-	{
-		return array();
-	}
-
-	protected function prepareParams()
-	{
-		return parent ::prepareParams();
-	}
+    protected function getDefaultPreFilters()
+    {
+        // Возвращаем пустой массив или только нужные фильтры
+        return [
+            new \KPLab\API\V2\Controller\ActionFilter\Authentication(),
+        ];
+    }
 
 	public function getListAction(array $params = [])
 	{

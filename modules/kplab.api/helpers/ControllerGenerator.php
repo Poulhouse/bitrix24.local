@@ -35,8 +35,6 @@ class ControllerGenerator
             $fileContent .= "\n        return [";
             $fileContent .= "\n            new \\KPLab\\API\\V2\\Controller\\ActionFilter\\Authentication(),\n";
             $fileContent .= "\n        ];\n    }\n";
-            $fileContent .= "\n    public function getDefaultPostFilters()\n    {\n        return array();\n    }\n";
-            $fileContent .= "\n    protected function prepareParams()\n    {\n        return parent ::prepareParams();\n    }\n";
             $fileContent .= "}\n";
             $classExists = false;
         }

@@ -19,18 +19,11 @@ define("LOG_API_SYNC_AGREEMENTS_CONTROLLER", $_SERVER['DOCUMENT_ROOT']."/local/l
 
 class Agreements extends \Bitrix\Main\Engine\Controller
 {
-    public function configureActions()
+    protected function getDefaultPreFilters()
     {
+        // Возвращаем пустой массив или только нужные фильтры
         return [
-            'add' => [
-                'prefilters' => [
-                    new \KPLab\API\V2\Controller\ActionFilter\Authentication(),
-                ],
-                '-prefilters' => [
-                    \Bitrix\Main\Engine\ActionFilter\Authentication::class,
-                ],
-                'postfilters' => [],
-            ]
+            new \KPLab\API\V2\Controller\ActionFilter\Authentication(),
         ];
     }
 

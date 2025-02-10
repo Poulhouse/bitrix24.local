@@ -6,10 +6,13 @@ use Bitrix\Main\Context;
 use Bitrix\Main\Error;
 use Bitrix\Main\EventResult;
 
-class HandlerResponse
+class HandlerResponse extends \Bitrix\Main\Engine\Controller
 {
     const MODULE_ID = 'kplab.api';
+
     public $controller;
+    public $context;
+
     public string $controllerName;
     public mixed $methodName;
     public mixed $statusRequest;
@@ -24,14 +27,15 @@ class HandlerResponse
     public mixed $timeData;
     public array $headersValues;
     public string $requestJson;
-    public function __construct(
+    public function handleInit(
         $controller, $funcName, $partnerName,
         $requestMethod, $url, $timeData,
-        $headersValues, $requestJson, $outRequest = false,
+        $headersValues, $requestJson, $context, $outRequest = false,
         $logger = true, $taskId = 0, $status = 'Success'
     )
     {
         // Получаем имя текущего контроллера и метода
+        $this->context = $context;
         $this->controller = $controller;
         $this->controllerName = get_class($controller);
         $this->methodName = $funcName;
@@ -47,13 +51,14 @@ class HandlerResponse
         $this->timeData = $timeData;
         $this->headersValues = $headersValues;
         $this->requestJson = $requestJson;
+        return $this;
     }
 
     public function handleError($statusCode, $message, $code, $objectData): EventResult
     {
 
-        Context::getCurrent()->getResponse()->setStatus($statusCode);
-        $this->addError(new Error($message, $code));
+        $this->context->getResponse()->setStatus($statusCode);
+        $this->controller->addError(new Error($message, $code));
         $this->statusRequest = 'Failed'; // Статус запроса
 
         $resultDecoded = json_decode($message, true);
