@@ -54,7 +54,7 @@ class MyClass
 
         $listActivity = \CCrmActivity::GetList([],['OWNER_TYPE_ID' => $entityTypeId,'OWNER_ID' => $entityId],false,false,[],[]);
 
-        Logs\File::AddMessage($listActivity, "listActivity", LOG_MYCLASS);
+        //Logs\File::AddMessage($listActivity, "listActivity", LOG_MYCLASS);
 
         while ($activity = $listActivity->Fetch()) {
             if($activity['PROVIDER_ID'] == 'CRM_WEBFORM') {
@@ -182,9 +182,13 @@ class MyClass
     public static function OnActivityAddHandler($activityId, $arFields): void
     {
         $companyId = 0;
-        $bindings = $arFields['BINDINGS'];
-        Logs\File::AddMessage($bindings, "bindings {$activityId} Activity", LOG_MYCLASS);
 
+        $bindings = $arFields['BINDINGS'];
+        $providerId = $arFields['PROVIDER_ID'];
+        //Logs\File::AddMessage($bindings, "bindings {$activityId} Activity", LOG_MYCLASS);
+        if($providerId == 'CRM_TASKS_TASK') {
+            return;
+        }
         foreach ($bindings as $binding) {
             if ($binding['OWNER_TYPE_ID'] == 1054) {
                 break;
@@ -200,20 +204,32 @@ class MyClass
 
         $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Company);
         $item = $factory->getItem($companyId);
-        $SCP_itemId = $item->getData()['UF_CRM_SCP'] ?? 0;
-        Logs\File::AddMessage($SCP_itemId, "SCP_itemId {$companyId} Company", LOG_MYCLASS);
-
-        if (!$SCP_itemId) {
+        $smartItemIds = $item->getData()['UF_CRM_SCP'] ?? 0;
+        if (!$smartItemIds) {
             return;
         }
-        // Используем старое ядро для установки привязок
+        foreach($smartItemIds as $smartItemId) {
+            list($entityTypeAbbr, $entityId) = explode('_', $smartItemId);
 
-        $bindings[] = [
-            'OWNER_TYPE_ID' => 1054, // Тип смарт-процесса SCP
-            'OWNER_ID' => $SCP_itemId, // ID смарт-процесса
-        ];
+            // Получаем полное название типа сущности по аббревиатуре
+            $entityTypeName = \CCrmOwnerTypeAbbr::ResolveName($entityTypeAbbr);
 
-        \CCrmActivity::SaveBindings($activityId, $bindings, false, false, true);
+            // Получаем ID типа сущности по её названию
+            $entityTypeId = \CCrmOwnerType::ResolveID($entityTypeName);
+            //Logs\File::AddMessage([$entityTypeId, (int) $entityId], "entityTypeId&entityId {$companyId} Company", LOG_MYCLASS);
+
+            // Используем старое ядро для установки привязок
+            $bindings[] = [
+                'OWNER_TYPE_ID' => $entityTypeId, // Тип смарт-процесса SCP
+                'OWNER_ID' => (int) $entityId, // ID смарт-процесса
+            ];
+
+            \CCrmActivity::SaveBindings($activityId, $bindings, false, false, true);
+        }
+
+
+
+
     }
 
 	public static function openForm($idZayavki) {
