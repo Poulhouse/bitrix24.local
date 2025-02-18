@@ -21,6 +21,13 @@ class MergePDF
     {
 
     }
+
+    /**
+     * @throws \setasign\Fpdi\PdfParser\Type\PdfTypeException
+     * @throws \Bitrix\Main\ArgumentException
+     * @throws \setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException
+     * @throws \setasign\Fpdi\PdfParser\PdfParserException
+     */
     public function init(int $entityTypeID = 4, int $entityID = 43019) {
 
         $soglSign = "UF_CRM_UNSIGNED_CONSENT";
@@ -59,11 +66,9 @@ class MergePDF
                     if ($fileArray['CONTENT_TYPE'] == 'application/pdf')
                     {
                         $srcfile = $_SERVER['DOCUMENT_ROOT'] . $fileArray['SRC'];
-                        echo $srcfile ."\n";
                         $srcfile_new = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/' . $filename;
-                        echo $srcfile_new."\n";
                         $dest_file = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/encrypted-'.$random.'.pdf';
-                        echo $dest_file."\n";
+                        $srcfile_new_compress = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/compress-'.$filename;
 
                         $filepdf = fopen($srcfile,"r");
                         if($filepdf) {
@@ -73,11 +78,18 @@ class MergePDF
                         else{
                             echo "error opening the file."."\n";
                         }
+
                         preg_match_all('!\d+!', $line_first, $matches);
                         $pdfversion = implode('.', $matches[0]);
                         if($pdfversion > "1.4"){
-                            // USE GHOSTSCRIPT IF PDF VERSION ABOVE 1.4 AND SAVE ANY PDF TO VERSION 1.4 , SAVE NEW PDF OF 1.4 VERSION TO NEW PATH
-                            shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
+                            shell_exec('gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
+                            //shell_exec('gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="'.$dest_file.'" "'.$srcfile_new.'"');
+                        }
+                        else{
+                            //shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="'.$dest_file.'" "'.$srcfile.'"');
+                        }
+                        try {
+                            echo "Путь к файлу: $srcfile_new\n";
                             $pagecount = $mpdf->SetSourceFile($srcfile_new);
                             for ($i = 1;
                                  $i <= $pagecount;
@@ -87,19 +99,9 @@ class MergePDF
                                 $tplId = $mpdf->ImportPage($i);
                                 $mpdf->UseTemplate($tplId);
                             }
-                            //$mpdf->SetProtection(array(), '', 'MyPassword');
-                        }
-                        else{
-                            $pagecount = $mpdf->SetSourceFile($srcfile);
-                            for ($i = 1;
-                                 $i <= $pagecount;
-                                 $i++)
-                            {
-                                $mpdf->AddPage('', '', '1', 'i', 'on');
-                                $tplId = $mpdf->ImportPage($i);
-                                $mpdf->UseTemplate($tplId);
-                            }
-                            //$mpdf->SetProtection(array(), '', 'MyPassword');
+                        } catch (\Mpdf\MpdfException $e) {
+                            echo "Ошибка MPDF: " . $e->getMessage() . "\n";
+                            exit;
                         }
 
                     }
@@ -112,11 +114,9 @@ class MergePDF
                 if ($fileArray['CONTENT_TYPE'] == 'application/pdf')
                 {
                     $srcfile = $_SERVER['DOCUMENT_ROOT'] . $fileArray['SRC'];
-                    echo $srcfile."\n";
-                    $srcfile_new = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/' . $filename;
-                    echo $srcfile_new."\n";
-                    $dest_file = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/encrypted-'.$random.'.pdf';
-                    echo $dest_file."\n";
+                    $srcfile_new = $_SERVER["DOCUMENT_ROOT"] . '/local/tmp/' . $filename;
+                    $dest_file = $_SERVER["DOCUMENT_ROOT"] . '/local/tmp/encrypted-'.$random.'-'.$filename;
+                    $srcfile_new_compress = $_SERVER["DOCUMENT_ROOT"] . '/local/tmp/compress-'.$filename;
 
                     $filepdf = fopen($srcfile,"r");
                     if($filepdf) {
@@ -126,11 +126,18 @@ class MergePDF
                     else{
                         echo "error opening the file."."\n";
                     }
+
                     preg_match_all('!\d+!', $line_first, $matches);
                     $pdfversion = implode('.', $matches[0]);
                     if($pdfversion > "1.4"){
-                        // USE GHOSTSCRIPT IF PDF VERSION ABOVE 1.4 AND SAVE ANY PDF TO VERSION 1.4 , SAVE NEW PDF OF 1.4 VERSION TO NEW PATH
-                        shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
+                        shell_exec('gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
+                        //shell_exec('gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="'.$dest_file.'" "'.$srcfile_new.'"');
+                    }
+                    else{
+                        //shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="'.$dest_file.'" "'.$srcfile.'"');
+                    }
+                    try {
+                        echo "Путь к файлу: $srcfile_new\n";
                         $pagecount = $mpdf->SetSourceFile($srcfile_new);
                         for ($i = 1;
                              $i <= $pagecount;
@@ -140,24 +147,27 @@ class MergePDF
                             $tplId = $mpdf->ImportPage($i);
                             $mpdf->UseTemplate($tplId);
                         }
-                        //$mpdf->SetProtection(array(), '', 'MyPassword');
-                    }
-                    else{
-                        $pagecount = $mpdf->SetSourceFile($srcfile);
-                        for ($i = 1;
-                             $i <= $pagecount;
-                             $i++)
-                        {
-                            $mpdf->AddPage('', '', '1', 'i', 'on');
-                            $tplId = $mpdf->ImportPage($i);
-                            $mpdf->UseTemplate($tplId);
-                        }
-                        //$mpdf->SetProtection(array(), '', 'MyPassword');
+                    } catch (\Mpdf\MpdfException $e) {
+                        echo "Ошибка MPDF: " . $e->getMessage() . "\n";
+                        exit;
                     }
 
                 }
             }
 
+        }
+        // Удаление временных файлов
+        $filesToDelete = [
+            $srcfile_new,             // Временный сконвертированный файл
+            $dest_file,               // Временный зашифрованный файл
+            $srcfile_new_compress     // Временный сжатый файл
+        ];
+
+        foreach ($filesToDelete as $file) {
+            if (file_exists($file)) {
+                unlink($file);
+                echo "Удален временный файл: $file\n";
+            }
         }
         echo "\n";
         if ($itemData[$soglEDO])
@@ -172,11 +182,9 @@ class MergePDF
                     if ($fileArray['CONTENT_TYPE'] == 'application/pdf')
                     {
                         $srcfile = $_SERVER['DOCUMENT_ROOT'] . $fileArray['SRC'];
-                        echo $srcfile."\n";
                         $srcfile_new = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/' . $filename;
-                        echo $srcfile_new."\n";
                         $dest_file = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/encrypted-'.$random.'.pdf';
-                        echo $dest_file."\n";
+                        $srcfile_new_compress = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/compress-'.$filename;
 
                         $filepdf = fopen($srcfile,"r");
                         if($filepdf) {
@@ -189,21 +197,15 @@ class MergePDF
                         preg_match_all('!\d+!', $line_first, $matches);
                         $pdfversion = implode('.', $matches[0]);
                         if($pdfversion > "1.4"){
-                            // USE GHOSTSCRIPT IF PDF VERSION ABOVE 1.4 AND SAVE ANY PDF TO VERSION 1.4 , SAVE NEW PDF OF 1.4 VERSION TO NEW PATH
-                            shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
-                            $pagecount = $mpdf->SetSourceFile($srcfile_new);
-                            for ($i = 1;
-                                 $i <= $pagecount;
-                                 $i++)
-                            {
-                                $mpdf->AddPage('', '', '1', 'i', 'on');
-                                $tplId = $mpdf->ImportPage($i);
-                                $mpdf->UseTemplate($tplId);
-                            }
-                            //$mpdf->SetProtection(array(), '', 'MyPassword');
+                            shell_exec('gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
+                            shell_exec('gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="'.$dest_file.'" "'.$srcfile_new.'"');
                         }
                         else{
-                            $pagecount = $mpdf->SetSourceFile($srcfile);
+                            shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="'.$dest_file.'" "'.$srcfile.'"');
+                        }
+                        try {
+                            echo "Путь к файлу: $dest_file\n";
+                            $pagecount = $mpdf->SetSourceFile($dest_file);
                             for ($i = 1;
                                  $i <= $pagecount;
                                  $i++)
@@ -212,9 +214,10 @@ class MergePDF
                                 $tplId = $mpdf->ImportPage($i);
                                 $mpdf->UseTemplate($tplId);
                             }
-                            //$mpdf->SetProtection(array(), '', 'MyPassword');
+                        } catch (\Mpdf\MpdfException $e) {
+                            echo "Ошибка MPDF: " . $e->getMessage() . "\n";
+                            exit;
                         }
-
                     }
                 }
             }
@@ -225,11 +228,9 @@ class MergePDF
                 if ($fileArray['CONTENT_TYPE'] == 'application/pdf')
                 {
                     $srcfile = $_SERVER['DOCUMENT_ROOT'] . $fileArray['SRC'];
-                    echo $srcfile."\n";
                     $srcfile_new = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/' . $filename;
-                    echo $srcfile_new."\n";
                     $dest_file = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/encrypted-'.$random.'.pdf';
-                    echo $dest_file."\n";
+                    $srcfile_new_compress = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/compress-'.$filename;
 
                     $filepdf = fopen($srcfile,"r");
                     if($filepdf) {
@@ -242,21 +243,15 @@ class MergePDF
                     preg_match_all('!\d+!', $line_first, $matches);
                     $pdfversion = implode('.', $matches[0]);
                     if($pdfversion > "1.4"){
-                        // USE GHOSTSCRIPT IF PDF VERSION ABOVE 1.4 AND SAVE ANY PDF TO VERSION 1.4 , SAVE NEW PDF OF 1.4 VERSION TO NEW PATH
-                        shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
-                        $pagecount = $mpdf->SetSourceFile($srcfile_new);
-                        for ($i = 1;
-                             $i <= $pagecount;
-                             $i++)
-                        {
-                            $mpdf->AddPage('', '', '1', 'i', 'on');
-                            $tplId = $mpdf->ImportPage($i);
-                            $mpdf->UseTemplate($tplId);
-                        }
-                        //$mpdf->SetProtection(array(), '', 'MyPassword');
+                        shell_exec('gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
+                        shell_exec('gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="'.$dest_file.'" "'.$srcfile_new.'"');
                     }
                     else{
-                        $pagecount = $mpdf->SetSourceFile($srcfile);
+                        shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="'.$dest_file.'" "'.$srcfile.'"');
+                    }
+                    try {
+                        echo "Путь к файлу: $dest_file\n";
+                        $pagecount = $mpdf->SetSourceFile($dest_file);
                         for ($i = 1;
                              $i <= $pagecount;
                              $i++)
@@ -265,12 +260,27 @@ class MergePDF
                             $tplId = $mpdf->ImportPage($i);
                             $mpdf->UseTemplate($tplId);
                         }
-                        //$mpdf->SetProtection(array(), '', 'MyPassword');
+                    } catch (\Mpdf\MpdfException $e) {
+                        echo "Ошибка MPDF: " . $e->getMessage() . "\n";
+                        exit;
                     }
 
                 }
             }
 
+        }
+        // Удаление временных файлов
+        $filesToDelete = [
+            $srcfile_new,             // Временный сконвертированный файл
+            $dest_file,               // Временный зашифрованный файл
+            $srcfile_new_compress     // Временный сжатый файл
+        ];
+
+        foreach ($filesToDelete as $file) {
+            if (file_exists($file)) {
+                unlink($file);
+                echo "Удален временный файл: $file\n";
+            }
         }
         echo "\n";
         if ($itemData[$passport]) {
@@ -282,13 +292,9 @@ class MergePDF
                     if ($fileArray['CONTENT_TYPE'] == 'application/pdf')
                     {
                         $srcfile = $_SERVER['DOCUMENT_ROOT'] . $fileArray['SRC'];
-                        echo $srcfile."\n";
                         $srcfile_new = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/' . $filename;
-                        echo $srcfile_new."\n";
                         $dest_file = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/encrypted-'.$random.'.pdf';
-                        echo $dest_file."\n";
                         $srcfile_new_compress = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/compress-'.$filename;
-                        echo $srcfile_new_compress;
 
                         $filepdf = fopen($srcfile,"r");
                         if($filepdf) {
@@ -300,44 +306,29 @@ class MergePDF
                             echo "error opening the file."."\n";
                         }
                         preg_match_all('!\d+!', $line_first, $matches);
-                        echo "\n preg_match_all Паспорта \n";
                         $pdfversion = implode('.', $matches[0]);
-                        echo "\n pdfversion Паспорта {$pdfversion}\n";
                         if($pdfversion > "1.4"){
-
-                            echo 'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"';
-                            echo 'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="'.$srcfile_new_compress.'" "'.$srcfile_new.'"';
-
-                            // USE GHOSTSCRIPT IF PDF VERSION ABOVE 1.4 AND SAVE ANY PDF TO VERSION 1.4 , SAVE NEW PDF OF 1.4 VERSION TO NEW PATH
-                            shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
-                            shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="'.$srcfile_new_compress.'" "'.$srcfile_new.'"');
-                            $pagecount = $mpdf->SetSourceFile($srcfile_new_compress);
-                            for ($i = 1;
-                                 $i <= $pagecount;
-                                 $i++)
-                            {
-                                $mpdf->AddPage('', '', '1', 'i', 'on');
-                                $tplId = $mpdf->ImportPage($i);
-                                $mpdf->UseTemplate($tplId,-1,-1,210);
-                            }
-                            //$mpdf->SetProtection(array(), '', 'MyPassword');
+                            shell_exec('gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
+                            shell_exec('gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="'.$dest_file.'" "'.$srcfile_new.'"');
                         }
                         else{
-                            echo 'gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"';
-
-                            shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
-                            $pagecount = $mpdf->SetSourceFile($srcfile_new);
+                            shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="'.$dest_file.'" "'.$srcfile.'"');
+                        }
+                        try {
+                            echo "Путь к файлу: $dest_file\n";
+                            $pagecount = $mpdf->SetSourceFile($dest_file);
                             for ($i = 1;
                                  $i <= $pagecount;
                                  $i++)
                             {
                                 $mpdf->AddPage('', '', '1', 'i', 'on');
                                 $tplId = $mpdf->ImportPage($i);
-                                $mpdf->UseTemplate($tplId,-1,-1,210);
+                                $mpdf->UseTemplate($tplId);
                             }
-                            //$mpdf->SetProtection(array(), '', 'MyPassword');
+                        } catch (\Mpdf\MpdfException $e) {
+                            echo "Ошибка MPDF: " . $e->getMessage() . "\n";
+                            exit;
                         }
-
                     }
                 }
             }
@@ -348,11 +339,9 @@ class MergePDF
                 if ($fileArray['CONTENT_TYPE'] == 'application/pdf')
                 {
                     $srcfile = $_SERVER['DOCUMENT_ROOT'] . $fileArray['SRC'];
-                    echo $srcfile."\n";
                     $srcfile_new = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/' . $filename;
-                    echo $srcfile_new."\n";
                     $dest_file = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/encrypted-'.$random.'.pdf';
-                    echo $dest_file."\n";
+
 
                     $filepdf = fopen($srcfile,"r");
                     if($filepdf) {
@@ -365,21 +354,15 @@ class MergePDF
                     preg_match_all('!\d+!', $line_first, $matches);
                     $pdfversion = implode('.', $matches[0]);
                     if($pdfversion > "1.4"){
-                        // USE GHOSTSCRIPT IF PDF VERSION ABOVE 1.4 AND SAVE ANY PDF TO VERSION 1.4 , SAVE NEW PDF OF 1.4 VERSION TO NEW PATH
-                        shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
-                        $pagecount = $mpdf->SetSourceFile($srcfile_new);
-                        for ($i = 1;
-                             $i <= $pagecount;
-                             $i++)
-                        {
-                            $mpdf->AddPage('', '', '1', 'i', 'on');
-                            $tplId = $mpdf->ImportPage($i);
-                            $mpdf->UseTemplate($tplId);
-                        }
-                        //$mpdf->SetProtection(array(), '', 'MyPassword');
+                        shell_exec('gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="'.$srcfile_new.'" "'.$srcfile.'"');
+                        shell_exec('gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="'.$dest_file.'" "'.$srcfile_new.'"');
                     }
                     else{
-                        $pagecount = $mpdf->SetSourceFile($srcfile);
+                        shell_exec('gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="'.$dest_file.'" "'.$srcfile.'"');
+                    }
+                    try {
+                        echo "Путь к файлу: $dest_file\n";
+                        $pagecount = $mpdf->SetSourceFile($dest_file);
                         for ($i = 1;
                              $i <= $pagecount;
                              $i++)
@@ -388,7 +371,9 @@ class MergePDF
                             $tplId = $mpdf->ImportPage($i);
                             $mpdf->UseTemplate($tplId);
                         }
-                        //$mpdf->SetProtection(array(), '', 'MyPassword');
+                    } catch (\Mpdf\MpdfException $e) {
+                        echo "Ошибка MPDF: " . $e->getMessage() . "\n";
+                        exit;
                     }
 
                 }
@@ -396,12 +381,53 @@ class MergePDF
 
 
         }
+        // Удаление временных файлов
+        $filesToDelete = [
+            $srcfile_new,             // Временный сконвертированный файл
+            $dest_file,               // Временный зашифрованный файл
+            $srcfile_new_compress     // Временный сжатый файл
+        ];
+
+        foreach ($filesToDelete as $file) {
+            if (file_exists($file)) {
+                unlink($file);
+                echo "Удален временный файл: $file\n";
+            }
+        }
         echo "\n";
         echo "Конечный Step"."\n";
-        
-        $mpdf->SetCompression(true);
+
         $mpdf->OutputFile($uploadFilePath);
         echo $uploadFilePath."\n";
+
+        // Проверяем размер после сохранения
+        $finalSize = filesize($uploadFilePath) / 1000000;
+        echo "Размер сохраненного файла: " . $finalSize . " МБ\n";
+
+        if ($finalSize > 10) {
+            $compressedFilePath = $_SERVER["DOCUMENT_ROOT"] . '/upload/tmp/compressed_' . basename($uploadFilePath);
+
+            shell_exec('gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dPDFSETTINGS=/screen -sOutputFile="' . $compressedFilePath . '" "' . $uploadFilePath . '"');
+
+            if (file_exists($compressedFilePath)) {
+                $compressedSize = filesize($compressedFilePath) / 1000000;
+                echo "Размер сжатого файла: " . round($compressedSize, 2) . " МБ\n";
+
+                // Если сжатый файл стал меньше, заменяем оригинал
+                if ($compressedSize < $finalSize) {
+                    rename($compressedFilePath, $uploadFilePath);
+                    echo "Файл успешно заменен на сжатую версию\n";
+                } else {
+                    echo "Сжатие не дало результата, оставляем оригинальный файл\n";
+                    unlink($compressedFilePath);
+                }
+            } else {
+                echo "Ошибка: Ghostscript не смог создать сжатый PDF\n";
+            }
+        }
+
+        //$mpdf->SetCompression(true);
+
         $fileArray = \CFile::MakeFileArray($uploadFilePath);
         $fid = CFile::SaveFile($fileArray, "main");
         array_push($newFiles, CFile::MakeFileArray($fid));
