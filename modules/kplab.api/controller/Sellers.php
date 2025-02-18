@@ -749,12 +749,39 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             Logs\File ::AddMessage($parameters, "parameters for bankdetaillist", LOG_API_SYNC_SELLER_CONTROLLER);
             $arResult = \CRest::call('crm.requisite.bankdetail.list', $parameters)['result'];
 
+            $entityTypeIdCompany = \CCrmOwnerType::Company;
+            $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdCompany);
+
+            $companyItem = $factoryCompany->getItem($sellerCardId);
+
+            $typeofBankingService = 'nominal';
+            if($companyItem) {
+
+                $userFields = \Bitrix\Main\UserFieldTable::getList([
+                    'select' => ['ID'],
+                    'filter' => [
+                        '=ENTITY_ID' => 'CRM_COMPANY',
+                        'FIELD_NAME' => 'UF_CRM_TYPE_OF_WRITE_OFF'
+                    ]
+                ]);
+
+                while ($arUserField = $userFields->fetch()){
+                    $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID']]);
+                    while ($arUserFieldData = $res->fetch()) {
+                        if($arUserFieldData['ID'] == $companyItem->getData()['UF_CRM_TYPE_OF_WRITE_OFF']) {
+                            $typeofBankingService = $arUserFieldData['XML_ID'];
+                        }
+                    }
+                }
+            }
+
             // Инициализация переменных для хранения крайних счетов
             $lastCurrentAccount = null;
             $lastNominalAccount = null;
 
             $newResult['crmId'] = $crmId;
             $newResult['sellerInn'] = $sellerInn;
+            $newResult['typeofBankingService'] = $typeofBankingService;
 
             foreach ($arResult as $bankAccount) {
                 $result = [];
@@ -1774,7 +1801,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $dataCompanyCharterFile = $dataArray['charterFile'];
             if($dataCompanyCharterFile !== NULL) {
                 $arFile = array();
-                $fileName = $dataCompanyCharterFile["fileName"];
+                $fileName = floor(microtime(true) * 1000)."_".$dataCompanyCharterFile["fileName"];
                 $filePathName = $_SERVER["DOCUMENT_ROOT"]."/".\COption::GetOptionString("main", "upload_dir")."/services_sodeistvie/temp/".$fileName;
                 file_put_contents($filePathName, base64_decode ($dataCompanyCharterFile["file"]));//Запись на системный диск
                 $file = \CFile::MakeFileArray($filePathName);//сформировали массив
@@ -1798,7 +1825,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             $dataOrderDirectorFile = $dataArray['orderDirector'];
             if($dataOrderDirectorFile !== NULL) {
                 $arFile = array();
-                $fileName = $dataOrderDirectorFile["fileName"];
+                $fileName = floor(microtime(true) * 1000)."_".$dataOrderDirectorFile["fileName"];
                 $filePathName = $_SERVER["DOCUMENT_ROOT"]."/".\COption::GetOptionString("main", "upload_dir")."/services_sodeistvie/temp/".$fileName;
                 file_put_contents($filePathName, base64_decode ($dataOrderDirectorFile["file"]));//Запись на системный диск
                 $file = \CFile::MakeFileArray($filePathName);//сформировали массив
@@ -1826,7 +1853,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
                 if(!empty($dataPassportFiles)) {
                     $arFile = array();
                     foreach ($dataPassportFiles as $file) {
-                        $fileName = $file["fileName"];
+                        $fileName = floor(microtime(true) * 1000)."_".$file["fileName"];
                         $filePathName = $_SERVER["DOCUMENT_ROOT"]."/".\COption::GetOptionString("main", "upload_dir")."/services_sodeistvie/temp/".$fileName;
                         file_put_contents($filePathName, base64_decode ($file["file"]));//Запись на системный диск
                         $file = \CFile::MakeFileArray($filePathName);//сформировали массив
@@ -2013,7 +2040,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
                 if(!empty($dataPassportFiles)) {
                     $arFile = array();
                     foreach ($dataPassportFiles as $file) {
-                        $fileName = $file["fileName"];
+                        $fileName = floor(microtime(true) * 1000)."_".$file["fileName"];
                         $filePathName = $_SERVER["DOCUMENT_ROOT"]."/".\COption::GetOptionString("main", "upload_dir")."/services_sodeistvie/temp/".$fileName;
                         file_put_contents($filePathName, base64_decode ($file["file"]));//Запись на системный диск
                         $file = \CFile::MakeFileArray($filePathName);//сформировали массив
@@ -2228,7 +2255,7 @@ class Sellers extends \Bitrix\Main\Engine\Controller
             if(!empty($dataPassportFiles)) {
                 $arFile = array();
                 foreach ($dataPassportFiles as $file) {
-                    $fileName = $file["fileName"];
+                    $fileName = floor(microtime(true) * 1000)."_".$file["fileName"];
                     $filePathName = $_SERVER["DOCUMENT_ROOT"]."/".\COption::GetOptionString("main", "upload_dir")."/services_sodeistvie/temp/".$fileName;
                     file_put_contents($filePathName, base64_decode ($file["file"]));//Запись на системный диск
                     $file = \CFile::MakeFileArray($filePathName);//сформировали массив
