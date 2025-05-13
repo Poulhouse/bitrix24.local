@@ -586,15 +586,12 @@ class CTranscriptsPhonesStatisticDetailComponent extends CBitrixComponent implem
                 $row['CALL_START_DATE_RAW'] = $row['CALL_START_DATE'];
                 $row['CALL_START_DATE'] = $this->formatDate($row['CALL_START_DATE']);
                 $row['COMMENT'] = htmlspecialcharsbx($row['COMMENT']);
-                //$CALL_ID = $row['CALL_ID'];
                 global $DB;
                 $strVoximplantTranscriptSQL = "SELECT * FROM b_voximplant_transcript WHERE CALL_ID = '".$row['CALL_ID']."' ORDER BY ID ASC;";
                 $resTranscriptItemsQuery = $DB->query($strVoximplantTranscriptSQL);
                 while ($resTranscriptItem = $resTranscriptItemsQuery->Fetch()) {
                     $row['TRANSCRIPT_TEXT'] = $resTranscriptItem['CONTENT'];
                 }
-
-                //$row['TRANSCRIPT_TEXT'] = htmlspecialcharsbx($row['COMMENT']);
 
                 $t_row = array(
                     "data" => $row,

@@ -3,16 +3,8 @@
 use Bitrix\Main\Application;
 use \Bitrix\Main\Loader;
 use Bitrix\Main\Page\Asset;
-use \Bitrix\Location\Infrastructure\Service\Config\Container;
-use \Bitrix\Location\Service;
-use Bitrix\Location\Entity\Address\FieldCollection;
-use \Bitrix\Location\Entity;
+use Bitrix\Main\UserFieldTable;
 use KPLab\Logs;
-use \Bitrix\Im\V2\Chat;
-use \Bitrix\Im\V2\Controller\Chat\Message;
-use \Bitrix\Im\V2\MessageCollection;
-use Bitrix\Im\V2\Rest\RestAdapter;
-use Bitrix\Im\V2\Rest\RestConvertible;
 
 Loader::includeModule("crm");
 Loader::includeModule("kplab.fias");
@@ -26,47 +18,142 @@ define("LOG_MYCLASS", $_SERVER['DOCUMENT_ROOT']."/local/logs/myclass.log");
 
 class MyClass
 {
-    public static function getDataOfForm($entityId, $entityTypeId): void
+    /**
+     * @throws \Bitrix\Main\ObjectPropertyException
+     * @throws \Bitrix\Main\SystemException
+     * @throws \Bitrix\Main\ArgumentException
+     */
+    public static function changeContactToCompany($entityTypeId, $idContact) {
+        $fields = [];
+        if ($entityTypeId == 175) {
+            $fieldObjectId = 51;
+            $fieldIds = [11105, 11104, 11103, 11102, 8794, 8793];
+        }
+
+        $userFields = UserFieldTable::getList([
+            'select' => ['ID', 'FIELD_NAME'],
+            'filter' => [
+                '=ENTITY_ID' => 'CRM_'.$fieldObjectId,
+                '@ID'        => $fieldIds,
+            ],
+        ]);
+        while ($uf = $userFields->fetch())
+        {
+            // Например, UF_CRM_51_CONTACTS или UF_CRM_51_ANOTHER
+            $fields[] = $uf['FIELD_NAME'];
+        }
+        // Если полей нет — выходим
+        if (empty($fields))
+        {
+            return;
+        }
+
+        // 2) Проходим по элементам смарт‑процесса
+        $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeId);
+        $factoryContact = \Bitrix\Crm\Service\Container::getInstance()->getFactory(3);
+        $params = [
+            'select' => array_merge(['ID'], $fields)
+        ];
+        $items = $factory->getItems($params);
+        foreach ($items as $item) {
+            $toUpdate = [];
+            foreach ($fields as $fieldName) {
+                $raw = $item[$fieldName];
+                if (empty($raw))
+                {
+                    continue;
+                }
+                $values    = is_array($raw) ? $raw : explode(',', $raw);
+                $newValues = [];
+                foreach ($values as $v)
+                {
+                    if (str_starts_with($v, 'C_'))
+                    {
+                        $contactId = (int)mb_substr($v, 2);
+                        if ($contactId <= 0)
+                        {
+                            continue;
+                        }
+
+                        // 5) Запускаем ваш скрипт-обёртку ss_startBp
+                        ss_startBp(3, $contactId, 3685);
+
+                        // 6) После выполнения BP читаем UF_CRM_COMPANY_FROM_CONTACT
+                        $cData = $factoryContact->getItem($contactId)->getData();
+
+                        $companyId = (int)$cData['UF_CRM_COMPANY_FROM_CONTACT'];
+
+                        if ($companyId > 0)
+                        {
+                            $newValues[] = 'CO_' . $companyId;
+                        }
+                    }
+                    elseif (str_starts_with($v, 'CO_'))
+                    {
+                        // сохраняем уже стоящие COMPANY_*
+                        $newValues[] = $v;
+                    }
+                }
+
+                if (!empty($newValues))
+                {
+                    // убираем дубли
+                    $newValues = array_values(array_unique($newValues));
+                    $item->set($fieldName, $newValues);
+                }
+
+            }
+            $context = new \Bitrix\Crm\Service\Context();
+            $context->setUserId(1);
+            $operation = $factory->getUpdateOperation($item, $context);
+            $operation->disableAllChecks();
+            $result = $operation->launch();
+        }
+
+    }
+    public static function getDataOfForm($entityId, $entityTypeId)
     {
-        Logs\File::AddMessage([$entityId, $entityTypeId], "Сущность", LOG_MYCLASS);
-        $linktocrm = '';
+        //Logs\File::AddMessage([$entityId, $entityTypeId], "Сущность", LOG_MYCLASS);
+        $linktocrm = [];
 
         switch ($entityTypeId) {
             case 1:
-                $linktocrm = 'L_' . $entityId;
+                $linktocrm[] = 'L_' . $entityId;
                 break;
             case 2:
-                $linktocrm = 'D_' . $entityId;
+                $linktocrm[] = 'D_' . $entityId;
                 break;
             case 3:
-                $linktocrm = 'C_' . $entityId;
+                $linktocrm[] = 'C_' . $entityId;
                 break;
             case 4:
-                $linktocrm = 'CO_' . $entityId;
+                $linktocrm[] = 'CO_' . $entityId;
                 break;
             default:
                 $EntityAbbreviation = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeId)->getEntityAbbreviation();
                 // Обработка случая, когда $entityTypeId не соответствует ни одному из известных значений
                 // Можно добавить логирование или другую обработку ошибок
-                $linktocrm = $EntityAbbreviation.'_'.$entityId;
+                $linktocrm[] = $EntityAbbreviation.'_'.$entityId;
                 break;
         }
-
         $listActivity = \CCrmActivity::GetList([],['OWNER_TYPE_ID' => $entityTypeId,'OWNER_ID' => $entityId],false,false,[],[]);
-
-        //Logs\File::AddMessage($listActivity, "listActivity", LOG_MYCLASS);
-
         while ($activity = $listActivity->Fetch()) {
+
+            //Logs\File::AddMessage($activity, "activity", LOG_MYCLASS);
             if($activity['PROVIDER_ID'] == 'CRM_WEBFORM') {
+                $created = $activity['CREATED'];
                 $fields = $activity['PROVIDER_PARAMS']['FIELDS'];
                 $formProps = $activity['PROVIDER_PARAMS']['FORM'];
                 $agreementsForm = $formProps['AGREEMENTS'];
 
+                /*Logs\File::AddMessage($fields, "fields", LOG_MYCLASS);
+                Logs\File::AddMessage($formProps, "formProps", LOG_MYCLASS);
+                Logs\File::AddMessage($agreementsForm, "agreementsForm", LOG_MYCLASS);*/
                 $formFields = [];
                 $type = 6;
-
+                $IBLOCK_ID = 229;
                 $arFilter = array(
-                    "IBLOCK_ID" => 16,
+                    "IBLOCK_ID" => $IBLOCK_ID,
                     "CODE" => "TYPE" // Код вашего свойства типа "Список"
                 );
                 $rsPropsType = \CIBlockPropertyEnum::GetList(array(), $arFilter);
@@ -84,26 +171,95 @@ class MyClass
                     $agreementData = $agreement->getData();
                     $docName = $agreementData['NAME'];
                     $docLink = $agreementData['URL'];
+                    $agreementId = $agreementData['ID'];
 
                     $arProperties = [
                         'TYPE' => $arTypeId[$type],
                         'IP_ADDRESS' => $formProps['IP'],
                         'FORM_DATA' => json_encode($formFields,JSON_UNESCAPED_UNICODE),
                         'DOC_LINK' => $docLink,
-                        'LINKTOCRM' => $linktocrm
+                        'LINKTOCRM' => $linktocrm,
+                        'ID_ACTIVITY' => $activity['ID'],
+                        'ID_AGREEMENT_FORM' => $agreementId,
+                        'DATE_DATA' => $created,
                     ];
-                    // Добавление нового элемента в инфоблок
-                    $arFields = [
-                        "IBLOCK_ID" => 16,
-                        "NAME" => "Новое согласие $docName", // Название элемента
-                        "ACTIVE" => "Y",
-                        "PROPERTY_VALUES" => $arProperties
+                    $filterElements = [
+                        "IBLOCK_ID" => $IBLOCK_ID,
+                        "PROPERTY_1441" => $activity['ID'],
+                        "PROPERTY_1442" => $agreementId,
                     ];
-                    $el = new \CIBlockElement;
-                    $el->Add($arFields);
+                    $res = \CIBlockElement::GetList(
+                        [],
+                        $filterElements,
+                        false,
+                        [],
+                        ['*','PROPERTY_*'] // Оптимизированный запрос: больше не запрашиваем 'PROPERTY_*'
+                    );
+                    if ($arElement = $res->GetNextElement()) {
+                        /*if ($arProps = $arElement->GetProperties()) {
+                            Logs\File::AddMessage($arProps, "arProps", LOG_MYCLASS);
+                        }*/
+                    } else {
+                        // Добавление нового элемента в инфоблок
+                        $arFields = [
+                            "IBLOCK_ID" => $IBLOCK_ID,
+                            "NAME" => "Новое согласие $docName", // Название элемента
+                            "ACTIVE" => "Y",
+                            "PROPERTY_VALUES" => $arProperties
+                        ];
+                        $el = new \CIBlockElement;
+                        $elementId = $el->Add($arFields);
+                        self::bizProc($IBLOCK_ID, $elementId,1);
+                    }
+
                 }
             }
         }
+
+        return "Элемент $entityId (CRM:$entityTypeId) Успешно обработан!";
+    }
+
+    private static function bizProc($IBLOCK_ID, $elementId, int $AUTO_EXECUTE = 0){
+        global $USER;
+        $arWorkflowParameters = [];
+        $arErrorsTmp = [];
+        $errorMessage = null;
+
+        if (!is_object($USER)) {
+            $USER = new \CUser();
+        }
+
+        // Бизнес процесс
+        if (Loader::IncludeModule('bizproc')) {
+            $arWorkflowTemplates = \CBPDocument::GetWorkflowTemplatesForDocumentType([
+                'lists', 'Bitrix\Lists\BizprocDocumentLists', 'iblock_' . $IBLOCK_ID
+            ]);
+
+            foreach ($arWorkflowTemplates as $arTemplate) {
+                /*
+                    * AUTO_EXECUTE = 1 - запускать при создании
+                    * AUTO_EXECUTE = 2 - запускать при изменении
+                    * AUTO_EXECUTE = 3 - запускать при создании И изменении
+                */
+                if ($arTemplate['AUTO_EXECUTE'] == $AUTO_EXECUTE) {
+                    $wfId = \CBPDocument::StartWorkflow(
+                        $arTemplate['ID'],
+                        [ 'lists', 'Bitrix\Lists\BizprocDocumentLists', $elementId ],
+                        array_merge($arWorkflowParameters, [ 'TargetUser' => "user_{$USER->GetID()}" ]),
+                        $arErrorsTmp
+                    );
+
+
+                    if (count($arErrorsTmp) > 0) {
+                        foreach ($arErrorsTmp as $e) {
+                            $errorMessage .= "[".$e["code"]."] ".$e["message"]."";
+                        }
+                    }
+                }
+            }
+        }
+
+        return $errorMessage;
     }
 
     public static function my_onMailMessageModified(&$event, &$fields, &$filter)

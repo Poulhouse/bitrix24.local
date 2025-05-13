@@ -1,0 +1,19 @@
+{
+  "name": "kplab/smart_import",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "kplab",
+      "email": "email@example.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"\\Kplab\\SmartImport\\": "src/"}
+  },
+  "require": {
+    "bitrix24/b24phpsdk": "^1.2",
+    "phpoffice/phpspreadsheet": "^4.1"
+  }
+}

@@ -112,13 +112,6 @@ class kplab_api extends CModule
             true,
             true
         );
-
-//        CopyDirFiles(
-//            $_SERVER['DOCUMENT_ROOT']. BX_ROOT . '/modules/' . $this->MODULE_ID . '/admin',
-//            $_SERVER['DOCUMENT_ROOT'].'/bitrix/admin',
-//            true,
-//            true
-//        );
     }
 
     // Метод IsInstalled для совместимости
@@ -133,11 +126,6 @@ class kplab_api extends CModule
             dirname(__FILE__).'/admin',
             Application::getDocumentRoot() . '/bitrix/admin'
         );
-
-//        DeleteDirFiles(
-//            $_SERVER['DOCUMENT_ROOT']. BX_ROOT . '/modules/' . $this->MODULE_ID . '/admin',
-//            $_SERVER['DOCUMENT_ROOT'].'/bitrix/admin'
-//        );
 
     }
 

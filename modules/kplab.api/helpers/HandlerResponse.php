@@ -108,11 +108,11 @@ class HandlerResponse extends \Bitrix\Main\Engine\Controller
         );
     }
 
-
-    public function handleSuccess($message, $objectData)
+    public function handleSuccess($message, $objectData): \Bitrix\Main\Engine\Response\Json
     {
         Context::getCurrent()->getResponse()->setStatus(200);
-
+        $resultToSaveLogs = "";
+        $resultToSaveDecoded = [];
         if(is_string($message)) {
             $resultToSaveDecoded = json_decode($message, true);
             $resultToSaveLogs = $resultToSaveDecoded !== null ? json_encode($resultToSaveDecoded, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) : '"'.$message.'"';
@@ -148,7 +148,13 @@ class HandlerResponse extends \Bitrix\Main\Engine\Controller
             );
         }
 
-        return $resultToSaveDecoded;
+
+        return new \Bitrix\Main\Engine\Response\Json(
+            [
+                'status' => 'success',
+                'data' => $resultToSaveDecoded
+            ]
+        );
     }
 
 }

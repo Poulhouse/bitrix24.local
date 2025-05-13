@@ -19,6 +19,9 @@ class LogsAction
         // Получаем настройки
         $serverNameProd = Option::get('kplab.api', 'server_name_prod', '');
         $serverNameTest = Option::get('kplab.api', 'server_name_test', '');
+        Logs\File::AddMessage($serverNameTest,"serverNameTest", LOGS_ACTION);
+        Logs\File::AddMessage($serverNameProd,"serverNameProd", LOGS_ACTION);
+
         $iblockId = Option::get('kplab.api', 'iblock_id', '');
         $iblockIdTest = Option::get('kplab.api', 'iblock_id_test', '');
         $propertyIDToken = Option::get('kplab.api', 'property_token', '');
@@ -49,17 +52,23 @@ class LogsAction
                     }
                 }
 
+
+                Logs\File::AddMessage($token,"Empty partnerName -> token", LOGS_ACTION);
+
+
+
                 if ($token) {
-                    Loader::includeModule('iblock');
+                    $filterConditions = [
+                        'API_KEY' => $token,
+                    ];
+                    $res = ApiKeysTable::getList([
+                        'filter' => $filterConditions,
+                        'select' => ['*'],
+                        'limit' => 1
+                    ]);
+                    $apiKeys = $res->fetchAll();
+                    $partnerName = $apiKeys[0]['SERVICE_NAME'];
 
-                    if ($serverName == $serverNameProd) {
-                        $arFilter = ["IBLOCK_ID" => $iblockId, "PROPERTY_{$propertyIDToken}" => $token, "ACTIVE_DATE" => "Y", "ACTIVE" => "Y"];
-                    } elseif ($serverName == $serverNameTest) {
-                        $arFilter = ["IBLOCK_ID" => $iblockIdTest, "PROPERTY_{$propertyIDToken}" => $token, "ACTIVE_DATE" => "Y", "ACTIVE" => "Y"];
-                    }
-
-                    $res = \CIBlockElement::GetList(['ID' => 'ASC'], $arFilter, false, [], ["*", "PROPERTY_*"])->Fetch();
-                    $partnerName = $res ? $res['NAME'] : "Unknown Partner"; // Название партнёра
                 } else {
                     $apikey = json_decode($requestBody,true)['apiKey'];
                     if ($apikey)
@@ -67,10 +76,11 @@ class LogsAction
                         $partnerName = "SE";
                     }
                 }
-            }   
-        } else {
+            }
+        }
+        else {
             $requestType = "Исходящий";
-            $partnerName = "Битрикс24";
+            $partnerName = $partnerName ?? "Битрикс24";
         }
 
         Logs\File::AddMessage($partnerName,"partnerName2", LOGS_ACTION);

@@ -9,6 +9,7 @@ define("LANGUAGE_ID", "ru");
 define("LOG_INIT", $_SERVER['DOCUMENT_ROOT']."/local/init.log");
 \Bitrix\Main\Loader::includeModule("crm");
 \Bitrix\Main\Loader::includeModule("mail");
+\Bitrix\Main\Loader::includeModule("kplab.api");
 \Bitrix\Main\Loader::includeModule("kplab.fias");
 \Bitrix\Main\Loader::includeModule("location");
 \Bitrix\Main\Loader::includeModule('iblock');
@@ -18,6 +19,9 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/local/php_interface/autoload.php');
 require_once ($_SERVER['DOCUMENT_ROOT'].'/services_sodeistvie/lib/functions.php');
 require_once ($_SERVER['DOCUMENT_ROOT'].'/services_sodeistvie/lib/ss_sync.php');
 require_once ($_SERVER['DOCUMENT_ROOT'].'/services_sodeistvie/lib/nopaper/api.php');
+require_once ($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/user_types/ut_array.php");
+require_once($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/include/event_handlers.php");
+
 
 AddEventHandler("crm", "OnAfterCrmCompanyUpdate", Array("MyClass", "OnAfterCrm_UpdateHandler"));
 AddEventHandler("crm", "OnAfterCrmLeadUpdate", Array("MyClass", "OnAfterCrmLeadUpdateHandler"));
@@ -25,6 +29,9 @@ AddEventHandler("main", "OnProlog", Array("MyClass", "MyOnPrologHandler"), 50);
 AddEventHandler('rest', 'OnRestServiceBuildDescription', array('RestTest', 'OnRestServiceBuildDescription'));
 AddEventHandler("im", "OnBeforeChatMessageAdd", Array("MyClass", "OnBeforeChatMessageAddHandler"));
 AddEventHandler("crm", "OnActivityAdd", Array("MyClass", "OnActivityAddHandler"));
+
+
+
 //AddEventHandler("main", 'OnBeforeMailSend', array("MyClass", "OnBeforeMailSend"));
 /*
 EventManager::getInstance()->addEventHandler('main', 'OnBeforeMailSend', function(&$event) {

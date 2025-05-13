@@ -3,6 +3,8 @@
 \Bitrix\Main\Loader::registerAutoLoadClasses(null, [
 	'\CRest' => '/local/crest/crest.php',
 	'CRest' => '/local/crest/crest.php',
+    '\B24Rest' => '/local/classes/B24Rest.php',
+    'B24Rest' => '/local/classes/B24Rest.php',
 
 	'\RestTest' => '/local/php_interface/class-resttest.php',
 ]);
@@ -39,6 +41,11 @@
 	'KPLab\OrdLab\Contracts' => '/local/classes/ordlab/contracts.php',
 	'KPLab\OrdLab\Creatives' => '/local/classes/ordlab/creatives.php',
 	'KPLab\OrdLab\Invoices' => '/local/classes/ordlab/invoices.php',
+    'KPLab\OrdLab\KKTU' => '/local/classes/ordlab/ktu.php',
+    'KPLab\OrdLab\LoadFromORD' => '/local/classes/ordlab/loadFromORD.php',
+	'KPLab\OrdLab\DeleteFromORD' => '/local/classes/ordlab/deleteFromORD.php',
+	'KPLab\OrdLab\Platforms' => '/local/classes/ordlab/platforms.php',
+
 ]);
 //endregion OrdLab
 
@@ -71,6 +78,7 @@
 //region CustomAgents
 \Bitrix\Main\Loader::registerAutoLoadClasses(null, [
 	'\KPLab\CustomAgents\Leads' => '/local/classes/agents.php',
+	'\KPLab\CustomAgents\ORD' => '/local/classes/agents.php'
 ]);
 //endregion CustomAgents
 
@@ -99,14 +107,36 @@
 ]);
 //endregion VBR
 
+//region Lib
+\Bitrix\Main\Loader::registerAutoLoadClasses(null, [
+    'KPLab\Lib\Generate' => '/local/classes/Lib/Generate.php',
+]);
+//endregion Lib
+
+//region CRM
+\Bitrix\Main\Loader::registerAutoLoadClasses(null, [
+    'KPLab\CRM\Company' => '/local/classes/CRM/Company.php',
+    'KPLab\CRM\AddressTable' => '/local/classes/CRM/AddressTable.php',
+    'KPLab\CRM\Deal' => '/local/classes/CRM/Deal.php',
+	'KPLab\CRM\DeleteFromB24' => '/local/classes/CRM/deleteFromB24.php',
+	'KPLab\CRM\TaskManager' => '/local/classes/CRM/TaskManager.php',
+	'KPLab\CRM\MergerFactory' => '/local/classes/CRM/merger_test.php',
+]);
+//endregion CRM
+
+
 //region General
 \Bitrix\Main\Loader::registerAutoLoadClasses(null, [
 	// ключ - имя класса с простанством имен, значение - путь относительно корня сайта к файлу
 	'\MyClass' => '/local/classes/myclass.php',
 	'\MergePDF' => '/local/classes/merge.php',
     'KPLab\CRM\Company' => '/local/classes/crm/company.php',
+    '\KPLab\Tasks\Handler' => '/local/classes/Tasks/Handler.php',
 	'KPLab\Authentication' => '/local/classes/authentication.php',
 	'KPLab\Slots' => '/local/classes/slots.php',
 	'\Bitrix24API' => '/local/classes/bitrix24_api.php',
+	'\KPLab\API\V2\Controller\BalancePlatform' => '/local/modules/kplab.api/controller/Balanceplatform.php',
+	'\KPLab\Sellers' => '/local/classes/Sellers/class.php',
+	'\KPLab\Helpers\Address' => '/local/classes/Helpers/Address.php'
 ]);
 //endregion General

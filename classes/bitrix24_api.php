@@ -1,7 +1,8 @@
 <?php
 define('display_error', 1);
 class Bitrix24API {
-	private $webhookUrl;
+    const webhookUrl = 'https://crm.seller-capital.ru/rest/1/3lsxt0qfwbns0wve/';
+    private $webhookUrl;
 	private $requisites;
 
 	public function __construct() {
