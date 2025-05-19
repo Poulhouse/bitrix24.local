@@ -2,7 +2,7 @@
 use Bitrix\Main\Loader;
 use Bitrix\Main\Application;
 use Bitrix\Main\Type;
-use KPLab\ExchangeLog\ExchangeLogTable;
+use Kplab\Exchange_log\ExchangeLogTable;
 use Bitrix\Main\UserTable;
 use Bitrix\Main\UI\Filter;
 use Bitrix\Main\Grid\Options as GridOptions;
@@ -131,6 +131,12 @@ $filterFields = [
         "default" => true,
     ],
     [
+        "id" => "SERVICE_UPDATE_NAME",
+        "name" => "Сервис источник обновления",
+        "type" => "string",
+        "default" => true,
+    ],
+    [
         "id" => "CHANGE_DATE",
         "name" => "Дата и время изменения",
         "type" => "date",
@@ -154,6 +160,9 @@ if (!empty($filterData['ENTITY_ID'])) {
 }
 if (!empty($filterData['FIELD_NAME'])) {
     $filterConditions['%FIELD_NAME'] = $filterData['FIELD_NAME'];
+}
+if (!empty($filterData['SERVICE_UPDATE_NAME'])) {
+    $filterConditions['%SERVICE_UPDATE_NAME'] = $filterData['SERVICE_UPDATE_NAME'];
 }
 if (!empty($filterData['OLD_VALUE'])) {
     $filterConditions['%OLD_VALUE'] = $filterData['OLD_VALUE'];
@@ -237,6 +246,7 @@ $APPLICATION->IncludeComponent(
             ['id' => 'OLD_VALUE', 'name' => 'Старое значение', 'sort' => 'OLD_VALUE', 'default' => true],
             ['id' => 'NEW_VALUE', 'name' => 'Новое значение', 'sort' => 'NEW_VALUE', 'default' => true],
             ['id' => 'USER_ID', 'name' => 'Кем изменено', 'sort' => 'USER_ID', 'default' => true],
+            ['id' => 'SERVICE_UPDATE_NAME', 'name' => 'Сервис источник', 'sort' => 'SERVICE_UPDATE_NAME', 'default' => true],
             ['id' => 'ENTITY_ID', 'name' => 'ID элемента CRM', 'sort' => 'ENTITY_ID', 'default' => true],
             ['id' => 'ENTITY_TYPE_ID', 'name' => 'Тип CRM', 'sort' => 'ENTITY_TYPE_ID', 'default' => true],
         ],

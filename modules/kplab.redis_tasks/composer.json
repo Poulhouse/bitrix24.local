@@ -1,0 +1,13 @@
+{
+  "name": "kplab/redis-tasks",
+  "description": "Redis-based task queue for Bitrix",
+  "type": "bitrix-module",
+  "require": {
+    "predis/predis": "@stable"
+  },
+  "autoload": {
+    "psr-4": {
+      "KPLab\\Redis\\Tasks\\": "lib/"
+    }
+  }
+}

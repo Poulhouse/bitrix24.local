@@ -21,7 +21,7 @@ class Leads extends \Bitrix\Main\Engine\Controller
 	public function getDefaultPreFilters()
 	{
 		return [
-			new \KPLab\API\V2\Controller\ActionFilterBots\Authentication(),
+			new \KPLab\API\V2\Auth\ActionFilterBots\Authentication(),
 		];
 	}
 	public function getDefaultPostFilters()

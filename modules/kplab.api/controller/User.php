@@ -2,7 +2,7 @@
 
 use \Bitrix\Main\Engine\ActionFilter;
 use Bitrix\Main\Error;
-use \KPLab\JWT\Controller\ActionFilter\Authentication;
+use KPLab\API\V2\Auth\ActionFilter\Authentication;
 use \Bitrix\Main\Application;
 use Bitrix\Main\Web\JWT;
 

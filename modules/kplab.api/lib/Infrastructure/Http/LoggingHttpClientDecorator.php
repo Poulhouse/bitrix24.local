@@ -41,6 +41,8 @@ final class LoggingHttpClientDecorator implements HttpClientInterface
         $result  = $this->inner->request($method, $url, $headers, $body);
         $elapsed = (hrtime(true) - $start) / 1_000_000;
 
+        Logs\File::AddMessage($result,"result", LOG_HTTP_CLIENT);
+
         $this->writeLog($method, $url, $headers, $body, $meta, $result, true, $elapsed);
 
         return $result;

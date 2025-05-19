@@ -21,7 +21,7 @@ class MessagesDelivery extends \Bitrix\Main\Engine\Controller
     {
         // Возвращаем пустой массив или только нужные фильтры
         return [
-            new \KPLab\API\V2\Controller\ActionFilter\NonAuthentication(),
+            new \KPLab\API\V2\Auth\ActionFilter\NonAuthentication(),
         ];
     }
     public function setStatusAction(array $params = []) {

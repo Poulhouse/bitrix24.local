@@ -2,17 +2,8 @@
 
 use Bitrix\Crm\EntityRequisite;
 use Bitrix\Crm\Service\Container;
-use \Bitrix\Main;
-use Bitrix\Main\Application;
-use Bitrix\Main\Engine\ActionFilter\Base;
 use Bitrix\Main\Loader;
-use \KPLab\Authentication;
-use Bitrix\Main\Error;
-use Bitrix\Main\Event;
-use Bitrix\Main\EventResult;
-use Bitrix\Main\Web\JWT;
-use \KPLab\Logs;
-use \Bitrix\Crm\CompanyTable;
+use KPLab\Logs;
 
 define("LOG_BP", $_SERVER['DOCUMENT_ROOT']."/local/classes/balanceplatform/balanceplatform_.log");
 define("TOKEN_KEY","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIiLCJTZXJ2aWNlIjoiQml0cml4In0.CpUj1LJ_otMm6_slHFRAVnqsQtLeswkSVu7_jIgedTU");
@@ -38,6 +29,29 @@ class BalancePlatform {
 
         return $result ?: null; // Возвращаем данные или null, если компания не найдена
     }
+    private static function getMarketplaceNominalAccountChecks($companyData) {
+        $marketplaceNominalAccountChecks = [];
+        if($companyData['UF_CRM_MARKETPLACE_AT_ACCOUNT']) {
+            $userFields = \Bitrix\Main\UserFieldTable::getList([
+                'select' => ['ID'],
+                'filter' => [
+                    '=ENTITY_ID' => 'CRM_COMPANY',
+                    'FIELD_NAME' => 'UF_CRM_MARKETPLACE_AT_ACCOUNT'
+                ]
+            ]);
+            while ($arUserField = $userFields->fetch()){
+                $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID']]);
+                while ($arUserFieldData = $res->fetch()) {
+                    foreach ($companyData['UF_CRM_MARKETPLACE_AT_ACCOUNT'] as $marketplaceNA) {
+                        if($arUserFieldData['ID'] == $marketplaceNA) {
+                            $marketplaceNominalAccountChecks[] = $arUserFieldData['XML_ID'];
+                        }
+                    }
+                }
+            }
+        }
+        return $marketplaceNominalAccountChecks;
+    }
     private static function getClientGroupIndicator($companyData)
     {
         return $companyData['UF_CRM_1702588306']
@@ -57,7 +71,7 @@ class BalancePlatform {
 
         return $item->getData();
     }
-    private static function checkForErrors(array $data)
+    private static function checkForErrors(array $data): ?array
     {
         /*
          * Проверяет наличие ошибок в данных.
@@ -65,7 +79,7 @@ class BalancePlatform {
          */
 
         // Проверка на наличие ключа ошибки и валидность его значения
-        if (isset($data['error']) && is_array($data) && !empty($data['error'])) {
+        if (!empty($data['error'])) {
             Logs\File::AddMessage($data['error'], "Проверка на наличие ключа ошибки", LOG_BP);
             return $data;
         }
@@ -728,6 +742,7 @@ class BalancePlatform {
         $bitrixData['supportDepartmentEmployee'] = self::getUsernameByID($itemData['ASSIGNED_BY_ID']);
         $bitrixData['limitRenewal'] = $limitRenewal;
         $bitrixData['isProcrastinator'] = $isProcrastinator;
+        $bitrixData['marketplaceNominalAccountChecks'] = self::getMarketplaceNominalAccountChecks($companyData);
 
         $contractData = self::getContractData($itemData['UF_CRM_56_1684743456']);
         $bitrixData = array_merge($bitrixData, $contractData);

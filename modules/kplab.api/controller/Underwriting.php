@@ -18,7 +18,7 @@ class Underwriting extends \Bitrix\Main\Engine\Controller
 	public function getDefaultPreFilters()
 	{
 		return [
-			new \KPLab\API\V2\Controller\ActionFilter\Authentication(),
+			new \KPLab\API\V2\Auth\ActionFilter\Authentication(),
 		];
 	}
 

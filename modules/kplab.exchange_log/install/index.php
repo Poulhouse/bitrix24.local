@@ -43,6 +43,7 @@ class kplab_exchange_log extends CModule
             `OLD_VALUE` TEXT,
             `NEW_VALUE` TEXT,
             `USER_ID` INT NOT NULL,
+            `SERVICE_UPDATE_NAME` VARCHAR(255) NOT NULL,
             `CHANGE_DATE` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (`ID`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
@@ -113,14 +114,14 @@ class kplab_exchange_log extends CModule
             'crm',
             'OnAfterCrmLeadAdd',
             $this->MODULE_ID,
-            '\KPLab\ExchangeLog\Handlers\Lead',
+            '\Kplab\Exchange_log\Handlers\Lead',
             'OnAfterCrmLeadAdd'
         );
         \Bitrix\Main\EventManager::getInstance()->registerEventHandler(
             'crm',
             'OnAfterCrmLeadUpdate',
             $this->MODULE_ID,
-            '\KPLab\ExchangeLog\Handlers\Lead',
+            '\Kplab\Exchange_log\Handlers\Lead',
             'OnAfterCrmLeadUpdate'
         );
 
@@ -128,14 +129,14 @@ class kplab_exchange_log extends CModule
             'crm',
             'OnAfterCrmDealAdd',
             $this->MODULE_ID,
-            '\KPLab\ExchangeLog\Handlers\Deal',
+            '\Kplab\Exchange_log\Handlers\Deal',
             'OnAfterCrmDealAdd'
         );
         \Bitrix\Main\EventManager::getInstance()->registerEventHandler(
             'crm',
             'OnAfterCrmDealUpdate',
             $this->MODULE_ID,
-            '\KPLab\ExchangeLog\Handlers\Deal',
+            '\Kplab\Exchange_log\Handlers\Deal',
             'OnAfterCrmDealUpdate'
         );
 
@@ -143,14 +144,14 @@ class kplab_exchange_log extends CModule
             'crm',
             'OnAfterCrmCompanyAdd',
             $this->MODULE_ID,
-            '\KPLab\ExchangeLog\Handlers\Company',
+            '\Kplab\Exchange_log\Handlers\Company',
             'OnAfterCrmCompanyAdd'
         );
         \Bitrix\Main\EventManager::getInstance()->registerEventHandler(
             'crm',
             'OnAfterCrmCompanyUpdate',
             $this->MODULE_ID,
-            '\KPLab\ExchangeLog\Handlers\Company',
+            '\Kplab\Exchange_log\Handlers\Company',
             'OnAfterCrmCompanyUpdate'
         );
 
@@ -158,14 +159,14 @@ class kplab_exchange_log extends CModule
             'crm',
             'OnAfterCrmDynamicItemAdd',
             $this->MODULE_ID,
-            '\KPLab\ExchangeLog\Handlers\Item',
+            '\Kplab\Exchange_log\Handlers\Item',
             'OnCrmDynamicItemAdd'
         );
         \Bitrix\Main\EventManager::getInstance()->registerEventHandler(
             'crm',
             'OnAfterCrmDynamicItemUpdate',
             $this->MODULE_ID,
-            '\KPLab\ExchangeLog\Handlers\Item',
+            '\Kplab\Exchange_log\Handlers\Item',
             'OnCrmDynamicItemUpdate'
         );
     }
@@ -195,14 +196,14 @@ class kplab_exchange_log extends CModule
                 'crm',
                 'OnAfterCrmLeadAdd',
                 $this->MODULE_ID,
-                '\KPLab\ExchangeLog\Handlers\Lead',
+                '\Kplab\Exchange_log\Handlers\Lead',
                 'OnAfterCrmLeadAdd'
             );
             \Bitrix\Main\EventManager::getInstance()->unRegisterEventHandler(
                 'crm',
                 'OnAfterCrmLeadUpdate',
                 $this->MODULE_ID,
-                '\KPLab\ExchangeLog\Handlers\Lead',
+                '\Kplab\Exchange_log\Handlers\Lead',
                 'OnAfterCrmLeadUpdate'
             );
 
@@ -210,14 +211,14 @@ class kplab_exchange_log extends CModule
                 'crm',
                 'OnAfterCrmDealAdd',
                 $this->MODULE_ID,
-                '\KPLab\ExchangeLog\Handlers\Deal',
+                '\Kplab\Exchange_log\Handlers\Deal',
                 'OnAfterCrmDealAdd'
             );
             \Bitrix\Main\EventManager::getInstance()->unRegisterEventHandler(
                 'crm',
                 'OnAfterCrmDealUpdate',
                 $this->MODULE_ID,
-                '\KPLab\ExchangeLog\Handlers\Deal',
+                '\Kplab\Exchange_log\Handlers\Deal',
                 'OnAfterCrmDealUpdate'
             );
 
@@ -225,14 +226,14 @@ class kplab_exchange_log extends CModule
                 'crm',
                 'OnAfterCrmCompanyAdd',
                 $this->MODULE_ID,
-                '\KPLab\ExchangeLog\Handlers\Company',
+                '\Kplab\Exchange_log\Handlers\Company',
                 'OnAfterCrmCompanyAdd'
             );
             \Bitrix\Main\EventManager::getInstance()->unRegisterEventHandler(
                 'crm',
                 'OnAfterCrmCompanyUpdate',
                 $this->MODULE_ID,
-                '\KPLab\ExchangeLog\Handlers\Company',
+                '\Kplab\Exchange_log\Handlers\Company',
                 'OnAfterCrmCompanyUpdate'
             );
 
@@ -240,14 +241,14 @@ class kplab_exchange_log extends CModule
                 'crm',
                 'OnAfterCrmDynamicItemAdd',
                 $this->MODULE_ID,
-                '\KPLab\ExchangeLog\Handlers\Item',
+                '\Kplab\Exchange_log\Handlers\Item',
                 'OnCrmDynamicItemAdd'
             );
             \Bitrix\Main\EventManager::getInstance()->unRegisterEventHandler(
                 'crm',
                 'OnAfterCrmDynamicItemUpdate',
                 $this->MODULE_ID,
-                '\KPLab\ExchangeLog\Handlers\Item',
+                '\Kplab\Exchange_log\Handlers\Item',
                 'OnCrmDynamicItemUpdate'
             );
             $this->unInstallFiles();

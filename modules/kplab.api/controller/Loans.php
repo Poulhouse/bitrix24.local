@@ -5,9 +5,7 @@ use Bitrix\Main\Engine\ActionFilter;
 use \Bitrix\Main\Error;
 use Bitrix\Main\Application;
 use Bitrix\Main\Web\JWT;
-use KPLab\JWT\Controller\ActionFilter\Authentication;
-use Bitrix\Main\Engine\ActionFilter\Csrf;
-use KPLab\Logs;
+use KPLab\API\V2\Auth\ActionFilter\Authentication;
 
 \CBitrixComponent::includeComponentClass("kplab:scpreward");
 \Bitrix\Main\Loader::includeModule('rest');

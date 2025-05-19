@@ -1,15 +1,5 @@
 <?php
-\Bitrix\Main\Loader::registerNamespace('\\KPLab\\ExchangeLog\\Helpers\\', dirname(__FILE__) . '/helpers');
-
-\Bitrix\Main\Loader::registerAutoLoadClasses('kplab.exchange_log', [
-    '\KPLab\ExchangeLog\ExchangeLogTable' => 'lib/exchange_log_table.php',
-    '\KPLab\ExchangeLog\Handlers\Company' => 'Handlers/Company.php',
-    '\KPLab\ExchangeLog\Handlers\Item' => 'Handlers/Item.php',
-    '\KPLab\ExchangeLog\Handlers\Deal' => 'Handlers/Deal.php',
-    '\KPLab\ExchangeLog\Handlers\Lead' => 'Handlers/Lead.php',
-    '\KPLab\ExchangeLog\Helpers\Exchange' => 'helpers/Exchange.php',
-]);
-
+require_once __DIR__ . '/lib/autoload.php';
 class CKPLabExchangeLog
 {
     public static function OnBuildGlobalMenu(&$aGlobalMenu, &$aModuleMenu)

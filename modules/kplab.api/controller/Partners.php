@@ -22,7 +22,7 @@ class Partners extends \Bitrix\Main\Engine\Controller
     {
         // Возвращаем пустой массив или только нужные фильтры
         return [
-            new ActionFilter\Authentication(),
+            new \KPLab\API\V2\Auth\ActionFilter\Authentication(),
         ];
     }
     /**

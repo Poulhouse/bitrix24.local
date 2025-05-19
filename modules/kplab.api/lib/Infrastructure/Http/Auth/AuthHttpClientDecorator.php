@@ -20,6 +20,7 @@ final class AuthHttpClientDecorator implements HttpClientInterface
     ): array {
         // добавляем/перезаписываем заголовок Authorization
         $headers['Authorization'] = $this->scheme->headerValue();
+        $headers['key'] = $this->scheme->headerValue();
 
         return $this->inner->request($method, $url, $headers, $body, $meta);
     }

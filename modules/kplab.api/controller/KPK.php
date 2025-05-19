@@ -1,17 +1,12 @@
 <?php namespace KPLab\API\V2\Controller;
 
-use Bitrix\Main\Engine\ActionFilter\Base;
-use Bitrix\Main\Engine\Controller;
-use Bitrix\Main\Engine\ActionFilter;
 use Bitrix\Main\Application;
+use Bitrix\Main\Context;
 use Bitrix\Main\Error;
-use Bitrix\Main\Event;
 use Bitrix\Main\EventResult;
 use Bitrix\Main\Loader;
-use Bitrix\Main\Web\JWT;
+use KPLab\API\V2\LogsAction;
 use KPLab\Logs;
-use Bitrix\Main\Context;
-use \KPLab\API\V2\LogsAction;
 
 define("LOG_API_SYNC_CONTROLLER", $_SERVER['DOCUMENT_ROOT']."/local/classes/api/KPKLeadsController.log");
 
@@ -22,7 +17,7 @@ class KPK extends \Bitrix\Main\Engine\Controller
     public function getDefaultPreFilters()
     {
         return [
-            new \KPLab\API\V2\Controller\ActionFilter\Authentication(),
+            new \KPLab\API\V2\Auth\ActionFilter\Authentication(),
         ];
     }
     public function getDefaultPostFilters()
