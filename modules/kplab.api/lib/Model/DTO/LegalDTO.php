@@ -12,6 +12,7 @@ class LegalDTO
     public string $inn;
     public string $kpp;
     public string $okpo;
+    public ?int $typeId = null;
     public string $regNum;
     public ?string $regDate;
     public ?string $regNumOrg;
@@ -23,6 +24,8 @@ class LegalDTO
     public array $bankDetails;
     public array $bankNominalDetails;
     public array $beneficialOwnersDetails;
+    public string $representative;
+    public array $toCompanyFields;
 
     public static function init(array $data): self
     {
@@ -63,6 +66,7 @@ class LegalDTO
             'regNum' => 'ОГРН',
             'regDate' => 'Дата регистрации',
             'regNumOrg' => 'Регистрирующий орган ОГРН',
+            'representativeGuid' => 'Директор (guid)',
         ];
 
         foreach ($requiredStrings as $field => $name) {
@@ -155,5 +159,66 @@ class LegalDTO
             'bankNominalDetails' => $this->bankNominalDetails,
             'beneficialOwnersDetails' => $this->beneficialOwnersDetails
         ];
+    }
+    public function toCompanyFields(string $prefix = ''): void
+    {
+        $this->getRepresentative($this->representativeGuid);
+        $userFields = \Bitrix\Main\UserFieldTable::getList([
+            'select' => ['ID'],
+            'filter' => [
+                '=ENTITY_ID' => 'CRM_COMPANY',
+                'FIELD_NAME' => 'UF_CRM_1684145100226'
+            ]
+        ]);
+        while ($arUserField = $userFields->fetch()){
+            $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID'], 'XML_ID' => 'ORG']);
+            while ($arUserFieldData = $res->fetch()) {
+                $this->typeId = $arUserFieldData['ID'];
+            }
+        }
+        if($this->guid != "") {
+            $this->toCompanyFields = [
+                "UF_CRM_1684145100226" => $this->typeId,
+                "UF_CRM_6433D7C925893" => $this->inn,
+                "UF_CRM_COMPANY_SS_ORG" => [5],
+                "UF_CRM_6433DBB98DD53" => 17611,
+                "UF_CRM_COMPANY_SS_AM_ID" => $this->guid,
+                "UF_CRM_1615200179" => $prefix.$this->representative,
+                "UF_CRM_1697107946" => $this->limitSum."|RUB",
+                "UF_CRM_1595595411835", $this->fullName
+            ];
+        }
+        else {
+            $this->toCompanyFields = [
+                "UF_CRM_1684145100226" => $this->typeId,
+                "UF_CRM_6433D7C925893" => $this->inn,
+                "UF_CRM_COMPANY_SS_ORG" => [5],
+                "UF_CRM_6433DBB98DD53" => 17611,
+                "UF_CRM_1615200179" => $prefix.$this->representative,
+                "UF_CRM_1697107946" => $this->limitSum."|RUB",
+                "UF_CRM_1595595411835", $this->fullName
+            ];
+        }
+    }
+    public function getRepresentative(?string $representativeGuid): int
+    {
+        if (!$representativeGuid) {
+            throw new \InvalidArgumentException("GUID директора не передан.");
+        }
+
+        $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Company);
+
+        $companies = $factoryCompany->getItems([
+            'filter' => ['UF_CRM_COMPANY_SS_AM_ID' => $representativeGuid],
+            'select' => ['ID'],
+            'limit'  => 1,
+        ]);
+
+        foreach ($companies as $company) {
+            $this->representative = $company->getId();
+            return $this->representative;
+        }
+
+        throw new \RuntimeException("Директор с GUID '{$representativeGuid}' не найден в CRM Битрикс24.");
     }
 }

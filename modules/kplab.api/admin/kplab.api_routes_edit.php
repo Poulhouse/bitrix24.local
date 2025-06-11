@@ -39,6 +39,7 @@ if ($request->isPost() && check_bitrix_sessid()) {
             'METHOD_NAME' => $methodName,
             'HTTP_METHOD' => $httpMethod,
             'ACTIVE' => $active,
+            'LOG_LEVEL' => $logLevel,
         ]);
 
         if ($result->isSuccess()) {
@@ -81,7 +82,8 @@ $logLevel = Option::get($MODULE_ID, "route_{$routeId}_log_level", 'errors'); // 
 
     <label>Уровень логирования:</label><br />
     <select name="LOG_LEVEL">
-        <option value="full" <?= $logLevel == 'full' ? 'selected' : '' ?>>Полное логирование</option>
+        <option value="none" <?= $logLevel == 'none' ? 'selected' : '' ?>>Ничего не пишем</option>
+        <option value="debug" <?= $logLevel == 'debug' ? 'selected' : '' ?>>Полное логирование</option>
         <option value="errors" <?= $logLevel == 'errors' ? 'selected' : '' ?>>Только ошибки</option>
     </select><br /><br />
 

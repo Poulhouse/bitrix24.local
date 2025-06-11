@@ -9,13 +9,24 @@ use Bitrix\Main\LoaderException;
 use Bitrix\Main\ObjectPropertyException;
 use Bitrix\Main\SystemException;
 use KPLab\API\V2\Auth\ActionFilter\Authentication;
-use KPLab\API\V2\Model\Service\SellerService;
 use KPLab\Logs;
 use Bitrix\Main\Context;
 use \KPLab\API\V2\Helpers\HandlerResponse;
+use Bitrix\Main\Engine\Response\Json;
+use KPLab\API\V2\Model\DTO\Sellers\SellerLegalEntityDTO;
 
-define("LOG_API_SYNC_SELLER_CONTROLLER", $_SERVER['DOCUMENT_ROOT']."/local/classes/api/SellersController.log");
-define("LOG_API_SYNC_SET_SELLER_CONTROLLER", $_SERVER['DOCUMENT_ROOT']."/local/classes/api/SetSellersController.log");
+use KPLab\API\V2\Factory\SellerDtoFactory;
+use KPLab\API\V2\Model\DTO\Validator;
+use KPLab\API\V2\Model\Service\SellerService;
+use KPLab\API\V2\Model\Service\Sellers\SellerDirectorService;
+use KPLab\API\V2\Model\Service\Sellers\SellerBeneficiarOwnersService;
+use KPLab\API\V2\Model\ORM\RoutesTable;
+use Bitrix\Main\Config\Option;
+use KPLab\API\V2\LogsAction;
+
+define("LOG_API_SYNC_SELLER_CONTROLLER", $_SERVER['DOCUMENT_ROOT']."/local/logs/SellersController.log");
+define("LOG_API_SYNC_SELLER_ERRORS_CONTROLLER", $_SERVER['DOCUMENT_ROOT']."/local/logs/ErrorsSellersController.log");
+define("LOG_API_SYNC_SET_SELLER_CONTROLLER", $_SERVER['DOCUMENT_ROOT']."/local/logs/SetSellersController.log");
 define("TOKEN_API_KEY","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0ZXN0Y3JtLnNvZGVpc3R2aWUuc3UiLCJjb250cm9sbGVyIjoiQ2VudGVyT3BlcmF0aW9uRGF0YSJ9.lQO5U4u4PAwQzWoHu9VC_FEJ7eN4fpyGBNHnD1PFtLM");
 
 /**
@@ -26,164 +37,7 @@ define("TOKEN_API_KEY","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0ZXN0Y3J
  */
 class Sellers extends \Bitrix\Main\Engine\Controller
 {
-    public string $rqId;
-    public string $itemDatatitle;
-    public int $entityTypeId;
-    public int $entityId;
-    public int $companyId;
-    public int $contactId;
-    public array $CURLObjectData;
 
-    /**
-     *  @OA\Schema(schema="SellerData",
-     *      required={"type"},
-     *     @OA\Property(property="type", type="string", enum={"FL","IP","UL"}, example="FL"),
-     *     anyOf={
-     *         @OA\Schema(ref="#/components/schemas/DataIP"),
-     *         @OA\Schema(ref="#/components/schemas/DataFL"),
-     *         @OA\Schema(ref="#/components/schemas/DataUL")
-     *     },
-     *     discriminator=@OA\Discriminator(propertyName="type", mapping={
-     *          "FL": "#/components/schemas/DataFL",
-     *         "IP": "#/components/schemas/DataIP",
-     *         "UL": "#/components/schemas/DataUL"
-     *     })
-     *  )
-     */
-    /**
-     *  @OA\Schema(schema="GuarantorData",
-     *           required={"type"},
-     *          @OA\Property(property="type", type="string", enum={"FL","IP","UL"}, example="FL"),
-     *          oneOf={
-     *              @OA\Schema(ref="#/components/schemas/DataFL"),
-     *              @OA\Schema(ref="#/components/schemas/DataIP"),
-     *              @OA\Schema(ref="#/components/schemas/DataUL")
-     *          },
-     *          discriminator=@OA\Discriminator(
-     *              propertyName="type",
-     *              mapping={
-     *                  "IP": "#/components/schemas/DataIP",
-     *                  "FL": "#/components/schemas/DataFL",
-     *                  "UL": "#/components/schemas/DataUL"
-     *              }
-     *          )
-     *  )
-     */
-    /**
-     *      @OA\Schema(schema="DataFL", type="object",
-     *          @OA\Property(property="type", type="string", enum={"FL","IP","UL"}, example="FL"),
-     *          @OA\Property(property="synchId", type="string", example="1c2c8733-e5d6-41b4-929c-bc196879f785"),
-     *          @OA\Property(property="inn", type="string", example="667100354160"),
-     *          @OA\Property(property="firstName", type="string", example="Андрей "),
-     *          @OA\Property(property="lastName", type="string", example="Татарченков "),
-     *          @OA\Property(property="secondName", type="string", example="Павлович"),
-     *          @OA\Property(property="birthday", type="string", example="1989-03-25T00:00:00Z"),
-     *          @OA\Property(property="birthPlace", type="string", example="ГОР.ВЛАДИВОСТОК ПРИМОРСКОГО КРАЯ"),
-     *          @OA\Property(property="serviceEDO", type="string", example="Diadoc"),
-     *          @OA\Property(property="isManual", type="boolean", example=false),
-     *          @OA\Property(property="address", type="array", @OA\Items(ref="#/components/schemas/Address")),
-     *          @OA\Property(property="passport", type="array", @OA\Items(ref="#/components/schemas/Passport"))
-     *     )
-     */
-    /**
-     *      @OA\Schema(schema="DataIP", type="object",
-     *           @OA\Property(property="type", type="string", enum={"FL","IP","UL"}, example="IP"),
-     *           @OA\Property(property="synchId", type="string", example="1c2c8733-e5d6-41b4-929c-bc196879f785"),
-     *           @OA\Property(property="inn", type="string", example="667100354160"),
-     *           @OA\Property(property="ogrnip", type="string", example="323665800170896"),
-     *           @OA\Property(property="okpo", type="string", example="2025313195"),
-     *           @OA\Property(property="okved", type="string", example="62.01"),
-     *           @OA\Property(property="companyRegDate", type="string", example="2023-08-22T00:00:00Z"),
-     *           @OA\Property(property="fnsDepartment", type="string", nullable=true),
-     *           @OA\Property(property="firstName", type="string", example="Андрей "),
-     *           @OA\Property(property="lastName", type="string", example="Татарченков "),
-     *           @OA\Property(property="secondName", type="string", example="Павлович"),
-     *           @OA\Property(property="birthday", type="string", example="1989-03-25T00:00:00Z"),
-     *           @OA\Property(property="birthPlace", type="string", example="ГОР.ВЛАДИВОСТОК ПРИМОРСКОГО КРАЯ"),
-     *           @OA\Property(
-     *               property="marketplaceLinks",
-     *               type="array",
-     *               @OA\Items(type="string", example="https://www.wildberries.ru/seller/https://www.wildberries.ru/brands/lizun-toys")
-     *           ),
-     *           @OA\Property(property="serviceEDO", type="string", example="Diadoc"),
-     *           @OA\Property(property="isManual", type="boolean", example=false),
-     *           @OA\Property(property="address", type="array", @OA\Items(ref="#/components/schemas/Address")),
-     *           @OA\Property(property="passport", type="array", @OA\Items(ref="#/components/schemas/Passport"))
-     *      )
-     *
-     */
-    /**
-     *      @OA\Schema(schema="DataUL", type="object",
-     *         @OA\Property(property="synchId", type="string", example="123456789"),
-     *         @OA\Property(property="type", type="string", enum={"FL","IP","UL"}, example="UL"),
-     *         @OA\Property(property="inn", type="string", example="7701234567"),
-     *         @OA\Property(property="kpp", type="string", example="770101001"),
-     *         @OA\Property(property="companyName", type="string", example="ООО Ромашка"),
-     *         @OA\Property(property="companyFullName", type="string", example="Общество с ограниченной ответственностью 'Ромашка'"),
-     *         @OA\Property(property="companyRegDate", type="string", format="date", example="2010-05-20"),
-     *         @OA\Property(property="fnsDepartment", type="string", example="46 МИ ФНС России по г. Москве"),
-     *         @OA\Property(property="ogrn", type="string", example="1107746693200"),
-     *         @OA\Property(property="okpo", type="string", example="12345678"),
-     *         @OA\Property(property="oktmo", type="string", example="45384000"),
-     *         @OA\Property(property="okved", type="string", example="62.01"),
-     *         @OA\Property(property="serviceEDO", type="string", example="Контур.Эльба"),
-     *         @OA\Property(
-     *             property="marketplaceLinks",
-     *             type="array",
-     *             @OA\Items(type="string", example="https://www.wildberries.ru/seller/https://www.wildberries.ru/brands/lizun-toys")
-     *         ),
-     *         @OA\Property(property="address", type="array", @OA\Items(ref="#/components/schemas/Address")),
-     *         @OA\Property(property="director", ref="#/components/schemas/DataFL"),
-     *         @OA\Property(property="beneficiars", type="array", @OA\Items(ref="#/components/schemas/Beneficiar"))
-     *     )
-     */
-    /**
-     *      @OA\Schema(schema="Address", type="object",
-     *         @OA\Property(property="type", type="string", enum={"registration", "actual", "legal"}, example="registration"),
-     *         @OA\Property(property="fiasId", type="string", example="6c37c61c-e195-4651-b4fe-0707efc77be6")
-     *      )
-     */
-    /**
-     *      @OA\Schema(schema="Beneficiar", type="object",
-     *         @OA\Property(property="type", type="string", enum={"FL","IP","UL"}, example="FL"),
-     *         oneOf={
-     *              @OA\Schema(ref="#/components/schemas/DataIP"),
-     *              @OA\Schema(ref="#/components/schemas/DataFL")
-     *          },
-     *          discriminator=@OA\Discriminator(propertyName="type", mapping={
-     *              "IP": "#/components/schemas/DataIP",
-     *              "FL": "#/components/schemas/DataFL"
-     *          })
-     *     )
-     */
-    /**
-     *      @OA\Schema(schema="Passport", type="object",
-     *         @OA\Property(property="files", ref="#/components/schemas/PassportFiles"),
-     *         @OA\Property(property="issuer", type="string", example="ОВД Пресненского района г. Москвы"),
-     *         @OA\Property(property="number", type="string", example="123456"),
-     *         @OA\Property(property="series", type="string", example="4510"),
-     *         @OA\Property(property="issuedAt", type="string", format="date", example="2005-06-15"),
-     *         @OA\Property(property="issuerCode", type="string", example="770-001")
-     *      )
-     */
-    /**
-     *      @OA\Schema(schema="BankAccount", type="object",
-     *         @OA\Property(property="crmId", type="string"),
-     *         @OA\Property(property="sellerInn", type="string"),
-     *         @OA\Property(property="title", type="string", enum={"расчетный", "номинальный"}, example="расчетный"),
-     *         @OA\Property(property="nameBank", type="string"),
-     *         @OA\Property(property="bankIdCode", type="string"),
-     *         @OA\Property(property="checkAccount", type="string"),
-     *         @OA\Property(property="adjAccount", type="string")
-     *      )
-     */
-    /**
-     *      @OA\Schema(schema="PassportFiles", type="object",
-     *          @OA\Property(property="fileName", type="string", example="charter.pdf"),
-     *          @OA\Property(property="file", type="string", format="binary")
-     *      )
-     *
-     */
     /**
      *      @OA\Schema(schema="ErrorItem", type="object",
      *          @OA\Property(property="message", type="string", example="Ошибка `crmId` не известен", description="Текстовое описание ошибки"),
@@ -216,6 +70,29 @@ class Sellers extends \Bitrix\Main\Engine\Controller
      *   )
      */
 
+    private const MODULE_ID = 'kplab.api';
+    public string $rqId;
+    public string $itemDatatitle;
+    public string $partnerName;
+    public int $entityTypeId;
+    public int $entityId;
+    public int $companyId;
+    public int $contactId;
+    public array $CURLObjectData;
+    public string $serverName;
+    public array $queryParamsArray;
+    public SellerService $sellerService;
+    public mixed $objectData;
+    public mixed $requestData;
+    public HandlerResponse $handlerResponse;
+
+    public function __construct() {
+        parent::__construct();
+        \Bitrix\Main\Loader::includeModule('crm');
+        $this->sellerService = new SellerService();
+        $this->handlerResponse = new HandlerResponse();
+    }
+
     /**
      * @return Authentication[]
      */
@@ -229,219 +106,71 @@ class Sellers extends \Bitrix\Main\Engine\Controller
 
     //region POST
 
-    /**
-     *  Добавление Селлера из ЛК
-     */
-    /**
-     * @OA\Post(path="/sellers/",
-     *       tags={"Sellers"},
-     *       summary="Добавление Селлера",
-     *       operationId="setAction",
-     *       @OA\Response(
-     *           response=200,
-     *           description="Успешный ответ"
-     *       ),
-     *       @OA\RequestBody(ref="#/components/requestBodies/setSeller")
-     * )
-     *
-     */
-    /**
-     * @OA\RequestBody(request="setSeller",
-     *     description="Новый селлер",
-     *     required=true,
-     *     @OA\MediaType(
-     *         mediaType="application/json",
-     *         @OA\Schema(
-     *           type="object",
-     *           @OA\Property(property="sellerInn", type="string", example="667100354160"),
-     *           @OA\Property(property="crmId", type="string", example="300"),
-     *           @OA\Property(property="sellerData", ref="#/components/schemas/SellerData")
-     *        )
-     *     )
-     *  )
-     * @throws ArgumentException
-     */
-    public function setAction(array $params = []): mixed
+    public function setAction(array $params = []): EventResult|Json
     {
-        //region Подготовка к обработке запроса
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application ::getInstance() -> getContext();
-        $server = $context -> getServer();
-        $requestHeaders = $context->getRequest()->getHeaders()->toArray();
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = $server['REQUEST_METHOD'];
-        $queryParamsArray = $context->getRequest()->toArray();
-        $url = $server -> get('SCRIPT_URI') . "?" .$server -> get('QUERY_STRING');
 
-        $token = str_replace('BitrixAuth ', '', $server->get('REMOTE_USER'));
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "SE: Результат добавления Селлера из ЛК: ";
-        $objectData = $this->CURLObjectData;
+        // 1. Читаем тело запроса
+        $body = Application::getInstance()->getContext()->getRequest()->getInput();
+        $ctx        = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, $body, __FUNCTION__);
 
-        foreach ($requestHeaders as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
+        $this->objectData['ITEM_TITLE'] = "Результат добавления Селлера из ЛК: ";
+
+        // 3. Парсим тело
+        $data = $this->requestData;
+        Logs\File::AddMessage($data, 'Тело запроса', LOG_API_SYNC_SELLER_CONTROLLER);
+        if (!is_array($data)) {
+            return $handler->handleError(400, 'Некорректный JSON', 'invalid_json', $this->objectData);
         }
 
-        Logs\File ::AddMessage(json_encode($requestJson,JSON_UNESCAPED_UNICODE), "requestJson", LOG_API_SYNC_SELLER_CONTROLLER);
+        try {
+            $crmId = $data['crmId'] ?? null;
 
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context
-        );
-        /*$controllerName = get_class($this);
-        $methodName = __FUNCTION__;
-        $statusRequest = 'Success'; // Статус запроса
-        $requestTypeId = 0;
-        $outRequest = false;
-        $jsonRes = ['status' => $statusRequest, 'response' => null];
-        $partnerName = "SE";
-        $taskId = 0;*/
+            // region Построение DTO
+            $sellerDto = SellerDtoFactory::create($data);
+            $errors = Validator::collectErrors($sellerDto);
 
-        $arRequest = json_decode($requestJson,true);
-
-        \Bitrix\Main\Loader ::IncludeModule('crm');
-        //endregion
-
-        //region Обработка ошибок
-        if($arRequest == NULL) {
-            $errorMessage = 'Тело запроса не удалось декодировать как JSON.';
-
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        if(empty($arRequest['sellerInn'])) {
-            $errorMessage = 'Этот запрос не поддерживается. Пустой `sellerInn`';
-
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        if(is_null($arRequest['sellerData']['serviceEDO'])) {
-            $errorMessage = 'Не заполнено поле `serviceEDO` в sellerData.';
-
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        //endregion
-
-        else {
-            Loader::includeModule('iblock');
-
-            $sellerInn = $arRequest['sellerInn'];
-            $this->CURLObjectData['ITEM_TITLE'] = "Результат добавления Селлера из ЛК: {$sellerInn}";
-
-            $sellerDataArray = $arRequest['sellerData'];
-            $directorDataArray = $arRequest['directorData'];
-            $beneficiarsArray = $arRequest['beneficiars'];
-            $sellerCardId = 0;
-            //region Обработка sellerData
-            if(isset($sellerDataArray)) {
-                $sellerDataInn = $sellerDataArray['inn'];
-                if(is_null($arRequest['crmId'])) {
-                    $sellerCardId = $this->findCard($sellerDataInn); //поиск клиента по sellerInn
-                } else {
-                    $crmId = intval($arRequest['crmId']);
-                    $sellerCardId = $this->findCard($sellerDataInn, $crmId); //поиск клиента по sellerInn или crmId
+            if ($sellerDto instanceof SellerLegalEntityDTO) {
+                $directorErrors = Validator::collectErrors($sellerDto->directorData);
+                if (!empty($directorErrors)) {
+                    $errors['directorData'] = $directorErrors;
                 }
-                //region Обновляем Селлера
-                $this->createOrUpdateCard($sellerCardId, $sellerDataArray, false, $sellerCardId, "seller");
-                $this->createOrUpdateRQ($sellerCardId, $sellerDataArray);
-                //endregion
+
+                $beneficiarsErrors = array_filter(
+                    array_map(fn($b) => Validator::collectErrors($b), $sellerDto->beneficiars),
+                    fn($e) => !empty($e)
+                );
+                if (!empty($beneficiarsErrors)) {
+                    $errors['beneficiars'] = array_values($beneficiarsErrors);
+                }
             }
-            //endregion
 
-            //region Обработка directorData
-            if(isset($directorDataArray)) {
-                if(is_null($arRequest['directorData']['serviceEDO'])) {
-                    $errorMessage = 'Не заполнено поле `serviceEDO` в directorData.';
-
-                    return $HandlerResponse->handleError($errorMessage, "invalid_request",
-                        $objectData, $url, $requestMethod, $timeData, $requestJson, $headersValues);
-                }
-
-                $directorCardId = (new SellerService)->findCard($directorDataArray['inn'], false); //поиск руководителя по inn
-                //Logs\File ::AddMessage($directorCardId, "directorCardId", LOG_API_SYNC_SELLER_CONTROLLER);
-                //region Создаем руководителя
-                if(!$directorCardId) {
-                    //Logs\File ::AddMessage("Создаем карточку и реквизиты руководителя", "create",LOG_API_SYNC_SELLER_CONTROLLER);
-                    $_directorCardId = (new SellerService)->createOrUpdateCard($sellerCardId, $directorDataArray,true, null,"director");
-                    (new SellerService)->createOrUpdateCard($sellerCardId, $directorDataArray,false, $_directorCardId,"director");
-                    (new SellerService)->createOrUpdateRQ($_directorCardId, $directorDataArray, true);
-                }
-                //endregion
-                //region Обновляем руководителя
-                else {
-                    //Logs\File ::AddMessage("Обновляем карточку и реквизиты руководителя", "update", LOG_API_SYNC_SELLER_CONTROLLER);
-                    (new SellerService)->createOrUpdateCard($sellerCardId, $directorDataArray, false, $directorCardId, "director");
-                    (new SellerService)->createOrUpdateRQ($directorCardId, $directorDataArray);
-                }
-                //endregion
+            if (!empty(array_filter($errors))) {
+                return $handler->handleError(422, json_encode($errors, JSON_UNESCAPED_UNICODE), 'validation_error', $this->objectData);
             }
-            //endregion
+            // endregion
 
-            //region Обработка beneficiars
-            if(isset($beneficiarsArray)) {
-                foreach ($beneficiarsArray as $beneficiarDataArray)
-                {
-                    if(is_null($beneficiarDataArray['serviceEDO'])) {
-                        $errorMessage = 'Не заполнено поле `serviceEDO` в beneficiars.';
+            // region Синхронизация
+            $this->objectData['ITEM_TITLE'] = "Результат добавления Селлера из ЛК: {$data['sellerInn']}";
+            $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
+            $this->objectData['INIT_OBJECT_URL'] = "https://{$serverName}/crm/type/128/details/{$crmId}/";
 
-                        return $HandlerResponse->handleError($errorMessage, "invalid_request",
-                            $objectData, $url, $requestMethod, $timeData, $requestJson, $headersValues);
-                    }
-                    $beneficiarCardId = (new SellerService)->findCard($beneficiarDataArray['inn'], false); //поиск клиента по sellerInn или crmId
-                    $beneficiarCardIds[] = $beneficiarCardId;
-                    //region Создаем бенефициара
-                    if(!$beneficiarCardId) {
-                        //Logs\File ::AddMessage("Создаем карточку и реквизиты бенефициара", "create", LOG_API_SYNC_SELLER_CONTROLLER);
-                        $_beneficiarCardId = (new SellerService)->createOrUpdateCard(
-                            $sellerCardId,
-                            $beneficiarDataArray,
-                            true,
-                            null,
-                            "beneficiar"
-                        );
-                        (new SellerService)->createOrUpdateCard(
-                            $sellerCardId,
-                            $beneficiarDataArray,
-                            false,
-                            $_beneficiarCardId,
-                            "beneficiar"
-                        );
-                        (new SellerService)->createOrUpdateRQ($_beneficiarCardId, $beneficiarDataArray, true);
-                    }
-                    //endregion
-                    //region Обновляем бенефициара
-                    else {
-                        //Logs\File ::AddMessage("Обновляем карточку и реквизиты бенефициара", "update", LOG_API_SYNC_SELLER_CONTROLLER);
-                        (new SellerService)->createOrUpdateCard($sellerCardId, $beneficiarDataArray, false, $beneficiarCardId, "beneficiar");
-                        (new SellerService)->createOrUpdateRQ($beneficiarCardId, $beneficiarDataArray);
-                    }
-                    //endregion
-                }
-                //Logs\File ::AddMessage($beneficiarCardIds, "beneficiarCardIds", LOG_API_SYNC_SELLER_CONTROLLER);
-            }
-            //endregion
+            $this->sellerService->sync($sellerDto, $crmId);
 
-            // Если все прошло успешно
-            $message = "Данные успешно сохранились";
             \CRest::call('crm.timeline.comment.add', [
                 'fields' => [
-                    "ENTITY_ID" => $crmId,
-                    "ENTITY_TYPE" => "DYNAMIC_128",
-                    "COMMENT" => "[b]{$message} от Seller-Engine![/b]"
+                    'ENTITY_ID' => $crmId,
+                    'ENTITY_TYPE' => 'DYNAMIC_128',
+                    'COMMENT' => '[b]Данные успешно синхронизированы через Seller-Engine[/b]'
                 ]
             ]);
+            //endregion
 
-            $this->CURLObjectData['INIT_OBJECT_URL'] = "https://{$serverName}/crm/type/128/details/{$crmId}/";
-            $objectData = $this->CURLObjectData;
+            return $handler->handleSuccess(['message' => 'OK'], $this->objectData);
 
-            return $HandlerResponse->handleSuccess([$message], $objectData);
+        } catch (\Throwable $e) {
+            return $handler->handleError(500, $e->getMessage(), 'exception', $this->objectData);
         }
     }
 
@@ -516,102 +245,74 @@ class Sellers extends \Bitrix\Main\Engine\Controller
      */
     public function setFromAnonymFormAction(array $params = []): mixed
     {
-        //region Подготовка к обработке запроса
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application ::getInstance() -> getContext();
-        $server = $context -> getServer();
+        // 1) Получаем тело JSON и сразу инициализируем handler
+        $body    = Application::getInstance()->getContext()->getRequest()->getInput();
+        $ctx        = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, $body, __FUNCTION__);
 
-        $requestHeaders = $context->getRequest()->getHeaders()->toArray();
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = $server['REQUEST_METHOD'];
-        $queryParamsArray = $context->getRequest()->toArray();
+        $this->objectData['ITEM_TITLE'] = "Результат добавления Селлера из Анонимной формы: ";
 
-        $url = $server -> get('SCRIPT_URI') .'?'. $server -> get('QUERY_STRING');
-
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "SE: Результат добавления Селлера из Анонимной формы: ";
-        $objectData = $this->CURLObjectData;
-
-        foreach ($requestHeaders as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
+        // 2. Декодируем JSON
+        $data = json_decode($body, true);
+        if (!is_array($data)) {
+            return $handler->handleError(400, 'Некорректный JSON', 'invalid_json', $this->objectData);
         }
 
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context
-        );
-
-        $arRequest = json_decode($requestJson,true);
-
-        \Bitrix\Main\Loader ::IncludeModule('crm');
-        //endregion
-
-        //region Обработка ошибок
-        if($arRequest == NULL) {
-            $errorMessage = 'Тело запроса не удалось декодировать как JSON.';
-
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
+        // 2) Проверяем наличие query-параметра 'guid'
+        if (empty($this->queryParamsArray['guid'])) {
+            $errorMessage = 'Этот запрос не поддерживается. Пустой `guid`.';
+            return $handler->handleError(400, $errorMessage, 'invalid_request', $this->objectData);
         }
-        elseif(empty($queryParamsArray['guid'])) {
-            $errorMessage = "400 Bad Request | Этот запрос не поддерживается. Пустой `guid`";
 
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
+        if (empty($data['inn'])) {
+            return $handler->handleError(400, 'Пустой inn', 'invalid_request', $this->objectData);
         }
-        if(empty($arRequest['inn'])) {
-            $errorMessage = 'Этот запрос не поддерживается. Пустой `inn`';
 
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        //endregion
+        $guid = $this->queryParamsArray['guid'];
+        $inn  = $data['inn'];
+        $this->objectData['ITEM_TITLE'] = "Результат добавления Селлера из Анонимной формы: {$inn}";
 
-        else {
-            $dealGUID = $queryParamsArray['guid'];
-            $inn = $arRequest['inn'];
-            $this->CURLObjectData['ITEM_TITLE'] = "Результат добавления Селлера из Анонимной формы: {$inn}";
+        try {
 
-            //region Обработка sellerData
-
-            if($dealGUID == '') {
-                $sellerCardId = (new SellerService)->findCard($inn); //поиск клиента по sellerInn
+            // 3. Поиск карточки
+            if ($guid === '') {
+                $sellerCardId = $this->sellerService->findCard($inn);
             } else {
-                $sellerCard = (new SellerService)->findCardByDealGUID($inn, $dealGUID); //поиск клиента по sellerInn или crmId
-                if(is_array($sellerCard)) {
-                    $sellerCardId = $sellerCard['COMPANY_ID']; //поиск клиента по sellerInn или crmId
-                    $dealCardId = $sellerCard['ID']; //поиск сделки по $dealGUID
-                    (new SellerService)->updateDealCard($dealCardId);
-                }  else {
-                    $errorMessage = 'Карточка клиента не найдена';
-                    return $HandlerResponse->handleError(404, $errorMessage, "invalid_request", $objectData);
+                $card = $this->sellerService->findCardByDealGUID($inn, $guid);
+                if (!is_array($card)) {
+                    return $handler->handleError(404, 'Карточка клиента не найдена', 'not_found', $this->objectData);
                 }
+                $sellerCardId = $card['COMPANY_ID'];
+                $dealCardId   = $card['ID'];
+                $this->sellerService->changeStageDealCard($dealCardId,'C23:UC_K2J0ML');
             }
-            (new SellerService)->updateCompanyCard($sellerCardId, $arRequest);
-            (new SellerService)->createOrUpdateRQ($sellerCardId, $arRequest);
 
-            //endregion
+            // 4. Обновляем компанию и реквизиты
+            $this->sellerService->updateCompanyCard($sellerCardId, $data);
 
-            // Если все прошло успешно
-            $message = "Данные успешно сохранились";
+            $rqId = $this->sellerService->findCompanyRQ($sellerCardId, $inn)
+                ?? $this->sellerService->createRequisite($sellerCardId, $data);
+
+            $this->sellerService->updateRequisite($rqId, $data, $sellerCardId);
+
+            // 5. Обновление адреса
+            \KPLab\Helpers\Address::processAddressRequisites($rqId, \CCrmOwnerType::Company, $sellerCardId, $data);
+
+            // 6. Добавляем комментарий
             \CRest::call('crm.timeline.comment.add', [
                 'fields' => [
-                    "ENTITY_ID" => $sellerCardId,
-                    "ENTITY_TYPE" => "COMPANY",
-                    "COMMENT" => "[b]{$message} от Seller-Engine![/b]"
+                    'ENTITY_ID'    => $sellerCardId,
+                    'ENTITY_TYPE'  => 'COMPANY',
+                    'COMMENT'      => '[b]Данные успешно синхронизированы через анонимную форму[/b]'
                 ]
             ]);
 
-            $this->CURLObjectData['INIT_OBJECT_URL'] = "https://{$serverName}/crm/type/company/details/{$sellerCardId}/";
-            $objectData = $this->CURLObjectData;
-
-            return $HandlerResponse->handleSuccess($message, $objectData);
+            $this->objectData['INIT_OBJECT_URL'] = "https://{$this->serverName}/crm/company/details/{$sellerCardId}/";
+            return $handler->handleSuccess("Данные успешно сохранились", $this->objectData);
+        }
+        catch (\Throwable $e) {
+            return $handler->handleError(500, $e->getMessage(), 'exception', $this->objectData);
         }
     }
 
@@ -641,134 +342,80 @@ class Sellers extends \Bitrix\Main\Engine\Controller
      *           type="object",
      *           @OA\Property(property="sellerInn", type="string", example="667100354160"),
      *           @OA\Property(property="crmId", type="string", example="300"),
-     *           @OA\Property(property="guarantorData", ref="#/components/schemas/GuarantorData")
+     *           @OA\Property(property="guarantorData", ref="#/components/schemas/PersonData")
      *        )
      *     )
      *  )
      */
     /**
      * @param array $params
-     * @return array|EventResult|mixed
-     * @throws ArgumentException
-     * @throws LoaderException
-     * @throws ObjectPropertyException
-     * @throws SqlQueryException
-     * @throws SystemException
+     * @return EventResult| Json
      */
     public function setGuarantorAction(array $params = []): mixed
     {
-        //region Подготовка к обработке запроса
+        $body = Application::getInstance()->getContext()->getRequest()->getInput();
+        $ctx        = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, $body, __FUNCTION__);
+        $this->objectData['ITEM_TITLE'] = "SE: Результат добавления Поручителя из ЛК: ";
 
-        \Bitrix\Main\Loader ::IncludeModule('crm');
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application ::getInstance() -> getContext();
-        $server = $context -> getServer();
-
-        $requestHeaders = $context->getRequest()->getHeaders()->toArray();
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = $server['REQUEST_METHOD'];
-        $queryParamsArray = $context->getRequest()->toArray();$url = $server -> get('SCRIPT_URI') .'?'. $server -> get('QUERY_STRING');
-
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "SE: Результат добавления Поручителя из ЛК: ";
-        $objectData = $this->CURLObjectData;
-        $headersValues = [];
-        foreach ($requestHeaders as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
+        $data = json_decode($body, true);
+        if (!is_array($data)) {
+            return $handler->handleError(400, 'Некорректный JSON', 'invalid_json', $this->objectData);
         }
 
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context
-        );
-
-        $requestArray = json_decode($requestJson,true);
-        //endregion
-
-        //region Обработка ошибок
-        if($requestArray == NULL) {
-            $errorMessage = 'Тело запроса не удалось декодировать как JSON.';
-            $objectData['ITEM_TITLE'] = "Результат добавления Поручителя из ЛК: {$errorMessage}";
-
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_json", $objectData);
+        $crmId = $data['crmId'] ?? null;
+        if (!$crmId) {
+            return $handler->handleError(400, 'Пустой crmId', 'invalid_request', $this->objectData);
         }
-        if(empty($requestArray['crmId'])) {
-            $errorMessage = 'Этот запрос не поддерживается. Пустой `crmId`';
-            $objectData['ITEM_TITLE'] = "Результат добавления Поручителя из ЛК: {$errorMessage}";
 
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
+        if (empty($data['guarantorData']['serviceEDO'])) {
+            return $handler->handleError(400, 'Не заполнено поле serviceEDO в guarantorData', 'invalid_request', $this->objectData);
         }
-        if(is_null($requestArray['guarantorData']['serviceEDO'])) {
-            $errorMessage = 'Не заполнено поле `serviceEDO` в guarantorData.';
-            $objectData['ITEM_TITLE'] = "Результат добавления Поручителя из ЛК: {$errorMessage}";
 
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        //endregion
-        else
-        {
 
-            $sellerInn = $requestArray['sellerInn'];
-            $objectData['ITEM_TITLE'] = "Результат добавления Поручителя из ЛК по ИНН Селлера: {$sellerInn}";
+        try {
+            $guarantorDto = SellerDtoFactory::createPerson($data['guarantorData']);
+            $errors = Validator::collectErrors($guarantorDto);
 
-            //region Поиск карточки Селлера
-            $crmId = intval($requestArray['crmId']);
-            $sellerCardId = (new SellerService)->findCard($sellerInn, $crmId); //поиск клиента по sellerInn или crmId
-            //endregion
-
-            $guarantorDataArray = $requestArray['guarantorData'];
-            $guarantorCardId = (new SellerService)->findCard($guarantorDataArray['inn'], false); //поиск клиента по sellerInn или crmId
-
-            //region Создаем Поручителя
-            if (!$guarantorCardId)
-            {
-                Logs\File ::AddMessage("Создаем карточку и реквизиты Поручителя", "create",
-                    LOG_API_SYNC_SELLER_CONTROLLER);
-                $_guarantorCardId = (new SellerService)->createOrUpdateCard(
-                    $sellerCardId,
-                    $guarantorDataArray,
-                    true,
-                    null,
-                    "guarantor",
-                    $crmId
-                );
-                (new SellerService)->createOrUpdateCard(
-                    $sellerCardId,
-                    $guarantorDataArray,
-                    true,
-                    $_guarantorCardId,
-                    "guarantor",
-                    $crmId
-                );
-                (new SellerService)->createOrUpdateRQ($_guarantorCardId, $guarantorDataArray, true);
+            if (!empty(array_filter($errors))) {
+                return $handler->handleError(422, json_encode($errors, JSON_UNESCAPED_UNICODE), 'validation_error', $this->objectData);
             }
-            //endregion
 
-            //region Обновляем Поручителя
-            else
-            {
-                Logs\File ::AddMessage("Обновляем карточку и реквизиты Поручителя", "update",
-                    LOG_API_SYNC_SELLER_CONTROLLER);
-                (new SellerService)->createOrUpdateCard($sellerCardId, $guarantorDataArray, false, $guarantorCardId, "guarantor", $crmId);
-                (new SellerService)->createOrUpdateRQ($guarantorCardId, $guarantorDataArray);
+            $sellerInn = $data['sellerInn'] ?? '';
+            $this->objectData['ITEM_TITLE'] = "Результат добавления Поручителя из ЛК по ИНН Селлера: {$sellerInn}";
+
+
+            $sellerCardId = $this->sellerService->findCard($sellerInn, $crmId);
+            $guarantorCardId = $this->sellerService->findCard($guarantorDto->inn);
+
+            if (!$guarantorCardId) {
+                $guarantorCardId = $this->sellerService->createCard($sellerCardId, (array)$guarantorDto, 'guarantor', $crmId);
             }
-            //endregion
-        }
-        $message = ["Изменения приняты"];
 
-        return $HandlerResponse->handleSuccess($message, $objectData);
+            $this->sellerService->updateCard($sellerCardId, (array)$guarantorDto, $guarantorCardId, 'guarantor', $crmId);
+
+            $rqId = $this->sellerService->findCompanyRQ($guarantorCardId, $guarantorDto->inn)
+                ?? $this->sellerService->createRequisite($guarantorCardId, (array)$guarantorDto);
+            $this->sellerService->updateRequisite($rqId, (array)$guarantorDto, $guarantorCardId);
+
+
+            \KPLab\Helpers\Address::processAddressRequisites($rqId, \CCrmOwnerType::Company, $guarantorCardId, (array)$guarantorDto);
+
+            \CRest::call('crm.timeline.comment.add', [
+                'fields' => [
+                    'ENTITY_ID' => $crmId,
+                    'ENTITY_TYPE' => 'DYNAMIC_128',
+                    'COMMENT' => '[b]Поручитель успешно синхронизирован через Seller-Engine[/b]'
+                ]
+            ]);
+
+            return $handler->handleSuccess(['message' => 'Изменения приняты'], $this->objectData);
+        }
+        catch (\Throwable $e) {
+            return $handler->handleError(500, $e->getMessage(), 'exception', $this->objectData);
+        }
     }
-
-
 
     /**
      * Добавление счетов Селлера по ИНН
@@ -785,10 +432,9 @@ class Sellers extends \Bitrix\Main\Engine\Controller
      *         @OA\RequestBody(ref="#/components/requestBodies/setBankAccount")
      *   )
      * @param array $params
-     * @return array|EventResult|mixed
+     * @return EventResult|Json
      * @throws LoaderException
      */
-
     /**
      *  @OA\RequestBody(request="setBankAccount",
      *     description="Новый счет Селлера",
@@ -804,123 +450,58 @@ class Sellers extends \Bitrix\Main\Engine\Controller
      */
     public function setBankAccountAction(array $params = []): mixed
     {
-        //region Подготовка к обработке запроса
-        \Bitrix\Main\Loader ::IncludeModule('crm');
+        $body = Application::getInstance()->getContext()->getRequest()->getInput();
+        $ctx        = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, $body, __FUNCTION__);
 
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application ::getInstance() -> getContext();
-        $server = $context -> getServer();
-
-        $requestHeaders = $context->getRequest()->getHeaders()->toArray();
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = $server['REQUEST_METHOD'];
-        $queryParamsArray = $context->getRequest()->toArray();
-
-        $url = $server -> get('SCRIPT_URI') .'?'. $server -> get('QUERY_STRING');
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "SE: Добавление счетов по ИНН из ЛК: ";
-        $objectData = $this->CURLObjectData;
-
-        $headersValues = [];
-        foreach ($requestHeaders as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
+        $data = json_decode($body, true);
+        if (!is_array($data)) {
+            return $handler->handleError(400, 'Некорректный JSON', 'invalid_json', $this->objectData);
         }
 
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context
-        );
-
-        $requestArray = json_decode($requestJson,true);
-        //endregion
-
-        //region Обработка ошибок
-        if($requestArray == NULL) {
-            $errorMessage = "400 Bad Request | Тело запроса не удалось декодировать как JSON.";
-
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_json", $objectData);
+        if (empty($data['bankAccounts']) || !is_array($data['bankAccounts'])) {
+            return $handler->handleError(400, 'Поле bankAccounts пустое или не является массивом', 'invalid_request', $this->objectData);
         }
-
-        if(empty($requestArray['bankAccounts'])) {
-            $errorMessage = "400 Bad Request | Этот запрос не поддерживается. Пустой `bankAccounts`";
-
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_json", $objectData);
-        }
-        //endregion
-        else
+        try
         {
-            $sellerInn = null;
-            $title = null;
-
-            $token = str_replace('BitrixAuth ', '', $server -> get('REMOTE_USER'));
-
-            Logs\File ::AddMessage($requestArray, "requestArray", LOG_API_SYNC_SELLER_CONTROLLER);
-
-            foreach ($requestArray['bankAccounts'] as $bankAccount) {
-                $sellerInn = $bankAccount['sellerInn'];
-                $crmId = $bankAccount['crmId'];
-                $title = $bankAccount['title'];
-                $nameBank = $bankAccount['nameBank'];
-                $bankIdCode = $bankAccount['bankIdCode'];
-                $checkAccount = $bankAccount['checkAccount'];
-                $adjAccount = $bankAccount['adjAccount'];
-
-                $objectData['ITEM_TITLE'] = "Получение `{$title}` по ИНН: {$sellerInn}";
-
-                if($crmId !== NULL) {
-                    $sellerCardId = (new SellerService)->findCard($sellerInn, $crmId); //поиск клиента
-                } else {
-                    $sellerCardId = (new SellerService)->findCard($sellerInn);
+            $bankAccounts = \KPLab\API\V2\Factory\BankAccountFactory::many($data['bankAccounts']);
+            $errors = [];
+            foreach ($bankAccounts as $index => $dto) {
+                $dtoErrors = Validator::collectErrors($dto);
+                if (!empty($dtoErrors)) {
+                    $errors[$index] = $dtoErrors;
                 }
-
-                Logs\File ::AddMessage($sellerCardId, "sellerCardId", LOG_API_SYNC_SELLER_CONTROLLER);
-
-                if(!is_int($sellerCardId)) {
-                    $errorMessage = 'Не существует Селлера с таким ИНН или CRMID';
-
-                    return $HandlerResponse->handleError(400, $errorMessage, "invalid_json", $objectData);
-                }
-
-                $requisite = \CRest::call(
-                    "crm.requisite.list",
-                    array(
-                        "filter" => ["ENTITY_ID" => $sellerCardId, "ENTITY_TYPE_ID" => \CCrmOwnerType::Company],
-                        "select" => ["ID","PRESET_ID", "ENTITY_ID", "ENTITY_TYPE_ID"])
-                )['result'];
-
-                Logs\File ::AddMessage($requisite, "requisite", LOG_API_SYNC_SELLER_CONTROLLER);
-
-
-                $rqId = $requisite[0]['ID'];
-
-                $parameters = [
-                    "fields" => [
-                        "ENTITY_TYPE_ID" => \CCrmOwnerType::Requisite,
-                        "ENTITY_ID" => $rqId,
-                        "NAME" => $title,
-                        "RQ_BANK_NAME" => $nameBank,
-                        "RQ_BIK" => $bankIdCode,
-                        "RQ_BIC" => $bankIdCode,
-                        "RQ_ACC_NUM" => $checkAccount,
-                        "RQ_COR_ACC_NUM" => $adjAccount,
-                        "RQ_ACC_CURRENCY" => "RUB",
-                        "COMMENTS" => "МКК"
-                    ]
-                ];
-                \CRest ::call('crm.requisite.bankdetail.add', $parameters);
             }
-            $message = ["{$title} для {$sellerInn} успешно добавлен!"];
 
-            return $HandlerResponse->handleSuccess($message, $objectData);
+            if (!empty($errors)) {
+                return $handler->handleError(422, json_encode($errors, JSON_UNESCAPED_UNICODE), 'validation_error', $this->objectData);
+            }
+
+            foreach ($bankAccounts as $dto) {
+                $this->objectData['ITEM_TITLE'] = "Добавление счёта {$dto->title} по ИНН: {$dto->sellerInn}";
+
+                $sellerCardId = $dto->crmId
+                    ? $this->sellerService->findCard($dto->sellerInn, $dto->crmId)
+                    : $this->sellerService->findCard($dto->sellerInn);
+
+                if (!$sellerCardId || !is_int($sellerCardId)) {
+                    return $handler->handleError(400, "Селлер с ИНН {$dto->sellerInn} не найден", 'not_found', $this->objectData);
+                }
+
+                $rqId = $this->sellerService->getFirstRequisiteId($sellerCardId);
+                if (!$rqId) {
+                    return $handler->handleError(400, "Не найден реквизит для компании с ID {$sellerCardId}", 'no_requisite', $this->objectData);
+                }
+
+                $this->sellerService->addBankAccount($rqId, $dto);
+            }
+
+            return $handler->handleSuccess(['message' => "Счета успешно добавлены"], $this->objectData);
+
+        }
+        catch (\Throwable $e) {
+            return $handler->handleError(500, $e->getMessage(), 'exception', $this->objectData);
         }
     }
 
@@ -996,218 +577,46 @@ class Sellers extends \Bitrix\Main\Engine\Controller
      */
     /**
      * @param array $params
-     * @return array|EventResult|mixed
-     * @throws ArgumentException
-     * @throws LoaderException
+     * @return EventResult|Json
      */
     public function setLoanAction(array $params = []): mixed
     {
-        //region Подготовка к обработке запроса
-        \Bitrix\Main\Loader::IncludeModule('crm');
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application::getInstance()->getContext();
-        $server = $context->getServer();
 
-        $requestHeaders = $context->getRequest()->getHeaders()->toArray();
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = $server['REQUEST_METHOD'];
-        $queryParamsArray = $context->getRequest()->toArray();
+        $body    = Application::getInstance()->getContext()->getRequest()->getInput();
+        $ctx        = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, $body, __FUNCTION__);
 
-        $url = $server->get('SCRIPT_URI') . '?' . $server->get('QUERY_STRING');
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "SE:Новый транш для ИНН: ";
-        $objectData = $this->CURLObjectData;
-
-        $headersValues = [];
-        foreach ($requestHeaders as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
+        $data = json_decode($body, true);
+        if (!is_array($data)) {
+            return $handler->handleError(400, 'Некорректный JSON', 'invalid_json', $this->objectData);
         }
 
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context
-        );
-
-        $requestArray = json_decode($requestJson, true);
-        //endregion
-
-        //region Обработка ошибок
-        if ($requestArray == NULL) {
-            $errorMessage = "400 Bad Request | Тело запроса не удалось декодировать как JSON.";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_json", $objectData);
+        if (empty($data['sellerInn'])) {
+            return $handler->handleError(400, 'Пустой sellerInn', 'invalid_request', $this->objectData);
         }
 
-        if (empty($requestArray['sellerInn'])) {
-            $errorMessage = "400 Bad Request | Этот запрос не поддерживается. Пустой `sellerInn`";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        //endregion
+        try {
 
-        //region Процесс обработки
-        $entityTypeIdLK = 128;
-        $factoryLK = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdLK);
+            $sellerInn = $data['sellerInn'];
+            $crmId     = (int)($data['crmId'] ?? 0);
+            $loanData  = $data['loanData'] ?? [];
 
-        $token = str_replace('BitrixAuth ', '', $server->get('REMOTE_USER'));
+            $this->objectData['ITEM_TITLE'] = "Новый/повторный транш для ИНН: {$sellerInn}";
+            $result = $this->sellerService->processLoan($sellerInn, $crmId, $loanData);
 
-        $sellerInn = $requestArray['sellerInn'];
-        $crmId = intval($requestArray['crmId']);
-        $loanData = $requestArray['loanData'];
-        $loanAmount = floatval($loanData['amount']);
-        $loanTerm = intval($loanData['term']);
-
-
-        //region $loanTermId
-        $rsEnumTerm = \CUserFieldEnum::GetList(array(), array(
-            "XML_ID" => "{$loanTerm}_MONTHS",
-        ));
-        if ($arEnumTerm = $rsEnumTerm->Fetch()) {
-            $loanTermId = (int)$arEnumTerm['ID'];
-        }
-        //endregion $loanTermId
-
-        $purposeLoan = $loanData['purposeLoan'];
-
-        $typeContract = (bool)$loanData['typeContract'];
-        $isfirstLoan = (bool)$loanData['isFirstTranche'];
-
-        if ($crmId > 0) {
-            $sellerCardId = (new SellerService)->findCard($sellerInn, $crmId);
-        } else {
-            $sellerCardId = (new SellerService)->findCard($sellerInn);
-        }
-
-        if ($isfirstLoan) {
-            $parametersLK = [
-                'filter' => [
-                    '=COMPANY_ID' => $sellerCardId,
-                    'STAGE_ID' => 'DT128_226:UC_6GB0Q7', //Ожидание решения клиента
-                    'CATEGORY_ID' => 226
-                ],
-                'select' => ['ID']
-            ];
-            $itemsLK = $factoryLK->getItems($parametersLK);
-            if ($itemsLK) {
-                foreach ($itemsLK as $itemLK) {
-                    Logs\File::AddMessage($itemLK->getId(), "LKgetId", LOG_API_SYNC_SELLER_CONTROLLER);
-
-                    $itemLK->set('UF_CRM_CRMID', $crmId);
-                    $itemLK->set('UF_CRM_INN', $sellerInn);
-                    $itemLK->set('UF_CRM_LOAN_AMOUNT', $loanAmount);
-                    $itemLK->set('UF_CRM_LOAN_TERM', $loanTermId);
-                    $itemLK->set('UF_CRM_PURPOSE_OF_THE_LOAN', $purposeLoan);
-                    if ($typeContract) {
-                        $rsEnum = \CUserFieldEnum::GetList(array(), array(
-                            "XML_ID" => "WITH_DELAY",
-                        ));
-                        if ($arEnum = $rsEnum->Fetch()) {
-                            $typeContractTrueId = $arEnum['ID'];
-                        }
-                        $itemLK->set('UF_CRM_LKSC_TYPE_OF_CONTRACT', $typeContractTrueId);
-                    } else {
-                        $rsEnum = \CUserFieldEnum::GetList(array(), array(
-                            "XML_ID" => "NO_DELAY",
-                        ));
-                        if ($arEnum = $rsEnum->Fetch()) {
-                            $typeContractFalseId = $arEnum['ID'];
-                        }
-                        $itemLK->set('UF_CRM_LKSC_TYPE_OF_CONTRACT', $typeContractFalseId);
-                    }
-                    //$itemLK->setStageId('DT128_208:UC_VC1XA7');
-                }
-                $itemLK->save();
-                $itemLK->setStageId('DT128_226:CLIENT');
-                $itemLK->setCategoryId(226);
-
-                $operationLK = $factoryLK->getUpdateOperation($itemLK);
-                $operationLK->disableAllChecks();
-                $operationLKResult = $operationLK->launch();
-
-                // Проверка на ошибки
-                if ($operationLKResult->isSuccess()) {
-                    $this->CURLObjectData['ITEM_TITLE'] = "SE:Новый транш для ИНН: {$sellerInn}";
-                    $message = "Новый транш для ИНН: {$sellerInn} успешно создан";
-                    $objectData = $this->CURLObjectData;
-
-                    return $HandlerResponse->handleSuccess($message, $objectData);
-                } else {
-                    Context::getCurrent()->getResponse()->setStatus(500);
-                    $errorMessage = "Создание транша не удалось";
-                    return $HandlerResponse->handleError(500, $errorMessage, "invalid_request", $objectData);
-                }
-            } else {
-                Context::getCurrent()->getResponse()->setStatus(400);
-                $errorMessage = "Создание первого транша невозможно, уже существует!";
-                return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-            }
-        }
-        else {
-            $itemPrevLK = $factoryLK->getItem($crmId);
-            $titleItemPrevLk = $itemPrevLK->get('TITLE');
-            $parentId134ItemPrevLK = $itemPrevLK->get('PARENT_ID_134');
-            $createdByItemPrevLK = $itemPrevLK->get('CREATED_BY');
-
-            $itemLK = $factoryLK->createItem();
-            $itemLK->set('TITLE', "Повторный транш " . $titleItemPrevLk);
-            $itemLK->set('COMPANY_ID', $sellerCardId);
-            $itemLK->set('UF_CRM_CRMID', $crmId);
-            $itemLK->set('PARENT_ID_134', $parentId134ItemPrevLK);
-            $itemLK->set('UF_CRM_INN', $sellerInn);
-            $itemLK->set('UF_CRM_LOAN_AMOUNT', $loanAmount);
-            $itemLK->set('UF_CRM_LOAN_TERM', $loanTermId);
-            $itemLK->set('UF_CRM_PURPOSE_OF_THE_LOAN', $purposeLoan);
-            $itemLK->set('UF_CRM_REPEAT_ZAYAVKA', 1);
-            if ($typeContract) {
-                $rsEnum = \CUserFieldEnum::GetList(array(), array(
-                    "XML_ID" => "WITH_DELAY",
-                ));
-                if ($arEnum = $rsEnum->Fetch()) {
-                    $typeContractTrueId = $arEnum['ID'];
-                }
-                Logs\File::AddMessage($typeContractTrueId, "typeContractTrueId", LOG_API_SYNC_SELLER_CONTROLLER);
-                $itemLK->set('UF_CRM_LKSC_TYPE_OF_CONTRACT', $typeContractTrueId);
-            } else {
-                $rsEnum = \CUserFieldEnum::GetList(array(), array(
-                    "XML_ID" => "NO_DELAY",
-                ));
-                if ($arEnum = $rsEnum->Fetch()) {
-                    $typeContractFalseId = $arEnum['ID'];
-                }
-                $itemLK->set('UF_CRM_LKSC_TYPE_OF_CONTRACT', $typeContractFalseId);
+            if ($result['status'] === 'first_created') {
+                return $handler->handleSuccess("Новый транш для ИНН: {$sellerInn} успешно создан", $this->objectData);
             }
 
-            $context = new \Bitrix\Crm\Service\Context;
-            $context->setUserId($createdByItemPrevLK);
-
-            $itemLK->save();
-            $itemLK->setStageId('DT128_226:NEW');
-            $itemLK->setCategoryId(226);
-
-            $operationLK = $factoryLK->getAddOperation($itemLK, $context);
-            $operationLK->disableAllChecks();
-            $operationLKResult = $operationLK->launch();
-
-            // Проверка на ошибки
-            if ($operationLKResult->isSuccess()) {
-                $this->CURLObjectData['ITEM_TITLE'] = "SE: Повторный транш для ИНН: {$sellerInn}";
-                $objectData = $this->CURLObjectData;
-                $message = "Повторный транш для ИНН: {$sellerInn} успешно создан";
-
-                return $HandlerResponse->handleSuccess($message, $objectData);
-            } else {
-                $errorMessage = "Создание транша не удалось";
-                return $HandlerResponse->handleError(500, $errorMessage, "invalid_request", $objectData);
+            if ($result['status'] === 'repeat_created') {
+                return $handler->handleSuccess("Повторный транш для ИНН: {$sellerInn} успешно создан", $this->objectData);
             }
+            return $handler->handleError(400, $result['message'] ?? 'Ошибка обработки транша', 'invalid_request', $this->objectData);
         }
-        //endregion
+        catch (\Throwable $e) {
+            return $handler->handleError(500, $e->getMessage(), 'exception', $this->objectData);
+        }
     }
 
     /**
@@ -1359,120 +768,93 @@ class Sellers extends \Bitrix\Main\Engine\Controller
      */
     /**
      * @param array $params
-     * @return array|EventResult|mixed
+     * @return EventResult|Json
      * @throws LoaderException
-     * @throws SqlQueryException
      */
     public function setSmavInfoAction(array $params = []): mixed
     {
-        //region Подготовка к обработке запроса
-        \Bitrix\Main\Loader ::IncludeModule('crm');
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application ::getInstance() -> getContext();
-        $server = $context -> getServer();
 
-        $requestHeaders = $context->getRequest()->getHeaders()->toArray();
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = $server['REQUEST_METHOD'];
-        $queryParamsArray = $context->getRequest()->toArray();
+        \Bitrix\Main\Loader::IncludeModule('crm');
 
-        $url = $server -> get('SCRIPT_URI') .'?'. $server -> get('QUERY_STRING');
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "SE: Получение данных от СМЭВ: ";
-        $objectData = $this->CURLObjectData;
+        // 1. Читаем тело запроса
+        $body = Application::getInstance()->getContext()->getRequest()->getInput();
+        $ctx        = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, $body, __FUNCTION__);
 
-        $headersValues = [];
-        foreach ($requestHeaders as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
-        }
-        $requestArray = json_decode($requestJson,true);
+        $this->objectData['ITEM_TITLE'] = "Получение данных от СМЭВ для задачи:";
 
-        $taskId = $requestArray['Id'];
-
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context,
-            false,
-            false,
-            $taskId
-        );
-        //endregion
-
-        //region Обработка ошибок
-        if($requestArray == NULL) {
-            $errorMessage = "400 Bad Request | Тело запроса не удалось декодировать как JSON.";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        elseif(empty($queryParamsArray['crmEntityId']) || empty($queryParamsArray['rqId'])) {
-            $errorMessage = "400 Bad Request | Этот запрос не поддерживается. Пустой `crmEntityId` or `rqId`";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        elseif(!isset($requestArray['Response']["services"]) || !is_array($requestArray['Response']["services"])) {
-            $errorMessage = "400 Bad Request | Отсутствует массив 'services' в запросе.";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        //endregion
-
-        //region Процесс обработки
-        if (str_contains($queryParamsArray['crmEntityId'], 'company_')) {
-            $entityId = str_replace('company_', '', $queryParamsArray['crmEntityId']);
-            (new SellerService)->getCompanyInfoById($entityId);
-            $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Company);
-        }
-        elseif (str_contains($queryParamsArray['crmEntityId'], 'contact_')) {
-            $entityId = str_replace('contact_', '', $queryParamsArray['crmEntityId']);
-            (new SellerService)->getContactInfoById($entityId);
-            $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Contact);
-        }
-        else {
-            $errorMessage = "400 Bad Request | Некорректный параметр 'crmEntityId' в запросе.";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
+        // 3. Декодируем JSON
+        $data = json_decode($body, true);
+        if (!is_array($data)) {
+            return $handler->handleError(400, 'Некорректный JSON', 'invalid_json', $this->objectData);
         }
 
-        $services = $requestArray['Response']["services"];
-        $item = $factory->getItem($entityId);
-
-        if (!$item) {
-            $errorMessage = "400 Bad Request | Некорректный параметр 'crmEntityId' в запросе.";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
+        // 4. Валидация query-параметров
+        $query = $this->queryParamsArray;
+        if (empty($query['crmEntityId']) || empty($query['rqId'])) {
+            return $handler->handleError(400, "Отсутствует crmEntityId или rqId", "missing_params", $this->objectData);
         }
 
-
-        Logs\File ::AddMessage($item->getId(), "->getId()", LOG_API_SYNC_SELLER_CONTROLLER);
-
-        // Сохраняем данные и проверяем результат
-        $saveResult = (new SellerService)->saveAllData($factory, $item, $services);
-        (new SellerService)->setCURLObjectData($item->getId());
-        $this->CURLObjectData['ITEM_TITLE'] = "SE: Получение данных от СМЭВ: ". $this->itemDatatitle;
-
-        if ($saveResult['status'] === 'error') {
-            // Если произошла ошибка, добавляем комментарий с сообщениями об ошибках
-            $errorMessage = "Ошибка при сохранении данных: " . implode(', ', $saveResult['messages']);
-            \CRest::call('crm.timeline.comment.add', [
-                'fields' => [
-                    "ENTITY_ID" => $item->getId(),
-                    "ENTITY_TYPE" => "COMPANY",
-                    "COMMENT" => "[b]{$errorMessage}[/b]"
-                ]
-            ]);
-            $objectData = $this->CURLObjectData;
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
+        // 5. Валидация структуры services
+        if (!isset($data['Response']['services']) || !is_array($data['Response']['services'])) {
+            return $handler->handleError(400, "Отсутствует массив 'services'", "invalid_structure", $this->objectData);
         }
-        // Если все прошло успешно
-        $message = "Данные успешно сохранились";
-        $objectData = $this->CURLObjectData;
 
-        return $HandlerResponse->handleSuccess($message, $objectData);
-        //endregion
+        try {
+            $crmEntityId = $query['crmEntityId'];
+            $rqId = (int)$query['rqId'];
+            $taskId = $data['Id'] ?? null;
+            $services = $data['Response']['services'];
+
+            $this->objectData['ITEM_TITLE'] = "Получение данных от СМЭВ для задачи: $taskId";
+            $this->objectData['CRM_ENTITY_ID'] = $crmEntityId;
+
+            // 6. Получаем фабрику и элемент
+            if (str_starts_with($crmEntityId, 'company_')) {
+                $entityTypeId = \CCrmOwnerType::Company;
+                $entityId = (int)str_replace('company_', '', $crmEntityId);
+            } elseif (str_starts_with($crmEntityId, 'contact_')) {
+                $entityTypeId = \CCrmOwnerType::Contact;
+                $entityId = (int)str_replace('contact_', '', $crmEntityId);
+            } else {
+                return $handler->handleError(400, "Некорректный формат crmEntityId", "invalid_crm_entity", $this->objectData);
+            }
+
+            $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeId);
+            $item = $factory->getItem($entityId);
+
+            if (!$item) {
+                return $handler->handleError(404, "Сущность с ID $entityId не найдена", "entity_not_found", $this->objectData);
+            }
+
+            // 7. Логирование ID
+            Logs\File::AddMessage($item->getId(), "->getId()", LOG_API_SYNC_SELLER_CONTROLLER);
+
+            // 8. Сохраняем данные от СМЭВ
+            $result = $this->sellerService->saveAllData($factory, $item, $services);
+
+            // 9. Обновляем логирование
+            $this->objectData['ITEM_TITLE'] = "Получение данных от СМЭВ: {$item->getId()}";
+
+            if ($result['status'] === 'error') {
+                $errorMessage = "Ошибка при сохранении: " . implode(', ', $result['messages']);
+                \CRest::call('crm.timeline.comment.add', [
+                    'fields' => [
+                        "ENTITY_ID" => $item->getId(),
+                        "ENTITY_TYPE" => $entityTypeId === \CCrmOwnerType::Company ? "COMPANY" : "CONTACT",
+                        "COMMENT" => "[b]{$errorMessage}[/b]"
+                    ]
+                ]);
+                return $handler->handleError(400, $errorMessage, "save_error", $this->objectData);
+            }
+
+            // 10. Успешный ответ
+            return $handler->handleSuccess("Данные успешно сохранены", $this->objectData);
+
+        } catch (\Throwable $e) {
+            return $handler->handleError(500, $e->getMessage(), 'exception', $this->objectData);
+        }
     }
     //endregion POST
 
@@ -1516,103 +898,28 @@ class Sellers extends \Bitrix\Main\Engine\Controller
      *         )
      *     )
      * )
+     * @throws ArgumentException
+     * @throws LoaderException
      */
     public function getCloseDateConsentAction(array $params = []): mixed
     {
-        //region Подготовка к обработке запроса
-        \Bitrix\Main\Loader ::IncludeModule('crm');
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application ::getInstance() -> getContext();
-        $server = $context -> getServer();
+        \Bitrix\Main\Loader::includeModule('crm');
+        $ctx        = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, '', __FUNCTION__);
+        $arRequest = $this->getRequestData();
 
-        $requestHeaders = $context->getRequest()->getHeaders()->toArray();
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = $server['REQUEST_METHOD'];
-        $queryParamsArray = $context->getRequest()->toArray();
-
-        $url = $server -> get('SCRIPT_URI') .'?'. $server -> get('QUERY_STRING');
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "SE:Получение даты окончания согласия по ИНН: ";
-        $objectData = $this->CURLObjectData;
-
-        foreach ($requestHeaders as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
-        }
-
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context
-        );
-        $arRequest = [];
-        if($requestMethod === 'GET') {
-            \KPLab\Logs\File::AddMessage($queryParamsArray,"queryParamsArray", LOG_API_SYNC_SELLER_CONTROLLER);
-            $arRequest = $queryParamsArray;
-        } else {
-            \KPLab\Logs\File::AddMessage($requestJson,"requestJson", LOG_API_SYNC_SELLER_CONTROLLER);
-            $arRequest = json_decode($requestJson,true);
-        }
-        //endregion
-
-        //region Обработка ошибок
-        if($arRequest == NULL) {
-            $errorMessage = "400 Bad Request | Тело запроса не удалось декодировать как JSON.";
-
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
+        if (empty($arRequest['sellerInn'])) {
+            return $handler->handleError(400, "Пустой `sellerInn`", "invalid_request", $this->objectData);
         }
 
         $sellerInn = $arRequest['sellerInn'];
-        $crmId = (int) $arRequest['crmId'];
+        $crmId = (int) ($arRequest['crmId'] ?? 0);
 
-        if(empty($sellerInn)) {
-            $errorMessage = "400 Bad Request | Этот запрос не поддерживается. Пустой `sellerInn`";
+        $this->objectData['ITEM_TITLE'] = "Получение даты окончания согласия по ИНН: {$sellerInn}";
+        $data = $this->sellerService->getCloseDateConsent($sellerInn, $crmId);
 
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        else {
-            $this->CURLObjectData['ITEM_TITLE'] = "Получение даты окончания согласия по ИНН: {$sellerInn}";
-
-            if ($crmId !== 0) {
-                $sellerCardId = (new SellerService)->findCard($sellerInn, $crmId); //поиск клиента
-            } else {
-                $sellerCardId = (new SellerService)->findCard($sellerInn);
-            }
-
-            if (!is_int($sellerCardId)) {
-                $errorMessage = "Не существует Селлера с таким ИНН или CRMID";
-                return $HandlerResponse->handleError(400, $errorMessage, "invalid_json", $objectData);
-            }
-
-            $entityTypeIdOSK = 134;
-            $factoryOSK = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdOSK);
-            $parametersOSK = [
-                'filter' => [
-                    '=COMPANY_ID' => $sellerCardId
-                ]
-            ];
-            $itemsOSK = $factoryOSK->getItems($parametersOSK);
-            $arResultJson = '';
-            //$arResult['closeDateConsent'] = null;
-            foreach ($itemsOSK as $itemOSK) {
-                $cardOSKData = $itemOSK->getData();
-                $endDateConsent = date('Y-m-d\TH:i:s.msp', strtotime($cardOSKData['UF_CRM_END_DATE_OF_CONSENT']));
-                $arResult['closeDateConsent'] = $endDateConsent;
-                $arResultJson = json_encode($arResult, JSON_UNESCAPED_UNICODE);
-                break;
-            }
-
-            $objectData = $this->CURLObjectData;
-
-            return $HandlerResponse->handleSuccess($arResultJson, $objectData);
-        }
+        return $handler->handleSuccess($data, $this->objectData);
     }
 
     /**
@@ -1670,181 +977,129 @@ class Sellers extends \Bitrix\Main\Engine\Controller
      *     )
      * )
      */
-    public function getBankAccountAction(array $params = []): mixed
+    public function getBankAccountAction(array $params = []): EventResult|Json
     {
-        //region Подготовка к обработке запроса
-        \Bitrix\Main\Loader ::IncludeModule('crm');
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application ::getInstance() -> getContext();
-        $server = $context -> getServer();
+        \Bitrix\Main\Loader::includeModule('crm');
+        $ctx        = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, '', __FUNCTION__);
+        $arRequest = $this->getRequestData();
 
-        $requestHeaders = $context->getRequest()->getHeaders()->toArray();
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = $server['REQUEST_METHOD'];
-        $queryParamsArray = $context->getRequest()->toArray();
 
-        $url = $server -> get('SCRIPT_URI') .'?'. $server -> get('QUERY_STRING');
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "SE:Получение банковских реквизитов по ИНН: ";
-        $objectData = $this->CURLObjectData;
+        $this->objectData['ITEM_TITLE'] = "Получение банковских реквизитов по ИНН:";
 
-        $headersValues = [];
-        foreach ($requestHeaders as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
+        // Валидация запроса
+        if (empty($arRequest)) {
+            return $handler->handleError(400, 'Тело запроса не удалось декодировать как JSON.', 'invalid_request', $this->objectData);
+        }
+        if (empty($arRequest['sellerInn'])) {
+            return $handler->handleError(400, 'Пустой `sellerInn`', 'invalid_request', $this->objectData);
+        }
+        if (empty($arRequest['crmId'])) {
+            return $handler->handleError(400, 'Пустой `crmId`', 'invalid_request', $this->objectData);
         }
 
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context
-        );
 
-        $requestArray = [];
-        if($requestMethod === 'GET') {
-            \KPLab\Logs\File::AddMessage($queryParamsArray,"queryParamsArray", LOG_API_SYNC_SELLER_CONTROLLER);
-            $requestArray = $queryParamsArray;
-        } else {
-            \KPLab\Logs\File::AddMessage($requestJson,"requestJson", LOG_API_SYNC_SELLER_CONTROLLER);
-            $requestArray = json_decode($requestJson,true);
+
+        $sellerInn = $arRequest['sellerInn'];
+        $crmId     = (int) $arRequest['crmId'];
+        $this->objectData['ITEM_TITLE'] = "Получение банковских реквизитов по ИНН: {$sellerInn}";
+
+        Logs\File::AddMessage($arRequest, "requestArray", LOG_API_SYNC_SELLER_CONTROLLER);
+
+
+        // Поиск карточки
+        $sellerCardId = $this->sellerService->findCard($sellerInn);
+        if (!is_int($sellerCardId) && $crmId > 0) {
+            $sellerCardId = $this->sellerService->findCard($sellerInn, $crmId);
         }
-        //endregion
-
-        //region Обработка ошибок
-        if($requestArray == NULL) {
-            $errorMessage = "400 Bad Request | Тело запроса не удалось декодировать как JSON.";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
+        if (!is_int($sellerCardId)) {
+            return $handler->handleError(404, 'Не существует Селлера с таким ИНН или CRMID', 'invalid_request', $this->objectData);
         }
 
-        if(empty($requestArray['sellerInn'])) {
-            $errorMessage = "400 Bad Request | Этот запрос не поддерживается. Пустой `sellerInn`";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
+        // Получение реквизита
+        $requisites = \CRest::call("crm.requisite.list", [
+            "filter" => [
+                "ENTITY_ID" => $sellerCardId,
+                "ENTITY_TYPE_ID" => \CCrmOwnerType::Company
+            ],
+            "select" => ["ID", "PRESET_ID", "ENTITY_ID", "ENTITY_TYPE_ID", "UF_*"]
+        ])['result'];
+
+        Logs\File::AddMessage($requisites, "requisite", LOG_API_SYNC_SELLER_CONTROLLER);
+
+        if (empty($requisites[0]['ID'])) {
+            return $handler->handleError(404, 'Реквизит не найден', 'not_found', $this->objectData);
         }
-        elseif(empty($requestArray['crmId'])) {
-            $errorMessage = "400 Bad Request | Этот запрос не поддерживается. Пустой `crmId`";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        //endregion
-        else
-        {
-            $token = str_replace('BitrixAuth ', '', $server -> get('REMOTE_USER'));
-            Logs\File ::AddMessage($requestArray, "requestArray", LOG_API_SYNC_SELLER_CONTROLLER);
 
-            //foreach ($requestArray['bankAccounts'] as $bankAccount) {
-            $sellerInn = $requestArray['sellerInn'];
-            $crmId = (int) $requestArray['crmId'];
-            //$title = $bankAccount['title'];
-            //$nameBank = $bankAccount['nameBank'];
-            //$bankIdCode = $bankAccount['bankIdCode'];
-            //$checkAccount = $bankAccount['checkAccount'];
-            //$adjAccount = $bankAccount['adjAccount'];
+        $rqId = $requisites[0]['ID'];
 
-            $this->CURLObjectData['ITEM_TITLE'] = "SE:Получение банковских реквизитов по ИНН: {$sellerInn}";
-            $sellerCardId = (new SellerService)->findCard($sellerInn);
+        // Получение банковских реквизитов
+        $bankAccounts = \CRest::call('crm.requisite.bankdetail.list', [
+            "filter" => [
+                "ENTITY_TYPE_ID" => \CCrmOwnerType::Requisite,
+                "ENTITY_ID" => $rqId
+            ]
+        ])['result'];
 
-            Logs\File ::AddMessage($sellerCardId, "sellerCardId", LOG_API_SYNC_SELLER_CONTROLLER);
+        Logs\File::AddMessage($bankAccounts, "bankAccounts", LOG_API_SYNC_SELLER_CONTROLLER);
 
-            if(!is_int($sellerCardId)) {
-                if($crmId > 0) {
-                    $sellerCardId = (new SellerService)->findCard($sellerInn, $crmId); //поиск клиента
-                }
-                if(!is_int($sellerCardId)) {
-                    $errorMessage = 'Не существует Селлера с таким ИНН или CRMID';
-                    return $HandlerResponse->handleError(404, $errorMessage, "invalid_request", $objectData);
-                }
-            }
+        // Определяем тип списания
+        $companyItem = \Bitrix\Crm\Service\Container::getInstance()
+            ->getFactory(\CCrmOwnerType::Company)
+            ->getItem($sellerCardId);
 
-            $requisite = \CRest::call(
-                "crm.requisite.list",
-                array(
-                    "filter" => ["ENTITY_ID" => $sellerCardId, "ENTITY_TYPE_ID" => \CCrmOwnerType::Company],
-                    "select" => ["*","UF_*"]
-                )
-            )['result'];
+        $typeofBankingService = 'nominal';
+        if ($companyItem) {
+            $userFieldId = \Bitrix\Main\UserFieldTable::getList([
+                'select' => ['ID'],
+                'filter' => [
+                    '=ENTITY_ID' => 'CRM_COMPANY',
+                    'FIELD_NAME' => 'UF_CRM_TYPE_OF_WRITE_OFF'
+                ]
+            ])->fetch()['ID'] ?? null;
 
-            Logs\File ::AddMessage($requisite, "requisite", LOG_API_SYNC_SELLER_CONTROLLER);
-
-            $rqId = $requisite[0]['ID'];
-            $parameters = [
-                "filter" => ["ENTITY_TYPE_ID" => \CCrmOwnerType::Requisite,	"ENTITY_ID" => $rqId]
-            ];
-            Logs\File ::AddMessage($parameters, "parameters for bankdetaillist", LOG_API_SYNC_SELLER_CONTROLLER);
-            $arResult = \CRest::call('crm.requisite.bankdetail.list', $parameters)['result'];
-
-            $entityTypeIdCompany = \CCrmOwnerType::Company;
-            $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdCompany);
-
-            $companyItem = $factoryCompany->getItem($sellerCardId);
-
-            $typeofBankingService = 'nominal';
-            if($companyItem) {
-
-                $userFields = \Bitrix\Main\UserFieldTable::getList([
-                    'select' => ['ID'],
-                    'filter' => [
-                        '=ENTITY_ID' => 'CRM_COMPANY',
-                        'FIELD_NAME' => 'UF_CRM_TYPE_OF_WRITE_OFF'
-                    ]
-                ]);
-
-                while ($arUserField = $userFields->fetch()){
-                    $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID']]);
-                    while ($arUserFieldData = $res->fetch()) {
-                        if($arUserFieldData['ID'] == $companyItem->getData()['UF_CRM_TYPE_OF_WRITE_OFF']) {
-                            $typeofBankingService = $arUserFieldData['XML_ID'];
-                        }
+            if ($userFieldId) {
+                $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $userFieldId]);
+                while ($enum = $res->Fetch()) {
+                    if ($enum['ID'] == $companyItem->get('UF_CRM_TYPE_OF_WRITE_OFF')) {
+                        $typeofBankingService = $enum['XML_ID'];
                     }
                 }
             }
-
-            // Инициализация переменных для хранения крайних счетов
-            $lastCurrentAccount = null;
-            $lastNominalAccount = null;
-
-            $newResult['crmId'] = $crmId;
-            $newResult['sellerInn'] = $sellerInn;
-            $newResult['typeofBankingService'] = $typeofBankingService;
-
-            foreach ($arResult as $bankAccount) {
-                $result = [];
-                $result['title'] = $bankAccount['NAME'];
-                $result['nameBank'] = $bankAccount['RQ_BANK_NAME'];
-                $result['bankIdCode'] = $bankAccount['RQ_BIK'];
-                $result['checkAccount'] = $bankAccount['RQ_ACC_NUM'];
-                $result['adjAccount'] = $bankAccount['RQ_COR_ACC_NUM'];
-                $result['accCurrency'] = $bankAccount['RQ_ACC_CURRENCY'];
-                $result['comments'] = $bankAccount['COMMENTS'];
-
-                // Проверяем тип счета и сохраняем крайний "Расчетный" или "Номинальный" счет
-                if ($bankAccount['NAME'] === 'Расчетный счет') {
-                    $lastCurrentAccount = $result;
-                } elseif ($bankAccount['NAME'] === 'Номинальный счет') {
-                    $lastNominalAccount = $result;
-                }
-            }
-
-            // Формируем результирующий массив только с непустыми значениями
-            if (!isset($newResult['bankAccounts'])) {
-                $newResult['bankAccounts'] = [];
-            }
-            if ($lastCurrentAccount !== null) {
-                $newResult['bankAccounts'][] = $lastCurrentAccount;
-            }
-            if ($lastNominalAccount !== null) {
-                $newResult['bankAccounts'][] = $lastNominalAccount;
-            }
-
-            $objectData = $this->CURLObjectData;
-
-            return $HandlerResponse->handleSuccess($newResult, $objectData);
         }
+
+        // Обработка счетов
+        $lastCurrentAccount = null;
+        $lastNominalAccount = null;
+        foreach ($bankAccounts as $bank) {
+            $account = [
+                'title'        => $bank['NAME'],
+                'nameBank'     => $bank['RQ_BANK_NAME'],
+                'bankIdCode'   => $bank['RQ_BIK'],
+                'checkAccount' => $bank['RQ_ACC_NUM'],
+                'adjAccount'   => $bank['RQ_COR_ACC_NUM'],
+                'accCurrency'  => $bank['RQ_ACC_CURRENCY'],
+                'comments'     => $bank['COMMENTS'],
+            ];
+            if ($bank['NAME'] === 'Расчетный счет') {
+                $lastCurrentAccount = $account;
+            } elseif ($bank['NAME'] === 'Номинальный счет') {
+                $lastNominalAccount = $account;
+            }
+        }
+
+        $response = [
+            'crmId'               => $crmId,
+            'sellerInn'           => $sellerInn,
+            'typeofBankingService'=> $typeofBankingService,
+            'bankAccounts'        => array_values(array_filter([
+                $lastCurrentAccount,
+                $lastNominalAccount
+            ])),
+        ];
+
+        return $handler->handleSuccess($response, $this->objectData);
     }
 
     /**
@@ -1895,135 +1150,91 @@ class Sellers extends \Bitrix\Main\Engine\Controller
      */
     public function getLimitsAction(array $params = []): mixed
     {
-        //region Подготовка к обработке запроса
         \Bitrix\Main\Loader ::IncludeModule('crm');
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application ::getInstance() -> getContext();
-        $server = $context -> getServer();
+        $ctx        = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, '', __FUNCTION__);
+        $request  = $this->requestData;
+        $this->objectData['ITEM_TITLE'] = "Получение лимитов по ИНН:";
 
-        $requestHeaders = $context->getRequest()->getHeaders()->toArray();
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = $server['REQUEST_METHOD'];
-        $queryParamsArray = $context->getRequest()->toArray();
-
-        $token = str_replace('BitrixAuth ', '', $server -> get('REMOTE_USER'));
-
-        $url = $server -> get('SCRIPT_URI') .'?'. $server -> get('QUERY_STRING');
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "SE: Получение лимитов по ИНН: ";
-        $objectData = $this->CURLObjectData;
-
-        $headersValues = [];
-        foreach ($requestHeaders as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
+        // Валидация входных данных
+        if (empty($request)) {
+            return $handler->handleError(400, 'Тело запроса не удалось декодировать как JSON.', 'invalid_request', $this->objectData);
         }
 
-        $arRequest = [];
-        if($requestMethod === 'GET') {
-            \KPLab\Logs\File::AddMessage($queryParamsArray,"queryParamsArray", LOG_API_SYNC_SELLER_CONTROLLER);
-            $arRequest = $queryParamsArray;
-            //$requestJson = json_encode($arRequest);
-        } else {
-            \KPLab\Logs\File::AddMessage($requestJson,"requestJson", LOG_API_SYNC_SELLER_CONTROLLER);
-            $arRequest = json_decode($requestJson,true);
+        if (empty($request['sellerInn'])) {
+            return $handler->handleError(400, 'Пустой `sellerInn`', 'invalid_request', $this->objectData);
         }
 
+        $sellerInn = $request['sellerInn'];
+        $crmId     = (int)($request['crmId'] ?? 0);
+        $this->objectData['ITEM_TITLE'] = "Получение лимитов по ИНН: {$sellerInn}";
 
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context
-        );
-        //endregion
+        // Поиск карточки
+        $sellerCardId = $crmId > 0
+            ? $this->sellerService->findCard($sellerInn, $crmId)
+            : $this->sellerService->findCard($sellerInn);
 
-        //region Обработка ошибок
-        if($arRequest == NULL) {
-            $errorMessage = "400 Bad Request | Тело запроса не удалось декодировать как JSON.";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        if(empty($arRequest['sellerInn'])) {
-            $errorMessage = "400 Bad Request | Этот запрос не поддерживается. Пустой `sellerInn`";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        //endregion
-
-        //region Процесс обработки
-        $sellerInn = $arRequest['sellerInn'];
-        $crmId = (int) $arRequest['crmId'];
-
-        $this->CURLObjectData['ITEM_TITLE'] = "Получение лимитов по ИНН: {$sellerInn}";
-
-        if($crmId > 0) {
-            $sellerCardId = (new SellerService)->findCard($sellerInn, $crmId); //поиск клиента
-        } else {
-            $sellerCardId = (new SellerService)->findCard($sellerInn);
+        if (!is_int($sellerCardId)) {
+            return $handler->handleError(400, "Не существует Селлера с таким ИНН или CRMID", 'invalid_request', $this->objectData);
         }
 
-        if(!is_int($sellerCardId)) {
-            $errorMessage = "Не существует Селлера с таким ИНН или CRMID";
-            $objectData = $this->CURLObjectData;
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
+        // Получение смарт-карточек по компании
+        $entityTypeId = 134;
+        $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeId);
+        $items = $factory->getItems(['filter' => ['=COMPANY_ID' => $sellerCardId]]);
+
+        $cardData = [];
+        foreach ($items as $item) {
+            $cardData = $item->getData();
+            break;
         }
 
-        $entityTypeIdOSK = 134;
-        $factoryOSK = \Bitrix\Crm\Service\Container::getInstance() -> getFactory($entityTypeIdOSK);
-        $parametersOSK = [
-            'filter' => [
-                '=COMPANY_ID' => $sellerCardId
-            ]
+        // Обработка значений
+        $availableLimit        = floatval(str_replace("|RUB", "", $cardData['UF_CRM_56_1684744875738'] ?? 0));
+        $allLimit              = floatval(str_replace("|RUB", "", $cardData['UF_CRM_56_1684744846487'] ?? 0));
+        $possibleLimitIncrease = floatval(str_replace("|RUB", "", $cardData['UF_CRM_LIMIT_TO_INCREASE'] ?? 0));
+        $dolg                  = floatval(str_replace("|RUB", "", $cardData['UF_CRM_56_1684744827969'] ?? 0));
+        $interestRate          = floatval($cardData['UF_CRM_INTEREST_RATE'] ?? 0);
+        $commissionRate        = floatval($cardData['UF_CRM_COMMISSION_RATE'] ?? 0);
+        $commentOnStatus       = $cardData['UF_CRM_COMMENT_ON_STATUS'] ?? '';
+
+        // Получаем XML_ID тарифа
+        $tarifId = $cardData['UF_CRM_TARIF_OF_SELLERS'] ?? null;
+        $xmlId = null;
+        if ($tarifId) {
+            $res = \CUserFieldEnum::GetList([], ['ID' => $tarifId]);
+            if ($enum = $res->Fetch()) {
+                $xmlId = $enum['XML_ID'];
+            }
+        }
+
+        if (!$xmlId) {
+            return $handler->handleError(400, "Тариф не выбран", 'invalid_json', $this->objectData);
+        }
+
+        // Определяем тариф по XML_ID
+        $tarifMap = [
+            'Rate_1' => 3.5,
+            'Rate_2' => 3.2,
+            'Rate_3' => 3.0,
+            'Rate_4' => 2.83
         ];
-        $itemsOSK = $factoryOSK -> getItems($parametersOSK);
-        foreach ($itemsOSK as $itemOSK)
-        {
-            $cardOSKData = $itemOSK->getData();
-        }
+        $tarif = $tarifMap[$xmlId] ?? 0;
 
-        $availableLimit = floatval(str_replace("|RUB", "", $cardOSKData['UF_CRM_56_1684744875738']));
-        $allLimit = floatval(str_replace("|RUB", "", $cardOSKData['UF_CRM_56_1684744846487']));
-        $possibleLimitIncrease = floatval(str_replace("|RUB", "", $cardOSKData['UF_CRM_LIMIT_TO_INCREASE']));
-        $dolg = floatval(str_replace("|RUB", "", $cardOSKData['UF_CRM_56_1684744827969']));
-        $interestRate = floatval($cardOSKData['UF_CRM_INTEREST_RATE']);
-        $commissionRate = floatval($cardOSKData['UF_CRM_COMMISSION_RATE']);
-        $commentOnStatus = $cardOSKData['UF_CRM_COMMENT_ON_STATUS'];
+        $response = [
+            'availableLimit'        => $availableLimit,
+            'allLimit'              => $allLimit,
+            'minLoanAmount'         => 150000.00,
+            'possibleLimitIncrease' => $possibleLimitIncrease,
+            'dolg'                  => $dolg,
+            'tarif'                 => $tarif,
+            'interestRate'          => $interestRate,
+            'commissionRate'        => $commissionRate,
+            'commentOnStatus'       => $commentOnStatus,
+        ];
 
-        $tarifId = $cardOSKData['UF_CRM_TARIF_OF_SELLERS'];
-        $res = \CUserFieldEnum::GetList([], ['ID' => $tarifId]);
-        if ($element = $res->Fetch()) {
-            $xmlId = $element['XML_ID'];
-        } else {
-            $errorMessage = "Тариф не выбран";
-            $objectData = $this->CURLObjectData;
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_json", $objectData);
-        }
-        $tarif = 0;
-        if($xmlId == 'Rate_1') $tarif = 3.5;
-        if($xmlId == 'Rate_2') $tarif = 3.2;
-        if($xmlId == 'Rate_3') $tarif = 3;
-        if($xmlId == 'Rate_4') $tarif = 2.83;
-
-        $arLimits['availableLimit'] = $availableLimit;
-        $arLimits['allLimit'] = $allLimit;
-        $arLimits['minLoanAmount'] = 150000.00;
-        $arLimits['possibleLimitIncrease'] = $possibleLimitIncrease;
-        $arLimits['dolg'] = $dolg;
-        $arLimits['tarif'] = $tarif;
-        $arLimits['interestRate'] = $interestRate;
-        $arLimits['commissionRate'] = $commissionRate;
-        $arLimits['commentOnStatus'] = $commentOnStatus;
-
-        $arLimitsJson = json_encode($arLimits, JSON_UNESCAPED_UNICODE);
-        $objectData = $this->CURLObjectData;
-
-        return $HandlerResponse->handleSuccess($arLimitsJson, $objectData);
-        //endregion
+        return $handler->handleSuccess($response, $this->objectData);
     }
 
     /**
@@ -2075,89 +1286,43 @@ class Sellers extends \Bitrix\Main\Engine\Controller
      *         )
      *     )
      * )
+     * @throws LoaderException
      */
-    public function getLoansAction(array $params = []): mixed
+    public function getLoansAction(array $params = []): EventResult|Json
     {
-        //region Подготовка к обработке запроса
         \Bitrix\Main\Loader ::IncludeModule('crm');
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application ::getInstance() -> getContext();
-        $server = $context -> getServer();
+        $ctx = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, '', __FUNCTION__);
+        $request  = $this->requestData;
 
-        $requestHeaders = $context->getRequest()->getHeaders()->toArray();
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = $server['REQUEST_METHOD'];
-        $queryParamsArray = $context->getRequest()->toArray();
+        $this->objectData['ITEM_TITLE'] = "Получение списка займов по ИНН:";
 
-        $token = str_replace('BitrixAuth ', '', $server -> get('REMOTE_USER'));
-
-        $url = $server -> get('SCRIPT_URI') .'?'. $server -> get('QUERY_STRING');
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "Получение списка займов по ИНН: ";
-        $objectData = $this->CURLObjectData;
-
-        $headersValues = [];
-        foreach ($requestHeaders as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
+        // Валидация
+        if (empty($request)) {
+            return $handler->handleError(400, 'Тело запроса не удалось декодировать как JSON.', 'invalid_request', $this->objectData);
         }
 
-        $requestArray = [];
-        if($requestMethod === 'GET') {
-            \KPLab\Logs\File::AddMessage($queryParamsArray,"queryParamsArray", LOG_API_SYNC_SELLER_CONTROLLER);
-            $requestArray = $queryParamsArray;
-            //$requestJson = json_encode($arRequest);
-        } else {
-            \KPLab\Logs\File::AddMessage($requestJson,"requestJson", LOG_API_SYNC_SELLER_CONTROLLER);
-            $requestArray = json_decode($requestJson,true);
+        if (empty($request['sellerInn'])) {
+            return $handler->handleError(400, 'Пустой `sellerInn`', 'invalid_request', $this->objectData);
         }
 
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context
-        );
-        //endregion
+        $sellerInn = $request['sellerInn'];
+        $crmId     = $request['crmId'] ?? null;
 
-        //region Обработка ошибок
-        if($requestArray == NULL) {
-            $errorMessage = "400 Bad Request | Тело запроса не удалось декодировать как JSON.";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        if(empty($requestArray['sellerInn'])) {
-            $errorMessage = "400 Bad Request | Этот запрос не поддерживается. Пустой `sellerInn`";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        //endregion
+        $this->objectData['ITEM_TITLE'] = "Получение списка займов по ИНН: {$sellerInn}";
 
-        //region Процесс обработки
-        $sellerInn = $requestArray['sellerInn'];
-        $crmId = $requestArray['crmId'];
-        $this->CURLObjectData['ITEM_TITLE'] = "Получение списка займов по ИНН и CRMID: {$sellerInn}";
+        $sellerCardId = $crmId
+            ? $this->sellerService->findCard($sellerInn, $crmId)
+            : $this->sellerService->findCard($sellerInn);
 
-        if(!is_null($crmId)) {
-            $sellerCardId = (new SellerService)->findCard($sellerInn, $crmId); //поиск клиента
-        } else {
-            $sellerCardId = (new SellerService)->findCard($sellerInn);
+        if (!is_int($sellerCardId)) {
+            return $handler->handleError(404, 'Не существует Селлера с таким ИНН или CRMID', 'invalid_request', $this->objectData);
         }
 
-        if(!is_int($sellerCardId)) {
-            $errorMessage = 'Не существует Селлера с таким ИНН или CRMID';
-            $objectData = $this->CURLObjectData;
-            return $HandlerResponse->handleError(404, $errorMessage, "invalid_request", $objectData);
-        }
-
-        $entityTypeIdDZ = 188;
-        $factoryDZ = \Bitrix\Crm\Service\Container::getInstance() -> getFactory($entityTypeIdDZ);
-
-        $parametersDZ = [
+        // Сбор займов
+        $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory(188);
+        $params = [
             'filter' => [
                 [
                     "LOGIC" => "OR",
@@ -2174,36 +1339,29 @@ class Sellers extends \Bitrix\Main\Engine\Controller
                 'UF_CRM_15_SS_NEXTPAYDAY', 'UF_CRM_15_SS_NEXTPAYSUMMA',
                 'UF_CRM_15_1679907525', 'UF_CRM_15_SS_NOMINAL',
                 'UF_CRM_15_SS_FILIAL'
-
             ]
         ];
-        $res = [];
 
-        $itemsDZ = $factoryDZ -> getItems($parametersDZ);
+        $result = [];
+        foreach ($factory->getItems($params) as $item) {
+            $data = $item->getData();
 
-        foreach ($itemsDZ as $c => $itemDZ)
-        {
-            $itemDZData = $itemDZ->getData();
-            if(number_format((float) str_replace("|RUB","",$itemDZData['UF_CRM_15_1679907467']), 2,"."," ") == 0.00) {
-                $sumProsrocheno = null;
-            } else {
-                $sumProsrocheno = number_format((float) str_replace("|RUB","",$itemDZData['UF_CRM_15_1679907467']), 2,"."," ");
-            }
+            $sumProsrochenoValue = floatval(str_replace("|RUB", "", $data['UF_CRM_15_1679907467']));
+            $sumProsrocheno = $sumProsrochenoValue === 0.00 ? null : number_format($sumProsrochenoValue, 2, ".", " ");
 
-            $res[$c]['numberDog'] = $itemDZData["UF_CRM_15_SS_NOMER"];
-            $res[$c]['sumDog'] = number_format((float) str_replace("|RUB","",$itemDZData["UF_CRM_15_SS_SUMMADOGOVORA"]), 2,"."," ");
-            $res[$c]['dateDog'] = date('Y-m-d\TH:i:s.msp', strtotime($itemDZData["UF_CRM_15_1679925201"]));
-            $res[$c]['nextPayDay'] = date('Y-m-d\TH:i:s.msp', strtotime($itemDZData["UF_CRM_15_SS_NEXTPAYDAY"]));
-            $res[$c]['nextPaySum'] = number_format((float) str_replace("|RUB","", $itemDZData["UF_CRM_15_SS_NEXTPAYSUMMA"]), 2,"."," ");
-            $res[$c]['prosrochenoDays'] = $itemDZData['UF_CRM_15_1679907525'];
-            $res[$c]['sumProsrocheno'] = $sumProsrocheno;
-            $res[$c]['ostatok'] = number_format((float) str_replace("|RUB","",$itemDZData["UF_CRM_15_SS_NOMINAL"]), 2,"."," ");
+            $result[] = [
+                'numberDog'       => $data["UF_CRM_15_SS_NOMER"],
+                'sumDog'          => number_format((float) str_replace("|RUB", "", $data["UF_CRM_15_SS_SUMMADOGOVORA"]), 2, ".", " "),
+                'dateDog'         => date('Y-m-d\TH:i:s.vp', strtotime($data["UF_CRM_15_1679925201"])),
+                'nextPayDay'      => date('Y-m-d\TH:i:s.vp', strtotime($data["UF_CRM_15_SS_NEXTPAYDAY"])),
+                'nextPaySum'      => number_format((float) str_replace("|RUB", "", $data["UF_CRM_15_SS_NEXTPAYSUMMA"]), 2, ".", " "),
+                'prosrochenoDays' => $data['UF_CRM_15_1679907525'],
+                'sumProsrocheno'  => $sumProsrocheno,
+                'ostatok'         => number_format((float) str_replace("|RUB", "", $data["UF_CRM_15_SS_NOMINAL"]), 2, ".", " ")
+            ];
         }
 
-        $objectData = $this->CURLObjectData;
-
-        return $HandlerResponse->handleSuccess($res, $objectData);
-        //endregion
+        return $handler->handleSuccess($result, $this->objectData);
     }
 
     /**
@@ -2264,112 +1422,70 @@ class Sellers extends \Bitrix\Main\Engine\Controller
     {
         //region Подготовка к обработке запроса
         \Bitrix\Main\Loader ::IncludeModule('crm');
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application ::getInstance() -> getContext();
-        $server = $context -> getServer();
+        $ctx = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, '', __FUNCTION__);
+        $data    = $this->requestData;
 
-        $requestHeaders = $context->getRequest()->getHeaders()->toArray();
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = $server['REQUEST_METHOD'];
-        $queryParamsArray = $context->getRequest()->toArray();
-
-        $token = str_replace('BitrixAuth ', '', $server -> get('REMOTE_USER'));
-
-        $url = $server -> get('SCRIPT_URI') .'?'. $server -> get('QUERY_STRING');
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "Получение списка ИНН по когортам: ";
-        $objectData = $this->CURLObjectData;
-
-        $headersValues = [];
-        foreach ($requestHeaders as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
+        if (empty($data)) {
+            return $handler->handleError(400, 'Тело запроса не удалось декодировать как JSON.', 'invalid_request', $this->objectData);
         }
 
-        $requestArray = [];
-        if($requestMethod === 'GET') {
-            \KPLab\Logs\File::AddMessage($queryParamsArray,"queryParamsArray", LOG_API_SYNC_SELLER_CONTROLLER);
-            $requestArray = $queryParamsArray;
-            //$requestJson = json_encode($arRequest);
-        } else {
-            \KPLab\Logs\File::AddMessage($requestJson,"requestJson", LOG_API_SYNC_SELLER_CONTROLLER);
-            $requestArray = json_decode($requestJson,true);
+        if (empty($data['cohort'])) {
+            return $handler->handleError(400, 'Параметр `cohort` обязателен.', 'invalid_request', $this->objectData);
         }
 
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context
-        );
-        //endregion
+        $cohort = $data['cohort'];
+        $filter = [];
 
-        //region Обработка ошибок
-        if($requestArray == NULL) {
-            $errorMessage = "400 Bad Request | Тело запроса не удалось декодировать как JSON.";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        if(empty($requestArray['cohort'])) {
-            $errorMessage = "400 Bad Request | Этот запрос не поддерживается. Пустой `cohort`";
-            return $HandlerResponse->handleError(400, $errorMessage, "invalid_request", $objectData);
-        }
-        //endregion
-
-        //region Процесс обработки
-        $cohort = $requestArray['cohort'];
-        $parametersOSK = [];
-        $inn = [];
-        switch($cohort) {
+        switch ($cohort) {
             case 'approved':
-                $parametersOSK = [
-                    'filter' => [
-                        'UF_CRM_56_1684744827969' => 0.00,
-                        '>UF_CRM_56_1684744846487' => 150000,
-                        [
-                            'LOGIC' => 'OR',
-                            ["STAGE_ID" => "DT134_104:UC_EQ8KZU"],
-                            ["STAGE_ID" => "DT134_104:UC_7VE0GD"],
-                            ["STAGE_ID" => "DT134_104:NEW"]
-                        ]
-                    ]
-                ];
-                break;
-            case 'close':
-                $parametersOSK = [
-                    'filter' => [
-                        'STAGE_ID' => 'DT134_104:UC_S4RR8K'
-                    ]
-                ];
-                break;
-            case 'delay':
-                $parametersOSK = [
-                    'filter' => [
+                $filter = [
+                    'UF_CRM_56_1684744827969' => 0.00,
+                    '>UF_CRM_56_1684744846487' => 150000,
+                    [
                         'LOGIC' => 'OR',
-                        ["STAGE_ID" => "DT134_104:CLIENT"],
-                        ["STAGE_ID" => "DT134_104:UC_IYGEPM"],
-                        ["STAGE_ID" => "DT134_104:UC_V3JEQZ"]
+                        ["STAGE_ID" => "DT134_104:UC_EQ8KZU"],
+                        ["STAGE_ID" => "DT134_104:UC_7VE0GD"],
+                        ["STAGE_ID" => "DT134_104:NEW"]
                     ]
                 ];
                 break;
-            default:
+
+            case 'close':
+                $filter = ['STAGE_ID' => 'DT134_104:UC_S4RR8K'];
                 break;
-        }
-        $entityTypeIdOSK = 134;
-        $factoryOSK = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdOSK);
 
-        $itemsOSK = $factoryOSK->getItems($parametersOSK);
-        foreach($itemsOSK as $item) {
-            $inn[] = $item->getData()['UF_CRM_56_1684841075'];
+            case 'delay':
+                $filter = [
+                    'LOGIC' => 'OR',
+                    ["STAGE_ID" => "DT134_104:CLIENT"],
+                    ["STAGE_ID" => "DT134_104:UC_IYGEPM"],
+                    ["STAGE_ID" => "DT134_104:UC_V3JEQZ"]
+                ];
+                break;
+
+            default:
+                return $handler->handleError(400, "Недопустимое значение `cohort`: {$cohort}", 'invalid_request', $this->objectData);
         }
 
-        return $HandlerResponse->handleSuccess($inn, $objectData);
-        //endregion
+        $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory(134);
+        $items   = $factory->getItems(['filter' => $filter]);
+
+        $innList = [];
+        foreach ($items as $item) {
+            $inn = $item->getData()['UF_CRM_56_1684841075'] ?? null;
+            if ($inn) {
+                $innList[] = $inn;
+            }
+        }
+
+        return $handler->handleSuccess($innList, $this->objectData);
     }
     //endregion GET
+
+    protected function getRequestData(): array
+    {
+        return $this->requestData ?? [];
+    }
 }

@@ -1,12 +1,16 @@
 <?php namespace KPLab\API\V2\Controller;
 
 use Bitrix\Main\Application;
+use Bitrix\Main\Config\Option;
 use KPLab\API\V2\Model\DTO\LegalDTO;
 use KPLab\API\V2\Helpers\HandlerResponse;
 use KPLab\API\V2\LogsAction;
+use KPLab\API\V2\Model\ORM\RoutesTable;
+use KPLab\API\V2\Model\Service\DadataService;
 use KPLab\API\V2\Model\Service\LegalService;
 use KPLab\API\V2\Model\Service\PersonService;
 use KPLab\API\V2\Model\DTO\PersonDTO;
+use KPLab\API\V2\Model\Service\SellerService;
 use KPLab\Logs;
 use KPLab\API\V2\Helpers\Locker;
 
@@ -15,6 +19,21 @@ define("LOG_API_SYNC_LEGAL_CONTROLLER", $_SERVER['DOCUMENT_ROOT']."/local/logs/L
 
 class PersonLegalController extends \Bitrix\Main\Engine\Controller
 {
+    private const MODULE_ID = "kplab.api";
+    public string $serverName;
+    public array $queryParamsArray;
+    public mixed $objectData;
+    public mixed $requestData;
+    public string $partnerName;
+    public SellerService $sellerService;
+    public HandlerResponse $handlerResponse;
+
+    public function __construct() {
+        parent::__construct();
+        \Bitrix\Main\Loader::includeModule('crm');
+        $this->sellerService = new SellerService();
+        $this->handlerResponse = new HandlerResponse();
+    }
     protected function getDefaultPreFilters(): array
     {
         // Возвращаем пустой массив или только нужные фильтры
@@ -24,127 +43,67 @@ class PersonLegalController extends \Bitrix\Main\Engine\Controller
     }
     public function setPersonAction(): \Bitrix\Main\EventResult | \Bitrix\Main\Engine\Response\Json
     {
-        // Инициализация контекста
-        $context = Application::getInstance()->getContext();
-        $request = $context->getRequest();
-
-        //region Подготовка к обработке запроса
-        $timeData = Logs\TimeData::start();
-        $headers = $request->getHeaders()->toArray();
-        $requestBody = $request->getInput();
-        $requestMethod = $request->getRequestMethod();
-        $url = $request->getRequestUri();
-        $authorization = $context->getServer()->get('REMOTE_USER');
-        $partnerName = LogsAction::getPartnerName($authorization);
-
-        $headersValues = [];
-        foreach ($headers as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
-        }
-
-        $queryParamsArray = $request->toArray();
-
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "Добавление персоны: ";
-        $objectData = $this->CURLObjectData;
-
-        // Инициализация обработчика ответов
-        $handler = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            $partnerName, // partner name
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestBody,
-            $context
-        );
+        // 1. Читаем тело запроса
+        $body = Application::getInstance()->getContext()->getRequest()->getInput();
+        $ctx = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, $body, __FUNCTION__);
+        $this->objectData['ITEM_TITLE'] = "Добавление персоны из 1С: ";
 
         try {
             // Валидация и преобразование входных данных
-            $requestData = $this->validateRequest($requestBody);
+            $requestData = $this->validateRequest($body);
 
             // Создание DTO
             $personDTO = PersonDTO::createFromArray($requestData);
             $personArray = $personDTO->toArray();
 
-            // Логирование полученных данных
-            Logs\File::AddMessage($personArray, "personRequest", LOG_API_SYNC_PERSON_CONTROLLER);
-
             // Обработка через сервисный слой
             $personService = new PersonService($personDTO->inn);
             $personService->find();
-            Logs\File::AddMessage($personService->personId, "personId", LOG_API_SYNC_PERSON_CONTROLLER);
+            $personService->setPartnerName($this->partnerName);
 
-            $personService->setPartnerName($partnerName);
-            Logs\File::AddMessage($personService->partnerName, "partnerName", LOG_API_SYNC_PERSON_CONTROLLER);
-
-            if (!$personService->personId) {
+            if ($personService->personId == 0) {
                 $personService->add($personDTO);
+                $status = 'created';
+                $this->objectData['ITEM_TITLE'] = "Добавление персоны из 1С: {$personDTO->inn}";
             } else {
                 $personService->update($personService->personId, $personDTO);
+                $status = 'updated';
+                $this->objectData['ITEM_TITLE'] = "Обновление персоны из 1С: {$personDTO->inn}";
             }
+            $this->objectData['INIT_OBJECT_URL'] = "https://{$this->serverName}/crm/type/4/details/{$personService->personId}/";
 
             $responseData = [
                 'crmId' => $personService->personId,
-                'status' => $personService->personId ? 'updated' : 'created'
+                'status' => $status
             ];
             Logs\File::AddMessage($responseData, "responseData", LOG_API_SYNC_PERSON_CONTROLLER);
             // Формирование успешного ответа
-            return $handler->handleSuccess($responseData, $this->CURLObjectData);
+            return $handler->handleSuccess($responseData, $this->objectData);
 
         } catch (\InvalidArgumentException $e) {
             // Ошибки валидации
-            return $handler->handleError(400, $e->getMessage(), "validation_error", $this->CURLObjectData);
+            return $handler->handleError(400, $e->getMessage(), "validation_error", $this->objectData);
 
         } catch (\Exception $e) {
             // Системные ошибки
-            return $handler->handleError(500, 'Internal server error', "server_error", $this->CURLObjectData);
+            return $handler->handleError(500, 'Internal server error', "server_error", $this->objectData);
         }
         //endregion
 
     }
     public function setLegalAction(): \Bitrix\Main\EventResult | \Bitrix\Main\Engine\Response\Json
     {
-        // Инициализация контекста
-        $context = Application::getInstance()->getContext();
-        $request = $context->getRequest();
+        // 1. Читаем тело запроса
+        $body = Application::getInstance()->getContext()->getRequest()->getInput();
+        $ctx        = Application::getInstance()->getContext();
+        // 2. Инициализируем Handler и логирование
+        $handler = $this->handlerResponse->initHandler($this, $ctx, $body, __FUNCTION__);
+        $this->objectData['ITEM_TITLE'] = "Добавление юр.лица из 1С: ";
 
-        //region Подготовка к обработке запроса
-        $timeData = Logs\TimeData::start();
-        $headers = $request->getHeaders()->toArray();
-        $requestBody = $request->getInput();
-        $requestMethod = $request->getRequestMethod();
-        $url = $request->getRequestUri();
-        $authorization = $context->getServer()->get('REMOTE_USER');
-        $partnerName = LogsAction::getPartnerName($authorization);
-
-        $headersValues = [];
-        foreach ($headers as $key => $header) {
-            $headersValues[$header['name']] = $header['values'][0];
-        }
-
-        $queryParamsArray = $request->toArray();
-
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-        $this->CURLObjectData['ITEM_TITLE'] = "Добавление юр.лица: ";
-        $objectData = $this->CURLObjectData;
-
-        // Инициализация обработчика ответов
-        $handler = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "", // partner name
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestBody,
-            $context
-        );
         // Валидация и преобразование входных данных
-        $requestData = $this->validateRequest($requestBody);
+        $requestData = $this->validateRequest($body);
 
         // Создание DTO
         $legalDTO = LegalDTO::init($requestData);
@@ -160,31 +119,46 @@ class PersonLegalController extends \Bitrix\Main\Engine\Controller
             $legalService->find();
             Logs\File::AddMessage($legalService->legalId, "legalId", LOG_API_SYNC_LEGAL_CONTROLLER);
 
-            $legalService->setPartnerName($partnerName);
+            $legalService->setPartnerName($this->partnerName);
             Logs\File::AddMessage($legalService->partnerName, "partnerName", LOG_API_SYNC_LEGAL_CONTROLLER);
             if (!$legalService->legalId) {
                 $legalService->add($legalDTO);
+                $status = 'created';
+                $this->objectData['ITEM_TITLE'] = "Добавление юр.лица из 1С: {$legalDTO->inn}";
             } else {
                 $legalService->update($legalService->legalId, $legalDTO);
+                $status = 'updated';
+                $this->objectData['ITEM_TITLE'] = "Обновление юр.лица из 1С: {$legalDTO->inn}";
             }
+            $this->objectData['INIT_OBJECT_URL'] = "https://{$this->serverName}/crm/type/4/details/{$legalService->legalId}/";
 
             $responseData = [
                 'crmId' => $legalService->legalId,
-                'status' => $legalService->legalId ? 'updated' : 'created'
+                'status' => $status
             ];
             Logs\File::AddMessage($responseData, "responseData", LOG_API_SYNC_LEGAL_CONTROLLER);
             // Формирование успешного ответа
-            return $handler->handleSuccess($responseData, $this->CURLObjectData);
+            return $handler->handleSuccess($responseData, $this->objectData);
 
         }
         catch (\InvalidArgumentException $e) {
             // Ошибки валидации
-            return $handler->handleError(400, $e->getMessage(), "validation_error", $this->CURLObjectData);
+            $errorCustomData = [
+                'exceptionMessage' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine()
+            ];
+            return $handler->handleError(400, "Invalid Argument", "validation_error", $this->objectData, $errorCustomData);
 
         }
-        catch (\Exception $e) {
+        catch (\Exception|\Throwable $e) {
             // Системные ошибки
-            return $handler->handleError(500, 'Internal server error', "server_error", $this->CURLObjectData);
+            $errorCustomData = [
+                'exceptionMessage' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine()
+            ];
+            return $handler->handleError(500, "Internal server error", "server_error", $this->objectData, $errorCustomData);
         }
         //endregion
 

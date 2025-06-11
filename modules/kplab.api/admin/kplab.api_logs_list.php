@@ -5,6 +5,7 @@ use KPLab\API\V2\Model\ORM\LogsTable;
 use Bitrix\Main\Grid\Options as GridOptions;
 use Bitrix\Main\UI\Filter\Options as FilterOptions;
 use Bitrix\Main\UI\PageNavigation;
+use KPLab\API\V2\Model\ORM\RoutesTable;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php';
@@ -19,11 +20,34 @@ $filterID = 'kplab_api_logs_filter';
 $filterOptions = new FilterOptions($filterID);
 $filterData = $filterOptions->getFilter();
 
+$gridOptions = new GridOptions($gridID);
+$sorting = $gridOptions->getSorting(["sort" => ["ID" => "desc"]]);
+
 // Настройки навигации
 $nav = new PageNavigation("page");
 $nav->allowAllRecords(true)
     ->setPageSize(20)
     ->initFromUri();
+
+$controllerNames = [];
+$methodNames = [];
+
+$routeRes = RoutesTable::getList([
+    'select' => ['CONTROLLER_NAME', 'METHOD_NAME'],
+    'filter' => ['=ACTIVE' => 'Y'],
+    'order' => ['CONTROLLER_NAME' => 'ASC'],
+]);
+
+while ($route = $routeRes->fetch()) {
+    if (!empty($route['CONTROLLER_NAME'])) {
+        $controllerNames[$route['CONTROLLER_NAME']] = $route['CONTROLLER_NAME'];
+    }
+    if (!empty($route['METHOD_NAME'])) {
+        $methodNames[$route['METHOD_NAME']] = $route['METHOD_NAME'];
+    }
+}
+ksort($controllerNames);
+ksort($methodNames);
 
 $filterFields = [
     [
@@ -52,21 +76,28 @@ $filterFields = [
     ],
     [
         "id" => "REQUEST_URL",
-        'data_type' => 'string',
+        'type' => 'string',
         'name' => 'URL запроса',
         "default" => false,
     ],
     [
         "id" => 'CONTROLLER_NAME',
-        'data_type' => 'string',
+        'type' => 'list',
         'name' => 'Контроллер',
+        'items' => $controllerNames,
         "default" => false,
+        'params' => ['multiple' => 'N'],
     ],
     [
         "id" => 'METHOD_NAME',
-        'data_type' => 'string',
         'name' => 'Метод API',
+        'type' => 'list',
+        'items' => $methodNames, // начнем с пустого списка
         "default" => false,
+        'params' => [
+            'multiple' => 'N',
+            'autocomplete' => 'Y',
+        ],
     ],
     [
         "id" => "REQUEST_METHOD",
@@ -112,6 +143,12 @@ $filterConditions = [];
 if (!empty($filterData['ID'])) {
     $filterConditions['ID'] = $filterData['ID'];
 }
+if (!empty($filterData['REQUEST_TIME_from'])) {
+    $filterConditions['>=REQUEST_TIME'] = $filterData['REQUEST_TIME_from'];
+}
+if (!empty($filterData['REQUEST_TIME_to'])) {
+    $filterConditions['<=REQUEST_TIME'] = $filterData['REQUEST_TIME_to'];
+}
 if (!empty($filterData['TITLE'])) {
     $filterConditions['%TITLE'] = $filterData['TITLE'];
 }
@@ -127,6 +164,18 @@ if (!empty($filterData['REQUEST_STATUS'])) {
 if (!empty($filterData['REQUEST_TYPE'])) {
     $filterConditions['REQUEST_TYPE'] = $filterData['REQUEST_TYPE'];
 }
+if (!empty($filterData['CONTROLLER_NAME'])) {
+    $filterConditions['%CONTROLLER_NAME'] = '\\' . $filterData['CONTROLLER_NAME'];
+}
+if (!empty($filterData['METHOD_NAME'])) {
+    $filterConditions['=METHOD_NAME'] = $filterData['METHOD_NAME'];
+}
+if (!empty($filterData['REQUEST_URL'])) {
+    $filterConditions['%REQUEST_URL'] = $filterData['REQUEST_URL'];
+}
+if (!empty($filterData['OBJECT_URL'])) {
+    $filterConditions['%OBJECT_URL'] = $filterData['OBJECT_URL'];
+}
 
 
 $totalCount = LogsTable::getCount($filterConditions);
@@ -135,7 +184,7 @@ $totalCount = LogsTable::getCount($filterConditions);
 $res = LogsTable::getList([
     'filter' => $filterConditions,
     'select' => ['*'],
-    'order' => ['ID' => 'DESC'],
+    'order' => $sorting['sort'],
     'count_total' => true,
     'offset' => $nav->getOffset(),
     'limit' => $nav->getLimit(),
@@ -163,9 +212,6 @@ while ($row = $res->fetch()) {
     ];
 }
 $nav->setRecordCount($totalCount);
-
-$gridOptions = new GridOptions($gridID);
-$sorting = $gridOptions->getSorting(["sort" => ["ID" => "desc"]]);
 $APPLICATION->IncludeComponent(
     'bitrix:main.ui.filter',
     '',
@@ -229,6 +275,6 @@ $APPLICATION->IncludeComponent(
         'AJAX_OPTION_HISTORY' => 'N'
     ]
 );
-
-
 require($_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/epilog_admin.php');
+?>
+

@@ -9,7 +9,8 @@ use Bitrix\Main\Localization\Loc;
 
 class CBPKPLabCodeActivity extends CBPActivity
 {
-	public function __construct($name)
+
+    public function __construct($name)
 	{
 		parent::__construct($name);
 		$this->arProperties = [

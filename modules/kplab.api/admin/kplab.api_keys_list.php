@@ -13,15 +13,16 @@ Loader::includeModule('kplab.api');
 \Bitrix\Main\UI\Extension::load("ui.buttons");
 
 // Настройка сетки
-$gridID = 'kplab_api_keys_grid';
-$gridOptions = new GridOptions($gridID);
 
 // Опции фильтра
 $filterID = 'kplab_api_keys_filter';
 $filterOptions = new FilterOptions($filterID);
 $filterData = $filterOptions->getFilter();
 
-$sort = $gridOptions->GetSorting(['sort' => ['ID' => 'desc']]);
+$gridID = 'kplab_api_keys_grid';
+$gridOptions = new GridOptions($gridID);
+$sorting = $gridOptions->getSorting(["sort" => ["ID" => "desc"]]);
+
 $nav = new PageNavigation("page");
 $nav->allowAllRecords(true)
     ->setPageSize(20)
@@ -55,7 +56,7 @@ $totalCount = ApiKeysTable::getCount($filterConditions);
 $res = ApiKeysTable::getList([
     'filter' => $filterConditions,
     'select' => ['*'],
-    'order' => $sort['sort'],
+    'order' => $sorting['sort'],
     'offset' => $nav->getOffset(),
     'limit' => $nav->getLimit(),
 ]);

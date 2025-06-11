@@ -29,6 +29,11 @@ class ExchangeLogTable extends DataManager
                 'title' => 'ID Элемента',
                 'required' => true,
             ],
+            'FIELD_CODE' => [
+                'data_type' => 'string',
+                'title' => 'Код поля',
+                'required' => true,
+            ],
             'FIELD_NAME' => [
                 'data_type' => 'string',
                 'title' => 'Название поля',

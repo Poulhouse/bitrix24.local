@@ -1,122 +1,382 @@
 <?php
 namespace Kplab\Exchange_log\Helpers;
 
+use Bitrix\Main\ArgumentException;
+use Bitrix\Main\ObjectPropertyException;
+use Bitrix\Main\SystemException;
+use Bitrix\Main\Type\DateTime;
 use Bitrix\Main\Config\Option;
 use Kplab\Exchange_log\ExchangeLogTable;
 use KPLab\Logs;
+use Kplab\Exchange_log\Service\FieldMeta;
+use Throwable;
 
-define("LOG_ChangeChecker", $_SERVER['DOCUMENT_ROOT']."/local/modules/kplab.exchange_log/ChangeChecker.log");
+define("LOG_ChangeChecker", $_SERVER['DOCUMENT_ROOT']."/local/logs/ChangeChecker.log");
 
 class ChangeChecker
 {
     /**
-     * Проверяет изменения для отслеживаемых полей заданной сущности.
-     *
-     * @param string $moduleId     Идентификатор модуля (например, "kplab.exchange_log")
-     * @param mixed        $entityTypeId Тип сущности, согласно сохранённым настройкам (например, "4" для компаний)
-     * @param int $entityId     ID сущности (например, ID компании)
-     * @param array        $newData      Ассоциативный массив новых данных, ключи – имена полей
-     * @return array Массив изменений, где ключ — имя поля, а значение — массив с ключами 'old' и 'new'.
-     *
-     * Пример возвращаемого массива:
-     * [
-     *    "TITLE" => ["old" => "Старая компания", "new" => "Новая компания"],
-     *    "UF_CRM_CHANGING_THE_NOMINAL_ACCOUNT" => ["old" => "1000", "new" => "1100"]
-     * ]
+     * @throws ObjectPropertyException
+     * @throws \DateMalformedStringException
+     * @throws Throwable
+     * @throws ArgumentException
+     * @throws SystemException
      */
-    public static function checkTrackedChanges(string $moduleId, mixed $entityTypeId, int $entityId, array $newData): array
+    public static function check(array $newData, int $entityTypeId, int $entityId, array $context = []): bool
     {
-        Logs\File::AddMessage($newData,"newData", LOG_ChangeChecker);
 
-        // Получаем сохранённые настройки для общих сущностей из опций модуля (в формате JSON)
-        $trackedSettingsJson = Option::get($moduleId, "tracked_general_entities", '{}');
-        $savedSettings_TrackedSp_Json = Option::get($moduleId, "tracked_sp_entities", '{}');
-        $trackedSettings = json_decode($trackedSettingsJson, true);
-        $trackedSPSettings = json_decode($savedSettings_TrackedSp_Json, true);
-        //Logs\File::AddMessage($trackedSettings,"tracked_general_entities", LOG_ChangeChecker);
-        //Logs\File::AddMessage($trackedSPSettings,"tracked_sp_entities", LOG_ChangeChecker);
-        $tracked = $trackedSettings + $trackedSPSettings;
+        try {
+            $hasChanges = false;
 
-        Logs\File::AddMessage($tracked,"tracked", LOG_ChangeChecker);
+            $moduleId = 'kplab.exchange_log';
 
-        \Bitrix\Main\Loader::includeModule('crm');
+            // Получаем сохранённые настройки для стандартных и смарт-процессов
+            $trackedSettingsJson = Option::get($moduleId, "tracked_general_entities", '{}');
+            $trackedSpSettingsJson = Option::get($moduleId, "tracked_sp_entities", '{}');
 
-        // Для заданного entityTypeId (например, "4" для Компаний) получаем список отслеживаемых полей
-        $trackedFields = $tracked[$entityTypeId] ?? [];
+            $trackedSettings = json_decode($trackedSettingsJson, true) ?: [];
+            $trackedSpSettings = json_decode($trackedSpSettingsJson, true) ?: [];
 
-        Logs\File::AddMessage($trackedFields,"trackedFields", LOG_ChangeChecker);
+            // Объединяем
+            $tracked = $trackedSettings + $trackedSpSettings;
 
-        $changes = [];
+            // Извлекаем список отслеживаемых полей для данной сущности
+            $fieldsMap = $tracked[$entityTypeId] ?? [];
 
-        // Проходим по каждому отслеживаемому полю
-        foreach ($trackedFields as $fieldName)
-        {
-            $fieldPhone = null;
-            $fieldEmail = null;
-
-            if($fieldName == "PHONE") {
-
-                $resFieldMultiPHONE = \CCrmFieldMulti::GetListEx([],[
-                        'ENTITY_ID' => \CCrmOwnerType::ResolveName($entityTypeId),
-                        'ELEMENT_ID' => $entityId,
-                        'TYPE_ID' => \CCrmFieldMulti::PHONE
-                    ]
-                );
-                while( $multifieldPhone = $resFieldMultiPHONE->fetch() )
-                {
-                    $fieldPhone[$multifieldPhone["TYPE_ID"]][] = $multifieldPhone["VALUE"];
+            // Проверка групповых полей
+            foreach (['REQUISITES', 'contactDetails', 'addressDetails', 'bankDetails'] as $groupCode) {
+                if (!array_key_exists($groupCode, $fieldsMap)) {
+                    continue;
                 }
 
-                Logs\File::AddMessage($fieldPhone,"fieldPhone", LOG_ChangeChecker);
-            }
-
-            if($fieldName == "EMAIL") {
-
-                $resFieldMultiEMAIL = \CCrmFieldMulti::GetListEx(
-                    [],
-                    [
-                        'ENTITY_ID' => \CCrmOwnerType::ResolveName($entityTypeId),
-                        'ELEMENT_ID' => $entityId,
-                        'TYPE_ID' => \CCrmFieldMulti::EMAIL
-                    ]
-                );
-                while( $multifieldEMAIL = $resFieldMultiEMAIL->fetch() )
-                {
-                    $fieldEmail[$multifieldEMAIL["TYPE_ID"]][] = $multifieldEMAIL["VALUE"];
+                try {
+                    $groupChanged = match ($groupCode) {
+                        'REQUISITES'      => self::checkRequisitesChanges($entityTypeId, $entityId, $context),
+                        'contactDetails'  => self::checkContactDetailsChanges($newData, $entityTypeId, $entityId, $context),
+                        'addressDetails'  => self::checkAddressChanges($entityTypeId, $entityId, $context),
+                        'bankDetails'     => self::checkBankDetailsChanges($entityTypeId, $entityId, $context),
+                    };
+                    $hasChanges = $hasChanges || $groupChanged;
+                } catch (\Throwable $e) {
+                    Logs\File::AddMessage([
+                        'groupCode'     => $groupCode,
+                        'entityTypeId'  => $entityTypeId,
+                        'entityId'      => $entityId,
+                        'context'       => $context,
+                        'exception'     => $e->getMessage(),
+                        'trace'         => $e->getTraceAsString()
+                    ], "Ошибка в блоке groupCheck ({$groupCode})", LOG_ChangeChecker);
+                    throw $e;
                 }
-                Logs\File::AddMessage($fieldEmail,"fieldEmail", LOG_ChangeChecker);
             }
 
-            // Получаем последнюю запись в журнале для этого поля, по ENTITY_ID и FIELD_NAME
-            $logRecord = ExchangeLogTable::getList([
-                'filter' => [
-                    'ENTITY_TYPE_ID'   => $entityTypeId,
-                    'ENTITY_ID'   => $entityId,
-                    'FIELD_NAME'  => $fieldName,
-                ],
-                'order'  => ['CHANGE_DATE' => 'DESC'],
-                'limit'  => 1,
-            ])->fetch();
+            // Исключаем логические группы
+            $skipGroups = ['contactDetails', 'addressDetails', 'bankDetails', 'REQUISITES'];
+            $simpleFieldsMap = array_diff_key($fieldsMap, array_flip($skipGroups));
 
-            $lastLoggedValue = $logRecord ? $logRecord['NEW_VALUE'] : null;
-
-            if($fieldName == "PHONE") {
-                $newData[$fieldName] = json_encode($fieldPhone[$fieldName], JSON_UNESCAPED_UNICODE);
+            try {
+                FieldMeta::get($entityTypeId);
+            } catch (\Throwable $e) {
+                Logs\File::AddMessage([
+                    'entityTypeId' => $entityTypeId,
+                    'exception'    => $e->getMessage(),
+                    'trace'        => $e->getTraceAsString()
+                ], "Ошибка в FieldMeta::get", LOG_ChangeChecker);
+                throw $e;
             }
-            if($fieldName == "EMAIL") {
-                $newData[$fieldName] = json_encode($fieldEmail[$fieldName], JSON_UNESCAPED_UNICODE);
+            try {
+                $wasChanged = self::checkSimpleFields($newData, $entityTypeId, $entityId, array_keys($simpleFieldsMap), $context);
+                $hasChanges = $hasChanges || $wasChanged;
+            } catch (\Throwable $e) {
+                Logs\File::AddMessage([
+                    'entityTypeId' => $entityTypeId,
+                    'entityId'     => $entityId,
+                    'fields'       => array_keys($simpleFieldsMap),
+                    'exception'    => $e->getMessage(),
+                    'trace'        => $e->getTraceAsString()
+                ], "Ошибка в checkSimpleFields", LOG_ChangeChecker);
+                throw $e;
             }
-
-            // Если новое значение для этого поля определено и отличается от зафиксированного
-            if (isset($newData[$fieldName]) && $newData[$fieldName] != $lastLoggedValue)
-            {
-
-                $changes[$fieldName] = [
-                    'old' => $lastLoggedValue,
-                    'new' => $newData[$fieldName],
-                ];
-            }
+            return $hasChanges;
+        } catch (\Throwable $e) {
+            Logs\File::AddMessage([
+                'entityTypeId' => $entityTypeId,
+                'entityId'     => $entityId,
+                'context'      => $context,
+                'exception'    => $e->getMessage(),
+                'trace'        => $e->getTraceAsString()
+            ], "Ошибка в ChangeChecker::check (глобальная)", LOG_ChangeChecker);
+            throw $e;
         }
-        return $changes;
+    }
+
+    /**
+     * @throws \DateMalformedStringException
+     * @throws Throwable
+     * @throws ArgumentException
+     * @throws ObjectPropertyException
+     * @throws SystemException
+     */
+    public static function checkRequisitesChanges(int $entityTypeId, int $entityId, array $context = []): bool
+    {
+        try {
+            $wasChanged = false;
+            $details = Requisites::getRequisites($entityId);
+
+            $newFormatted = json_encode($details, JSON_UNESCAPED_UNICODE);
+
+            $fieldCode = 'REQUISITES';
+            $fieldName = 'Основные реквизиты (REQUISITES)';
+
+            if(Log::init(
+                $entityTypeId,
+                $entityId,
+                $fieldCode,
+                $fieldName,
+                $newFormatted,
+                $context,
+                LOG_ChangeChecker
+            ) === true) {
+                $wasChanged = true;
+            }
+            return $wasChanged;
+
+        } catch (Throwable $e) {
+            Logs\File::AddMessage([
+                'exception' => $e,
+                'entityTypeId' => $entityTypeId,
+                'entityId' => $entityId,
+                'context' => $context,
+            ],"Ошибка в checkRequisitesChanges: " . $e->getMessage(), LOG_ChangeChecker);
+
+            throw $e;
+        }
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public static function checkBankDetailsChanges(int $entityTypeId, int $entityId, array $context = []): bool
+    {
+        try {
+            $wasChanged = false;
+            $banks = BankDetails::loadBankDetails($entityId);
+            $banksNominal = BankDetails::loadBankNominalDetails($entityId);
+
+            $details = [];
+            if (!empty($banks)) {
+                $details[] = self::formatBankDetail($banks, 'Расчетный счет');
+            }
+            if (!empty($banksNominal)) {
+                $details[] = self::formatBankDetail($banksNominal, 'Номинальный счет');
+            }
+
+            $newFormatted = json_encode($details, JSON_UNESCAPED_UNICODE);
+
+            $fieldCode = 'BANKING_DETAILS';
+            $fieldName = 'Банковские реквизиты (bankDetails)';
+
+            $isSuccess = Log::init(
+                $entityTypeId,
+                $entityId,
+                $fieldCode,
+                $fieldName,
+                $newFormatted,
+                $context,
+                LOG_ChangeChecker
+            );
+            if ($isSuccess === true) {
+                $wasChanged = true;
+            }
+            return $wasChanged;
+
+        } catch (Throwable $e) {
+            Logs\File::AddMessage("Ошибка в checkBankDetailsChanges: " . $e->getMessage(), [
+                'exception' => $e,
+                'entityTypeId' => $entityTypeId,
+                'entityId' => $entityId,
+                'context' => $context,
+            ], LOG_ChangeChecker);
+
+            throw $e;
+        }
+    }
+
+    /**
+     * @throws Throwable
+     * @throws ArgumentException
+     * @throws ObjectPropertyException
+     * @throws SystemException
+     */
+    public static function checkAddressChanges(int $entityTypeId, int $entityId, array $context = []): bool
+    {
+        try {
+            $wasChanged = false;
+            $newAddress = AddressHelper::getNormalizedAddressArray($entityId);
+
+            if (empty($newAddress)) {
+                return false;
+            }
+
+            foreach ($newAddress as $type => $newFormatted) {
+                $label = ($type === 'FACT') ? 'Фактический адрес' : 'Адрес регистрации';
+                $fieldCode = "ADDRESS_" . strtoupper($type); // e.g., ADDRESS_FACT
+                $fieldName = "Адреса ({$label})(addressDetails)";
+
+                $isSuccess = Log::init(
+                    $entityTypeId,
+                    $entityId,
+                    $fieldCode,
+                    $fieldName,
+                    $newFormatted,
+                    $context,
+                    LOG_ChangeChecker
+                );
+                if (!$isSuccess) {
+                    continue;
+                } else {
+                    $wasChanged = true;
+                }
+            }
+            return $wasChanged;
+        } catch (Throwable $e) {
+            Logs\File::AddMessage([
+                'exception' => $e,
+                'entityTypeId' => $entityTypeId,
+                'entityId' => $entityId,
+                'context' => $context,
+            ], "Ошибка в checkAddressChanges: " . $e->getMessage(),LOG_ChangeChecker);
+
+            throw $e;
+        }
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public static function checkContactDetailsChanges(array $newData, int $entityTypeId, int $entityId, array $context = []): bool
+    {
+        try {
+            $wasChanged = false;
+            $contactDetails = ContactHelper::extractAllContactDetails($newData);
+
+            foreach ($contactDetails as $fieldCode => $entries) {
+                if (empty($entries)) {
+                    continue;
+                }
+
+                $labels = [
+                    'PHONE' => 'Телефоны',
+                    'EMAIL' => 'Email',
+                    'IM'    => 'Мессенджеры',
+                    'WEB'   => 'Веб-сайты',
+                ];
+                $label = $labels[$fieldCode] ?? $fieldCode;
+
+                // Если только один тип — включим его в имя поля
+                $types = array_unique(array_column($entries, 'VALUE_TYPE'));
+                $typeLabel = (count($types) === 1 && $types[0] !== '')
+                    ? ' — ' . ContactHelper::getValueTypeLabel($types[0], $fieldCode)
+                    : '';
+
+                $fieldName = "Контактные данные ({$label}{$typeLabel})(contactDetails)";
+                $newJson = json_encode($entries, JSON_UNESCAPED_UNICODE);
+
+                $isSuccess = Log::init(
+                    $entityTypeId,
+                    $entityId,
+                    $fieldCode,
+                    $fieldName,
+                    $newJson,
+                    $context
+                );
+                if (!$isSuccess) {
+                    continue;
+                } else {
+                    $wasChanged = true;
+                }
+            }
+
+            return $wasChanged;
+
+        } catch (Throwable $e) {
+            \KPLab\Logs\File::AddMessage([
+                'exception' => $e,
+                'entityTypeId' => $entityTypeId,
+                'entityId' => $entityId,
+                'context' => $context,
+                'newData' => $newData,
+            ], "Ошибка в checkContactDetailsChanges: " . $e->getMessage(),LOG_ChangeChecker);
+            throw $e; // 🔥 обязательно выбрасывай ошибку
+        }
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public static function checkSimpleFields( array $newData, int $entityTypeId, int $entityId, array $fieldsToCheck, array $context = []): bool
+    {
+        try {
+            $wasChanged = false;
+            foreach ($fieldsToCheck as $fieldCode) {
+                if (!isset($newData[$fieldCode])) {
+                    continue;
+                }
+
+                $fieldTitle = FieldMeta::getTitle($entityTypeId, $fieldCode);
+                $fieldName = "{$fieldTitle}";
+
+                $newValue = is_array($newData[$fieldCode])
+                    ? json_encode($newData[$fieldCode], JSON_UNESCAPED_UNICODE)
+                    : $newData[$fieldCode];
+
+                $isSuccess = Log::init(
+                    $entityTypeId,
+                    $entityId,
+                    $fieldCode,
+                    $fieldName,
+                    $newValue,
+                    $context
+                );
+                if (!$isSuccess) {
+                    continue;
+                } else {
+                    $wasChanged = true;
+                }
+            }
+            return $wasChanged;
+        }
+        catch (Throwable $e) {
+            \KPLab\Logs\File::AddMessage([
+                'exception' => $e,
+                'entityTypeId' => $entityTypeId,
+                'entityId' => $entityId,
+                'fieldsToCheck' => $fieldsToCheck,
+                'context' => $context,
+                'newData' => $newData,
+            ], "Ошибка в checkSimpleFields: " . $e->getMessage(), LOG_ChangeChecker);
+            throw $e;
+        }
+    }
+
+
+    private static function formatBankDetail(array $bankDetails, string $label): array
+    {
+        $return = [];
+        foreach ($bankDetails as $bankDetail) {
+            $return[] = [
+                'Основной счет' => $bankDetail['UF_CRM_PRIMARY_TXT'] ?? 'Нет',
+                'Тип счета' => $bankDetail['UF_CRM_BD_ACC_TYPE'],
+                'Наименование счета' => $bankDetail['NAME'] ?? $label,
+                'Наименование банка' => $bankDetail['RQ_BANK_NAME'] ?? '',
+                'Адрес банка'        => $bankDetail['RQ_BANK_ADDR'] ?? '',
+                'БИК'                => $bankDetail['RQ_BIK'] ?? '',
+                'Расчетный счёт'     => $bankDetail['RQ_ACC_NUM'] ?? '',
+                'Валюта счёта'       => $bankDetail['RQ_ACC_CURRENCY'] ?? '',
+                'Кор. счёт'          => $bankDetail['RQ_COR_ACC_NUM'] ?? '',
+                'Комментарий'        => $bankDetail['COMMENTS'] ?? '',
+            ];
+        }
+        return $return;
     }
 }

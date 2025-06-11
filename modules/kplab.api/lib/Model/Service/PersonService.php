@@ -5,15 +5,14 @@ use Bitrix\Crm\Multifield\Collection;
 use Bitrix\Crm\Multifield\Type\Email;
 use Bitrix\Crm\Multifield\Type\Phone;
 use Bitrix\Crm\Multifield\Value;
-use Bitrix\Location\Entity\Address as EntityAddress;
 use Bitrix\Main\ArgumentException;
 use Bitrix\Main\ObjectPropertyException;
 use Bitrix\Main\SystemException;
-use Bitrix\Main\Web\HttpClient;
-use KPLab\API\V2\Model\DTO\LegalDTO;
 use KPLab\API\V2\Model\DTO\PersonDTO;
-use KPLab\CRM\AddressTable;
+use KPLab\API\V2\Model\DTO\Requisite\PersonRequisiteData;
+use Bitrix\Crm\BankDetailTable;
 use KPLab\Logs;
+use Throwable;
 
 define("LOG_PERSON_SERVICE", $_SERVER['DOCUMENT_ROOT']."/local/logs/api_services_person.log");
 class PersonService
@@ -22,188 +21,163 @@ class PersonService
     public int $personId;
     public string $partnerName;
     public ?string $rqId;
+    private RequisiteService $requisiteService;
+    private AddressService $addressService;
+    private BankDetailService $bankDetailService;
+    private ContactPersonService $contactPersonService;
+    private ContactDetailsService $contactDetailsService;
+
     public function __construct(string $personInn) {
         $this->personInn = $personInn;
-    }
-
-    public function find(): void
-    {
-        $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Company);
-        $params = [
-            'filter' => [
-                'UF_CRM_6433D7C925893' => $this->personInn,
-            ],
-            'select' => ['ID'],
-            'order' => ['ID' => 'DESC'],
-            'limit' => 1,
-        ];
-        $itemsCompany = $factoryCompany -> getItems($params);
-        if($itemsCompany) {
-            foreach ($itemsCompany as $itemCompany)
-            {
-                $this->personId = $itemCompany->getId();
-            }
-        } else {
-            $this->personId = 0;
-        }
+        $this->requisiteService = new RequisiteService;
+        $this->addressService = new AddressService;
+        $this->bankDetailService = new BankDetailService;
+        $this->contactPersonService = new ContactPersonService;
+        $this->contactDetailsService = new ContactDetailsService;
     }
 
     /**
-     * @throws ArgumentException
-     * @throws ObjectPropertyException
-     * @throws SystemException
-     * @throws \Exception
+     * @throws Throwable
      */
     public function add(PersonDTO $personDTO): static
     {
         try {
-            // Устанавливаем контекст перед созданием компании
             ChangeContext::setSource($this->partnerName);
-
-            $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Company);
-            $this->createCompany($factoryCompany, $personDTO);
-
-            $this->processRequisites($personDTO);
-            $this->processContactPersons($personDTO);
-
+            $this->createCompany($personDTO);
+        } catch (\InvalidArgumentException|\RuntimeException $e) {
+            Logs\File::AddMessage($e->getMessage(), 'validation_error в PersonService::add()', LOG_PERSON_SERVICE);
+            throw $e;
+        } catch (\Exception|\Throwable $e) {
+            Logs\File::AddMessage($e->getMessage(), 'server_error в PersonService::add()', LOG_PERSON_SERVICE);
+            throw $e;
         } finally {
             ChangeContext::clear();
-            return $this;
         }
-    }
-    public function getId(): string
-    {
-        return $this->personId;
+        return $this;
     }
 
     /**
-     * @throws ArgumentException
-     * @throws ObjectPropertyException
-     * @throws SystemException
+     * @throws Throwable
      */
     public function update($personId, PersonDTO $personDTO): static
     {
         try {
-            // Устанавливаем контекст перед созданием компании
             ChangeContext::setSource($this->partnerName);
-            $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Company);
-            $this->updateCompany($personId, $factoryCompany, $personDTO);
+            $this->updateCompany($personId, $personDTO);
+        } catch (\InvalidArgumentException|\RuntimeException $e) {
+            Logs\File::AddMessage($e->getMessage(), 'validation_error в PersonService::update()', LOG_PERSON_SERVICE);
+            throw $e;
+        } catch (\Exception|\Throwable $e) {
+            Logs\File::AddMessage($e->getMessage(), 'server_error в PersonService::update()', LOG_PERSON_SERVICE);
+            throw $e;
+        }
+        finally {
+            ChangeContext::clear();
+        }
+        return $this;
+    }
+
+    /**
+     * @throws Throwable
+     */
+    private function createCompany(PersonDTO $personDTO): void
+    {
+        try {
+            $factoryCompany = $this->getCompanyFactory();
+            // 1) Создаём карточку компании
+            $personDTO->toCompanyFields();
+            $company = $factoryCompany->createItem($personDTO->toCompanyFields);
+            $company->setTitle($personDTO->shortName);
+
+            if ($personDTO->contactDetails) {
+                $fm = $company->getFm();
+                $fm = (new Tool)->processFM($personDTO, $fm);
+                $company->setFm($fm);
+            }
+
+            $opAdd = $factoryCompany->getAddOperation($company);
+            $opAdd->disableAllChecks();
+            $opAdd->launch();
+
+            $this->personId = $company->getId();
 
             $this->processRequisites($personDTO);
             $this->processContactPersons($personDTO);
 
-        }
-        finally {
-            ChangeContext::clear();
-            return $this;
+            // 3) После реквизитов — обновляем карточку, если нужно
+            $opUpd = $factoryCompany->getUpdateOperation($company);
+            $opUpd->disableAllChecks();
+            $opUpd->launch();
+
+        } catch (Throwable $e) {
+            Logs\File::AddMessage($e->getMessage(), 'Ошибка в createCompany()', LOG_LEGAL_SERVICE);
+            throw $e;
         }
     }
 
-    public function setPartnerName($value): void
+    /**
+     * @throws Throwable
+     * @throws ArgumentException
+     * @throws ObjectPropertyException
+     * @throws SystemException
+     */
+    private function updateCompany($personId, PersonDTO $personDTO): void
     {
-        $this->partnerName = $value;
-    }
+        try {
+            $factoryCompany = $this->getCompanyFactory();
+            $this->processRequisites($personDTO);
+            $this->processContactPersons($personDTO);
 
-    private function createCompany($factoryCompany, PersonDTO $personDTO): void
-    {
+            $fio = $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName;
+            $shortFio = $personDTO->lastName . " " . mb_substr($personDTO->firstName, 0, 1) . ". " . mb_substr($personDTO->middleName, 0, 1) . ".";
+            $shortName = ($personDTO->regMark == "0") ? $shortFio : 'ИП ' . $shortFio;
+            $fullName = ($personDTO->regMark == "0") ? $fio : 'Индивидуальный предприниматель ' . $fio;
 
-        $TypeId = null;
-        $userFields = \Bitrix\Main\UserFieldTable::getList([
-            'select' => ['ID'],
-            'filter' => [
-                '=ENTITY_ID' => 'CRM_COMPANY',
-                'FIELD_NAME' => 'UF_CRM_1684145100226'
-            ]
-        ]);
-        while ($arUserField = $userFields->fetch()){
-            $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID'], 'XML_ID' => ($personDTO->regMark == "0") ? 'FL' : 'IP']);
-            while ($arUserFieldData = $res->fetch()) {
-                $TypeId = $arUserFieldData['ID'];
+            $company = $factoryCompany->getItem($personId);
+            $TypeId = null;
+            $userFields = \Bitrix\Main\UserFieldTable::getList([
+                'select' => ['ID'],
+                'filter' => [
+                    '=ENTITY_ID' => 'CRM_COMPANY',
+                    'FIELD_NAME' => 'UF_CRM_1684145100226'
+                ]
+            ]);
+            while ($arUserField = $userFields->fetch()) {
+                $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID'], 'XML_ID' => ($personDTO->regMark == "0") ? 'FL' : 'IP']);
+                while ($arUserFieldData = $res->fetch()) {
+                    $TypeId = $arUserFieldData['ID'];
+                }
             }
-        }
-        if($personDTO->guid != "") {
-            $fields = [
-                "UF_CRM_1684145100226" => $TypeId,
-                "UF_CRM_6433D7C925893" => $personDTO->inn,
-                "UF_CRM_COMPANY_SS_ORG" => [5],
-                "UF_CRM_6433DBB98DD53" => 17611,
-                "UF_CRM_COMPANY_SS_AM_ID" => $personDTO->guid,
-                "UF_CRM_1697107946" => $personDTO->limitSum
-            ];
-        }
-        else {
-            $fields = [
-                "UF_CRM_1684145100226" => $TypeId,
-                "UF_CRM_6433D7C925893" => $personDTO->inn,
-                "UF_CRM_COMPANY_SS_ORG" => [5],
-                "UF_CRM_6433DBB98DD53" => 17611,
-                "UF_CRM_1697107946" => $personDTO->limitSum
-            ];
-        }
 
-        $company = $factoryCompany->createItem($fields);
-        $fullName = $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName;
-        $company->setTitle($fullName);
+            $company->set("UF_CRM_1684145100226", $TypeId);
+            $company->set("UF_CRM_COMPANY_SS_ORG", [5]);
+            $company->set("UF_CRM_6433DBB98DD53", 17611);
+            $company->set("UF_CRM_6433D7C925893", $personDTO->inn);
+            $company->set("UF_CRM_COMPANY_SS_AM_ID", $personDTO->guid);
+            $company->set("UF_CRM_1697107946", $personDTO->limitSum . "|RUB");
+            $company->set("UF_CRM_1595595411835", $fullName);
 
-        if($personDTO->contactDetails) {
-            // Получаем текущие контакты компании
-            $fm = $company->getFm();
-            // Обрабатываем новые контакты
-            $fm = (new Tool)->processFM($personDTO, $fm);
-            // Сохраняем изменения
-            $company->setFm($fm);
-        }
-
-        // Сохранение новой карточки
-        $operation = $factoryCompany->getAddOperation($company);
-        $operation->disableAllChecks();
-        $operation->launch();
-
-        $this->personId = $company->getId();
-    }
-    private function updateCompany($personId, $factoryCompany, PersonDTO $personDTO): void
-    {
-        $company = $factoryCompany->getItem($personId);
-        $TypeId = null;
-        $userFields = \Bitrix\Main\UserFieldTable::getList([
-            'select' => ['ID'],
-            'filter' => [
-                '=ENTITY_ID' => 'CRM_COMPANY',
-                'FIELD_NAME' => 'UF_CRM_1684145100226'
-            ]
-        ]);
-        while ($arUserField = $userFields->fetch()) {
-            $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID'], 'XML_ID' => ($personDTO->regMark == "0") ? 'FL' : 'IP']);
-            while ($arUserFieldData = $res->fetch()) {
-                $TypeId = $arUserFieldData['ID'];
+            if ($personDTO->contactDetails) {
+                // Получаем текущие контакты компании
+                $fm = $company->getFm();
+                // Обрабатываем новые контакты
+                $fm = (new Tool)->processFM($personDTO, $fm);
+                // Сохраняем изменения
+                $company->setFm($fm);
             }
+            $company->setTitle($shortName);
+
+            // Обновление карточки
+            $operation = $factoryCompany->getUpdateOperation($company);
+            $operation->disableAllChecks();
+            $operation->launch();
+        } catch (Throwable $e) {
+            Logs\File::AddMessage($e->getMessage(), 'Ошибка в updateCompany()', LOG_PERSON_SERVICE);
+            throw $e;
         }
-
-        $company->set("UF_CRM_1684145100226", $TypeId);
-        $company->set("UF_CRM_COMPANY_SS_ORG", [5]);
-        $company->set("UF_CRM_6433DBB98DD53", 17611);
-        $company->set("UF_CRM_6433D7C925893", $personDTO->inn);
-        $company->set("UF_CRM_COMPANY_SS_AM_ID", $personDTO->guid);
-        $company->set("UF_CRM_1697107946", $personDTO->limitSum);
-
-        if($personDTO->contactDetails) {
-            // Получаем текущие контакты компании
-            $fm = $company->getFm();
-            // Обрабатываем новые контакты
-            $fm = (new Tool)->processFM($personDTO, $fm);
-            // Сохраняем изменения
-            $company->setFm($fm);
-        }
-
-        $fullName = $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName;
-        $company->setTitle($fullName);
-
-        // Обновление карточки
-        $operation = $factoryCompany->getUpdateOperation($company);
-        $operation->disableAllChecks();
-        $operation->launch();
     }
 
+    //region Вспомогательные методы
     private function findCompanyRQ($personId, $personInn): void
     {
         if(!is_null($personInn)) {
@@ -228,28 +202,66 @@ class PersonService
     private function mapDocType(int $identDoc): string
     {
         return match ($identDoc) {
-            21 => 'Паспорт гражданина Российской Федерации',
-            27 => 'Свидетельство о рождении гражданина Российской Федерации',
-            31 => 'Иной документ',
+            21 => 21907,
+            27 => 21908,
+            12 => 21944,
+            31 => 21909,
         };
     }
+    public function setPartnerName($value): void
+    {
+        $this->partnerName = $value;
+    }
+    public function find(): void
+    {
+        $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Company);
+        $params = [
+            'filter' => [
+                'UF_CRM_6433D7C925893' => $this->personInn,
+            ],
+            'select' => ['ID'],
+            'order' => ['ID' => 'DESC'],
+            'limit' => 1,
+        ];
+        $itemsCompany = $factoryCompany -> getItems($params);
+        if($itemsCompany) {
+            foreach ($itemsCompany as $itemCompany)
+            {
+                $this->personId = $itemCompany->getId();
+            }
+        } else {
+            $this->personId = 0;
+        }
+    }
+    public function getId(): string
+    {
+        return $this->personId;
+    }
+
+    private function getCompanyFactory(): ?\Bitrix\Crm\Service\Factory
+    {
+        return \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Company);
+    }
+    //endregion
+
+    //region Реквизиты компании
     private function createRequisite($personId, PersonDTO $personDTO) : void
     {
         $type = ($personDTO->regMark == "0") ? 'FL' : 'IP';
         $docType = $this->mapDocType($personDTO->docType);
         $PRESET_ID = 2;
-        $params = [
-            "fields" => [
+        $fields = [
                 "ENTITY_TYPE_ID" => \CCrmOwnerType::Company,
                 "ENTITY_ID" => $personId,
                 "PRESET_ID" => $PRESET_ID,
+                'AUTOCOMPLETE' => $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName . ', ИНН ' . $personDTO->inn,
                 'TITLE' => $type . " " . $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName,
                 'NAME' => $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName,
                 'RQ_NAME' => $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName,
                 'RQ_FIRST_NAME' => $personDTO->firstName,
                 'RQ_LAST_NAME' => $personDTO->lastName,
                 'RQ_SECOND_NAME' => $personDTO->middleName,
-                'RQ_IDENT_DOC' => $docType,
+                'UF_CRM_RQ_TYPE_OF_DOCUMENT' => $docType,
                 'RQ_IDENT_DOC_SER' => $personDTO->docSeries,
                 'RQ_IDENT_DOC_NUM' => $personDTO->docNumber,
                 'RQ_IDENT_DOC_DATE' => $personDTO->docIssueDate,
@@ -261,278 +273,147 @@ class PersonService
                 'RQ_OGRNIP' => $personDTO->regNum,
                 'RQ_COMPANY_REG_DATE' => $personDTO->regDate,
                 'UF_CRM_1688964741' => $personDTO->regNumOrg,
-            ]
         ];
 
-        Logs\File::AddMessage($params,"params RequisiteTable ADD", LOG_PERSON_SERVICE);
+        //Logs\File::AddMessage($fields,"params RequisiteTable ADD", LOG_PERSON_SERVICE);
 
         // Создаём реквизит через REST API и получаем его идентификатор
-        $rqResponse = \Bitrix\Crm\RequisiteTable::add($params);
-
-        Logs\File::AddMessage($rqResponse,"RequisiteTable ADD", LOG_PERSON_SERVICE);
+        $result = \Bitrix\Crm\RequisiteTable::add($fields);
 
         //$rqResponse = \B24Rest::call('crm.requisite.add', $params);
-        $this->rqId = $rqResponse['data'];
+        $this->rqId = $result['data'];
+
+
+        //region Send event
+        if ($result->isSuccess())
+        {
+            $event = new \Bitrix\Main\Event('crm', 'OnAfterRequisiteAdd', array('id' => $this->rqId, 'fields' => $fields));
+            $event->send();
+        }
+        //endregion
     }
     private function updateRequisite($rqId, PersonDTO $personDTO): void
     {
-        $type = ($personDTO->regMark == "0") ? 'FL' : 'IP';
+        $type = ($personDTO->regMark == "0") ? '' : 'ИП ';
         $docType = $this->mapDocType($personDTO->docType);
 
-        $params = [
-            "id" => $rqId,
-            "fields" => [
-                'TITLE' => $type . " " . $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName,
-                'NAME' => $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName,
-                'RQ_NAME' => $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName,
-                'RQ_FIRST_NAME' => $personDTO->firstName,
-                'RQ_LAST_NAME' => $personDTO->lastName,
-                'RQ_SECOND_NAME' => $personDTO->middleName,
-                'RQ_IDENT_DOC' => $docType,
-                'RQ_IDENT_DOC_SER' => $personDTO->docSeries,
-                'RQ_IDENT_DOC_NUM' => $personDTO->docNumber,
-                'RQ_IDENT_DOC_DATE' => $personDTO->docIssueDate,
-                'RQ_IDENT_DOC_ISSUED_BY' => $personDTO->docIssuerText,
-                'RQ_IDENT_DOC_DEP_CODE' => $personDTO->docDeptCode,
-                'UF_CRM_1647929611' => $personDTO->birthPlace,
-                'UF_CRM_1684493639' => $personDTO->birthDate,
-                'RQ_INN' => $personDTO->inn,
-                'RQ_OGRNIP' => $personDTO->regNum,
-                'RQ_COMPANY_REG_DATE' => $personDTO->regDate,
-                'UF_CRM_1688964741' => $personDTO->regNumOrg,
-            ]
+        $fields = [
+            'TITLE' => $type . $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName,
+            'NAME' => $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName,
+            'AUTOCOMPLETE' => $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName . ', ИНН ' . $personDTO->inn,
+            'RQ_NAME' => $personDTO->lastName . " " . $personDTO->firstName . " " . $personDTO->middleName,
+            'RQ_FIRST_NAME' => $personDTO->firstName,
+            'RQ_LAST_NAME' => $personDTO->lastName,
+            'RQ_SECOND_NAME' => $personDTO->middleName,
+            'UF_CRM_RQ_TYPE_OF_DOCUMENT' => $docType,
+            'RQ_IDENT_DOC_SER' => $personDTO->docSeries,
+            'RQ_IDENT_DOC_NUM' => $personDTO->docNumber,
+            'RQ_IDENT_DOC_DATE' => $personDTO->docIssueDate,
+            'RQ_IDENT_DOC_ISSUED_BY' => $personDTO->docIssuerText,
+            'RQ_IDENT_DOC_DEP_CODE' => $personDTO->docDeptCode,
+            'UF_CRM_1647929611' => $personDTO->birthPlace,
+            'UF_CRM_1684493639' => $personDTO->birthDate,
+            'RQ_INN' => $personDTO->inn,
+            'RQ_OGRNIP' => $personDTO->regNum,
+            'RQ_COMPANY_REG_DATE' => $personDTO->regDate,
+            'UF_CRM_1688964741' => $personDTO->regNumOrg,
         ];
 
-        // Выполняем обновление через REST API
-        \local\B24Rest::call('crm.requisite.update', $params);
+        $result = \Bitrix\Crm\RequisiteTable::update($rqId, $fields);
+
+        //region Send event
+        if ($result->isSuccess())
+        {
+            $event = new \Bitrix\Main\Event('crm', 'OnAfterRequisiteUpdate', array('id' => $rqId, 'fields' => $fields));
+            $event->send();
+        }
+        //endregion
     }
-    private function processBankDetails(mixed $rqId, int $cardId, PersonDTO $personDTO): void
+    private function processBankDetails(mixed $rqId, PersonDTO $personDTO): void
     {
-        $dataArray = $personDTO->toArray();
+        if (!isset($rqId)) {
+            return;
+        }
+        try {
+            $fieldsForBank = [];
+            // Удаляем все старые банковские реквизиты
+            $existingBankDetails = BankDetailTable::getList([
+                'filter' => [
+                    'ENTITY_ID' => $rqId,
+                    'ENTITY_TYPE_ID' => \CCrmOwnerType::Requisite
+                ],
+                'select' => ['ID']
+            ])->fetchAll();
+
+            foreach ($existingBankDetails as $bankDetail) {
+                BankDetailTable::delete($bankDetail['ID']);
+            }
+
+            foreach ($personDTO->bankDetails as $bank) {
+                $bankAccountPrimaryMark = ($bank['bankAccountPrimaryMark'] == 1) ? "Да" : "Нет";
+                $fieldsForBank[] = [
+                    'ENTITY_ID' => $rqId,
+                    'ENTITY_TYPE_ID' => \CCrmOwnerType::Requisite,
+                    'NAME' => $bank['bankAccountName'] ?? '',
+                    'RQ_ACC_NUM' => $bank['bankAccountId'] ?? '',
+                    'RQ_BIK' => $bank['bankId'] ?? '',
+                    'UF_CRM_PRIMARY_TXT' => $bankAccountPrimaryMark,
+                    'UF_CRM_BD_ACC_TYPE' => 'Расчетный'
+                ];
+            }
+
+            foreach ($personDTO->bankNominalDetails as $bank) {
+                $bankAccountPrimaryMark = ($bank['bankAccountPrimaryMark'] == 1) ? "Да" : "Нет";
+                $fieldsForBank[] = [
+                    'ENTITY_ID' => $rqId,
+                    'ENTITY_TYPE_ID' => \CCrmOwnerType::Requisite,
+                    'NAME' => $bank['bankAccountName'] ?? '',
+                    'RQ_ACC_NUM' => $bank['bankAccountId'] ?? '',
+                    'RQ_BIK' => $bank['bankId'] ?? '',
+                    'UF_CRM_PRIMARY_TXT' => $bankAccountPrimaryMark,
+                    'UF_CRM_BD_ACC_TYPE' => 'Номинальный'
+                ];
+            }
+
+
+            foreach ($fieldsForBank as $fields) {
+                $result = BankDetailTable::add($fields);
+
+                // Отправка события после добавления
+                if ($result->isSuccess()) {
+                    $event = new \Bitrix\Main\Event('crm', 'OnAfterBankDetailAdd', [
+                        'id' => $rqId,
+                        'fields' => $fields
+                    ]);
+                    $event->send();
+                }
+            }
+        } catch (\Exception $e) {
+            Logs\File::AddMessage($e->getMessage(),"Ошибки добавления банковских реквизитов", LOG_PERSON_SERVICE);
+        }
+
     }
     private function processAddressRequisites(mixed $rqId, int $cardId, PersonDTO $personDTO): void
     {
-        $dataArray = $personDTO->toArray();
-        if (!isset($rqId) || !isset($dataArray['addressDetails']) || !is_array($dataArray['addressDetails'])) {
+        if (!isset($rqId) || !isset($personDTO->addressDetails) || !is_array($personDTO->addressDetails)) {
             return;
         }
 
-        foreach ($dataArray['addressDetails'] as $address) {
-            if (!empty($address['fiasId'])) {
-                $addressFiasId = $address['fiasId'];
-
-                // Определяем тип адреса для дальнейшей обработки
-                switch ($address['addressType']) {
-                    case '1':
-                        $addressTypeId = 4;
-                        break;
-                    case '2':
-                        $addressTypeId = 1;
-                        break;
-                    default:
-                        continue 2;
-                }
-
-                // Получаем данные адреса с помощью Dadata
-                $http = new HttpClient();
-                $http->setHeader('Content-Type', 'application/json');
-                $http->setHeader('Accept', 'application/json');
-                // Лучше вынести токен в конфигурацию
-                $http->setHeader('Authorization', 'Token 440b60bed73f6e0d78a0eb09ca91971f8c079590');
-                $requestBody = ['query' => $addressFiasId];
-                $http->post("https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/address", json_encode($requestBody));
-                $responseJson = $http->getResult();
-                $responseArray = json_decode($responseJson, true);
-
-                if (empty($responseArray['suggestions'][0]['data'])) {
-                    continue;
-                }
-
-                $addressData = $responseArray['suggestions'][0]['data'];
-
-                // Извлечение нужных полей
-                $city      = $addressData['city']         ?? '';
-                $flat      = $addressData['flat']         ?? '';
-                $house     = $addressData['house']        ?? '';
-                $region    = $addressData['region']       ?? '';
-                $district  = $addressData['city_district']?? '';
-                $street    = $addressData['street']       ?? '';
-                $blockType = $addressData['block_type_full']?? '';
-                $block     = $addressData['block']        ?? '';
-                $country   = $addressData['country']      ?? '';
-                $postalCode= $addressData['postal_code']   ?? '';
-
-                // Если присутствуют дополнительные данные, объединяем информацию о доме
-                if ($blockType === 'корпус' || $blockType === 'строение') {
-                    $house .= ' ' . $blockType . ' ' . $block;
-                }
-
-                // Формируем поля для базового адреса
-                $address1 = $street . ", " . $house;
-                $address2 = $flat;
-
-                $languageId = LANGUAGE_ID; // или другой нужный вам язык
-                $locationAddress = new EntityAddress($languageId);
-
-                // Устанавливаем необходимые поля.
-                // Здесь можно использовать константы классов Bitrix\Location\Field\Type или использовать строки, если в вашей сборке так настроено.
-                $locationAddress->setFieldValue(EntityAddress\FieldType::ADDRESS_LINE_1, $address1);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::ADDRESS_LINE_2, $address2);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::LOCALITY, $city);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::POSTAL_CODE, $postalCode);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::ADM_LEVEL_1, $region);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::ADM_LEVEL_2, $district);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::COUNTRY, $country);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::STREET, $street);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::BUILDING, $house);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::FIAS_ID, $addressFiasId);
-
-                // Если необходима дополнительная обработка (например, нормализация данных), можно добавить её здесь.
-                // Сохраняем детальный адрес:
-                $result = $locationAddress->save();
-                if(!$result->isSuccess())
-                {
-                    // Обработка ошибки создания location address
-                    Logs\File::AddMessage(implode(', ', $result->getErrorMessages()), "Не удалось создать детальный адрес", LOG_CRM_ADDRESS);
-                }
-
-                // Получаем идентификатор созданного location address:
-                $locAddrId = $locationAddress->getId();
-
-                // Формируем массив для записи с использованием расширенной ORM-модели
-                $data = [
-                    'TYPE_ID'        => $addressTypeId,
-                    'ENTITY_TYPE_ID' => \CCrmOwnerType::Requisite, // Или другой тип, если требуется
-                    'ENTITY_ID'      => intval($rqId),
-                    'ANCHOR_ID'      => $cardId,
-                    'ANCHOR_TYPE_ID' => \CCrmOwnerType::Company,
-                    'ADDRESS_1'      => $address1,
-                    'ADDRESS_2'      => $address2,
-                    'CITY'           => $city,
-                    'POSTAL_CODE'    => $postalCode,
-                    'REGION'         => $district,     // Можно поменять местами, если нужно
-                    'PROVINCE'       => $region,
-                    'COUNTRY'        => $country,
-                    'LOC_ADDR_ID'    => $locAddrId,
-                    // Дополнительные поля, которые сохранены в b_crm_addr:
-                    'STREET'         => $street,
-                    'BUILDING'       => $house,
-                    'FIAS_ID'        => $addressFiasId,
-                ];
-
-                // Обновляем или создаем запись в CRM через AddressTable
-                AddressTable::upsertExtended($data);
-
-                // Логируем результат обработки для отладки
-                Logs\File::AddMessage($data, "Обработка адресов для реквизита " . $address['addressType'], LOG_CRM_ADDRESS);
-            }
-            else {
-                // Определяем тип адреса для дальнейшей обработки
-                switch ($address['addressType']) {
-                    case '1':
-                        $addressTypeId = 4;
-                        break;
-                    case '2':
-                        $addressTypeId = 1;
-                        break;
-                    default:
-                        continue 2;
-                }
-
-                // Извлечение нужных полей
-                $city      = $address['location']         ?? '';
-                $flat      = $address['apart']         ?? '';
-                $house     = $address['house']        ?? '';
-                $region    = $address['province']       ?? '';
-                $street    = $address['street']       ?? '';
-                $block     = $address['block']        ?? '';
-                $build     = $address['build']        ?? '';
-                $country   = $address['country']      ?? 'Россия';
-                $postalCode= $address['postCode']   ?? '';
-
-                if($block) {
-                    $blockType = 'корпус';
-                    $house .= ' ' . $blockType . ' ' . $block;
-                }
-                if($build) {
-                    $blockType = 'строение';
-                    $house .= ' ' . $blockType . ' ' . $build;
-                }
-
-                $address1 = $street . ", " . $house;
-                $address2 = $flat;
-
-                $addressString = "{$region} {$city} {$street} {$house} {$flat}";
-
-                $http = new HttpClient();
-                $http->setHeader('Content-Type', 'application/json');
-                $http->setHeader('Accept', 'application/json');
-                // Лучше вынести токен в конфигурацию
-                $http->setHeader('Authorization', 'Token 440b60bed73f6e0d78a0eb09ca91971f8c079590');
-                $requestBody = ['query' => $addressString];
-                $http->post("https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address", json_encode($requestBody));
-                $responseJson = $http->getResult();
-                $responseArray = json_decode($responseJson, true);
-
-                if (empty($responseArray['suggestions'][0]['data'])) {
-                    continue;
-                }
-
-                $addressData = $responseArray['suggestions'][0]['data'];
-                $addressFiasId = $addressData['fias_id'];
-
-                $languageId = LANGUAGE_ID; // или другой нужный вам язык
-                $locationAddress = new EntityAddress($languageId);
-
-                // Устанавливаем необходимые поля.
-                // Здесь можно использовать константы классов Bitrix\Location\Field\Type или использовать строки, если в вашей сборке так настроено.
-                $locationAddress->setFieldValue(EntityAddress\FieldType::ADDRESS_LINE_1, $address1);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::ADDRESS_LINE_2, $address2);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::LOCALITY, $city);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::POSTAL_CODE, $postalCode);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::ADM_LEVEL_1, $region);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::ADM_LEVEL_2, "");
-                $locationAddress->setFieldValue(EntityAddress\FieldType::COUNTRY, $country);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::STREET, $street);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::BUILDING, $house);
-                $locationAddress->setFieldValue(EntityAddress\FieldType::FIAS_ID, $addressFiasId);
-
-                $locationAddress->save();
-
-                // Получаем идентификатор созданного location address:
-                $locAddrId = $locationAddress->getId();
-
-                // Формируем массив для записи с использованием расширенной ORM-модели
-                $data = [
-                    'TYPE_ID'        => $addressTypeId,
-                    'ENTITY_TYPE_ID' => \CCrmOwnerType::Requisite, // Или другой тип, если требуется
-                    'ENTITY_ID'      => intval($rqId),
-                    'ANCHOR_ID'      => $cardId,
-                    'ANCHOR_TYPE_ID' => \CCrmOwnerType::Company,
-                    'ADDRESS_1'      => $address1,
-                    'ADDRESS_2'      => $address2,
-                    'CITY'           => $city,
-                    'POSTAL_CODE'    => $postalCode,
-                    'REGION'         => "",     // Можно поменять местами, если нужно
-                    'PROVINCE'       => $region,
-                    'COUNTRY'        => $country,
-                    'LOC_ADDR_ID'    => $locAddrId,
-                    // Дополнительные поля, которые сохранены в b_crm_addr:
-                    'STREET'         => $street,
-                    'BUILDING'       => $house,
-                    'FIAS_ID'        => $addressFiasId,
-                ];
-
-                // Обновляем или создаем запись в CRM через AddressTable
-                AddressTable::upsertExtended($data);
-            }
-
-        }
+        $AddressService = new AddressService($personDTO->addressDetails, $rqId, $cardId, 'person');
+        $AddressService->init();
     }
-
     private function processRequisites(PersonDTO $personDTO): void
     {
-        $this->findCompanyRQ($this->personId, $personDTO->inn);
+        $requisiteData = new PersonRequisiteData(
+            $this->personId,
+            $personDTO
+        );
+        // единый метод сохраняет или обновляет реквизит + всё связанное
+        $this->rqId = $this->requisiteService->save($requisiteData);
+
+        /*$this->findCompanyRQ($this->personId, $personDTO->inn);
+
+        Logs\File::AddMessage($this->rqId,"Найденный реквизит", LOG_PERSON_SERVICE);
 
         if ($this->rqId == 0) {
             $this->createRequisite($this->personId, $personDTO);
@@ -541,8 +422,10 @@ class PersonService
         }
 
         $this->processAddressRequisites($this->rqId, $this->personId, $personDTO);
-        $this->processBankDetails($this->rqId, $this->personId, $personDTO);
+        $this->processBankDetails($this->rqId, $personDTO);*/
     }
+
+    //endregion
 
     //region Обработка контактов компании
     private function processFM(PersonDTO $personDTO, Collection $existingCollection = null): Collection
@@ -640,10 +523,6 @@ class PersonService
 
     private function processContactPersons(PersonDTO $personDTO): void
     {
-        \KPLab\OneC\ContactPersons::getDetails(
-            $this->personId,
-            $personDTO->contactPersonDetails,
-            "CO_"
-        );
+        $this->contactPersonService->set($this->personId,$personDTO->contactPersonDetails,"CO_");
     }
 }

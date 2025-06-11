@@ -1,5 +1,15 @@
 <?php
 require_once __DIR__ . '/lib/autoload.php';
+
+use Bitrix\Main\EventManager;
+use Kplab\Exchange_log\Handlers\Requisite;
+
+EventManager::getInstance()->addEventHandlerCompatible(
+    'main',
+    'OnAfterEpilog',
+    [Requisite::class, 'handleSliderAjax']
+);
+
 class CKPLabExchangeLog
 {
     public static function OnBuildGlobalMenu(&$aGlobalMenu, &$aModuleMenu)

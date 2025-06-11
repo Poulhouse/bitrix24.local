@@ -69,7 +69,11 @@ class LogsAction
         $controllerName = $sqlHelper->forSql($controllerName);
         $method = $sqlHelper->forSql($method);
         $status = $sqlHelper->forSql($status);
-        $response = $sqlHelper->forSql($response['response']); // JSON уже экранирован, оставляем как есть
+        if (!is_array($response) || !isset($response['response'])) {
+            $response = ['response' => is_string($response) ? $response : json_encode($response, JSON_UNESCAPED_UNICODE)];
+        }
+        $response = $sqlHelper->forSql($response['response']);
+
         $executionTime = floatval(\KPLab\API\V2\Time::finish($time)['duration']);
         $requestBody = $sqlHelper->forSql($requestBody);
         $requestType = $sqlHelper->forSql($requestType);

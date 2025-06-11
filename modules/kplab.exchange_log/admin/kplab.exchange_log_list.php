@@ -1,4 +1,6 @@
 <?php
+global $APPLICATION;
+
 use Bitrix\Main\Loader;
 use Bitrix\Main\Application;
 use Bitrix\Main\Type;
@@ -12,6 +14,8 @@ use Bitrix\Main\UI\PageNavigation;
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php';
 
+define("LOG_ADMIN_EXCHANGE_LOG_LIST", $_SERVER['DOCUMENT_ROOT']."/local/logs/LOG_ADMIN_EXCHANGE_LOG_LIST.log");
+
 $APPLICATION->SetTitle("Журнал изменений");
 Loader::includeModule('iblock');
 
@@ -21,6 +25,9 @@ $filterID = 'kplab_exchange_logs_filter';
 // Опции фильтра
 $filterOptions = new FilterOptions($filterID);
 $filterData = $filterOptions->getFilter();
+
+$gridOptions = new GridOptions($gridID);
+$sorting = $gridOptions->getSorting(["sort" => ["ID" => "desc"]]);
 
 // Настройки навигации
 $nav = new PageNavigation("page");
@@ -89,6 +96,12 @@ $filterFields = [
         "default" => true,
     ],
     [
+        "id" => "FIELD_CODE",
+        "name" => "Код элемента CRM",
+        "type" => "string",
+        "default" => true,
+    ],
+    [
         "id" => "FIELD_NAME",
         "name" => "Поле элемента CRM",
         "type" => "string",
@@ -149,14 +162,89 @@ $filterFields = [
 $filterConditions = [];
 
 // Прямые поля:
-if (!empty($filterData['ID'])) {
-    $filterConditions['ID'] = $filterData['ID'];
+if (!empty($filterData['ID_numsel'])) {
+    $from = isset($filterData['ID_from']) ? (int)$filterData['ID_from'] : null;
+    $to   = isset($filterData['ID_to']) ? (int)$filterData['ID_to'] : null;
+
+    switch ($filterData['ID_numsel']) {
+        case 'exact':
+            if ($from !== null) {
+                $filterConditions['=ID'] = $from;
+            }
+            break;
+
+        case 'more':
+            if ($from !== null) {
+                $filterConditions['>ID'] = $from;
+            }
+            break;
+
+        case 'less':
+            if ($to !== null) {
+                $filterConditions['<ID'] = $to;
+            }
+            break;
+
+        case 'range':
+            if ($from !== null && $to !== null) {
+                if ($from === $to) {
+                    $filterConditions['=ID'] = $from;
+                } else {
+                    $filterConditions['>=ID'] = $from;
+                    $filterConditions['<=ID'] = $to;
+                }
+            } elseif ($from !== null) {
+                $filterConditions['>=ID'] = $from;
+            } elseif ($to !== null) {
+                $filterConditions['<=ID'] = $to;
+            }
+            break;
+    }
 }
 if (!empty($filterData['ENTITY_TYPE_ID'])) {
     $filterConditions['ENTITY_TYPE_ID'] = $filterData['ENTITY_TYPE_ID'];
 }
-if (!empty($filterData['ENTITY_ID'])) {
-    $filterConditions['ENTITY_ID'] = $filterData['ENTITY_ID'];
+if (!empty($filterData['ENTITY_ID_numsel'])) {
+    $from = isset($filterData['ENTITY_ID_from']) ? (int)$filterData['ENTITY_ID_from'] : null;
+    $to   = isset($filterData['ENTITY_ID_to']) ? (int)$filterData['ENTITY_ID_to'] : null;
+
+    switch ($filterData['ENTITY_ID_numsel']) {
+        case 'exact':
+            if ($from !== null) {
+                $filterConditions['=ENTITY_ID'] = $from;
+            }
+            break;
+
+        case 'more':
+            if ($from !== null) {
+                $filterConditions['>ENTITY_ID'] = $from;
+            }
+            break;
+
+        case 'less':
+            if ($to !== null) {
+                $filterConditions['<ENTITY_ID'] = $to;
+            }
+            break;
+
+        case 'range':
+            if ($from !== null && $to !== null) {
+                if ($from === $to) {
+                    $filterConditions['=ENTITY_ID'] = $from;
+                } else {
+                    $filterConditions['>=ENTITY_ID'] = $from;
+                    $filterConditions['<=ENTITY_ID'] = $to;
+                }
+            } elseif ($from !== null) {
+                $filterConditions['>=ENTITY_ID'] = $from;
+            } elseif ($to !== null) {
+                $filterConditions['<=ENTITY_ID'] = $to;
+            }
+            break;
+    }
+}
+if (!empty($filterData['FIELD_CODE'])) {
+    $filterConditions['%FIELD_CODE'] = $filterData['FIELD_CODE'];
 }
 if (!empty($filterData['FIELD_NAME'])) {
     $filterConditions['%FIELD_NAME'] = $filterData['FIELD_NAME'];
@@ -184,6 +272,8 @@ if (!empty($filterData['CHANGE_DATE_to'])) {
     $filterConditions['<=CHANGE_DATE'] = $filterData['CHANGE_DATE_to'];
 }
 
+//\KPLab\Logs\File::AddMessage("filterData", $filterData, LOG_ADMIN_EXCHANGE_LOG_LIST);
+
 
 $totalCount = ExchangeLogTable::getCount($filterConditions);
 
@@ -191,7 +281,7 @@ $totalCount = ExchangeLogTable::getCount($filterConditions);
 $res = ExchangeLogTable::getList([
     'filter' => $filterConditions,
     'select' => ['*'],
-    'order' => ['ID' => 'DESC'],
+    'order' => $sorting['sort'],
     'count_total' => true,
     'offset' => $nav->getOffset(),
     'limit' => $nav->getLimit(),
@@ -220,9 +310,6 @@ while ($row = $res->fetch()) {
     ];
 }
 $nav->setRecordCount($totalCount);
-
-$gridOptions = new GridOptions($gridID);
-$sorting = $gridOptions->getSorting(["sort" => ["ID" => "desc"]]);
 $APPLICATION->IncludeComponent(
     'bitrix:main.ui.filter',
     '',
@@ -242,6 +329,7 @@ $APPLICATION->IncludeComponent(
         'COLUMNS' => [
             ['id' => 'ID', 'name' => 'ID', 'sort' => 'ID', 'default' => false],
             ['id' => 'CHANGE_DATE', 'name' => 'Дата и время изменения', 'sort' => 'CHANGE_DATE', 'default' => true],
+            ['id' => 'FIELD_CODE', 'name' => 'Код элемента CRM', 'sort' => 'FIELD_CODE', 'default' => true],
             ['id' => 'FIELD_NAME', 'name' => 'Поле элемента CRM', 'sort' => 'FIELD_NAME', 'default' => true],
             ['id' => 'OLD_VALUE', 'name' => 'Старое значение', 'sort' => 'OLD_VALUE', 'default' => true],
             ['id' => 'NEW_VALUE', 'name' => 'Новое значение', 'sort' => 'NEW_VALUE', 'default' => true],

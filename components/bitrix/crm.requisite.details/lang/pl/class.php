@@ -1,0 +1,20 @@
+<?php
+$MESS["CRM_MODULE_NOT_INSTALLED"] = "Moduł CRM nie jest zainstalowany.";
+$MESS["CRM_REQUISITE_DETAILS_AUTOCOMPLETE"] = "Przeszukuj dane";
+$MESS["CRM_REQUISITE_DETAILS_ERR_COMPANY_REQUISITE_READ_DENIED"] = "Odmówiono dostępu do odczytu danych firmy (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_ERR_COMPANY_REQUISITE_WRITE_DENIED"] = "Odmówiono dostępu do zapisu danych firmy (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_ERR_CONTACT_REQUISITE_READ_DENIED"] = "Odmówiono dostępu do odczytu danych kontaktowych (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_ERR_CONTACT_REQUISITE_WRITE_DENIED"] = "Odmówiono dostępu do zapisu danych kontaktowych (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_ERR_EXTERNAL_DATA_NOT_DEFINED"] = "Nie określono parametru z danymi zewnętrznymi.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_INVALID_ENTITY_ID_TO_SAVE"] = "Nie zdefiniowano obiektu nadrzędnego, do którego mają zostać zapisane dane.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_INVALID_EXTERNAL_DATA"] = "Nieprawidłowe dane zewnętrzne.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_INVALID_FORM_DATA"] = "Nie określono parametru z danymi formularza.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PRESET_COUNTRY_ID_IS_NOT_DEFINED"] = "Nie zdefiniowano kraju danych.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PRESET_ID_NOT_DEFINED"] = "Nie określono szablonu danych.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PRESET_NOT_FOUND"] = "Nie znaleziono szablonu danych.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PREV_PRESET_COUNTRY_ID_IS_NOT_DEFINED"] = "Poprzedni szablon nie określa kraju danych.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PREV_PRESET_NOT_FOUND"] = "Nie można znaleźć poprzedniego szablonu danych.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_REQUISITE_READ_PERMISSIONS"] = "Odmówiono dostępu do odczytu danych (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_FORM_TITLE"] = "Edytuj dane";
+$MESS["CRM_REQUISITE_DETAILS_FORM_TITLE_READ_ONLY"] = "Wyświetl dane";
+$MESS["CRM_REQUISITE_DETAILS_PRESET"] = "Szablon";

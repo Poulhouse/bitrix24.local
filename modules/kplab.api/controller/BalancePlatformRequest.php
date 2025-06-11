@@ -10,8 +10,7 @@ define("LOG_BP", $_SERVER['DOCUMENT_ROOT']."/local/classes/balanceplatform/Balan
 define("TOKEN_KEY","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIiLCJTZXJ2aWNlIjoiQml0cml4In0.CpUj1LJ_otMm6_slHFRAVnqsQtLeswkSVu7_jIgedTU");
 define('API_KEY','4d0e4072-889b-42cd-950c-af8d58221114');
 
-\Bitrix\Main\Loader::includeModule('kplab.api.v2');
-\Bitrix\Main\Loader::includeModule('rest');
+\Bitrix\Main\Loader::includeModule('kplab.api');
 \Bitrix\Main\Loader ::IncludeModule('crm');
 
 class BalancePlatformRequest extends \Bitrix\Main\Engine\Controller {

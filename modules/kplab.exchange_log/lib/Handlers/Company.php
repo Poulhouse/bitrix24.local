@@ -1,13 +1,7 @@
 <?php namespace Kplab\Exchange_log\Handlers;
 
-use Bitrix\Main\Loader;
-use Bitrix\Main\Diag\Debug;
-use Kplab\Exchange_log\ExchangeLogTable;
-use Kplab\Exchange_log\Helpers\ChangeChecker;
-use Kplab\Exchange_log\Helpers\Exchange;
+use Kplab\Exchange_log\Helpers;
 use KPLab\Logs;
-use Bitrix\Main\Type;
-use KPLab\API\V2\Helpers\Locker;
 use KPLab\API\V2\Model\Service\ChangeContext;
 
 define("LOG_COMPANY_CHANGES", $_SERVER['DOCUMENT_ROOT']."/local/logs/company_changes.log");
@@ -81,22 +75,32 @@ class Company {
     public static function processCompanyAgent($encodedTaskData, $event): string
     {
         $taskData = json_decode($encodedTaskData, true);
-        //Logs\File::AddMessage($taskData, "processCompanyAgent {$event}", LOG_COMPANY_CHANGES);
         try {
-            // Вызов универсальной функции проверки и логирования изменений
-            $changes = ChangeChecker::checkTrackedChanges(
-                self::MODULE_ID,
-                \CCrmOwnerType::Company,
-                $taskData['company_id'],
-                $taskData['newData'],
-                $taskData['userId']
-            );
             $serviceUpdateName = $taskData['source'];
+            $userId = $taskData['userId'];
+            $newData = $taskData['newData'];
+            $company_id = $taskData['company_id'];
 
-            Exchange::runCompany($changes, $taskData['company_id'], $taskData['userId'], $taskData['newData'], $serviceUpdateName);
+            if (Helpers\ChangeChecker::check(
+                $newData,                  // массив с актуальными данными компании
+                \CCrmOwnerType::Company,
+                $company_id,
+                [
+                    'SERVICE_UPDATE_NAME' => $serviceUpdateName,
+                    'USER_ID' => $userId, // при необходимости
+                ]
+            )) {
+                Helpers\Exchange::runCompany($newData, $serviceUpdateName);
+            }
 
         } catch (\Exception $e) {
-            // Логируем с полным контекстом ошибки
+            $errorContext = [
+                'error' => $e->getMessage(),
+                'task_data' => $taskData,
+                'trace' => $e->getTraceAsString()
+            ];
+            Logs\File::AddMessage(json_encode($errorContext, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT), "processCompanyInBackground", LOG_COMPANY_BACKGROUND_ERRORS);
+        } catch (\Throwable $e) {
             $errorContext = [
                 'error' => $e->getMessage(),
                 'task_data' => $taskData,

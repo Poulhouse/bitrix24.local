@@ -21,6 +21,14 @@ define("LOG_MYCLASS", $_SERVER['DOCUMENT_ROOT']."/local/logs/myclass.log");
 
 class MyClass
 {
+
+    public static function OnAfterCrmCompanyUpdateH(&$arFields)
+    {
+        Logs\File::AddMessage($arFields,"arFields OnAfterCrmCompanyUpdateH",LOG_MYCLASS);
+
+        return true;
+    }
+
     /**
      * @throws ObjectPropertyException
      * @throws SystemException

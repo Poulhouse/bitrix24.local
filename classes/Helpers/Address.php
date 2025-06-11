@@ -12,22 +12,6 @@ class Address
 {
     /**
      * Обработка адресов для реквизита.
-     *
-     * @param mixed $rqId       Идентификатор реквизита
-     * @param int   $entityTypeId     Идентификатор типа карточки (например, компании)
-     * @param int   $cardId     Идентификатор карточки (например, компании)
-     * @param array $dataArray  Массив данных, содержащий ключ 'address'
-     *
-     * Пример структуры $dataArray:
-     * [
-     *    'address' => [
-     *         [
-     *             'fiasId' => 'XXXX-XXXX-XXXX',
-     *             'type'   => 'registration'
-     *         ],
-     *         // ... другие адреса
-     *    ]
-     * ]
      */
     public static function processAddressRequisites(mixed $rqId, int $entityTypeId, int $cardId, array $dataArray): void
     {

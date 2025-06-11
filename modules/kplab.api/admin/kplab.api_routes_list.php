@@ -13,21 +13,106 @@ Loader::includeModule('kplab.api');
 \Bitrix\Main\UI\Extension::load("ui.buttons");
 
 // Настройка сетки
-$gridID = 'kplab_api_routes_grid';
-$gridOptions = new GridOptions($gridID);
 
 // Опции фильтра
 $filterID = 'kplab_api_routes_filter';
 $filterOptions = new FilterOptions($filterID);
 $filterData = $filterOptions->getFilter();
 
+$gridID = 'kplab_api_routes_grid';
+$gridOptions = new GridOptions($gridID);
 $sort = $gridOptions->GetSorting(['sort' => ['ID' => 'desc']]);
+
 $nav = new PageNavigation("page");
 $nav->allowAllRecords(true)
     ->setPageSize(20)
     ->initFromUri();
 
 
+
+$controllerNames = [];
+$methodNames = [];
+
+$routeRes = RoutesTable::getList([
+    'select' => ['CONTROLLER_NAME', 'METHOD_NAME'],
+    'filter' => ['=ACTIVE' => 'Y'],
+    'order' => ['CONTROLLER_NAME' => 'ASC'],
+]);
+
+while ($route = $routeRes->fetch()) {
+    if (!empty($route['CONTROLLER_NAME'])) {
+        $controllerNames[$route['CONTROLLER_NAME']] = $route['CONTROLLER_NAME'];
+    }
+    if (!empty($route['METHOD_NAME'])) {
+        $methodNames[$route['METHOD_NAME']] = $route['METHOD_NAME'];
+    }
+}
+ksort($controllerNames);
+ksort($methodNames);
+
+$filterFields = [
+    [
+        "id" => "ID",
+        "name" => "ID",
+        "type" => "number",
+        "default" => true,
+    ],
+    [
+        "id" => "ROUTE_PATH",
+        "name" => "Путь маршрута",
+        "type" => "string",
+        "default" => true,
+    ],
+    [
+        "id" => 'CONTROLLER_NAME',
+        'type' => 'list',
+        'name' => 'Контроллер',
+        'items' => $controllerNames,
+        "default" => false,
+        'params' => ['multiple' => 'N'],
+    ],
+    [
+        "id" => 'METHOD_NAME',
+        'name' => 'Метод API',
+        'type' => 'list',
+        'items' => $methodNames, // начнем с пустого списка
+        "default" => false,
+        'params' => [
+            'multiple' => 'N',
+            'autocomplete' => 'Y',
+        ],
+    ],
+    [
+        "id" => "HTTP_METHOD",
+        "name" => "Метод запроса",
+        "type" => "list",
+        "items" => [
+            "GET" => "GET",
+            "POST" => "POST",
+        ],
+        "default" => true,
+    ],
+    [
+        "id" => "ACTIVE",
+        "name" => "Активный",
+        "type" => "list",
+        "items" => [
+            "Y" => "Да",
+            "N" => "Нет",
+        ],
+        "default" => true,
+    ],
+    [
+        "id" => "LOG_LEVEL",
+        "name" => "Уровень логирования",
+        "type" => "list",
+        "items" => [
+            "full" => "Полное логирование",
+            "errors" => "Только ошибки",
+        ],
+        "default" => true,
+    ]
+];
 
 $filterConditions = [];
 
@@ -44,7 +129,13 @@ if (!empty($filterData['METHOD_NAME'])) {
     $filterConditions['%METHOD_NAME'] = $filterData['METHOD_NAME']; // Поиск по подстроке
 }
 if (!empty($filterData['HTTP_METHOD'])) {
-    $filterConditions['%HTTP_METHOD'] = $filterData['HTTP_METHOD']; // Поиск по подстроке
+    $filterConditions['=HTTP_METHOD'] = $filterData['HTTP_METHOD']; // Поиск по подстроке
+}
+if (!empty($filterData['ACTIVE'])) {
+    $filterConditions['=ACTIVE'] = $filterData['ACTIVE']; // Поиск по подстроке
+}
+if (!empty($filterData['LOG_LEVEL'])) {
+    $filterConditions['=LOG_LEVEL'] = $filterData['LOG_LEVEL']; // Поиск по подстроке
 }
 
 $totalCount = RoutesTable::getCount($filterConditions);
@@ -86,16 +177,9 @@ $nav->setRecordCount($totalCount);
                 [
                     'FILTER_ID' => $filterID,
                     'GRID_ID' => $gridID,
-                    'FILTER' => [
-                        ['id' => 'ID', 'name' => 'ID', 'type' => 'number'],
-                        ['id' => 'ROUTE_PATH', 'name' => 'Путь маршрута', 'type' => 'string'],
-                        ['id' => 'CONTROLLER_NAME', 'name' => 'Контроллер', 'type' => 'string'],
-                        ['id' => 'METHOD_NAME', 'name' => 'Метод', 'type' => 'string'],
-                        ['id' => 'HTTP_METHOD', 'name' => 'HTTP-метод', 'type' => 'string'],
-                        ['id' => 'ACTIVE', 'name' => 'Активный', 'type' => 'boolean'],
-                    ],
+                    'FILTER' => $filterFields,
                     'ENABLE_LIVE_SEARCH' => true,
-                    'ENABLE_LABEL' => true,
+                    'ENABLE_LABEL' => true
                 ]
             );
             ?>
@@ -137,9 +221,11 @@ $APPLICATION->IncludeComponent(
             ['id' => 'METHOD_NAME', 'name' => 'Метод', 'sort' => 'METHOD_NAME', 'default' => true],
             ['id' => 'HTTP_METHOD', 'name' => 'HTTP-метод', 'sort' => 'HTTP_METHOD', 'default' => true],
             ['id' => 'ACTIVE', 'name' => 'Активный', 'sort' => 'ACTIVE', 'default' => true],
+            ['id' => 'LOG_LEVEL', 'name' => 'Уровень логирования', 'sort' => 'LOG_LEVEL', 'default' => true],
         ],
         'ROWS' => $routes,
         'NAV_OBJECT' => $nav,
+        'SORT' => $sort['sort'],
         'AJAX_MODE' => 'Y',
         'PAGE_SIZES' => [
             ['NAME' => '5', 'VALUE' => '5'],

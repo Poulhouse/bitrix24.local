@@ -1,4 +1,8 @@
 <?php
+if (!defined('LANGUAGE_ID')) {
+    define('LANGUAGE_ID', 'ru');
+}
+
 \Bitrix\Main\Loader::includeModule('kplab.api');
 use \Bitrix\Main\Routing\RoutingConfigurator;
 use KPLab\API\V2\Model\ORM\RoutesTable;
@@ -36,6 +40,7 @@ use \KPLab\API\V2\Helpers\ControllerGenerator;
  *
  */
 return function (RoutingConfigurator $routes) {
+
     // Получаем только активные маршруты из БД
     $res = RoutesTable::getList([
         'filter' => ['ACTIVE' => 'Y'],  // Загружаем только активные маршруты
@@ -49,6 +54,9 @@ return function (RoutingConfigurator $routes) {
         $controllerAction = $route['METHOD_NAME'];
         $httpMethod = $route['HTTP_METHOD'];
         $routePath = $route['ROUTE_PATH'];
+
+        //throw new \RuntimeException("Метод $controllerAction найден в $controllerName");
+
 
         // Регистрируем маршрут
         if ($httpMethod == "post") {

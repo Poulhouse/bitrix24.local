@@ -6,13 +6,7 @@ use Bitrix\Main\EventManager;
 use Bitrix\Main\Mail\Event;
 use KPLab\Logs;
 define("LANGUAGE_ID", "ru");
-define("LOG_INIT", $_SERVER['DOCUMENT_ROOT']."/local/init.log");
-\Bitrix\Main\Loader::includeModule("crm");
-\Bitrix\Main\Loader::includeModule("mail");
-\Bitrix\Main\Loader::includeModule("kplab.api");
-\Bitrix\Main\Loader::includeModule("kplab.fias");
-\Bitrix\Main\Loader::includeModule("location");
-\Bitrix\Main\Loader::includeModule('iblock');
+define("LOG_INIT", $_SERVER['DOCUMENT_ROOT']."/local/logs/init.log");
 
 require_once ($_SERVER['DOCUMENT_ROOT'].'/local/crest/crest.php');
 require_once ($_SERVER['DOCUMENT_ROOT'].'/local/autoload.php');
@@ -21,11 +15,24 @@ require_once ($_SERVER['DOCUMENT_ROOT'].'/services_sodeistvie/lib/functions.php'
 require_once ($_SERVER['DOCUMENT_ROOT'].'/services_sodeistvie/lib/nopaper/api.php');
 require_once ($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/user_types/ut_array.php");
 
+\Bitrix\Main\Loader::includeModule("crm");
+\Bitrix\Main\Loader::includeModule("mail");
+\Bitrix\Main\Loader::includeModule("kplab.api");
+\Bitrix\Main\Loader::includeModule('kplab.exchange_log');
+\Bitrix\Main\Loader::includeModule("kplab.fias");
+\Bitrix\Main\Loader::includeModule("location");
+\Bitrix\Main\Loader::includeModule('iblock');
+
 AddEventHandler("crm", "OnAfterCrmLeadUpdate", Array("MyClass", "OnAfterCrmLeadUpdateHandler"));
 AddEventHandler("main", "OnProlog", Array("MyClass", "MyOnPrologHandler"), 50);
 AddEventHandler('rest', 'OnRestServiceBuildDescription', array('RestTest', 'OnRestServiceBuildDescription'));
 AddEventHandler("im", "OnBeforeChatMessageAdd", Array("MyClass", "OnBeforeChatMessageAddHandler"));
 AddEventHandler("crm", "OnActivityAdd", Array("MyClass", "OnActivityAddHandler"));
+AddEventHandler("crm", "OnAfterCrmCompanyUpdate", Array("MyClass", "OnAfterCrmCompanyUpdateH"));
+
+use Bitrix\Crm\EntityRequisite;
+
+
 
 
 

@@ -1,0 +1,20 @@
+<?php
+$MESS["CRM_MODULE_NOT_INSTALLED"] = "Il modulo CRM non è installato.";
+$MESS["CRM_REQUISITE_DETAILS_AUTOCOMPLETE"] = "Cerca dettagli";
+$MESS["CRM_REQUISITE_DETAILS_ERR_COMPANY_REQUISITE_READ_DENIED"] = "L'accesso in lettura ai dettagli azienda (ID = #ID#) è stato negato";
+$MESS["CRM_REQUISITE_DETAILS_ERR_COMPANY_REQUISITE_WRITE_DENIED"] = "L'accesso in scrittura ai dettagli azienda (ID = #ID#) è stato negato";
+$MESS["CRM_REQUISITE_DETAILS_ERR_CONTACT_REQUISITE_READ_DENIED"] = "L'accesso in lettura ai dettagli contatto (ID = #ID#) è stato negato";
+$MESS["CRM_REQUISITE_DETAILS_ERR_CONTACT_REQUISITE_WRITE_DENIED"] = "L'accesso in scrittura ai dettagli contatto (ID = #ID#) è stato negato";
+$MESS["CRM_REQUISITE_DETAILS_ERR_EXTERNAL_DATA_NOT_DEFINED"] = "Il parametro con dati di dettagli esterni non è specificato.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_INVALID_ENTITY_ID_TO_SAVE"] = "L'entità padre in cui salvare i dettagli non è definita.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_INVALID_EXTERNAL_DATA"] = "Dati esterni non corretti.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_INVALID_FORM_DATA"] = "Il parametro con dati modulo non è specificato.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PRESET_COUNTRY_ID_IS_NOT_DEFINED"] = "Il Paese dei dettagli non è definito.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PRESET_ID_NOT_DEFINED"] = "Il modello dettagli non è specificato.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PRESET_NOT_FOUND"] = "Il modello dettagli non è stato trovato.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PREV_PRESET_COUNTRY_ID_IS_NOT_DEFINED"] = "Il modello precedente non specifica il Paese dei dettagli.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PREV_PRESET_NOT_FOUND"] = "Impossibile trovare il modello dettagli precedente.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_REQUISITE_READ_PERMISSIONS"] = "L'accesso in lettura ai dettagli (ID = #ID#) è stato negato";
+$MESS["CRM_REQUISITE_DETAILS_FORM_TITLE"] = "Modifica dettagli";
+$MESS["CRM_REQUISITE_DETAILS_FORM_TITLE_READ_ONLY"] = "Visualizza dettagli";
+$MESS["CRM_REQUISITE_DETAILS_PRESET"] = "Modello";

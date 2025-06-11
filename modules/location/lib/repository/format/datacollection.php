@@ -247,13 +247,21 @@ class DataCollection
                 'sort' => 500,
                 'templateCollection' => [
                     TemplateType::DEFAULT =>
-                        '[", ",[POSTAL_CODE,COUNTRY,ADM_LEVEL_1,ADM_LEVEL_2,LOCALITY,ADDRESS_LINE_1,ADDRESS_LINE_2]]',
-                    TemplateType::AUTOCOMPLETE => '[", ",[POSTAL_CODE,COUNTRY,ADM_LEVEL_1,ADM_LEVEL_2,LOCALITY,[", ",[STREET,BUILDING]],ADDRESS_LINE_2]]',
-                    TemplateType::ADDRESS_LINE_1 => '[", ",[STREET,BUILDING]]',
+                        '[", ",[POSTAL_CODE,COUNTRY,ADM_LEVEL_1,ADM_LEVEL_2,CITY,LOCALITY,ADDRESS_LINE_1,ADDRESS_LINE_2]]',
+                    TemplateType::AUTOCOMPLETE => '[", ",[POSTAL_CODE,COUNTRY,ADM_LEVEL_1,ADM_LEVEL_2,CITY,LOCALITY,[", ",[STREET,BUILDING,BLOCK_K,BLOCK_S,FLAT,ROOM]],ADDRESS_LINE_2]]',
+                    TemplateType::ADDRESS_LINE_1 => '[", ",[STREET,BUILDING,BLOCK_K,BLOCK_S,FLAT,ROOM]]',
                 ],
                 'code' => 'RU_2',
                 'fieldForUnRecognized' => FieldType::ADDRESS_LINE_2,
                 'fieldCollection' => [
+                    // Почтовый индекс
+                    [
+                        'sort' => 100,
+                        'type' => FieldType::POSTAL_CODE,
+                        'name' => Loc::getMessage('LOCATION_REPO_FRMT_POSTAL_CODE', null, $languageId),
+                        'description' => 'Почтовый индекс'
+                    ],
+
                     // Страна
                     [
                         'sort' => 150,
@@ -278,12 +286,20 @@ class DataCollection
                         'description' => 'Район'
                     ],
 
-                    // Город / Нас.пункт
+                    // Город
                     [
                         'sort' => 300,
+                        'type' => FieldType::CITY,
+                        'name' => 'Город',
+                        'description' => 'Город'
+                    ],
+
+                    // Населенный пункт
+                    [
+                        'sort' => 301,
                         'type' => FieldType::LOCALITY,
-                        'name' => Loc::getMessage('LOCATION_REPO_FRMT_LOCALITY', null, $languageId),
-                        'description' => 'Город / Нас.пункт'
+                        'name' => 'Населенный пункт',
+                        'description' => 'Населенный пункт'
                     ],
 
                     // Улица
@@ -302,35 +318,55 @@ class DataCollection
                         'description' => 'Номер дома'
                     ],
 
-                    // Улица, номер дома
-                     [
-                        'sort' => 350,
-                        'type' => FieldType::ADDRESS_LINE_1,
-                        'name' => Loc::getMessage('LOCATION_REPO_FRMT_ADDR_1', null, $languageId),
-                        'description' => ''
+                    // Участок
+                    [
+                        'sort' => 401,
+                        'type' => FieldType::STEAD,
+                        'name' => 'Участок',
+                        'description' => 'Участок'
                     ],
-
-                    // Квартира, офис, комната, этаж
+                    //Корпус
+                    [
+                        'sort' => 455,
+                        'type' => FieldType::BLOCK_K,
+                        'name' => 'Корпус',
+                        'description' => 'Корпус здания'
+                    ],
+                    //Строение
+                    [
+                        'sort' => 456,
+                        'type' => FieldType::BLOCK_S,
+                        'name' => 'Строение',
+                        'description' => 'Строение здания'
+                    ],
+                    //Квартира/Помещение
+                    [
+                        'sort' => 461,
+                        'type' => FieldType::FLAT,
+                        'name' => 'Квартира/Помещение',
+                        'description' => 'Квартира/Помещение'
+                    ],
+                    // Oфис, этаж, дополнительно
                     [
                         'sort' => 600,
                         'type' => FieldType::ADDRESS_LINE_2,
-                        'name' => Loc::getMessage('LOCATION_REPO_FRMT_ADDR_2', null, $languageId),
-                        'description' => 'Квартира, офис, комната, этаж'
+                        'name' => "Oфис, этаж, дополнительно",
+                        'description' => 'Oфис, этаж, дополнительно'
+                    ],
+                    //Комната
+                    [
+                        'sort' => 462,
+                        'type' => FieldType::ROOM,
+                        'name' => 'Комната',
+                        'description' => 'Комната'
                     ],
 
-                    // Квартира, офис, комната, этаж
+                    // ФИАС ID
                     [
                         'sort' => 900,
                         'type' => FieldType::FIAS_ID,
                         'name' => "ФИАС ID",
                         'description' => 'Код ФИАС'
-                    ],
-                    // Почтовый индекс
-                    [
-                        'sort' => 100,
-                        'type' => FieldType::POSTAL_CODE,
-                        'name' => Loc::getMessage('LOCATION_REPO_FRMT_POSTAL_CODE', null, $languageId),
-                        'description' => 'Почтовый индекс'
                     ]
                 ]
             ],

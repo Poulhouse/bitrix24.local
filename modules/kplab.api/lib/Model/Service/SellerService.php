@@ -1,267 +1,224 @@
-<?php
+<?php namespace KPLab\API\V2\Model\Service;
 
-namespace KPLab\API\V2\Model\Service;
-
-use Bitrix\Main\Application;
 use Bitrix\Main\ArgumentException;
 use Bitrix\Main\Context;
-use Bitrix\Main\DB\SqlQueryException;
 use Bitrix\Main\Error;
 use Bitrix\Main\EventResult;
 use Bitrix\Main\ObjectPropertyException;
 use Bitrix\Main\SystemException;
-use Bitrix\Main\Web\HttpClient;
-use KPLab\API\V2\Helpers\HandlerResponse;
+use KPLab\API\V2\Interfaces\AbstractSeller;
+use KPLab\API\V2\Model\DTO\Sellers\SellerLegalEntityDTO;
+use KPLab\API\V2\Model\DTO\Sellers\SellerPersonDTO;
+use KPLab\API\V2\Model\DTO\Common\BankAccountDTO;
+use KPLab\API\V2\Model\Service\Sellers\SellerBeneficiarOwnersService;
+use KPLab\API\V2\Model\Service\Sellers\SellerDirectorService;
+use KPLab\Helpers\Address;
+use KPLab\Logs;
 
-define("LOG_SELLER_SERVICE", $_SERVER['DOCUMENT_ROOT']."/local/logs/api_services_seller.log");
+use KPLab\API\V2\Model\DTO\SellersRequisite\SellerLegalRequisiteData;
+use KPLab\API\V2\Model\DTO\SellersRequisite\SellerPersonRequisiteData;
+use KPLab\API\V2\Model\Service\Sellers\SellerRequisiteService;
+
+use Bitrix\Crm\Service\Factory;
+use Bitrix\Crm\Item;
 
 class SellerService
 {
-    public function __construct() {}
+    public string $pathObjectUrl;
+    private array $objectData = [];
+    public SellerBeneficiarOwnersService $sellerBeneficiarOwnersService;
+    public SellerRequisiteService $sellerRequisiteService;
+    public SellerDirectorService $sellerDirectorService;
 
-    /**
-     * Отправка данных в СМЭВ (внутр.)
-     */
-    public function postPassportData($companyId = null, $contactId = null): array|string
+    public function __construct()
     {
-        //region Подготовка к обработке запроса
-        \Bitrix\Main\Loader ::IncludeModule('crm');
-        $factoryContact = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Contact);
-        $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Company);
-
-        $API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIiLCJTZXJ2aWNlIjoiQml0cml4In0.CpUj1LJ_otMm6_slHFRAVnqsQtLeswkSVu7_jIgedTU';
-        $idSERequest = '';
-
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application ::getInstance() -> getContext();
-
-        $headersValues = array(
-            "key" => "{$API_KEY}",
-            "Content-Type" => "application/json; charset=utf-8",
-            "accept" => "application/json"
-        );
-
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = "POST";
-        $queryParamsArray = $context->getRequest()->toArray();
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-
-        $errors = [];
-        if (str_contains($serverName, 'test')) {
-            $apiUrl = "https://api.dev.seller-capital.ru";
-        } else {
-            $apiUrl = "https://api.seller-capital.ru";
-        }
-        $url = $apiUrl . "/SendRequest";
-
-        $data = [];
-        if(!is_null($companyId)) {
-            $this->getCompanyInfoById($companyId);
-            $this->setCURLObjectData($companyId);
-            $rqId = $this->rqId;
-            $this->CURLObjectData['ITEM_TITLE'] = "Отправка данных в СМЭВ: ". $this->itemDatatitle;
-            $payload = [
-                "name" => (string) $this->sellerFirstName,
-                "surname" => (string) $this->sellerLastName,
-                "patronymic" => (string) $this->sellerSecondName,
-                "pass_series" => (string) $this->sellerPassportSeries,
-                "pass_number" => (string) $this->sellerPassportNumber,
-                "birthdate" => (string) $this->sellerPassportBirthday,
-                //"inn" => (string) $this->sellerInn,
-                "gender" => null
-            ];
-            $data["request"] = [
-                "payload" => $payload,
-                "callback_url" => "https://{$serverName}/api/v2/sellers/smavInfo/?authId=5d0e5072-889b-52cd-950c-af8d58221115&crmEntityId=company_{$companyId}&rqId={$rqId}"
-            ];
-        }
-        elseif(!is_null($contactId)) {
-            $this->getContactInfoById($contactId);
-            $this->setCURLObjectData($contactId);
-            $rqId = $this->rqId;
-            $this->CURLObjectData['ITEM_TITLE'] = "Отправка данных в СМЭВ: ". $this->itemDatatitle;
-            $payload = [
-                "name" => (string) $this->sellerFirstName,
-                "surname" => (string) $this->sellerLastName,
-                "patronymic" => (string) $this->sellerSecondName,
-                "pass_series" => (string) $this->sellerPassportSeries,
-                "pass_number" => (string) $this->sellerPassportNumber,
-                "birthdate" => (string) $this->sellerPassportBirthday,
-                "inn" => (string) $this->sellerInn,
-                "gender" => null
-            ];
-            $data["request"] = [
-                "payload" => $payload,
-                "callback_url" => "https://{$serverName}/api/v1/sellers/smavInfo/?authId=5d0e5072-889b-52cd-950c-af8d58221115&crmEntityId=contact_{$contactId}&rqId={$rqId}"
-            ];
-        }
-        $requestJson = json_encode($data, JSON_UNESCAPED_UNICODE);
-        $objectData = $this->CURLObjectData;
-
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context,
-            true
-        );
-        //endregion
-
-        $jsonResponse = $HandlerResponse->getResponse($objectData);
-
-        if(!is_null($companyId)) {
-            $item = $factoryCompany->getItem($companyId);
-            $arResponse = json_decode($jsonResponse['response'],true);
-            $idSERequest = $arResponse['id'];
-            $item->set('UF_CRM_SMEV_ID_REQUEST',$idSERequest);
-
-            $operation = $factoryCompany->getUpdateOperation($item);
-            $operation->disableAllChecks();
-
-            // Сохраняем элемент CRM после установки всех полей
-            $saveResult = $operation->launch();
-
-            if (!$saveResult->isSuccess()) {
-                return array_merge($errors, $saveResult->getErrorMessages()); // Возвращаем массив ошибок
-            }
-        }
-
-        if(!is_null($contactId)) {
-            $item = $factoryContact->getItem($contactId);
-            $arResponse = json_decode($jsonResponse['response'],true);
-            $idSERequest = $arResponse['id'];
-            $item->set('UF_CRM_SMEV_ID_REQUEST',$idSERequest);
-
-            $operation = $factoryContact->getUpdateOperation($item);
-            $operation->disableAllChecks();
-
-            // Сохраняем элемент CRM после установки всех полей
-            $saveResult = $operation->launch();
-
-            if (!$saveResult->isSuccess()) {
-                return array_merge($errors, $saveResult->getErrorMessages()); // Возвращаем массив ошибок
-            }
-        }
-
-        return $jsonResponse;
-
+        $this->sellerDirectorService = new SellerDirectorService();
+        $this->sellerBeneficiarOwnersService = new SellerBeneficiarOwnersService();
+        $this->sellerRequisiteService = new SellerRequisiteService();
     }
 
     /**
-     * Получение данных от СМЭВ (внутр.)
+     * @throws ArgumentException
+     * @throws ObjectPropertyException
+     * @throws SystemException
      */
-    public function getSMEVStatus($companyId = null, $contactId = null): array|string
+    public function sync(AbstractSeller $dto, ?int $crmId = null): int
     {
-        //region Подготовка к обработке запроса
-        \Bitrix\Main\Loader ::IncludeModule('crm');
-        $factoryContact = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Contact);
-        $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Company);
-
-        $API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIiLCJTZXJ2aWNlIjoiQml0cml4In0.CpUj1LJ_otMm6_slHFRAVnqsQtLeswkSVu7_jIgedTU';
-        $idSERequest = '';
-
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $timeData = Logs\TimeData::start();
-        $context = Application ::getInstance() -> getContext();
-
-        $headersValues = array(
-            "key" => "{$API_KEY}",
-            "Content-Type" => "application/json; charset=utf-8",
-            "accept" => "application/json"
-        );
-
-        $requestJson = $context->getRequest()->getInput();
-        $requestMethod = "GET";
-        $queryParamsArray = $context->getRequest()->toArray();
-        $this->CURLObjectData['METHOD'] = $requestMethod;
-
-        if (str_contains($serverName, 'test')) {
-            $apiUrl = "https://api.dev.seller-capital.ru";
-        } else {
-            $apiUrl = "https://api.seller-capital.ru";
-        }
-
-        if (!is_null($companyId)) {
-            $this->getCompanyInfoById($companyId);
-            $this->setCURLObjectData($companyId);
-
-            $item = $factoryCompany->getItem($companyId);
-            $itemData = $item->getData();
-            $idSERequest = $itemData['UF_CRM_SMEV_ID_REQUEST'];
-        }
-        if (!is_null($contactId)) {
-            $this->getContactInfoById($contactId);
-            $this->setCURLObjectData($contactId);
-
-            $item = $factoryContact->getItem($contactId);
-            $itemData = $item->getData();
-            $idSERequest = $itemData['UF_CRM_SMEV_ID_REQUEST'];
-        }
-
-        $url = $apiUrl . "/GetResponse?id={$idSERequest}";
-        $this->CURLObjectData['ITEM_TITLE'] = "SE: Получение данных от СМЭВ: " . $this->itemDatatitle;
-        $objectData = $this->CURLObjectData;
-
-        // Получаем имя текущего контроллера и метода
-        $HandlerResponse = (new HandlerResponse())->handleInit(
-            $this,
-            __FUNCTION__,
-            "SE",
-            $requestMethod,
-            $url,
-            $timeData,
-            $headersValues,
-            $requestJson,
-            $context,
-            true
-        );
-        //endregion
-
-        $jsonResponse = $HandlerResponse->getResponse($objectData);
-
-        $arResponse = json_decode($jsonResponse['response'], true);
-        $services = $arResponse['response']["services"];
-
-        //region Сохраняем данные и проверяем результат
-        $saveResult = [];
-        if(!is_null($contactId)) $saveResult = $this->saveAllData($factoryContact, $item, $services);
-        if(!is_null($companyId)) $saveResult = $this->saveAllData($factoryCompany, $item, $services);
-
-        if ($saveResult['status'] === 'error') {
-            // Если произошла ошибка, добавляем комментарий с сообщениями об ошибках
-            $message = "Ошибка при сохранении данных: " . implode(', ', $saveResult['messages']);
-        }
-        else {
-            $message = "Данные успешно сохранились";
-        }
-        //endregion
-
-        return $jsonResponse;
+        return match (true) {
+            $dto instanceof SellerLegalEntityDTO => $this->syncUL($dto, $crmId),
+            $dto instanceof SellerPersonDTO      => $this->syncPerson($dto, 'seller', null, $crmId),
+            default                              => throw new \InvalidArgumentException('Unsupported DTO type'),
+        };
     }
 
     /**
-     *  Поиск карточки (внутр.)
-     * @param $dataInn
-     * @param $crmId
-     * @return EventResult|false|int|mixed
+     * @throws ObjectPropertyException
+     * @throws SystemException
+     * @throws ArgumentException
      */
-    public function findCard($dataInn, $crmId = false): mixed
+    protected function syncUL(SellerLegalEntityDTO $dto, ?int $crmId = null): int
+    {
+        $dataArray = $dto->toArray();
+        // получаем ID карточки компании (если ещё не создана — создаём)
+        $sellerCardId = $this->findCard($dto->inn);
+        if (!$sellerCardId) {
+            $sellerCardId = $this->createCard(null, $dataArray, 'seller', $crmId);
+        }
+        // теперь передаём верные параметры
+        $this->updateCard($sellerCardId, $dataArray, $sellerCardId, 'seller', $crmId);
+
+        $requisiteDto = new SellerLegalRequisiteData($sellerCardId, $dto);
+        $this->sellerRequisiteService->save($requisiteDto);
+
+        $this->sellerDirectorService->handler($dto->directorData, $sellerCardId);
+        $this->sellerBeneficiarOwnersService->handler($dto->beneficiars, $sellerCardId);
+
+        return $sellerCardId;
+
+        /*$rqId = $this->findCompanyRQ($sellerCardId, $dto->inn)
+            ?? $this->createRequisite($sellerCardId, (array)$dto);
+        $this->updateRequisite($rqId, (array)$dto, $sellerCardId);
+
+        Address::processAddressRequisites($rqId, \CCrmOwnerType::Company, $sellerCardId, (array)$dto);*/
+    }
+
+    /**
+     * @throws ArgumentException
+     * @throws ObjectPropertyException
+     * @throws SystemException
+     */
+    public function syncPerson(SellerPersonDTO $dto, string $type, ?int $parentId = null, ?int $crmId = null): int
+    {
+        $dataArray = $dto->toArray();
+        $cardId = $this->findCard($dto->inn);
+
+        if (!$cardId) {
+            $cardId = $this->createCard($parentId, $dataArray, $type, $crmId);
+        }
+        $this->updateCard($parentId, $dataArray, $cardId, $type, $crmId);
+
+        $requisiteDto = new SellerPersonRequisiteData($cardId, $dto);
+        $this->sellerRequisiteService->save($requisiteDto);
+
+        return $cardId;
+
+        /*$rqId = $this->findCompanyRQ($cardId, $dto->inn)
+            ?? $this->createRequisite($cardId, (array)$dto);
+        $this->updateRequisite($rqId, (array)$dto, $cardId);
+
+        Address::processAddressRequisites($rqId, \CCrmOwnerType::Company, $cardId, (array)$dto);*/
+    }
+
+    // ================= Вынесенные методы =================
+
+    /**
+     * @throws ArgumentException
+     */
+    public function createCard(?int $sellerCardId, array $dataArray, string $type, ?int $crmId): int
+    {
+        $factoryCompany = $this->getCompanyFactory();
+        $factoryLK =  $this->getLKFactory();
+
+        $newItem = $factoryCompany->createItem();
+
+        $this->setTypeId($newItem, $dataArray['type']);
+        $this->setOrganizationFilial($newItem);
+        $this->setFilial($newItem);
+        $this->setInn($newItem, $dataArray['inn']);
+        $this->setServiceEDO($newItem, $dataArray['serviceEDO']);
+
+        // Для типов director или beneficiars можно задать заголовок карточки
+        if ($type == "director" || $type == "beneficiar") {
+            $fullName = $dataArray['lastName'] . " " . $dataArray['firstName'] . " " . $dataArray['secondName'];
+            $newItem->setTitle($fullName);
+        }
+
+        // Сохранение новой карточки
+        $operation = $factoryCompany->getAddOperation($newItem);
+        $operation->disableAllChecks();
+        $operation->launch();
+
+        return $newItem->getId();
+    }
+
+    /**
+     * @throws ObjectPropertyException
+     * @throws ArgumentException
+     * @throws SystemException
+     */
+    public function updateCard(?int $sellerCardId, array $dataArray, int $currentCardId, string $type, ?int $crmId): void
+    {
+        $entityTypeIdLK = 128;
+        $factoryCompany = $this->getCompanyFactory();
+        $factoryLK =  $this->getLKFactory();
+
+        $item = $factoryCompany->getItem($currentCardId);
+        if (is_null($item)) {
+            throw new \RuntimeException("Карточка не найдена по ID {$currentCardId} в " . __FILE__);
+        }
+        //$itemLK = ($crmId ? $factoryLK->getItem($crmId): null);
+
+        $this->setTypeId($item, $dataArray['type']);
+        $this->setOrganizationFilial($item);
+        $this->setFilial($item);
+        $this->setInn($item, $dataArray['inn']);
+
+        if (!empty($dataArray['phone'])) {
+            $arPhone = [
+                'ENTITY_ID' => 'COMPANY',
+                'ELEMENT_ID' => $currentCardId,
+                'TYPE_ID' => 'PHONE',
+                'VALUE_TYPE' => 'WORK',
+                'VALUE' => $dataArray['phone']
+            ];
+            $multi = new \CCrmFieldMulti();
+            $multi->Add($arPhone);
+        }
+        if (!empty($dataArray['email'])) {
+            $arEmail = [
+                'ENTITY_ID' => 'COMPANY',
+                'ELEMENT_ID' => $currentCardId,
+                'TYPE_ID' => 'EMAIL',
+                'VALUE_TYPE' => 'WORK',
+                'VALUE' => $dataArray['email']
+            ];
+            $multi = new \CCrmFieldMulti();
+            $multi->Add($arEmail);
+        }
+
+        $this->setServiceEDO($item, $dataArray['serviceEDO']);
+        $this->setMarketplaceLinks($item, $dataArray['marketplaceLinks']);
+        $this->setSyncId($item, $dataArray['synchId']);
+        $this->setUpdateLK($item);
+        $this->setPassportIsManual($item, $dataArray['isManual']);
+
+        if(!empty($dataArray['charterFile'])) {
+            $this->setCharterFile($item, $dataArray['charterFile']);
+        }
+        if(!empty($dataArray['orderDirector'])) {
+            $this->setOrderDirector($item, $dataArray['orderDirector']);
+        }
+        if(!empty($dataArray['passport']['files'])) {
+            $this->setPassportFiles($item, $dataArray['passport']['files']);
+        }
+
+        // Запуск операции обновления
+        $operation = $factoryCompany->getUpdateOperation($item);
+        $operation->disableAllChecks();
+        $operation->launch();
+    }
+
+    public function findCard(string $inn, int|false|null $crmId = false): ?int
     {
         $cardId = false;
         $entityTypeIdCompany = \CCrmOwnerType::Company;
         $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdCompany);
 
+
         if(!$crmId) {
             $params = [
                 'filter' => [
-                    'UF_CRM_6433D7C925893' => $dataInn,
+                    'UF_CRM_6433D7C925893' => $inn,
                 ],
                 'select' => ['ID']
             ];
@@ -278,37 +235,169 @@ class SellerService
             $entityTypeId = 128;
             $factory = \Bitrix\Crm\Service\Container::getInstance() -> getFactory($entityTypeId);
             $itemLK = $factory -> getItem($crmId);
-            if($itemLK) {
-                $itemLKData = $factory -> getItem($crmId)->getData();
-                $cardId = $itemLKData['COMPANY_ID'];
+            $itemLKData = $factory -> getItem($crmId)->getData();
+            $cardId = $itemLKData['COMPANY_ID'];
 
-                return $cardId;
-            } else {
-                $errorMessage = 'Ошибка `crmId` не известен';
-
-                Context::getCurrent()->getResponse()->setStatus(404);
-                $this -> addError(new Error($errorMessage, "invalid_request"));
-                return new EventResult(EventResult::ERROR, null, null, $this);
-            }
+            return $cardId;
         }
     }
 
-    /**
-     * Поиск карточки по ГУИД сделки (внутр.)
-     * @param $dataInn
-     * @param string $dealGUID
-     * @return array|EventResult|false|int|void
-     */
+    public function findCompanyRQ(int $cardId, ?string $inn = null): ?int
+    {
+        if(!is_null($inn)) {
+            $requisite = \CRest::call(
+                "crm.requisite.list",
+                array(
+                    "filter" => ["ENTITY_TYPE_ID" => \CCrmOwnerType::Company, "ENTITY_ID" => $cardId, "RQ_INN" => $inn],
+                    "select" => ['ID',"PRESET_ID", "ENTITY_ID",	"ENTITY_TYPE_ID"]
+                )
+            )['result'];
+
+            \KPLab\Logs\File ::AddMessage($requisite, "requisite Find for {$cardId}", LOG_API_SYNC_SELLER_CONTROLLER);
+
+        }
+        else {
+            $requisite = \CRest::call(
+                "crm.requisite.list",
+                array(
+                    "filter" => ["ENTITY_TYPE_ID" => \CCrmOwnerType::Company, "ENTITY_ID" => $cardId],
+                    "select" => ['ID',"PRESET_ID", "ENTITY_ID",	"ENTITY_TYPE_ID"]
+                )
+            )['result'];
+
+            \KPLab\Logs\File ::AddMessage($requisite, "First requisite Find for {$cardId}", LOG_API_SYNC_SELLER_CONTROLLER);
+
+        }
+        if(isset($requisite)) {
+            return $requisite[0]['ID'];
+        } else {
+            return null;
+        }
+    }
+
+    public function createRequisite(int $cardId, array $dataArray): int
+    {
+        // Определяем PRESET_ID в зависимости от типа
+        if ($dataArray['type'] === "IP" || $dataArray['type'] === "FL") {
+            $PRESET_ID = 2;
+        }
+        if ($dataArray['type'] === "UL") {
+            $PRESET_ID = 1;
+        }
+
+        // Формируем параметры для создания в зависимости от типа
+        if ($dataArray['type'] === "IP" || $dataArray['type'] === "FL") {
+            $params = [
+                "fields" => [
+                    "ENTITY_TYPE_ID" => \CCrmOwnerType::Company,
+                    "ENTITY_ID" => $cardId,
+                    "PRESET_ID" => $PRESET_ID,
+                    'TITLE' => $dataArray['type'] . " " . $dataArray['lastName'] . " " . $dataArray['firstName'] . " " . $dataArray['secondName'],
+                    'NAME' => $dataArray['lastName'] . " " . $dataArray['firstName'] . " " . $dataArray['secondName'],
+                    'RQ_NAME' => $dataArray['lastName'] . " " . $dataArray['firstName'] . " " . $dataArray['secondName'],
+                    'RQ_FIRST_NAME' => $dataArray['firstName'],
+                    'RQ_LAST_NAME' => $dataArray['lastName'],
+                    'RQ_SECOND_NAME' => $dataArray['secondName'],
+                    'RQ_IDENT_DOC' => 'Паспорт гражданина Российской Федерации',
+                    'RQ_IDENT_DOC_SER' => $dataArray['passport']['series'],
+                    'RQ_IDENT_DOC_NUM' => $dataArray['passport']['number'],
+                    'RQ_IDENT_DOC_DATE' => date('d.m.Y', strtotime($dataArray['passport']['issuedAt'])),
+                    'RQ_IDENT_DOC_ISSUED_BY' => $dataArray['passport']['issuer'],
+                    'RQ_IDENT_DOC_DEP_CODE' => $dataArray['passport']['issuerCode'],
+                    'UF_CRM_1647929611' => $dataArray['birthPlace'],
+                    'UF_CRM_1684493639' => $dataArray['birthday'],
+                    'RQ_INN' => $dataArray['inn'],
+                    'RQ_OGRNIP' => $dataArray['ogrnip'],
+                    'RQ_OKPO' => $dataArray['okpo'],
+                    'RQ_OKVED' => $dataArray['okved'],
+                    'RQ_COMPANY_REG_DATE' => date('d.m.Y', strtotime($dataArray['companyRegDate'])),
+                    'UF_CRM_1688964741' => $dataArray['fnsDepartment'],
+                ]
+            ];
+        }
+        if ($dataArray['type'] === "UL") {
+            $params = [
+                "fields" => [
+                    "ENTITY_TYPE_ID" => \CCrmOwnerType::Company,
+                    "ENTITY_ID" => $cardId,
+                    "PRESET_ID" => $PRESET_ID,
+                    'TITLE' => $dataArray['companyName'],
+                    'NAME' => $dataArray['companyName'],
+                    'RQ_INN' => $dataArray['inn'],
+                    'RQ_KPP' => $dataArray['kpp'],
+                    'RQ_OGRN' => $dataArray['ogrn'],
+                    'RQ_OKPO' => $dataArray['okpo'],
+                    'RQ_OKVED' => $dataArray['okved'],
+                    'RQ_COMPANY_REG_DATE' => date('d.m.Y', strtotime($dataArray['companyRegDate'])),
+                    'UF_CRM_1688964741' => $dataArray['fnsDepartment'],
+                    'RQ_COMPANY_NAME' => $dataArray['companyName'],
+                    'RQ_COMPANY_FULL_NAME' => $dataArray['companyFullName'],
+                ]
+            ];
+        }
+
+        // Создаём реквизит через REST API и получаем его идентификатор
+        $rqResponse = \CRest::call('crm.requisite.add', $params);
+        return $rqResponse['data'];
+    }
+
+    public function updateRequisite(int $rqId, array $dataArray, int $cardId): void
+    {
+        // Формируем параметры для обновления в зависимости от типа (IP, FL или UL)
+        if ($dataArray['type'] === "IP" || $dataArray['type'] === "FL") {
+            $params = [
+                "id" => $rqId,
+                "fields" => [
+                    'TITLE' => $dataArray['type'] . " " . $dataArray['lastName'] . " " . $dataArray['firstName'] . " " . $dataArray['secondName'],
+                    'NAME' => $dataArray['lastName'] . " " . $dataArray['firstName'] . " " . $dataArray['secondName'],
+                    'RQ_NAME' => $dataArray['lastName'] . " " . $dataArray['firstName'] . " " . $dataArray['secondName'],
+                    'RQ_FIRST_NAME' => $dataArray['firstName'],
+                    'RQ_LAST_NAME' => $dataArray['lastName'],
+                    'RQ_SECOND_NAME' => $dataArray['secondName'],
+                    'RQ_IDENT_DOC' => 'Паспорт гражданина Российской Федерации',
+                    'RQ_IDENT_DOC_SER' => $dataArray['passport']['series'],
+                    'RQ_IDENT_DOC_NUM' => $dataArray['passport']['number'],
+                    'RQ_IDENT_DOC_DATE' => date('d.m.Y', strtotime($dataArray['passport']['issuedAt'])),
+                    'RQ_IDENT_DOC_ISSUED_BY' => $dataArray['passport']['issuer'],
+                    'RQ_IDENT_DOC_DEP_CODE' => $dataArray['passport']['issuerCode'],
+                    'UF_CRM_1647929611' => $dataArray['birthPlace'],
+                    'UF_CRM_1684493639' => $dataArray['birthday'],
+                    'RQ_INN' => $dataArray['inn'],
+                    'RQ_OGRNIP' => $dataArray['ogrnip'],
+                    'RQ_OKPO' => $dataArray['okpo'],
+                    'RQ_OKVED' => $dataArray['okved'],
+                    'RQ_COMPANY_REG_DATE' => date('d.m.Y', strtotime($dataArray['companyRegDate'])),
+                    'UF_CRM_1688964741' => $dataArray['fnsDepartment'],
+                ]
+            ];
+        }
+        if ($dataArray['type'] === "UL") {
+            $params = [
+                "id" => $rqId,
+                "fields" => [
+                    'TITLE' => $dataArray['companyName'],
+                    'NAME' => $dataArray['companyName'],
+                    'RQ_INN' => $dataArray['inn'],
+                    'RQ_KPP' => $dataArray['kpp'],
+                    'RQ_OGRN' => $dataArray['ogrn'],
+                    'RQ_OKPO' => $dataArray['okpo'],
+                    'RQ_OKVED' => $dataArray['okved'],
+                    'RQ_COMPANY_REG_DATE' => date('d.m.Y', strtotime($dataArray['companyRegDate'])),
+                    'UF_CRM_1688964741' => $dataArray['fnsDepartment'],
+                    'RQ_COMPANY_NAME' => $dataArray['companyName'],
+                    'RQ_COMPANY_FULL_NAME' => $dataArray['companyFullName'],
+                ]
+            ];
+        }
+
+        // Выполняем обновление через REST API
+        \CRest::call('crm.requisite.update', $params);
+    }
+
     public function findCardByDealGUID($dataInn, string $dealGUID = "") {
         $cardId = false;
         $entityTypeIdCompany = \CCrmOwnerType::Company;
         $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdCompany);
-        if (!$factoryCompany)
-        {
-            Context::getCurrent()->getResponse()->setStatus(500);
-            $this -> addError(new Error('Ошибка на сервере', "invalid_server"));
-            return new EventResult(EventResult::ERROR, null, null, $this);
-        }
 
         if($dealGUID == "") {
             $params = [
@@ -336,498 +425,135 @@ class SellerService
                 'select' => ['ID','COMPANY_ID']
             ];
             $deals = $factory -> getItems($params);
-            if($deals) {
-                foreach ($deals as $deal) {
-                    $dealData = $deal->getData();
-                    $dealId = $dealData['ID'];
-                    $companyId = $dealData['COMPANY_ID'];
+            foreach ($deals as $deal) {
+                $dealData = $deal->getData();
+                $dealId = $dealData['ID'];
+                $companyId = $dealData['COMPANY_ID'];
 
-                    return ['ID' => $dealId, 'COMPANY_ID' => $companyId];
-                }
-            } else {
-                $errorMessage = 'Ошибка `GUID` не известен';
-
-                Context::getCurrent()->getResponse()->setStatus(404);
-                $this -> addError(new Error($errorMessage, "invalid_request"));
-                return new EventResult(EventResult::ERROR, null, null, $this);
+                return ['ID' => $dealId, 'COMPANY_ID' => $companyId];
             }
         }
     }
 
-    /**
-     * Создание или обновление карточки компании (внутр.)
-     * @param $sellerCardId
-     * @param $dataArray
-     * @param $createCard
-     * @param $currentCardId
-     * @param string $type
-     * @param $crmId
-     * @return EventResult|int
-     * @throws ArgumentException
-     */
-    public function createOrUpdateCard($sellerCardId, $dataArray, $createCard, $currentCardId, string $type = "", $crmId = null): int|EventResult
+    private function filesFromArray($dataFiles, $base64, $anyItems): array
     {
-        $entityTypeIdCompany = \CCrmOwnerType::Company;
-        $entityTypeIdLK = 128;
-        $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdCompany);
-        $factoryLK = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdLK);
-        if (!$factoryCompany)
-        {
-            Context::getCurrent()->getResponse()->setStatus(500);
-            $this -> addError(new Error('Ошибка на сервере', "invalid_server"));
-            return new EventResult(EventResult::ERROR, null, null, $this);
-        }
+        $arFiles = [];
+        if($anyItems) {
+            foreach ($dataFiles as $k => $file) {
+                //Logs\File::AddMessage($file, 'file_'.$k, LOG_API_SYNC_SELLER_CONTROLLER);
+                $fileName = floor(microtime(true) * 1000)."_".$file["fileName"];
+                $filePathName = $_SERVER["DOCUMENT_ROOT"]."/".\COption::GetOptionString("main", "upload_dir")."/tmp/".$fileName;
 
-        //region Обновление Карточки
-        if(!$createCard && !is_null($currentCardId)) {
-            $itemSeller = $factoryCompany -> getItem($sellerCardId);
-            if($crmId) $itemLK = $factoryLK->getItem($crmId);
-            Logs\File ::AddMessage($currentCardId, "currentCardId", LOG_API_SYNC_SELLER_CONTROLLER);
-            $item = $factoryCompany -> getItem($currentCardId);
+                if($base64) file_put_contents($filePathName, base64_decode ($file["file"]));//Запись на системный диск
+                if(!$base64) {
+                    $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIiLCJTZXJ2aWNlIjoiQml0cml4In0.CpUj1LJ_otMm6_slHFRAVnqsQtLeswkSVu7_jIgedTU';
+                    // Инициализация cURL-сессии
+                    $ch = curl_init($file["file"]);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    // Добавляем заголовок с Bearer Token
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                        "Authorization: Bearer $token"
+                    ]);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                    curl_setopt($ch, CURLOPT_ENCODING, "");
+                    curl_setopt($ch, CURLOPT_HEADER, false);
 
-            //region "Тип клиента (Организационно-правовая форма)"
-            $TypeId = null;
-            $userFields = \Bitrix\Main\UserFieldTable::getList([
-                'select' => ['ID'],
-                'filter' => [
-                    '=ENTITY_ID' => 'CRM_COMPANY',
-                    'FIELD_NAME' => 'UF_CRM_1684145100226'
-                ]
-            ]);
-            while ($arUserField = $userFields->fetch()){
-                $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID'], 'XML_ID' => $dataArray['type']]);
-                while ($arUserFieldData = $res->fetch()) {
-                    $TypeId = $arUserFieldData['ID'];
+                    $response = curl_exec($ch);
+                    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                    $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+
+                    curl_close($ch);
+
+                    // Если произошла ошибка, выводим ответ для диагностики
+                    if ($httpCode !== 200) {
+                        \KPLab\Logs\File::AddMessage($response, 'Ошибка при скачивании файла:', LOG_API_SYNC_SELLER_CONTROLLER);
+                    } else {
+                        file_put_contents($filePathName, $response);
+                        echo "Файл успешно скачан";
+                    }
+
+                    curl_close($ch);
                 }
-            }
 
-            $item->set("UF_CRM_1684145100226", $TypeId); //Правовая форма
-            //endregion
-
-            $item->set("UF_CRM_COMPANY_SS_ORG", [5]); //Организация
-            $item->set("UF_CRM_6433DBB98DD53", 17611); //Филиал
-
-            if (!empty($dataArray['phone'])) {
-                $arPhone = array(
-                    'ENTITY_ID' => 'COMPANY',   // Тип сущности - COMPANY
-                    'ELEMENT_ID' => $currentCardId,   // ID Контакта
-                    'TYPE_ID' => 'PHONE',
-                    'VALUE_TYPE' => 'WORK',
-                    'VALUE' => $dataArray['phone']      // Телефон
-                );
-
-                $multi = new \CCrmFieldMulti();
-                $multi->Add($arPhone);
-            }
-            if (!empty($dataArray['email'])) {
-                $arEmail = array(
-                    'ENTITY_ID' => 'COMPANY',   // Тип сущности - COMPANY
-                    'ELEMENT_ID' => $currentCardId,   // ID Контакта
-                    'TYPE_ID' => 'EMAIL',
-                    'VALUE_TYPE' => 'WORK',
-                    'VALUE' => $dataArray['email']      // Email
-                );
-                $multi = new \CCrmFieldMulti();
-                $multi->Add($arEmail);
-            }
-
-            //region "Сервис ЭДО"
-            $serviceEDO = $dataArray['serviceEDO'];
-            $rsEnumEDO = \CUserFieldEnum::GetList(array(), array(
-                "XML_ID" => "Edo_".$serviceEDO,
-            ));
-            if ($arEnumEDO = $rsEnumEDO -> Fetch())
-            {
-                $serviceEDOId = $arEnumEDO['ID'];
-            }
-            Logs\File ::AddMessage($serviceEDOId, "serviceEDOId for {$currentCardId}", LOG_API_SYNC_SELLER_CONTROLLER);
-            $item->set("UF_CRM_COMPANY_SERVICE_EDO", $serviceEDOId); //выбранный сервис ЭДО
-            //endregion
-
-            //region "Ссылки на маркетплейсы"
-            $marketplaceLinks = $dataArray['marketplaceLinks'];
-            $item -> set("UF_CRM_COMPANY_LINKS_TO_MARKETPLACES", $marketplaceLinks); //ссылки на маркетплейсы
-            //endregion
-
-            //region "id синхронизации с SE"
-            $syncId = $dataArray['synchId'];
-            $item -> set("UF_CRM_COMPANY_SYNC_SE_ID", $syncId); //id синхронизации с SE
-            //endregion
-
-            //region "Изменено ЛК"
-            $item->set("UF_CRM_UPDATE_INFO_LK", true);
-            //endregion
-
-            //region "Ручное заполнение паспорта"
-            $isManual = $dataArray['isManual'];
-            $item->set("UF_CRM_PASSPORT_IS_MANUAL", $isManual);
-            //endregion
-
-            //region "Устав компании SC"
-            $dataCompanyCharterFile = $dataArray['charterFile'];
-            if($dataCompanyCharterFile !== NULL) {
-                $arFile = array();
-                $fileName = floor(microtime(true) * 1000)."_".$dataCompanyCharterFile["fileName"];
-                $filePathName = $_SERVER["DOCUMENT_ROOT"]."/".\COption::GetOptionString("main", "upload_dir")."/services_sodeistvie/temp/".$fileName;
-                file_put_contents($filePathName, base64_decode ($dataCompanyCharterFile["file"]));//Запись на системный диск
                 $file = \CFile::MakeFileArray($filePathName);//сформировали массив
-                $fileId = \CFile::SaveFile($file,'');//Запись диск Битрикс
+                $fileId = \CFile::SaveFile($file,'docs');//Запись диск Битрикс
+
                 if ($fileId) {
-                    $fileArray = \CFile::MakeFileArray($fileId);
-                    array_push($arFile, $fileArray);
+                    $arFiles[] = \CFile::MakeFileArray($fileId);
+                    unlink($filePathName);
                 } else {
-                    Logs\File::AddMessage('Failed to save file', 'Error', LOG_API_SYNC_SELLER_CONTROLLER);
+                    \KPLab\Logs\File::AddMessage('Failed to save file', 'Error', LOG_API_SYNC_SELLER_CONTROLLER);
                 }
-                $fields = [
-                    'UF_CRM_COMPANY_CHARTER' => $arFile,
-                ];
-                $item->setFromCompatibleData($fields);
+            }
+        }
+        else {
+            $file = $dataFiles;
+            $fileName = floor(microtime(true) * 1000)."_".$file["fileName"];
+            $filePathName = $_SERVER["DOCUMENT_ROOT"]."/".\COption::GetOptionString("main", "upload_dir")."/services_sodeistvie/temp/".$fileName;
+
+            if($base64) file_put_contents($filePathName, base64_decode ($file["file"]));//Запись на системный диск
+            if(!$base64) {
+                $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIiLCJTZXJ2aWNlIjoiQml0cml4In0.CpUj1LJ_otMm6_slHFRAVnqsQtLeswkSVu7_jIgedTU';
+                // Инициализация cURL-сессии
+                $ch = curl_init($file["file"]);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                // Добавляем заголовок с Bearer Token
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                    "Authorization: Bearer $token"
+                ]);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                curl_setopt($ch, CURLOPT_ENCODING, "");
+                curl_setopt($ch, CURLOPT_HEADER, false);
+
+                $response = curl_exec($ch);
+                $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+
+                curl_close($ch);
+
+                // Если произошла ошибка, выводим ответ для диагностики
+                if ($httpCode !== 200) {
+                    \KPLab\Logs\File::AddMessage($response, 'Ошибка при скачивании файла:', LOG_API_SYNC_SELLER_CONTROLLER);
+                } else {
+                    file_put_contents($filePathName, $response);
+                    echo "Файл успешно скачан";
+                }
+
+                curl_close($ch);
+            }
+
+            $file = \CFile::MakeFileArray($filePathName);//сформировали массив
+            $fileId = \CFile::SaveFile($file,'');//Запись диск Битрикс
+
+            if ($fileId) {
+                $arFiles[] = \CFile::MakeFileArray($fileId);
+                unlink($filePathName);
             } else {
-                Logs\File::AddMessage('Пустой массив dataCompanyCharterFile', 'Error', LOG_API_SYNC_SELLER_CONTROLLER);
+                \KPLab\Logs\File::AddMessage('Failed to save file', 'Error', LOG_API_SYNC_SELLER_CONTROLLER);
             }
-            //endregion
-
-            //region "Приказ на директора SC"
-            $dataOrderDirectorFile = $dataArray['orderDirector'];
-            if($dataOrderDirectorFile !== NULL) {
-                $arFile = array();
-                $fileName = floor(microtime(true) * 1000)."_".$dataOrderDirectorFile["fileName"];
-                $filePathName = $_SERVER["DOCUMENT_ROOT"]."/".\COption::GetOptionString("main", "upload_dir")."/services_sodeistvie/temp/".$fileName;
-                file_put_contents($filePathName, base64_decode ($dataOrderDirectorFile["file"]));//Запись на системный диск
-                $file = \CFile::MakeFileArray($filePathName);//сформировали массив
-                $fileId = \CFile::SaveFile($file,'');//Запись диск Битрикс
-                if ($fileId) {
-                    $fileArray = \CFile::MakeFileArray($fileId);
-                    array_push($arFile, $fileArray);
-                } else {
-                    Logs\File::AddMessage('Failed to save file', 'Error', LOG_API_SYNC_SELLER_CONTROLLER);
-                }
-                $fields = [
-                    'UF_CRM_ORDER_FOR_DIRECTOR' => $arFile,
-                ];
-                $item->setFromCompatibleData($fields);
-            }
-            else {
-                Logs\File::AddMessage('Пустой массив dataOrderForDirectorArray', 'Error', LOG_API_SYNC_SELLER_CONTROLLER);
-            }
-            //endregion
-
-            //region "Паспорт, СНИЛС заемщика"
-            $dataPassportArray = $dataArray['passport'];
-            if($dataPassportArray !== NULL) {
-                $dataPassportFiles = $dataPassportArray['files'];
-                if(!empty($dataPassportFiles)) {
-                    $arFile = array();
-                    foreach ($dataPassportFiles as $file) {
-                        $fileName = floor(microtime(true) * 1000)."_".$file["fileName"];
-                        $filePathName = $_SERVER["DOCUMENT_ROOT"]."/".\COption::GetOptionString("main", "upload_dir")."/services_sodeistvie/temp/".$fileName;
-                        file_put_contents($filePathName, base64_decode ($file["file"]));//Запись на системный диск
-                        $file = \CFile::MakeFileArray($filePathName);//сформировали массив
-                        $fileId = \CFile::SaveFile($file,'');//Запись диск Битрикс
-                        if ($fileId) {
-                            $fileArray = \CFile::MakeFileArray($fileId);
-                            array_push($arFile, $fileArray);
-                        } else {
-                            Logs\File::AddMessage('Failed to save file', 'Error', LOG_API_SYNC_SELLER_CONTROLLER);
-                        }
-                    }
-                    $fields = [
-                        'UF_CRM_6433D94467769' => $arFile,
-                    ];
-                    $item->setFromCompatibleData($fields);
-                } else {
-                    Logs\File::AddMessage('Пустой массив dataPassportFiles', 'Error', LOG_API_SYNC_SELLER_CONTROLLER);
-                }
-            }
-            //endregion
-
-            $operation = $factoryCompany->getUpdateOperation($item);
-            $operation->disableAllChecks();
-            $operation->launch();
-
-            $itemId = $item->getId();
-
-            //region Обновление Карточки бенефициаров
-            if($type == "beneficiar")
-            {
-                //region "Бенефициар X" в Карточке Селлера
-                $_beneficiars = [
-                    'UF_CRM_1702272911' => $itemSeller -> getData()['UF_CRM_1702272911'],
-                    'UF_CRM_1702272991' => $itemSeller -> getData()['UF_CRM_1702272991'],
-                    'UF_CRM_1702273016' => $itemSeller -> getData()['UF_CRM_1702273016'],
-                    'UF_CRM_1702273043' => $itemSeller -> getData()['UF_CRM_1702273043'],
-                    'UF_CRM_1702273072' => $itemSeller -> getData()['UF_CRM_1702273072'],
-                ];
-
-                $currentCardId = "CO_" . $currentCardId; // Префиксируем ID
-
-                // Проверка на наличие ID в массиве
-                if (!in_array($currentCardId, $_beneficiars)) {
-                    // ID не найден, ищем первое свободное поле
-                    foreach ($_beneficiars as $key => $value) {
-                        if (empty($value)) {
-                            // Нашли свободное поле, записываем туда ID
-                            $itemSeller->set($key, $currentCardId);
-                            $itemSeller->set("UF_CRM_UPDATE_INFO_LK", true); //изменено ЛК
-                            break; // Выходим из цикла, так как запись произведена
-                        }
-                    }
-                }
-                //endregion
-            }
-            //endregion
-
-            //region Обновление Карточки руководителя
-            if($type == "director") {
-                //region "Руководитель (представитель)" в Карточке Селлера
-                $itemSeller->set("UF_CRM_1615200179", "CO_".$currentCardId);
-                //endregion
-
-                //region "Изменено ЛК" в Карточке Селлера
-                $itemSeller->set("UF_CRM_UPDATE_INFO_LK", true); //изменено ЛК
-                //endregion
-            }
-            //endregion
-
-
-            //region Обновление Карточки Поручителя
-            if($type == "guarantor") {
-                //region "Поручитель X" в Карточке ЛК
-                if($crmId)
-                {
-                    $_guarantors = [
-                        'UF_CRM_GUARANTOR_1' => $itemLK -> getData()['UF_CRM_GUARANTOR_1'],
-                        'UF_CRM_GUARANTOR_2' => $itemLK -> getData()['UF_CRM_GUARANTOR_2'],
-                        'UF_CRM_GUARANTOR_3' => $itemLK -> getData()['UF_CRM_GUARANTOR_3'],
-                        'UF_CRM_GUARANTOR_4' => $itemLK -> getData()['UF_CRM_GUARANTOR_4'],
-                        'UF_CRM_GUARANTOR_5' => $itemLK -> getData()['UF_CRM_GUARANTOR_5'],
-                    ];
-                    $currentCardId = "CO_" . $currentCardId; // Префиксируем ID
-
-                    // Проверка на наличие ID в массиве
-                    if (!in_array($currentCardId, $_guarantors))
-                    {
-                        // ID не найден, ищем первое свободное поле
-                        foreach ($_guarantors as $key => $value)
-                        {
-                            if (empty($value))
-                            {
-                                // Нашли свободное поле, записываем туда ID
-                                $itemLK -> set($key, $currentCardId);
-                                break; // Выходим из цикла, так как запись произведена
-                            }
-                        }
-                    }
-                }
-                //endregion
-            }
-            //endregion
         }
-        //endregion
 
-        //region Создание Карточки
-        elseif(is_null($currentCardId)) {
-            $newItem = $factoryCompany->createItem();
-            $itemSeller = $factoryCompany->getItem($sellerCardId);
-            if($crmId) $itemLK = $factoryLK->getItem($crmId);
+        return $arFiles;
+    }
 
-            //region "Тип клиента (Организационно-правовая форма)"
-            $TypeId = null;
-            $userFields = \Bitrix\Main\UserFieldTable::getList([
-                'select' => ['ID'],
-                'filter' => [
-                    '=ENTITY_ID' => 'CRM_COMPANY',
-                    'FIELD_NAME' => 'UF_CRM_1684145100226'
-                ]
-            ]);
-            while ($arUserField = $userFields->fetch()){
-                $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID'], 'XML_ID' => $dataArray['type']]);
-                while ($arUserFieldData = $res->fetch()) {
-                    $TypeId = $arUserFieldData['ID'];
-                }
-            }
-            $newItem->set("UF_CRM_1684145100226", $TypeId); //Правовая форма
-            //endregion
-
-            $newItem->set("UF_CRM_COMPANY_SS_ORG", [5]); //Организация
-            $newItem->set("UF_CRM_6433DBB98DD53", 17611); //Филиал
-
-            //region "Сервис ЭДО"
-            $serviceEDO = $dataArray['serviceEDO'];
-            $rsEnumEDO = \CUserFieldEnum::GetList(array(), array(
-                "XML_ID" => "Edo_".$serviceEDO,
-            ));
-            if ($arEnumEDO = $rsEnumEDO -> Fetch())
-            {
-                $serviceEDOId = $arEnumEDO['ID'];
-            }
-            Logs\File ::AddMessage($serviceEDOId, "serviceEDOId for {$currentCardId}", LOG_API_SYNC_SELLER_CONTROLLER);
-            $newItem->set("UF_CRM_COMPANY_SERVICE_EDO", $serviceEDOId); //выбранный сервис ЭДО
-            //endregion
-
-            //region "Ссылки на маркетплейсы"
-            $marketplaceLinks = $dataArray['marketplaceLinks'];
-            $newItem -> set("UF_CRM_COMPANY_LINKS_TO_MARKETPLACES", $marketplaceLinks); //ссылки на маркетплейсы
-            //endregion
-
-            //region "id синхронизации с SE"
-            $syncId = $dataArray['synchId'];
-            $newItem -> set("UF_CRM_COMPANY_SYNC_SE_ID", $syncId); //id синхронизации с SE
-            //endregion
-
-            //region "Изменено ЛК"
-            $newItem->set("UF_CRM_UPDATE_INFO_LK", true);
-            //endregion
-
-            //region "Ручное заполнение паспорта"
-            $isManual = $dataArray['isManual'];
-            $newItem->set("UF_CRM_PASSPORT_IS_MANUAL", $isManual);
-            //endregion
-
-            //region "Паспорт, СНИЛС заемщика"
-            $dataPassportArray = $dataArray['passport'];
-            if($dataPassportArray !== NULL) {
-                $dataPassportFiles = $dataPassportArray['files'];
-                if(!empty($dataPassportFiles)) {
-                    $arFile = array();
-                    foreach ($dataPassportFiles as $file) {
-                        $fileName = floor(microtime(true) * 1000)."_".$file["fileName"];
-                        $filePathName = $_SERVER["DOCUMENT_ROOT"]."/".\COption::GetOptionString("main", "upload_dir")."/services_sodeistvie/temp/".$fileName;
-                        file_put_contents($filePathName, base64_decode ($file["file"]));//Запись на системный диск
-                        $file = \CFile::MakeFileArray($filePathName);//сформировали массив
-                        $fileId = \CFile::SaveFile($file,'');//Запись диск Битрикс
-                        if ($fileId) {
-                            $fileArray = \CFile::MakeFileArray($fileId);
-                            array_push($arFile, $fileArray);
-                        } else {
-                            Logs\File::AddMessage('Failed to save file', 'Error', LOG_API_SYNC_SELLER_CONTROLLER);
-                        }
-                    }
-                    $fields = [
-                        'UF_CRM_6433D94467769' => $arFile,
-                    ];
-                    $newItem->setFromCompatibleData($fields);
-                }
-            }
-            //endregion
-
-            //region "ИНН (SCP)"
-            $newItem->set("UF_CRM_6433D7C925893", $dataArray['inn']);
-            //endregion
-
-            //region Создание Карточки руководителя
-            if ($type == "director") {
-
-                $fullName = $dataArray['lastName'] . " " .$dataArray['firstName']. " " . $dataArray['secondName'];
-                $newItem->setTitle($fullName);
-
-                //region "Изменено ЛК" в Карточке Селлера
-                $itemSeller->set("UF_CRM_UPDATE_INFO_LK", true); //изменено ЛК
-                //endregion
-            }
-            //endregion
-
-            //region Создание Карточки бенефициаров
-            if ($type == "beneficiar") {
-
-                $fullName = $dataArray['lastName'] . " " .$dataArray['firstName']. " " . $dataArray['secondName'];
-                $newItem->setTitle($fullName);
-
-                //region "Бенефициар X" в Карточке Селлера
-                $_beneficiars = [
-                    'UF_CRM_1702272911' => $itemSeller -> getData()['UF_CRM_1702272911'],
-                    'UF_CRM_1702272991' => $itemSeller -> getData()['UF_CRM_1702272991'],
-                    'UF_CRM_1702273016' => $itemSeller -> getData()['UF_CRM_1702273016'],
-                    'UF_CRM_1702273043' => $itemSeller -> getData()['UF_CRM_1702273043'],
-                    'UF_CRM_1702273072' => $itemSeller -> getData()['UF_CRM_1702273072'],
-                ];
-
-                $currentCardId = "CO_" . $currentCardId; // Префиксируем ID
-
-                // Проверка на наличие ID в массиве
-                if (!in_array($currentCardId, $_beneficiars)) {
-                    // ID не найден, ищем первое свободное поле
-                    foreach ($_beneficiars as $key => $value) {
-                        if (empty($value)) {
-                            // Нашли свободное поле, записываем туда ID
-                            $itemSeller->set($key, $currentCardId);
-                            $itemSeller->set("UF_CRM_UPDATE_INFO_LK", true); //изменено ЛК
-                            break; // Выходим из цикла, так как запись произведена
-                        }
-                    }
-                }
-                //endregion
-
-                //region "Изменено ЛК" в Карточке Селлера
-                $itemSeller->set("UF_CRM_UPDATE_INFO_LK", true); //изменено ЛК
-                //endregion
-            }
-            //endregion
-
-            //region Создание Карточки Поручителя
-            if($type == "guarantor") {
-                $fullName = $dataArray['lastName'] . " " .$dataArray['firstName']. " " . $dataArray['secondName'];
-                $newItem->setTitle($fullName);
-
-                //region "Поручитель X" в Карточке ЛК
-                $_guarantors = [
-                    'UF_CRM_GUARANTOR_1' => $itemLK -> getData()['UF_CRM_GUARANTOR_1'],
-                    'UF_CRM_GUARANTOR_2' => $itemLK -> getData()['UF_CRM_GUARANTOR_2'],
-                    'UF_CRM_GUARANTOR_3' => $itemLK -> getData()['UF_CRM_GUARANTOR_3'],
-                    'UF_CRM_GUARANTOR_4' => $itemLK -> getData()['UF_CRM_GUARANTOR_4'],
-                    'UF_CRM_GUARANTOR_5' => $itemLK -> getData()['UF_CRM_GUARANTOR_5'],
-                ];
-                //endregion
-                $currentCardId = "CO_" . $currentCardId; // Префиксируем ID
-
-                // Проверка на наличие ID в массиве
-                if (!in_array($currentCardId, $_guarantors)) {
-                    // ID не найден, ищем первое свободное поле
-                    foreach ($_guarantors as $key => $value) {
-                        if (empty($value)) {
-                            // Нашли свободное поле, записываем туда ID
-                            $itemLK->set($key, $currentCardId);
-                            break; // Выходим из цикла, так как запись произведена
-                        }
-                    }
-                }
-            }
-            //endregion
-
-            $operation = $factoryCompany->getAddOperation($newItem);
-            $operation->disableAllChecks();
-            $operation->launch();
-            $itemId = $newItem->getId();
-
-        }
-        //endregion
-
-        $operationOnlySeller = $factoryCompany->getUpdateOperation($itemSeller);
-        $operationOnlySeller->disableAllChecks();
-        $operationOnlySeller->launch();
-
-        Logs\File ::AddMessage($itemId, "Получение ID карточки компании",LOG_API_SYNC_SELLER_CONTROLLER);
-
-        return $itemId;
+    public function setObjectData(array $data): void
+    {
+        $this->objectData = $data;
     }
 
     /**
-     * Обновление карточки сделки (внутр.)
+     * Изменение стадии карточки сделки (внутр.)
      * @param $dealId
-     * @return EventResult|int|null
+     * @param $stageId
+     * @return void
      */
-    public function updateDealCard($dealId){
+    public function changeStageDealCard($dealId,$stageId): void
+    {
         $entityTypeId = \CCrmOwnerType::Deal;
         $factoryDeal = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeId);
-        if (!$factoryDeal)
-        {
-            Context::getCurrent()->getResponse()->setStatus(500);
-            $this -> addError(new Error('Ошибка на сервере', "invalid_server"));
-            return new EventResult(EventResult::ERROR, null, null, $this);
-        }
         $item = $factoryDeal->getItem($dealId);
 
-        if($item) $item->setStageId('C23:UC_K2J0ML');
+        $item?->setStageId($stageId);
 
         $operation = $factoryDeal->getUpdateOperation($item);
         $operation->disableAllChecks();
@@ -842,28 +568,20 @@ class SellerService
                     "COMMENT" => "[b]{$message}[/b]"
                 ]
             ]);
-            return null;
         }
-
-        return $item->getId();
     }
 
     /**
      * Обновление карточки компании (внутр.)
      * @param $companyId
      * @param $dataArray
-     * @return EventResult|int|null
+     * @return int|null
      * @throws ArgumentException
      */
-    public function updateCompanyCard($companyId, $dataArray){
+    public function updateCompanyCard($companyId, $dataArray): int|null
+    {
         $entityTypeId = \CCrmOwnerType::Company;
         $factoryCompany = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeId);
-        if (!$factoryCompany)
-        {
-            Context::getCurrent()->getResponse()->setStatus(500);
-            $this -> addError(new Error('Ошибка на сервере', "invalid_server"));
-            return new EventResult(EventResult::ERROR, null, null, $this);
-        }
 
         $isAcceptPersonalInfo = $dataArray['isAcceptPersonalInfo'];
         $isAcceptPEPInfo = $dataArray['isAcceptPEPInfo'];
@@ -953,778 +671,338 @@ class SellerService
         return $item->getId();
     }
 
-    /**
-     * Получение информации о компании по ИД (внутр.)
-     * @param $companyId
-     * @return $this
-     * @throws SqlQueryException
-     */
-    public function getCompanyInfoById($companyId): static {
-        $this->companyId = $companyId;
-        $this->entityTypeId = \CCrmOwnerType::Company;
-
-        $factory = \Bitrix\Crm\Service\Container ::getInstance() -> getFactory($this->entityTypeId);
-        $item = $factory -> getItem($this->companyId);
-        if($item) {
-            $this->itemDatatitle = $item->getData()['TITLE'];
-            $this->rqId = $this->findRequisite(\CCrmOwnerType::Company, $companyId);
-            global $DB;
-            $RQItemSQL = "SELECT * FROM b_crm_requisite INNER JOIN b_uts_crm_requisite ON b_crm_requisite.ID = b_uts_crm_requisite.VALUE_ID WHERE ENTITY_ID='{$companyId}' AND ID='" . $this->rqId . "' ORDER BY ID ASC;";
-            $resRQItemsQuery = $DB->query($RQItemSQL);
-            while($resRQItem = $resRQItemsQuery->Fetch()) {
-                $this->sellerInn = (string) $resRQItem['RQ_INN'];
-                $this->sellerLastName = (string) $resRQItem['RQ_LAST_NAME'];
-                $this->sellerFirstName = (string) $resRQItem['RQ_FIRST_NAME'];
-                $this->sellerSecondName = (string) $resRQItem['RQ_SECOND_NAME'];
-                $this->sellerPassportBirthday = (string) date('Y-m-d', strtotime($resRQItem['UF_CRM_1684493639']));
-                $this->sellerPassportNumber = (string) $resRQItem['RQ_IDENT_DOC_NUM'];
-                $this->sellerPassportSeries = (string) $resRQItem['RQ_IDENT_DOC_SER'];
-            }
-        }
-        return $this;
-    }
-
-    /**
-     * Получение информации о контакте по ИД (внутр.)
-     * @param $contactId
-     * @return $this
-     * @throws SqlQueryException
-     */
-    public function getContactInfoById($contactId): static {
-        $this->contactId = $contactId;
-        $this->entityTypeId = \CCrmOwnerType::Contact;
-
-        $factory = \Bitrix\Crm\Service\Container ::getInstance() -> getFactory($this->entityTypeId);
-        $item = $factory -> getItem($this->contactId);
-        if($item) {
-            $this->rqId = $this->findRequisite(\CCrmOwnerType::Contact, $contactId);
-            global $DB;
-            $RQItemSQL = "SELECT * FROM b_crm_requisite INNER JOIN b_uts_crm_requisite ON b_crm_requisite.ID = b_uts_crm_requisite.VALUE_ID WHERE ENTITY_ID='{$contactId}' AND ID='" . $this->rqId . "' ORDER BY ID ASC;";
-            $resRQItemsQuery = $DB->query($RQItemSQL);
-            while($resRQItem = $resRQItemsQuery->Fetch()) {
-                $this->sellerInn = (string) $resRQItem['RQ_INN'];
-                $this->sellerLastName = (string) $resRQItem['RQ_LAST_NAME'];
-                $this->sellerFirstName = (string) $resRQItem['RQ_FIRST_NAME'];
-                $this->sellerSecondName = (string) $resRQItem['RQ_SECOND_NAME'];
-                $this->sellerPassportBirthday = (string) date('Y-m-d', strtotime($resRQItem['UF_CRM_1684493639']));
-                $this->sellerPassportNumber = (string) $resRQItem['RQ_IDENT_DOC_NUM'];
-                $this->sellerPassportSeries = (string) $resRQItem['RQ_IDENT_DOC_SER'];
-
-            }
-
-            $this->itemDatatitle = $this->sellerLastName . " " . $this->sellerFirstName . " " . $this->sellerSecondName;
-        }
-        return $this;
-    }
-
-    /**
-     * Установка ObjectData элемента (внутр.)
-     * @param $itemId
-     * @return mixed
-     */
-    public function setCURLObjectData($itemId): mixed {
-        $serverName = Application::getInstance()->getContext()->getServer()->toArray()['SERVER_NAME'];
-        $this->CURLObjectData['ITEM_ID'] = $itemId;
-        $this->CURLObjectData['ITEM_TYPE_ID'] = $this->entityTypeId;
-        $this->CURLObjectData['ITEM_TITLE'] = "SE: ". $this->itemDatatitle;
-
-        if (strpos($serverName, 'test') !== false) {
-            $this->CURLObjectData['INIT_OBJECT_URL'] = "https://testcrm.seller-capital.ru/crm/type/{$this->entityTypeId}/details/{$itemId}/";
-        } else {
-            $this->CURLObjectData['INIT_OBJECT_URL'] = "https://crm.seller-capital.ru/crm/type/{$this->entityTypeId}/details/{$itemId}/";
-        }
-
-        return $this->CURLObjectData;
-    }
-
-    /**
-     * Поиск реквизитов (внутр.)
-     * @param $entityTypeId
-     * @param $cardId
-     * @param $inn
-     * @return mixed|null
-     */
-    private function findRequisite($entityTypeId, $cardId, $inn = null): mixed
+    public function getFirstRequisiteId(int $companyId): ?int
     {
-        $filter = ["ENTITY_TYPE_ID" => $entityTypeId, "ENTITY_ID" => $cardId];
-        $filter["RQ_INN"] = $inn;
-
-        $requisiteList = \CRest::call("crm.requisite.list", [
-            "filter" => $filter,
-            "select" => ['ID', "PRESET_ID", "ENTITY_ID", "ENTITY_TYPE_ID"]
+        $result = \CRest::call('crm.requisite.list', [
+            'filter' => [
+                'ENTITY_ID' => $companyId,
+                'ENTITY_TYPE_ID' => \CCrmOwnerType::Company
+            ],
+            'select' => ['ID']
         ]);
-        Logs\File::AddMessage($requisiteList, "requisiteList Find for {$cardId}", LOG_API_SYNC_SELLER_CONTROLLER);
 
-        $requisite = $requisiteList['result'];
+        return $result['result'][0]['ID'] ?? null;
+    }
 
-        return $requisite ? $requisite[0]['ID'] : null;
+    public function addBankAccount(int $rqId, BankAccountDTO $dto): void
+    {
+        \CRest::call('crm.requisite.bankdetail.add', [
+            'fields' => [
+                'ENTITY_TYPE_ID'    => \CCrmOwnerType::Requisite,
+                'ENTITY_ID'         => $rqId,
+                'NAME'              => $dto->title,
+                'RQ_BANK_NAME'      => $dto->nameBank,
+                'RQ_BIK'            => $dto->bankIdCode,
+                'RQ_BIC'            => $dto->bankIdCode,
+                'RQ_ACC_NUM'        => $dto->checkAccount,
+                'RQ_COR_ACC_NUM'    => $dto->adjAccount,
+                'RQ_ACC_CURRENCY'   => 'RUB',
+                'COMMENTS'          => 'МКК'
+            ]
+        ]);
+    }
+
+    public function processLoan(string $sellerInn, int $crmId, array $loanData): array
+    {
+        $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory(128);
+        $sellerCardId  = $this->findCard($sellerInn, $crmId);
+
+        $amount       = floatval($loanData['amount'] ?? 0);
+        $term         = intval($loanData['term'] ?? 0);
+        $purpose      = $loanData['purposeLoan'] ?? '';
+        $isFirst      = (bool)($loanData['isFirstTranche'] ?? false);
+        $withDelay    = (bool)($loanData['typeContract'] ?? false);
+
+        // Получаем ENUM ID для срока займа
+        $termEnum = \CUserFieldEnum::GetList([], ['XML_ID' => "{$term}_MONTHS"]);
+        $loanTermId = $termEnum && ($row = $termEnum->Fetch()) ? (int)$row['ID'] : null;
+
+        if ($isFirst) {
+            // 🔁 Поиск существующего элемента (Ожидание решения клиента)
+            $items = $factory->getItems([
+                'filter' => [
+                    '=COMPANY_ID' => $sellerCardId,
+                    'STAGE_ID' => 'DT128_226:UC_6GB0Q7',
+                    'CATEGORY_ID' => 226
+                ],
+                'select' => ['ID']
+            ]);
+
+            if (!$items) {
+                return ['status' => 'fail', 'message' => 'Создание первого транша невозможно, он уже существует'];
+            }
+
+            foreach ($items as $item) {
+                $item->set('UF_CRM_CRMID', $crmId);
+                $item->set('UF_CRM_INN', $sellerInn);
+                $item->set('UF_CRM_LOAN_AMOUNT', $amount);
+                $item->set('UF_CRM_LOAN_TERM', $loanTermId);
+                $item->set('UF_CRM_PURPOSE_OF_THE_LOAN', $purpose);
+                $item->set('UF_CRM_LKSC_TYPE_OF_CONTRACT', $this->getDelayEnumId($withDelay));
+                $item->save();
+
+                $item->setStageId('DT128_226:CLIENT');
+                $item->setCategoryId(226);
+
+                $operation = $factory->getUpdateOperation($item);
+                $operation->disableAllChecks();
+
+                return $operation->launch()->isSuccess()
+                    ? ['status' => 'first_created']
+                    : ['status' => 'fail', 'message' => 'Создание транша не удалось'];
+            }
+        }
+
+        // 🔁 Повторный транш — создаём новый элемент на основе предыдущего
+        $prevItem = $factory->getItem($crmId);
+        $title = $prevItem->get('TITLE');
+        $parentId = $prevItem->get('PARENT_ID_134');
+        $createdBy = $prevItem->get('CREATED_BY');
+
+        $item = $factory->createItem();
+        $item->set('TITLE', "Повторный транш {$title}");
+        $item->set('COMPANY_ID', $sellerCardId);
+        $item->set('UF_CRM_CRMID', $crmId);
+        $item->set('PARENT_ID_134', $parentId);
+        $item->set('UF_CRM_INN', $sellerInn);
+        $item->set('UF_CRM_LOAN_AMOUNT', $amount);
+        $item->set('UF_CRM_LOAN_TERM', $loanTermId);
+        $item->set('UF_CRM_PURPOSE_OF_THE_LOAN', $purpose);
+        $item->set('UF_CRM_REPEAT_ZAYAVKA', 1);
+        $item->set('UF_CRM_LKSC_TYPE_OF_CONTRACT', $this->getDelayEnumId($withDelay));
+
+        $context = (new \Bitrix\Crm\Service\Context())->setUserId($createdBy);
+
+        $item->save();
+        $item->setStageId('DT128_226:NEW');
+        $item->setCategoryId(226);
+
+        $operation = $factory->getAddOperation($item, $context);
+        $operation->disableAllChecks();
+
+        return $operation->launch()->isSuccess()
+            ? ['status' => 'repeat_created']
+            : ['status' => 'fail', 'message' => 'Создание повторного транша не удалось'];
+    }
+
+    private function getDelayEnumId(bool $withDelay): ?int
+    {
+        $xmlId = $withDelay ? 'WITH_DELAY' : 'NO_DELAY';
+        $enum = \CUserFieldEnum::GetList([], ['XML_ID' => $xmlId]);
+        if ($row = $enum->Fetch()) {
+            return (int)$row['ID'];
+        }
+        return null;
     }
 
     /**
-     * Поиск реквизитов компании по ИНН (внутр.)
-     * @param $cardId
-     * @param false|null $inn
-     * @return mixed|null
-     */
-    private function findCompanyRQ($cardId, $inn = null): mixed {
-        if(!is_null($inn)) {
-            $requisite = \CRest::call(
-                "crm.requisite.list",
-                array(
-                    "filter" => ["ENTITY_TYPE_ID" => \CCrmOwnerType::Company, "ENTITY_ID" => $cardId, "RQ_INN" => $inn],
-                    "select" => ['ID',"PRESET_ID", "ENTITY_ID",	"ENTITY_TYPE_ID"]
-                )
-            )['result'];
-
-            Logs\File ::AddMessage($requisite, "requisite Find for {$cardId}", LOG_API_SYNC_SELLER_CONTROLLER);
-
-        }
-        else {
-            $requisite = \CRest::call(
-                "crm.requisite.list",
-                array(
-                    "filter" => ["ENTITY_TYPE_ID" => \CCrmOwnerType::Company, "ENTITY_ID" => $cardId],
-                    "select" => ['ID',"PRESET_ID", "ENTITY_ID",	"ENTITY_TYPE_ID"]
-                )
-            )['result'];
-
-            Logs\File ::AddMessage($requisite, "First requisite Find for {$cardId}", LOG_API_SYNC_SELLER_CONTROLLER);
-
-        }
-        if(isset($requisite)) {
-            return $requisite[0]['ID'];
-        } else {
-            return null;
-        }
-
-
-    }
-
-    /**
-     * Поиск реквизитов контакта по ИНН (внутр.)
-     * @param $cardId
-     * @param $inn
-     * @return mixed|null
-     */
-    private function findContactRQ($cardId, $inn = null): mixed {
-        if(!is_null($inn)) {
-            $requisite = \CRest::call(
-                "crm.requisite.list",
-                array(
-                    "filter" => ["ENTITY_TYPE_ID" => \CCrmOwnerType::Contact, "ENTITY_ID" => $cardId, "RQ_INN" => $inn],
-                    "select" => ['ID',"PRESET_ID", "ENTITY_ID",	"ENTITY_TYPE_ID"]
-                )
-            )['result'];
-
-            Logs\File ::AddMessage($requisite, "requisite Find for {$cardId}", LOG_API_SYNC_SELLER_CONTROLLER);
-
-        }
-        else {
-            $requisite = \CRest::call(
-                "crm.requisite.list",
-                array(
-                    "filter" => ["ENTITY_TYPE_ID" => \CCrmOwnerType::Contact, "ENTITY_ID" => $cardId],
-                    "select" => ['ID',"PRESET_ID", "ENTITY_ID",	"ENTITY_TYPE_ID"]
-                )
-            )['result'];
-
-            Logs\File ::AddMessage($requisite, "First requisite Find for {$cardId}", LOG_API_SYNC_SELLER_CONTROLLER);
-
-        }
-        if(isset($requisite)) {
-            return $requisite[0]['ID'];
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Создание или обновление реквизитов (внутр.)
-     * @param $cardId
-     * @param $dataArray
-     * @param $createRQ
-     * @return void
+     * Сохраняет данные от СМЭВ в карточку сущности (Company/Contact).
+     *
+     * @param Factory $factory
+     * @param Item $item
+     * @param array $services
+     * @return array ['status' => 'success'|'error', 'messages' => string[]]
      * @throws ArgumentException
-     * @throws ObjectPropertyException
-     * @throws SqlQueryException
-     * @throws SystemException
      */
-    public function createOrUpdateRQ($cardId, $dataArray, $createRQ = false): void
+    public function saveAllData(Factory $factory, Item $item, array $services): array
     {
-        $type = $dataArray['type'];
-        $inn = $dataArray['inn'];
-        $kpp = $dataArray['kpp'];
-        $ogrnip = $dataArray['ogrnip'];
-        $ogrn = $dataArray['ogrn'];
-        $okpo = $dataArray['okpo'];
-        $okved = $dataArray['okved'];
-        $companyRegDate = $dataArray['companyRegDate'];
-        $companyName = $dataArray['companyName'];
-        $companyFullName = $dataArray['companyFullName'];
-        $fnsDepartment = $dataArray['fnsDepartment'];
-        $firstName = $dataArray['firstName'];
-        $lastName = $dataArray['lastName'];
-        $secondName = $dataArray['secondName'];
-        $birthday = $dataArray['birthday'];
-        $birthPlace = $dataArray['birthPlace'];
-        $serviceEDO = $dataArray['serviceEDO'];
+        $messages = [];
+        $success = true;
 
-        $passportArray = $dataArray['passport'];
-        $passportIssuer = $passportArray['issuer'];
-        $passportNumber = $passportArray['number'];
-        $passportSeries = $passportArray['series'];
-        $passportIssuedAt = $passportArray['issuedAt'];
-        $passportIssuerCode = $passportArray['issuerCode'];
+        foreach ($services as $service) {
+            $serviceName = $service['service'] ?? 'unknown';
+            $result = $service['result']['description'] ?? 'Нет описания';
+            $valid = $service['result']['valid'] ?? null;
 
-        $rqId = $this->findCompanyRQ($cardId, $inn);
-        Logs\File ::AddMessage($rqId, "rqId {$cardId} Update", LOG_API_SYNC_SELLER_CONTROLLER);
+            $messages[] = "[{$serviceName}] {$result}";
 
-        if(isset($rqId)) {
+            // Пример: сохраняем результат проверки как комментарий
+            // Можно также сохранять в кастомные поля карточки
+            Logs\File::AddMessage($service, "Сервис {$serviceName}", LOG_API_SYNC_SELLER_CONTROLLER);
 
-            if($type === "IP" || $type === "FL")
-            {
-                $params = [
-                    "id" => $rqId,
-                    "fields" => [
-                        'TITLE' => $type . " " . $lastName . " " . $firstName . " " . $secondName,
-                        'NAME' => $lastName . " " . $firstName . " " . $secondName,
-                        'RQ_NAME' => $lastName . " " . $firstName . " " . $secondName,
-                        'RQ_FIRST_NAME' => $firstName,
-                        'RQ_LAST_NAME' => $lastName,
-                        'RQ_SECOND_NAME' => $secondName,
-                        'RQ_IDENT_DOC' => 'Паспорт гражданина Российской Федерации',
-                        'RQ_IDENT_DOC_SER' => $passportSeries,
-                        'RQ_IDENT_DOC_NUM' => $passportNumber,
-                        'RQ_IDENT_DOC_DATE' => (string) date('d.m.Y',strtotime($passportIssuedAt)),
-                        'RQ_IDENT_DOC_ISSUED_BY' => $passportIssuer,
-                        'RQ_IDENT_DOC_DEP_CODE' => $passportIssuerCode,
-                        'UF_CRM_1647929611' => $birthPlace,
-                        'UF_CRM_1684493639' => $birthday,
-                        'RQ_INN' => $inn,
-                        'RQ_OGRNIP' => $ogrnip,
-                        'RQ_OKPO' => $okpo,
-                        'RQ_OKVED' => $okved,
-                        'RQ_COMPANY_REG_DATE' => (string) date('d.m.Y',strtotime($companyRegDate)),
-                        'UF_CRM_1688964741' => $fnsDepartment,
-                    ]
-                ];
-            }
-            if($type === "UL")
-            {
-                $params = [
-                    "id" => $rqId,
-                    "fields" => [
-                        'TITLE' => $companyName,
-                        'NAME' => $companyName,
-                        'RQ_INN' => $inn,
-                        'RQ_KPP' => $kpp,
-                        'RQ_OGRN' => $ogrn,
-                        'RQ_OKPO' => $okpo,
-                        'RQ_OKVED' => $okved,
-                        'RQ_COMPANY_REG_DATE' => (string) date('d.m.Y',strtotime($companyRegDate)),
-                        'UF_CRM_1688964741' => $fnsDepartment,
-                        'RQ_COMPANY_NAME' => $companyName,
-                        'RQ_COMPANY_FULL_NAME' => $companyFullName,
-                    ]
-                ];
-            }
-
-            \CRest ::call('crm.requisite.update', $params);
-
-
-
-            $_requisite = \CRest::call(
-                "crm.requisite.get",
-                array("id" => $rqId)
-            )['result'];
-
-            Logs\File ::AddMessage($_requisite, "requisite Info After Update for {$cardId}",
-                LOG_API_SYNC_SELLER_CONTROLLER);
-
-        }
-        else {
-
-            if($type === "IP") $PRESET_ID = 2;
-            if($type === "FL") $PRESET_ID = 2;
-            if($type === "UL") $PRESET_ID = 1;
-
-            if($type === "IP" || $type === "FL")
-            {
-                $params = [
-                    "fields" => [
-                        "ENTITY_TYPE_ID" =>\CCrmOwnerType::Company,
-                        "ENTITY_ID" => $cardId,
-                        "PRESET_ID" => $PRESET_ID,
-                        'TITLE' => $type . " " . $lastName . " " . $firstName . " " . $secondName,
-                        'NAME' => $lastName . " " . $firstName . " " . $secondName,
-                        'RQ_NAME' => $lastName . " " . $firstName . " " . $secondName,
-                        'RQ_FIRST_NAME' => $firstName,
-                        'RQ_LAST_NAME' => $lastName,
-                        'RQ_SECOND_NAME' => $secondName,
-                        'RQ_IDENT_DOC' => 'Паспорт гражданина Российской Федерации',
-                        'RQ_IDENT_DOC_SER' => $passportSeries,
-                        'RQ_IDENT_DOC_NUM' => $passportNumber,
-                        'RQ_IDENT_DOC_DATE' => (string) date('d.m.Y',strtotime($passportIssuedAt)),
-                        'RQ_IDENT_DOC_ISSUED_BY' => $passportIssuer,
-                        'RQ_IDENT_DOC_DEP_CODE' => $passportIssuerCode,
-                        'UF_CRM_1647929611' => $birthPlace,
-                        'UF_CRM_1684493639' => $birthday,
-                        'RQ_INN' => $inn,
-                        'RQ_OGRNIP' => $ogrnip,
-                        'RQ_OKPO' => $okpo,
-                        'RQ_OKVED' => $okved,
-                        'RQ_COMPANY_REG_DATE' => (string) date('d.m.Y',strtotime($companyRegDate)),
-                        'UF_CRM_1688964741' => $fnsDepartment,
-                    ]
-                ];
-                $rqId = \CRest ::call('crm.requisite.add', $params)['data'];
-            }
-            if($type === "UL")
-            {
-                $params = [
-                    "fields" => [
-                        "ENTITY_TYPE_ID" =>\CCrmOwnerType::Company,
-                        "ENTITY_ID" => $cardId,
-                        "PRESET_ID" => $PRESET_ID,
-                        'TITLE' => $companyName,
-                        'NAME' => $companyName,
-                        'RQ_INN' => $inn,
-                        'RQ_KPP' => $kpp,
-                        'RQ_OGRN' => $ogrn,
-                        'RQ_OKPO' => $okpo,
-                        'RQ_OKVED' => $okved,
-                        'RQ_COMPANY_REG_DATE' => (string) date('d.m.Y',strtotime($companyRegDate)),
-                        'UF_CRM_1688964741' => $fnsDepartment,
-                        'RQ_COMPANY_NAME' => $companyName,
-                        'RQ_COMPANY_FULL_NAME' => $companyFullName,
-                    ]
-                ];
-                $rqId = \CRest ::call('crm.requisite.add', $params)['data'];
-            }
-
-            Logs\File ::AddMessage($rqId, "rqId {$cardId}  Create", LOG_API_SYNC_SELLER_CONTROLLER);
-        }
-
-        if(isset($rqId))
-        {
-            $addressArray = $dataArray['address'];
-            foreach ($addressArray as $address)
-            {
-                $addressFiasId = $address['fiasId'];
-
-                $http = new HttpClient();
-                $http->setHeader('Content-Type', 'application/json');
-                $http->setHeader('Accept', 'application/json');
-                $http->setHeader('Authorization', 'Token 440b60bed73f6e0d78a0eb09ca91971f8c079590');
-                $requestBody = [
-                    'query' => $addressFiasId
-                ];
-                $http->post("https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/address", json_encode($requestBody));
-
-                $responseJson = $http->getResult();
-                $responseArray = json_decode($responseJson, true);
-                $addressData = $responseArray['suggestions'][0]['data'];
-
-                if ($address['type'] == "registration") $addressTypeId = 4;
-                if ($address['type'] == "actual") $addressTypeId = 1;
-                if ($address['type'] == "legal") $addressTypeId = 6;
-                $addressCity = $addressData['city'];
-                $addressFlat = $addressData['flat'];
-                $addressHouse = $addressData['house'];
-                $addressRegion = $addressData['region'];
-                $addressDistrict = $addressData['city_district'];
-                $addressStreet = $addressData['street'];
-                $addressBuilding = $addressData['block'];
-                $addressStructure = $addressData['block'];
-                $addressCountry = $addressData['country'];
-                $addressPostalCode = $addressData['postalCode'];
-
-                //код добавления данного типа адреса в реквизит карточки клиента
-                $arAddress['ENTITY_ID'] = intval($rqId);//id requisite
-                $arAddress['TYPE_ID'] = $addressTypeId;//Адрес регистрации
-                $arAddress['ENTITY_TYPE_ID'] = \CCrmOwnerType::Requisite;//Реквизит 8
-                $arAddress['ANCHOR_ID'] = $cardId;// ID Компании
-                $arAddress['POSTAL_CODE'] = $addressPostalCode;// Индекс
-                $arAddress['COUNTRY'] = $addressCountry;// Страна
-                $arAddress['PROVINCE'] = $addressRegion;// регион
-                $arAddress['REGION'] = $addressDistrict;// Район
-                $arAddress['CITY'] = $addressCity;// Город
-                $arAddress['ADDRESS_1'] = $addressStreet . ", " . $addressHouse . ", " . $addressStructure . ", " . $addressBuilding;
-                //Улица, дом, корпус, строение.
-                $arAddress['ADDRESS_2'] = $addressFlat;// Квартира / офис.
-                $arAddress['COUNTRY_CODE'] = 643;// Код страны
-                $resultAddress = \CRest ::call('crm.address.add', ['fields' => $arAddress]);
-                self ::addressUpdate($cardId, \CCrmOwnerType::Company, $addressStreet, 'STREET', $addressTypeId,$addressFiasId);
-                self ::addressUpdate($cardId, \CCrmOwnerType::Company, $addressHouse, 'BUILDING', $addressTypeId,$addressFiasId);
-                self ::addressUpdate($cardId, \CCrmOwnerType::Company, $addressFiasId, 'FIAS_ID', $addressTypeId, $addressFiasId);
-
-                Logs\File ::AddMessage($arAddress, "arAddress " . $address['type'], LOG_API_SYNC_SELLER_CONTROLLER);
-            }
-        }
-    }
-
-    /**
-     * Обновление адреса (внутр.)
-     * @param $id
-     * @param $entityTypeId
-     * @param $dataField
-     * @param $nameField
-     * @param $typeId
-     * @return void
-     * @throws ArgumentException
-     * @throws ObjectPropertyException
-     * @throws SqlQueryException
-     * @throws SystemException
-     */
-    private function addressUpdate($id, $entityTypeId, $dataField, $nameField, $typeId, $fiasId = null): void
-    {
-        global $DB;
-        $Address = new \Bitrix\Location\Controller\Address;
-
-
-        $resAddrList = \CRest::call('crm.address.list', array(
-            'filter' => array('ANCHOR_ID' => $id, 'ANCHOR_TYPE_ID' => $entityTypeId),
-            'select' => array('TYPE_ID','ENTITY_TYPE_ID','ENTITY_ID','ANCHOR_ID','ANCHOR_TYPE_ID','LOC_ADDR_ID')
-        ))['result'];
-
-        if(empty($resAddrList)) {
-            return;
-        }
-
-        foreach($resAddrList as $i => $addrItem){
-            if($addrItem['TYPE_ID'] == $typeId)
-            {
-                $LOC_ADDR_ID = $addrItem['LOC_ADDR_ID'];
-
-                $beforeStrSQL = "SELECT * FROM b_location_addr_fld WHERE ADDRESS_ID = ".$LOC_ADDR_ID;
-                $beforeResults = $DB->Query($beforeStrSQL);
-
-                if($dataField !== "" && $nameField == "STREET")
-                {
-                    $streetBool = false;
-                    if (intval($beforeResults->SelectedRowsCount())>0)
-                    {
-                        while ($location_addr_fld = $beforeResults->Fetch()){
-                            if($location_addr_fld['TYPE'] == 340)
-                                $streetBool = true;
-                        }
-
-                    }
-
-                    $streetTMP = str_replace(" ", "", $dataField);
-                    $streetTMP = str_replace(".", "", $streetTMP);
-                    $streetTMP = str_replace(",", "", $streetTMP);
-                    $streetUPPER = strtoupper($streetTMP);
-                    $fiasIdUPPER = strtoupper($fiasId);
-
-
-                    if(!$streetBool)
-                    {
-                        $strSQL = "INSERT INTO b_location_addr_fld VALUES (".$LOC_ADDR_ID.",340,'".$dataField."','".$streetUPPER."')";
-                        //AddMessage2Log($strSQL, 'SQL STREET');
-
-                    } else
-                    {
-                        $strSQL = "UPDATE b_location_addr_fld SET VALUE = '".$dataField."', VALUE_NORMALIZED = '".$streetUPPER."' WHERE ADDRESS_ID = ".$LOC_ADDR_ID." AND TYPE = 340";
-                        //AddMessage2Log($strSQL, 'SQL STREET UPDATE');
-                    }
-                    $DB->Query($strSQL);
-
-
-
-                }
-
-                if($dataField !== "" && $nameField == "BUILDING")
-                {
-                    $houseBool = false;
-                    if (intval($beforeResults->SelectedRowsCount())>0)
-                    {
-                        while ($location_addr_fld = $beforeResults->Fetch()){
-                            if($location_addr_fld['TYPE'] == 400)
-                                $houseBool = true;
-                        }
-
-                    }
-                    //$house = $dataField.' д.';
-                    $houseTMP = str_replace(" ", "", $dataField);
-                    $houseTMP = str_replace(".", "", $houseTMP);
-                    $houseTMP = str_replace(",", "", $houseTMP);
-                    $houseUPPER = strtoupper($houseTMP);
-
-                    if(!$houseBool)
-                    {
-                        $strSQL = "INSERT INTO b_location_addr_fld VALUES (" . $LOC_ADDR_ID . ",400,'" . $dataField . "','" . $houseUPPER . "')";
-                        //AddMessage2Log($strSQL, 'SQL BUILDING');
-                    } else {
-                        $strSQL = "UPDATE b_location_addr_fld SET VALUE = '".$dataField."', VALUE_NORMALIZED = '".$streetUPPER."' WHERE ADDRESS_ID = ".$LOC_ADDR_ID." AND TYPE = 400";
-                        //AddMessage2Log($strSQL, 'SQL BUILDING UPDATE');
-                    }
-
-                    $DB->Query($strSQL);
-                }
-
-                if($dataField !== "" && $nameField == "FIAS_ID")
-                {
-                    $fiasIdBool = false;
-                    if (intval($beforeResults->SelectedRowsCount())>0)
-                    {
-                        while ($location_addr_fld = $beforeResults->Fetch()){
-                            if($location_addr_fld['TYPE'] == 900)
-                                $fiasIdBool = true;
-                        }
-
-                    }
-
-                    $fiasIdUPPER = strtoupper($fiasId);
-                    if(!$fiasIdBool)
-                    {
-                        $strSQL = "INSERT INTO b_location_addr_fld VALUES (".$LOC_ADDR_ID.", 900, '".$fiasId."', '".$fiasIdUPPER."')";
-                        //AddMessage2Log($strSQL, 'SQL STREET');
-
-                    } else
-                    {
-                        $strSQL = "UPDATE b_location_addr_fld SET VALUE = '".$fiasId."', VALUE_NORMALIZED = '".$fiasIdUPPER."' WHERE ADDRESS_ID = ".$LOC_ADDR_ID." AND TYPE = 900";
-                        //AddMessage2Log($strSQL, 'SQL STREET UPDATE');
-                    }
-                    $DB->Query($strSQL);
-                }
-
-
-                //AddMessage2Log($strSQL, 'SQLALL');
-            }
-
-            //$DB->Query("INSERT INTO b_location_addr_fld (ADDRESS_ID, TYPE, VALUE, VALUE_NORMALIZED) VALUES ({$LOC_ADDR_ID},400,'{$house}','{$houseUPPER}')");
-
-            $addrId = $Address->findById($addrItem['LOC_ADDR_ID']);
-            $resAddress[$i] = $addrId['fieldCollection'];
-
-            if(!empty($resAddress[$i][340]) && !empty($resAddress[$i][400])) {
-                \CRest::call('crm.address.update',	array(
-                    'fields' => array(
-                        'TYPE_ID' => $addrItem['TYPE_ID'],
-                        'ENTITY_TYPE_ID' => $addrItem['ENTITY_TYPE_ID'],
-                        'ENTITY_ID' => $addrItem['ENTITY_ID'],
-                        'LOC_ADDR_ID' => $addrItem['LOC_ADDR_ID'],
-                        'POSTAL_CODE' => $resAddress[$i][50],//Почтовый индекс
-                        'COUNTRY' => $resAddress[$i][100],//Страна
-                        'PROVINCE' => $resAddress[$i][200],//Регион
-                        'REGION' => $resAddress[$i][210],//Район
-                        'CITY' => $resAddress[$i][300],//Город+Населенный пункт
-                        'STREET' => $resAddress[$i][340],//Улица
-                        'BUILDING' => $resAddress[$i][400],//Номер дома
-                        'ADDRESS_1' => $resAddress[$i][340].', '.$resAddress[$i][400],
-                        'ADDRESS_2' => $resAddress[$i][600]
-                    )
-                ));
+            // Пример логики: если в карточке есть поле UF_CRM_SMEV_<SERVICE>, то сохраняем туда результат
+            $ufField = 'UF_CRM_SMEV_' . strtoupper($serviceName);
+            if ($item->hasField($ufField)) {
+                $item->set($ufField, $valid === true ? 'Y' : 'N');
             }
         }
 
-    }
+        try {
+            $operation = $factory->getUpdateOperation($item);
+            $operation->disableAllChecks(); // При необходимости
+            $result = $operation->launch();
 
-    /**
-     * Сохранение данных (внутр.)
-     * @param $factory
-     * @param $item
-     * @param $services
-     * @return array
-     */
-    public function saveAllData($factory, $item, $services): array
-    {
-        $crmUpdateResult = $this->crmUpdate($factory, $item, $services);
-
-        Logs\File ::AddMessage($crmUpdateResult, "crmUpdateResult", LOG_API_SYNC_SELLER_CONTROLLER);
-        if ($crmUpdateResult !== true) {  // Если вернулся массив ошибок
-            return [
-                'status' => 'error',
-                'messages' => $crmUpdateResult,
-            ];
+            if (!$result->isSuccess()) {
+                $success = false;
+                $messages = array_merge($messages, $result->getErrorMessages());
+            }
         }
+        catch (\Throwable $e) {
+            $success = false;
+            $messages[] = $e->getMessage();
+        }
+
         return [
-            'status' => 'success',
-            'messages' => ['Все данные успешно сохранены.'],
+            'status' => $success ? 'success' : 'error',
+            'messages' => $messages,
         ];
     }
 
     /**
-     * Обновление CRM данными от служб СМЭВ (внутр.)
-     * @param $factory
-     * @param $item
-     * @param $services
-     * @return true|array
+     * @throws ArgumentException
      */
-    private function crmUpdate($factory, $item, $services): true|array
+    public function getCloseDateConsent(string $sellerInn, int $crmId = 0): array
     {
-        $errors = [];
+        $sellerCardId = $this->findCard($sellerInn, $crmId);
+        if (!is_int($sellerCardId)) {
+            throw new \RuntimeException("Не существует Селлера с таким ИНН или CRMID");
+        }
+        $entityTypeIdOSK = 134;
+        $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeIdOSK);
+        $items = $factory->getItems(['filter' => ['=COMPANY_ID' => $sellerCardId]]);
 
-        // Проверяем и устанавливаем нужные поля на основании данных из $requestArray['response']['services']
-        if (isset($services) && is_array($services)) {
-            foreach ($services as $serviceData) {
-                $serviceName = $serviceData['service'];
-                $result = (isset($serviceData['result']['valid']) && $serviceData['result']['valid'] === true) ? '1' : '0';
-                $description = $serviceData['result']['description'] ?? null;
-
-                Logs\File ::AddMessage($result, "result", LOG_API_SYNC_SELLER_CONTROLLER);
-
-                // Устанавливаем поля для компании или контакта в зависимости от `service`
-                if ($serviceName === "fns") {
-                    $item->set('UF_CRM_PFR_VALIDITY_OF_PASSPORT', (string) $result);
-                    $item->set('UF_CRM_PFR_DECODING_PASSPORT_CHECK', $description);
-                } elseif ($serviceName === "mvd") {
-                    $item->set('UF_CRM_MVD_VALIDITY_OF_PASSPORT', (string) $result);
-                    $item->set('UF_CRM_MVD_DECODING_PASSPORT_CHECK', $description);
-                }
+        foreach ($items as $item) {
+            $date = $item->get('UF_CRM_END_DATE_OF_CONSENT');
+            if ($date) {
+                return ['closeDateConsent' => date('Y-m-d\TH:i:s.msp', strtotime($date))];
             }
-        } else {
-            $errors[] = "Отсутствует корректный массив 'services' в запросе.";
         }
 
-        $operation = $factory->getUpdateOperation($item);
-        $operation->disableAllChecks();
-
-        // Сохраняем элемент CRM после установки всех полей
-        $saveResult = $operation->launch();
-
-        if (!$saveResult->isSuccess()) {
-            $errors = array_merge($errors, $saveResult->getErrorMessages()); // Возвращаем массив ошибок
-        }
-
-        return empty($errors) ? true : $errors;
+        return ['closeDateConsent' => null];
     }
 
     /**
-     * Функция для генерации GUID (внутр.)
-     * @return string
-     */
-    private function generateGUID(): string
-    {
-        if (function_exists('com_create_guid')) {
-            return strtolower(trim(com_create_guid(), '{}'));
-        } else {
-            return strtolower(sprintf(
-                '%04X%04X-%04X-%04X-%04X-%04X%04X%04X',
-                mt_rand(0, 65535),
-                mt_rand(0, 65535),
-                mt_rand(0, 65535),
-                mt_rand(16384, 20479), // 4XXX
-                mt_rand(32768, 49151), // 8XXX
-                mt_rand(0, 65535),
-                mt_rand(0, 65535),
-                mt_rand(0, 65535)
-            ));
-        }
-    }
-
-    /**
-     * ? Генерация ссылки для анонимной формы DEV (внтур.)
-     * @param $dealId
-     * @return string|void|null
      * @throws ArgumentException
      */
-    public function generateDevLinkForAnonimForm($dealId)
+    private function setServiceEDO(Item $item, mixed $serviceEDO): void
     {
-        // Получаем фабрику для сделок через контейнер
-        $entityTypeId = \CCrmOwnerType::Deal;
-        $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeId);
-        if (!$factory) {
-            die("Не удалось получить фабрику для сделок.");
+        $rsEnumEDO = \CUserFieldEnum::GetList([], ["XML_ID" => "Edo_" . $serviceEDO]);
+        if ($arEnumEDO = $rsEnumEDO->Fetch()) {
+            $item->set("UF_CRM_COMPANY_SERVICE_EDO", $arEnumEDO['ID']);
         }
-
-        // Получаем объект сделки по ID
-        $item = $factory->getItem($dealId);
-        if (!$item) {
-            die("Сделка с ID $dealId не найдена.");
-        }
-
-        // Генерируем GUID и формируем ссылку
-        $guid = $this->generateGUID();
-
-        // Формируем ссылку с параметром GUID
-        $testLink = "https://stage-umber.vercel.app/doc-loader?id=" . urlencode($guid);
-
-        // Сохраняем GUID в пользовательское поле сделки
-        $item->set('UF_CRM_GUID', $guid);
-
-        $operation = $factory->getUpdateOperation($item);
-        $operation->disableAllChecks();
-        // Сохраняем элемент CRM после установки всех полей
-        $saveResult = $operation->launch();
-
-        if (!$saveResult->isSuccess()) {
-            $message = "Ошибка при обновлении сделки: " . implode(", ", $saveResult->getErrorMessages());
-            \CRest::call('crm.timeline.comment.add', [
-                'fields' => [
-                    "ENTITY_ID" => $dealId,
-                    "ENTITY_TYPE" => "DEAL",
-                    "COMMENT" => "[b] {$message} [/b]"
-                ]
-            ]);
-            return null;
-        }
-        $message = "Ссылка (тест) для анонимной формы: " . $testLink;
-        \CRest::call('crm.timeline.comment.add', [
-            'fields' => [
-                "ENTITY_ID" => $dealId,
-                "ENTITY_TYPE" => "DEAL",
-                "COMMENT" => "[b] {$message} [/b]"
-            ]
-        ]);
-        return $testLink;
     }
 
     /**
-     * ? Генерация ссылки для анонимной формы PROD (внтур.)
-     * @param $dealId
-     * @return string|void|null
      * @throws ArgumentException
      */
-    public function generateLinkForAnonimForm($dealId)
+    private function setMarketplaceLinks(Item $item, mixed $marketplaceLinks): void
     {
-        // Получаем фабрику для сделок через контейнер
-        $entityTypeId = \CCrmOwnerType::Deal;
-        $factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory($entityTypeId);
-        if (!$factory) {
-            die("Не удалось получить фабрику для сделок.");
-        }
-
-        // Получаем объект сделки по ID
-        $item = $factory->getItem($dealId);
-        if (!$item) {
-            die("Сделка с ID $dealId не найдена.");
-        }
-
-        // Генерируем GUID и формируем ссылку
-        $guid = $this->generateGUID();
-
-        // Формируем ссылку с параметром GUID
-        $link = "https://seller-capital.ru/doc-loader?id=" . urlencode($guid);
-
-        // Сохраняем GUID в пользовательское поле сделки
-        $item->set('UF_CRM_GUID', $guid);
-
-        $operation = $factory->getUpdateOperation($item);
-        $operation->disableAllChecks();
-        // Сохраняем элемент CRM после установки всех полей
-        $saveResult = $operation->launch();
-
-        if (!$saveResult->isSuccess()) {
-            $message = "Ошибка при обновлении сделки: " . implode(", ", $saveResult->getErrorMessages());
-            \CRest::call('crm.timeline.comment.add', [
-                'fields' => [
-                    "ENTITY_ID" => $dealId,
-                    "ENTITY_TYPE" => "DEAL",
-                    "COMMENT" => "[b] {$message} [/b]"
-                ]
-            ]);
-            return null;
-        }
-        $message = "Ссылка для анонимной формы: " . $link;
-        \CRest::call('crm.timeline.comment.add', [
-            'fields' => [
-                "ENTITY_ID" => $dealId,
-                "ENTITY_TYPE" => "DEAL",
-                "COMMENT" => "[b] {$message} [/b]"
-            ]
-        ]);
-        return $link;
+        $item -> set("UF_CRM_COMPANY_LINKS_TO_MARKETPLACES", $marketplaceLinks);
     }
+
+    /**
+     * @throws ArgumentException
+     */
+    private function setSyncId(Item $item, mixed $syncId): void
+    {
+        $item -> set("UF_CRM_COMPANY_SYNC_SE_ID", $syncId);
+    }
+
+    /**
+     * @throws ArgumentException
+     */
+    private function setUpdateLK(Item $item): void
+    {
+        $item->set("UF_CRM_UPDATE_INFO_LK", true);
+    }
+
+    /**
+     * @throws ArgumentException
+     */
+    private function setPassportIsManual(Item $item, mixed $isManual): void
+    {
+        $item->set("UF_CRM_PASSPORT_IS_MANUAL", $isManual);
+    }
+    private function setCharterFile(Item $item, mixed $charterFile): void
+    {
+        try {
+            $arFile = $this->filesFromArray($charterFile, false, false);
+            $fields = [
+                'UF_CRM_COMPANY_CHARTER' => $arFile,
+            ];
+            $item->setFromCompatibleData($fields);
+        } catch( \Throwable $e) {
+            Logs\File::AddMessage($e->getMessage(),"ERROR", LOG_API_SYNC_SELLER_CONTROLLER);
+        }
+    }
+    private function setOrderDirector(Item $item, mixed $orderDirector): void
+    {
+        try {
+            $arFile = $this->filesFromArray($orderDirector, false, false);
+            $fields = [
+                'UF_CRM_ORDER_FOR_DIRECTOR' => $arFile,
+            ];
+            $item->setFromCompatibleData($fields);
+        } catch( \Throwable $e) {
+            Logs\File::AddMessage($e->getMessage(),"ERROR", LOG_API_SYNC_SELLER_CONTROLLER);
+        }
+    }
+    private function setPassportFiles(Item $item, mixed $files): void
+    {
+        try {
+            $arFile = $this->filesFromArray($files, false, true);
+            $fields = [
+                'UF_CRM_6433D94467769' => $arFile,
+            ];
+            $item->setFromCompatibleData($fields);
+        } catch( \Throwable $e) {
+            Logs\File::AddMessage($e->getMessage(),"ERROR", LOG_API_SYNC_SELLER_CONTROLLER);
+        }
+    }
+
+    /**
+     * @throws ArgumentException
+     */
+    private function setOrganizationFilial(Item $item): void
+    {
+        $item->set("UF_CRM_COMPANY_SS_ORG", [5]);
+    }
+
+    /**
+     * @throws ArgumentException
+     */
+    private function setFilial(Item $item): void
+    {
+        $item->set("UF_CRM_6433DBB98DD53", 17611);
+    }
+
+    /**
+     * @throws ArgumentException
+     */
+    private function setInn(Item $item, mixed $inn): void
+    {
+        $item->set("UF_CRM_6433D7C925893", $inn);
+    }
+
+    /**
+     * @throws ArgumentException
+     */
+    private function setTypeId(Item $item, mixed $type): void
+    {
+
+        switch ($type) {
+            case 'IP':
+                $typeId = 11075;
+                break;
+            case 'FL':
+                $typeId = 11077;
+                break;
+            case 'UL':
+                $typeId = 11076;
+                break;
+            default:
+                return;
+        }
+        $item->set("UF_CRM_1684145100226", $typeId);
+    }
+
+    private function getCompanyFactory(): \Bitrix\Crm\Service\Factory
+    {
+        return \Bitrix\Crm\Service\Container::getInstance()->getFactory(\CCrmOwnerType::Company);
+    }
+    private function getLKFactory(): \Bitrix\Crm\Service\Factory
+    {
+        return \Bitrix\Crm\Service\Container::getInstance()->getFactory(128);
+    }
+
 }

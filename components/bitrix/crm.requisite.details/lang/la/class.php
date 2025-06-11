@@ -1,0 +1,20 @@
+<?php
+$MESS["CRM_MODULE_NOT_INSTALLED"] = "El módulo CRM no está instalado.";
+$MESS["CRM_REQUISITE_DETAILS_AUTOCOMPLETE"] = "Buscar datos";
+$MESS["CRM_REQUISITE_DETAILS_ERR_COMPANY_REQUISITE_READ_DENIED"] = "El acceso para leer los datos de la compañía fue denegado (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_ERR_COMPANY_REQUISITE_WRITE_DENIED"] = "El acceso para modificar los datos de la compañía fue denegado (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_ERR_CONTACT_REQUISITE_READ_DENIED"] = "El acceso para leer los datos de contacto fue denegado (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_ERR_CONTACT_REQUISITE_WRITE_DENIED"] = "El acceso para modificar los datos de contacto fue denegado (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_ERR_EXTERNAL_DATA_NOT_DEFINED"] = "El parámetro que contiene información de los datos externos no está especificado.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_INVALID_ENTITY_ID_TO_SAVE"] = "La entidad principal para guardar los datos no está definida.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_INVALID_EXTERNAL_DATA"] = "Datos externos incorrectos.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_INVALID_FORM_DATA"] = "El parámetro que contiene los datos del formulario no está especificado.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PRESET_COUNTRY_ID_IS_NOT_DEFINED"] = "Los datos del país no están definidos.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PRESET_ID_NOT_DEFINED"] = "La plantilla de datos no está especificada.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PRESET_NOT_FOUND"] = "No se encontró la plantilla de datos.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PREV_PRESET_COUNTRY_ID_IS_NOT_DEFINED"] = "En la plantilla anterior no se especifican los datos del país.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PREV_PRESET_NOT_FOUND"] = "No puede encontrarse la plantilla de datos anterior.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_REQUISITE_READ_PERMISSIONS"] = "El acceso para leer los datos fue denegado (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_FORM_TITLE"] = "Editar datos";
+$MESS["CRM_REQUISITE_DETAILS_FORM_TITLE_READ_ONLY"] = "Consultar datos";
+$MESS["CRM_REQUISITE_DETAILS_PRESET"] = "Plantilla";

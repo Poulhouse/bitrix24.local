@@ -39,6 +39,7 @@ class kplab_exchange_log extends CModule
             `ID` INT NOT NULL AUTO_INCREMENT,
             `ENTITY_TYPE_ID` INT NOT NULL,
             `ENTITY_ID` INT NOT NULL,
+            `FIELD_CODE` VARCHAR(255) NOT NULL,
             `FIELD_NAME` VARCHAR(255) NOT NULL,
             `OLD_VALUE` TEXT,
             `NEW_VALUE` TEXT,
@@ -169,6 +170,13 @@ class kplab_exchange_log extends CModule
             '\Kplab\Exchange_log\Handlers\Item',
             'OnCrmDynamicItemUpdate'
         );
+        \Bitrix\Main\EventManager::getInstance()->registerEventHandler(
+            'crm',
+            'OnAfterRequisiteUpdate',
+            $this->MODULE_ID,
+            '\Kplab\Exchange_log\Handlers\Requisite',
+            'OnAfterRequisiteUpdate'
+        );
     }
 
     public function DoUninstall()
@@ -250,6 +258,13 @@ class kplab_exchange_log extends CModule
                 $this->MODULE_ID,
                 '\Kplab\Exchange_log\Handlers\Item',
                 'OnCrmDynamicItemUpdate'
+            );
+            \Bitrix\Main\EventManager::getInstance()->unRegisterEventHandler(
+                'crm',
+                'OnAfterRequisiteUpdate',
+                $this->MODULE_ID,
+                '\Kplab\Exchange_log\Handlers\Requisite',
+                'OnAfterRequisiteUpdate'
             );
             $this->unInstallFiles();
         }

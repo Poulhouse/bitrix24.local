@@ -11,6 +11,8 @@ class PersonDTO
     public string $lastName;
     public string $firstName;
     public ?string $middleName;
+    public string $shortName;
+    public string $fullName;
     public string $birthDate;
     public ?string $birthPlace;
     public string $inn;
@@ -31,6 +33,7 @@ class PersonDTO
     public array $contactPersonDetails;
     public array $bankDetails;
     public array $bankNominalDetails;
+    public array $toCompanyFields;
 
     public static function createFromArray(array $data): self
     {
@@ -193,5 +196,50 @@ class PersonDTO
             'bankDetails' => $this->bankDetails,
             'bankNominalDetails' => $this->bankNominalDetails,
         ];
+    }
+
+    public function toCompanyFields(): void
+    {
+        $fio = $this->lastName . " " . $this->firstName . " " . $this->middleName;
+        $shortFio = $this->lastName . " " . mb_substr($this->firstName, 0, 1) . ". " . mb_substr($this->middleName, 0, 1).".";
+        $this->shortName = ($this->regMark == "0") ? $shortFio : 'ИП '. $shortFio;
+        $this->fullName = ($this->regMark == "0") ? $fio : 'Индивидуальный предприниматель '. $fio;
+
+        $TypeId = null;
+        $userFields = \Bitrix\Main\UserFieldTable::getList([
+            'select' => ['ID'],
+            'filter' => [
+                '=ENTITY_ID' => 'CRM_COMPANY',
+                'FIELD_NAME' => 'UF_CRM_1684145100226'
+            ]
+        ]);
+        while ($arUserField = $userFields->fetch()){
+            $res = \CUserFieldEnum::GetList([], ['USER_FIELD_ID' => $arUserField['ID'], 'XML_ID' => ($this->regMark == "0") ? 'FL' : 'IP']);
+            while ($arUserFieldData = $res->fetch()) {
+                $TypeId = $arUserFieldData['ID'];
+            }
+        }
+
+        if($this->guid != "") {
+            $this->toCompanyFields = [
+                "UF_CRM_1684145100226" => $TypeId,
+                "UF_CRM_6433D7C925893" => $this->inn,
+                "UF_CRM_COMPANY_SS_ORG" => [5],
+                "UF_CRM_6433DBB98DD53" => 17611,
+                "UF_CRM_COMPANY_SS_AM_ID" => $this->guid,
+                "UF_CRM_1697107946" => $this->limitSum."|RUB",
+                "UF_CRM_1595595411835" => $this->fullName
+            ];
+        }
+        else {
+            $this->toCompanyFields = [
+                "UF_CRM_1684145100226" => $TypeId,
+                "UF_CRM_6433D7C925893" => $this->inn,
+                "UF_CRM_COMPANY_SS_ORG" => [5],
+                "UF_CRM_6433DBB98DD53" => 17611,
+                "UF_CRM_1697107946" => $this->limitSum."|RUB",
+                "UF_CRM_1595595411835" => $this->fullName
+            ];
+        }
     }
 }

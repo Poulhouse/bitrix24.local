@@ -64,7 +64,8 @@ class kplab_api extends CModule
                 controller_name VARCHAR(255) NOT NULL,
                 method_name VARCHAR(255) NOT NULL,
                 http_method VARCHAR(10) NOT NULL,
-                active CHAR(1) DEFAULT 'Y'                            
+                active CHAR(1) DEFAULT 'Y',
+                log_level VARCHAR(10) NOT NULL DEFAULT 'errors'
             )
         ");
         $connection->queryExecute("CREATE TABLE IF NOT EXISTS kplab_api_keys (

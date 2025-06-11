@@ -1,0 +1,20 @@
+<?php
+$MESS["CRM_MODULE_NOT_INSTALLED"] = "O módulo CRM não está instalado.";
+$MESS["CRM_REQUISITE_DETAILS_AUTOCOMPLETE"] = "Pesquisar informações";
+$MESS["CRM_REQUISITE_DETAILS_ERR_COMPANY_REQUISITE_READ_DENIED"] = "O acesso de leitura das informações da empresa foi negado (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_ERR_COMPANY_REQUISITE_WRITE_DENIED"] = "O acesso de registro de informações da empresa foi negado (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_ERR_CONTACT_REQUISITE_READ_DENIED"] = "O acesso de leitura das informações do contato foi negado (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_ERR_CONTACT_REQUISITE_WRITE_DENIED"] = "O acesso de registro de informações do contato foi negado (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_ERR_EXTERNAL_DATA_NOT_DEFINED"] = "O parâmetro com dados de informações externas não está especificado.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_INVALID_ENTITY_ID_TO_SAVE"] = "A entidade principal para salvar as informações está indefinida.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_INVALID_EXTERNAL_DATA"] = "Dados externos incorretos.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_INVALID_FORM_DATA"] = "O parâmetro com dados do formulário não está especificado.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PRESET_COUNTRY_ID_IS_NOT_DEFINED"] = "O país das informações está indefinido.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PRESET_ID_NOT_DEFINED"] = "O modelo de informações não está especificado.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PRESET_NOT_FOUND"] = "O modelo de informações não foi encontrado.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PREV_PRESET_COUNTRY_ID_IS_NOT_DEFINED"] = "O modelo anterior não especifica o país das informações.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_PREV_PRESET_NOT_FOUND"] = "Não foi possível encontrar o modelo de informações anterior.";
+$MESS["CRM_REQUISITE_DETAILS_ERR_REQUISITE_READ_PERMISSIONS"] = "O acesso de leitura das informações foi negado (ID = #ID#)";
+$MESS["CRM_REQUISITE_DETAILS_FORM_TITLE"] = "Editar informações";
+$MESS["CRM_REQUISITE_DETAILS_FORM_TITLE_READ_ONLY"] = "Visualizar informações";
+$MESS["CRM_REQUISITE_DETAILS_PRESET"] = "Modelo";

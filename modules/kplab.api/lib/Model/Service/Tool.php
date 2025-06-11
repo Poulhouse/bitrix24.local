@@ -18,7 +18,13 @@ class Tool
     //region Обработка контактов компании
     public function processFM(LegalDTO|PersonDTO $DTO, Collection $existingCollection = null): Collection
     {
-        $collection = $existingCollection ?? new Collection();
+
+        //Logs\File::AddMessage("","processFM 1", LOG_TOOL_SERVICE);
+        if(is_null($existingCollection)) {
+            $collection = new Collection();
+        } else {
+            $collection = $existingCollection;
+        }
 
         foreach ($DTO->contactDetails as $contact) {
             // Определяем тип поля
@@ -26,10 +32,12 @@ class Tool
                 case 1:
                     $typeId = Phone::ID;
                     $valueType = $this->mapPhoneValueType($contact['valueType']);
+                    $valueText = "+7".$contact['valueText'];
                     break;
                 case 2:
                     $typeId = Email::ID;
                     $valueType = $this->mapEmailValueType($contact['valueType']);
+                    $valueText = $contact['valueText'];
                     break;
                 default:
                     continue 2; // Пропускаем неизвестные типы
@@ -39,7 +47,7 @@ class Tool
             $tempValue = (new Value())
                 ->setTypeId($typeId)
                 ->setValueType($valueType)
-                ->setValue($contact['valueText']);
+                ->setValue($valueText);
 
             // 1. Проверяем полное совпадение
             if ($collection->has($tempValue)) {
@@ -60,7 +68,6 @@ class Tool
 
 
         }
-        Logs\File::AddMessage($collection->toArray(), "fm processContacts", LOG_TOOL_SERVICE);
 
         return $collection;
     }

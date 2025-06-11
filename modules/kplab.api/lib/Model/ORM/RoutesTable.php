@@ -33,6 +33,10 @@ class RoutesTable extends DataManager
             new Entity\StringField('ACTIVE', [
                 'required' => true
             ]),
+            new Entity\StringField('LOG_LEVEL', [
+                'title' => 'Уровень логирования',
+                'default_value' => 'errors',
+            ]),
         ];
     }
 }
