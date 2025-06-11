@@ -28,9 +28,9 @@ class BankDetails
             ],
             'select' => ['*', 'UF_*'],
             'order' => ['ID' => 'DESC']
-        ])->fetch();
+        ])->fetchAll();
 
-        return $bank ?: [];
+        return $bank;
     }
 
     public static function loadBankNominalDetails(int $companyId): array
@@ -54,8 +54,8 @@ class BankDetails
                 'UF_CRM_BD_ACC_TYPE' => 'Номинальный'
             ],
             'select' => ['*', 'UF_*']
-        ])->fetch();
+        ])->fetchAll();
 
-        return $bank ?: [];
+        return $bank;
     }
 }
