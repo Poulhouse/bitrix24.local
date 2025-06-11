@@ -404,13 +404,19 @@ class AddressService
 
             $locAddr->setFieldValue(Location\Entity\Address\FieldType::ADDRESS_LINE_1, (string)$addressLine1);
             $locAddr->setFieldValue(Location\Entity\Address\FieldType::ADDRESS_LINE_2, (string)$addressLine2);
-            $locAddr->setFieldValue(Location\Entity\Address\FieldType::LOCALITY, (string)$data['city'] ?? '');
+            $locAddr->setFieldValue(Location\Entity\Address\FieldType::LOCALITY, (string)$data['settlement'] ?? '');
+            $locAddr->setFieldValue(Location\Entity\Address\FieldType::CITY, (string)$data['city'] ?? '');
             $locAddr->setFieldValue(Location\Entity\Address\FieldType::POSTAL_CODE, (string)$data['postal_code'] ?? '');
             $locAddr->setFieldValue(Location\Entity\Address\FieldType::ADM_LEVEL_1, (string)$data['region'] ?? '');
             $locAddr->setFieldValue(Location\Entity\Address\FieldType::ADM_LEVEL_2, (string)$data['city_district'] ?? '');
             $locAddr->setFieldValue(Location\Entity\Address\FieldType::COUNTRY, (string)$data['country'] ?? '');
             $locAddr->setFieldValue(Location\Entity\Address\FieldType::STREET, (string)$data['street'] ?? '');
+            $locAddr->setFieldValue(Location\Entity\Address\FieldType::STEAD, (string)$data['stead'] ?? '');
+            $locAddr->setFieldValue(Location\Entity\Address\FieldType::BLOCK_K, (string)$data['block'] ?? '');
+            $locAddr->setFieldValue(Location\Entity\Address\FieldType::BLOCK_S, (string)$data['build'] ?? '');
             $locAddr->setFieldValue(Location\Entity\Address\FieldType::BUILDING, (string)$house);
+            $locAddr->setFieldValue(Location\Entity\Address\FieldType::FLAT, (string)$data['flat'] ?? '');
+            $locAddr->setFieldValue(Location\Entity\Address\FieldType::ROOM, (string)$data['room'] ?? '');
             $locAddr->setFieldValue(Location\Entity\Address\FieldType::FIAS_ID, (string)$data['fias_id'] ?? '');
         } catch (Throwable $e) {
             Logs\File::AddMessage($e->getMessage(), "Ошибка в createLocationAddressFromData:", LOG_ADDRESS_SERVICE);
@@ -429,6 +435,7 @@ class AddressService
             'ADDRESS_1'      => $this->rebuildFields($data)[1],
             'ADDRESS_2'      => $this->rebuildFields($data)[2],
             'CITY'           => $data['city'] ?? '',
+            'LOCALITY'       => $data['settlement'] ?? '',
             'POSTAL_CODE'    => $data['postal_code'] ?? '',
             'REGION'         => $data['city_district'] ?? '',
             'PROVINCE'       => $data['region'] ?? '',
@@ -436,6 +443,11 @@ class AddressService
             'LOC_ADDR_ID'    => $locAddrId,
             'STREET'         => $data['street'] ?? '',
             'BUILDING'       => $this->rebuildFields($data)[0],
+            'STEAD'          => $data['stead'] ?? '',
+            'BLOCK_K'        => $data['block'] ?? '',
+            'BLOCK_S'        => $data['build'] ?? '',
+            'FLAT'           => $data['flat'] ?? '',
+            'ROOM'           => $data['room'] ?? '',
             'FIAS_ID'        => $data['fias_id'] ?? '',
         ];
     }
@@ -450,6 +462,7 @@ class AddressService
             'ADDRESS_1'      => $this->rebuildFields($data)[1],
             'ADDRESS_2'      => $this->rebuildFields($data)[2],
             'CITY'           => $data['city'] ?? '',
+            'LOCALITY'       => $data['settlement'] ?? '',
             'POSTAL_CODE'    => $data['postal_code'] ?? '',
             'REGION'         => $data['city_district'] ?? '',
             'PROVINCE'       => $data['region'] ?? '',
@@ -457,6 +470,11 @@ class AddressService
             'LOC_ADDR_ID'    => $locAddrId,
             'STREET'         => $data['street'] ?? '',
             'BUILDING'       => $this->rebuildFields($data)[0],
+            'STEAD'          => $data['stead'] ?? '',
+            'BLOCK_K'        => $data['block'] ?? '',
+            'BLOCK_S'        => $data['build'] ?? '',
+            'FLAT'           => $data['flat'] ?? '',
+            'ROOM'           => $data['room'] ?? '',
             'FIAS_ID'        => $data['fias_id'] ?? '',
         ];
     }

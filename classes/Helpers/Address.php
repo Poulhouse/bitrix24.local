@@ -119,6 +119,7 @@ class Address
                 'ADDRESS_1'      => $address1,
                 'ADDRESS_2'      => $address2,
                 'CITY'           => $city,
+                'LOCALITY'       => $addressData['settlement'] ?? '',
                 'POSTAL_CODE'    => $postalCode,
                 'REGION'         => $district,     // Можно поменять местами, если нужно
                 'PROVINCE'       => $region,
@@ -127,6 +128,11 @@ class Address
                 // Дополнительные поля, которые сохранены в b_crm_addr:
                 'STREET'         => $street,
                 'BUILDING'       => $house,
+                'STEAD'          => $addressData['stead'] ?? '',
+                'BLOCK_K'        => $addressData['block'] ?? '',
+                'BLOCK_S'        => $addressData['build'] ?? '',
+                'FLAT'           => $addressData['flat'] ?? '',
+                'ROOM'           => $addressData['room'] ?? '',
                 'FIAS_ID'        => $addressFiasId,
             ];
 
