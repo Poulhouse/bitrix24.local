@@ -14,11 +14,11 @@ class AppTable extends Entity\DataManager
     {
         if (self::$dataClass) return self::$dataClass;
         Loader::includeModule('highloadblock');
-        $hlId = (int)Option::get('kplab.market', 'HL_INSTALLS_ID');
+        $hlId = (int)Option::get('kplab.market', 'HL_APPS_ID');
         if ($hlId > 0) {
             $hl = HighloadBlockTable::getById($hlId)->fetch();
         } else {
-            throw new \RuntimeException('HL_INSTALLS_ID option not set');
+            throw new \RuntimeException('HL_APPS_ID option not set');
         }
         $entity = HighloadBlockTable::compileEntity($hl);
         return self::$dataClass = $entity->getDataClass();
