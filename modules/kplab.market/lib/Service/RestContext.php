@@ -18,7 +18,7 @@ class RestContext
     private array $auth;
 
     /**
-     * @var array Ключи приложения, полученные из HL-блока (UF_CLIENT_ID, UF_SECRET_KEY)
+     * @var array Ключи приложения, полученные из HL-блока (UF_CLIENT_ID, UF_CLIENT_SECRET)
      */
     private array $keys;
 
@@ -54,7 +54,7 @@ class RestContext
                 throw new \RuntimeException('App not registered in system');
             }
 
-            if (!self::validateSignature($data, $keys['UF_SECRET_KEY'])) {
+            if (!self::validateSignature($data, $keys['UF_CLIENT_SECRET'])) {
                 throw new \RuntimeException('Invalid signature');
             }
         }
@@ -120,7 +120,7 @@ class RestContext
     {
         Loader::includeModule('highloadblock');
 
-        $hlId = (int)\Bitrix\Main\Config\Option::get('kplab.market', 'HL_KEYS_ID');
+        $hlId = (int)\Bitrix\Main\Config\Option::get('kplab.market', 'HL_APPS_ID');
         if (!$hlId) {
             return null;
         }
@@ -130,7 +130,7 @@ class RestContext
 
         $result = $dataClass::getList([
             'filter' => ['=UF_AUTH_ID' => $authId],
-            'select' => ['UF_CLIENT_ID', 'UF_SECRET_KEY', 'UF_STATUS'],
+            'select' => ['UF_CLIENT_ID', 'UF_CLIENT_SECRET', 'UF_STATUS'],
             'limit' => 1,
         ])->fetchObject();
 
@@ -140,7 +140,7 @@ class RestContext
 
         return [
             'UF_CLIENT_ID' => $result->getUFClientId(),
-            'UF_SECRET_KEY' => $result->getUFSecretKey(),
+            'UF_CLIENT_SECRET' => $result->getUFClientSecret(),
             'UF_STATUS' => $result->getUFStatus(),
         ];
     }
@@ -319,7 +319,7 @@ class RestContext
     {
         Loader::includeModule('highloadblock');
 
-        $hlId = (int)\Bitrix\Main\Config\Option::get('kplab.market', 'HL_KEYS_ID');
+        $hlId = (int)\Bitrix\Main\Config\Option::get('kplab.market', 'HL_APPS_ID');
         if (!$hlId) {
             return null;
         }
@@ -328,8 +328,8 @@ class RestContext
         $dataClass = $hlEntity->getDataClass();
 
         $result = $dataClass::getList([
-            'filter' => ['=UF_APP_CODE' => $appCode],
-            'select' => ['UF_CLIENT_ID', 'UF_SECRET_KEY', 'UF_STATUS', 'UF_AUTH_ID'],
+            'filter' => ['=UF_CODE' => $appCode],
+            'select' => ['UF_CLIENT_ID', 'UF_CLIENT_SECRET', 'UF_STATUS', 'UF_AUTH_ID'],
             'limit' => 1,
         ])->fetchObject();
 
@@ -339,7 +339,7 @@ class RestContext
 
         return [
             'UF_CLIENT_ID' => $result->getUFClientId(),
-            'UF_SECRET_KEY' => $result->getUFSecretKey(),
+            'UF_CLIENT_SECRET' => $result->getUFClientSecret(),
             'UF_STATUS' => $result->getUFStatus(),
             'UF_AUTH_ID' => $result->getUFAuthId(), // для проверки совпадения
         ];
