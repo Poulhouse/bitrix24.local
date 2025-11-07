@@ -41,7 +41,6 @@ class kplab_market extends CModule
 
         Option::set($this->MODULE_ID, 'HL_APPS_ID', $appsId);
         Option::set($this->MODULE_ID, 'HL_INSTALLS_ID', $installsId);
-
         // Агент на обновление токенов
         CAgent::AddAgent(
             '\KPLab\Market\Agent\RefreshTokens::run();',
