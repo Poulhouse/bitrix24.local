@@ -59,9 +59,9 @@ class InstallationRepository implements InstallationRepositoryInterface
         return true;
     }
 
-    public function updateToken(string $memberId, array $tokens): bool
+    public function updateToken(string $memberId, string $appCode, array $tokens): bool
     {
-        $existing = $this->findByMemberAndApp($memberId, '');
+        $existing = $this->findByMemberAndApp($memberId, $appCode);
         if (!$existing) return false;
 
         $class = $this->getEntityClass();
