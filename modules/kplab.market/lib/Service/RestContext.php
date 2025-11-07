@@ -2,7 +2,6 @@
 
 namespace KPLab\Market\Service;
 
-use Bitrix\Main\Loader;
 use Bitrix\Main\Web\HttpClient;
 
 /**
@@ -118,15 +117,12 @@ class RestContext
      */
     private static function loadAppKeys(string $authId): ?array
     {
-        Loader::includeModule('highloadblock');
-
-        $hlId = (int)\Bitrix\Main\Config\Option::get('kplab.market', 'HL_APPS_ID');
-        if (!$hlId) {
+        try {
+            $dataClass = HighloadLocator::getApplicationsDataClass();
+        } catch (\RuntimeException $exception) {
+            Rest::log('load_app_keys_missing_hl', ['message' => $exception->getMessage()]);
             return null;
         }
-
-        $hlEntity = \Bitrix\Highloadblock\HighloadBlockTable::getById($hlId)->fetchObject();
-        $dataClass = $hlEntity->getDataClass();
 
         $result = $dataClass::getList([
             'filter' => ['=UF_AUTH_ID' => $authId],
@@ -317,15 +313,12 @@ class RestContext
      */
     private static function loadAppKeysByAppCode(string $appCode): ?array
     {
-        Loader::includeModule('highloadblock');
-
-        $hlId = (int)\Bitrix\Main\Config\Option::get('kplab.market', 'HL_APPS_ID');
-        if (!$hlId) {
+        try {
+            $dataClass = HighloadLocator::getApplicationsDataClass();
+        } catch (\RuntimeException $exception) {
+            Rest::log('load_app_keys_by_code_missing_hl', ['message' => $exception->getMessage()]);
             return null;
         }
-
-        $hlEntity = \Bitrix\Highloadblock\HighloadBlockTable::getById($hlId)->fetchObject();
-        $dataClass = $hlEntity->getDataClass();
 
         $result = $dataClass::getList([
             'filter' => ['=UF_CODE' => $appCode],

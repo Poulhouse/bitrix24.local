@@ -2,9 +2,7 @@
 namespace KPLab\Market\Orm;
 
 use Bitrix\Main\Entity;
-use Bitrix\Main\Loader;
-use Bitrix\Highloadblock\HighloadBlockTable;
-use Bitrix\Main\Config\Option;
+use KPLab\Market\Service\HighloadLocator;
 
 class AppTable extends Entity\DataManager
 {
@@ -13,15 +11,8 @@ class AppTable extends Entity\DataManager
     public static function getEntityDataClass(): string
     {
         if (self::$dataClass) return self::$dataClass;
-        Loader::includeModule('highloadblock');
-        $hlId = (int)Option::get('kplab.market', 'HL_APPS_ID');
-        if ($hlId > 0) {
-            $hl = HighloadBlockTable::getById($hlId)->fetch();
-        } else {
-            throw new \RuntimeException('HL_APPS_ID option not set');
-        }
-        $entity = HighloadBlockTable::compileEntity($hl);
-        return self::$dataClass = $entity->getDataClass();
+        $dataClass = HighloadLocator::getApplicationsDataClass();
+        return self::$dataClass = $dataClass;
     }
 
     // шорткаты
