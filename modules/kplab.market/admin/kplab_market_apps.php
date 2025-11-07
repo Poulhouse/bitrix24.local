@@ -1,7 +1,7 @@
 <?php
 use Bitrix\Main\Loader;
-use Bitrix\Main\Config\Option;
 use Bitrix\Highloadblock\HighloadBlockTable;
+use KPLab\Market\Service\HighloadLocator;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php';
 Loader::includeModule('kplab.market');
@@ -9,21 +9,18 @@ Loader::includeModule('highloadblock');
 
 $APPLICATION->SetTitle('KPLab: Приложения Marketplace');
 
-$moduleId = 'kplab.market';
-$hlId = (int)Option::get($moduleId, 'HL_APPS_ID');
-if (!$hlId)
-{
+try {
+    $hlDefinition = HighloadLocator::getApplicationsDefinition();
+} catch (\RuntimeException $exception) {
     CAdminMessage::ShowMessage([
-        'MESSAGE' => 'Highload-блок KPLabApplications не найден. Переустановите модуль.',
+        'MESSAGE' => $exception->getMessage(),
         'TYPE' => 'ERROR',
     ]);
     require $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/epilog_admin.php';
     return;
 }
 
-// ORM класс для HL
-$hl = HighloadBlockTable::getById($hlId)->fetch();
-$entity = HighloadBlockTable::compileEntity($hl);
+$entity = HighloadBlockTable::compileEntity($hlDefinition);
 $dataClass = $entity->getDataClass();
 
 $sTableID = "tbl_kplab_apps";

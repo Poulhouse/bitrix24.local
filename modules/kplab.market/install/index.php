@@ -77,21 +77,27 @@ class kplab_market extends CModule
     private function installHLApplications(): int
     {
         $exists = HighloadBlockTable::getList(['filter' => ['=NAME' => 'KPLabApplications']])->fetch();
-        if ($exists) return (int)$exists['ID'];
 
-        $res = HighloadBlockTable::add(['NAME' => 'KPLabApplications', 'TABLE_NAME' => 'kplab_applications']);
-        if (!$res->isSuccess()) {
-            throw new \RuntimeException(implode('; ', $res->getErrorMessages()));
+        if ($exists) {
+            $hlId = (int)$exists['ID'];
+        } else {
+            $res = HighloadBlockTable::add(['NAME' => 'KPLabApplications', 'TABLE_NAME' => 'kplab_applications']);
+            if (!$res->isSuccess()) {
+                throw new \RuntimeException(implode('; ', $res->getErrorMessages()));
+            }
+
+            $hlId = (int)$res->getId();
         }
 
-        $hlId = (int)$res->getId();
-        $this->addUf($hlId, 'UF_CODE', 'Код приложения', 'string');
-        $this->addUf($hlId, 'UF_NAME', 'Название', 'string');
-        $this->addUf($hlId, 'UF_CLIENT_ID', 'Client ID', 'string');
-        $this->addUf($hlId, 'UF_CLIENT_SECRET', 'Client Secret', 'string');
-        $this->addUf($hlId, 'UF_SCOPE', 'Scope', 'string');
-        $this->addUf($hlId, 'UF_DESCRIPTION', 'Описание', 'string');
-        $this->addUf($hlId, 'UF_STATUS', 'Статус', 'string');
+        $this->ensureUf($hlId, 'UF_CODE', 'Код приложения', 'string');
+        $this->ensureUf($hlId, 'UF_NAME', 'Название', 'string');
+        $this->ensureUf($hlId, 'UF_CLIENT_ID', 'Client ID', 'string');
+        $this->ensureUf($hlId, 'UF_CLIENT_SECRET', 'Client Secret', 'string');
+        $this->ensureUf($hlId, 'UF_SCOPE', 'Scope', 'string');
+        $this->ensureUf($hlId, 'UF_DESCRIPTION', 'Описание', 'string');
+        $this->ensureUf($hlId, 'UF_STATUS', 'Статус', 'string');
+        $this->ensureUf($hlId, 'UF_AUTH_ID', 'AUTH ID', 'string');
+
         return $hlId;
     }
 
@@ -99,33 +105,47 @@ class kplab_market extends CModule
     private function installHLInstallations(): int
     {
         $exists = HighloadBlockTable::getList(['filter' => ['=NAME' => 'KPLabAppInstallations']])->fetch();
-        if ($exists) return (int)$exists['ID'];
 
-        $res = HighloadBlockTable::add(['NAME' => 'KPLabAppInstallations', 'TABLE_NAME' => 'kplab_app_installations']);
-        if (!$res->isSuccess()) {
-            throw new \RuntimeException(implode('; ', $res->getErrorMessages()));
+        if ($exists) {
+            $hlId = (int)$exists['ID'];
+        } else {
+            $res = HighloadBlockTable::add(['NAME' => 'KPLabAppInstallations', 'TABLE_NAME' => 'kplab_app_installations']);
+            if (!$res->isSuccess()) {
+                throw new \RuntimeException(implode('; ', $res->getErrorMessages()));
+            }
+
+            $hlId = (int)$res->getId();
         }
 
-        $hlId = (int)$res->getId();
-        $this->addUf($hlId, 'UF_MEMBER_ID', 'Member ID', 'string');
-        $this->addUf($hlId, 'UF_DOMAIN', 'Домен', 'string');
-        $this->addUf($hlId, 'UF_APP_CODE', 'Код приложения', 'string');
-        $this->addUf($hlId, 'UF_ACCESS_TOKEN', 'Access Token', 'string');
-        $this->addUf($hlId, 'UF_REFRESH_TOKEN', 'Refresh Token', 'string');
-        $this->addUf($hlId, 'UF_EXPIRES_AT', 'Истекает', 'datetime');
-        $this->addUf($hlId, 'UF_STATUS', 'Статус', 'string');
-        $this->addUf($hlId, 'UF_INSTALLED_AT', 'Дата установки', 'datetime');
-        $this->addUf($hlId, 'UF_UNINSTALLED_AT', 'Дата удаления', 'datetime');
-        $this->addUf($hlId, 'UF_LOG', 'Лог', 'string');
+        $this->ensureUf($hlId, 'UF_MEMBER_ID', 'Member ID', 'string');
+        $this->ensureUf($hlId, 'UF_DOMAIN', 'Домен', 'string');
+        $this->ensureUf($hlId, 'UF_APP_CODE', 'Код приложения', 'string');
+        $this->ensureUf($hlId, 'UF_ACCESS_TOKEN', 'Access Token', 'string');
+        $this->ensureUf($hlId, 'UF_REFRESH_TOKEN', 'Refresh Token', 'string');
+        $this->ensureUf($hlId, 'UF_EXPIRES_AT', 'Истекает', 'datetime');
+        $this->ensureUf($hlId, 'UF_STATUS', 'Статус', 'string');
+        $this->ensureUf($hlId, 'UF_INSTALLED_AT', 'Дата установки', 'datetime');
+        $this->ensureUf($hlId, 'UF_UNINSTALLED_AT', 'Дата удаления', 'datetime');
+        $this->ensureUf($hlId, 'UF_LOG', 'Лог', 'string');
+
         return $hlId;
     }
 
-    private function addUf(int $hlId, string $fieldName, string $label, string $type = 'string'): void
+    private function ensureUf(int $hlId, string $fieldName, string $label, string $type = 'string'): void
     {
-        $entity = \Bitrix\Highloadblock\HighloadBlockTable::compileEntity($hlId);
-        $uf = new \CUserTypeEntity();
-        $uf->Add([
-            'ENTITY_ID' => 'HLBLOCK_'.$hlId,
+        $entityId = 'HLBLOCK_' . $hlId;
+        $userType = new \CUserTypeEntity();
+        $existing = $userType->GetList([], [
+            'ENTITY_ID' => $entityId,
+            'FIELD_NAME' => $fieldName,
+        ])->Fetch();
+
+        if ($existing) {
+            return;
+        }
+
+        $userType->Add([
+            'ENTITY_ID' => $entityId,
             'FIELD_NAME' => $fieldName,
             'USER_TYPE_ID' => $type,
             'EDIT_FORM_LABEL' => ['ru' => $label],
