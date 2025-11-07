@@ -38,12 +38,9 @@ class kplab_market extends CModule
         // --- создаём оба HL-блока ---
         $appsId = $this->installHLApplications();
         $installsId = $this->installHLInstallations();
-        $keysId = $this->installHLKeys();
 
         Option::set($this->MODULE_ID, 'HL_APPS_ID', $appsId);
         Option::set($this->MODULE_ID, 'HL_INSTALLS_ID', $installsId);
-        Option::set($this->MODULE_ID, 'HL_KEYS_ID', $keysId);
-
         // Агент на обновление токенов
         CAgent::AddAgent(
             '\KPLab\Market\Agent\RefreshTokens::run();',
@@ -99,27 +96,6 @@ class kplab_market extends CModule
         $this->ensureUf($hlId, 'UF_DESCRIPTION', 'Описание', 'string');
         $this->ensureUf($hlId, 'UF_STATUS', 'Статус', 'string');
         $this->ensureUf($hlId, 'UF_AUTH_ID', 'AUTH ID', 'string');
-
-        return $hlId;
-    }
-
-    // --- HL-блок для ключей приложений ---
-    private function installHLKeys(): int
-    {
-        $exists = HighloadBlockTable::getList(['filter' => ['=NAME' => 'KPLabAppKeys']])->fetch();
-        if ($exists) return (int)$exists['ID'];
-
-        $res = HighloadBlockTable::add(['NAME' => 'KPLabAppKeys', 'TABLE_NAME' => 'kplab_app_keys']);
-        if (!$res->isSuccess()) {
-            throw new \RuntimeException(implode('; ', $res->getErrorMessages()));
-        }
-
-        $hlId = (int)$res->getId();
-        $this->addUf($hlId, 'UF_APP_CODE', 'Код приложения', 'string');
-        $this->addUf($hlId, 'UF_AUTH_ID', 'AUTH ID', 'string');
-        $this->addUf($hlId, 'UF_CLIENT_ID', 'Client ID', 'string');
-        $this->addUf($hlId, 'UF_SECRET_KEY', 'Secret Key', 'string');
-        $this->addUf($hlId, 'UF_STATUS', 'Статус', 'string');
 
         return $hlId;
     }
