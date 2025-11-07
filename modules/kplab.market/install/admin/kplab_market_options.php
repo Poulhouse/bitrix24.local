@@ -1,0 +1,1 @@
+<?php require($_SERVER["DOCUMENT_ROOT"]."/local/modules/kplab.market/admin/kplab_market_options.php"); ?>
