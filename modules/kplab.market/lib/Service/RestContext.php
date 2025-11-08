@@ -279,17 +279,17 @@ class RestContext
             'filter' => ['=UF_CODE' => $appCode],
             'select' => ['UF_CLIENT_ID', 'UF_CLIENT_SECRET', 'UF_STATUS', 'UF_AUTH_ID'],
             'limit' => 1,
-        ])->fetchObject();
+        ])->fetch();
 
         if (!$result) {
             return null;
         }
 
         return [
-            'UF_CLIENT_ID' => $result->getUFClientId(),
-            'UF_CLIENT_SECRET' => $result->getUFClientSecret(),
-            'UF_STATUS' => $result->getUFStatus(),
-            'UF_AUTH_ID' => $result->getUFAuthId(), // для проверки совпадения
+            'UF_CLIENT_ID' => $result['UF_CLIENT_ID'] ?? null,
+            'UF_CLIENT_SECRET' => $result['UF_CLIENT_SECRET'] ?? null,
+            'UF_STATUS' => $result['UF_STATUS'] ?? null,
+            'UF_AUTH_ID' => $result['UF_AUTH_ID'] ?? null, // для проверки совпадения
         ];
     }
 }
