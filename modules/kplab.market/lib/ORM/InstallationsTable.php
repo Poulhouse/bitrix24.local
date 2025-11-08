@@ -3,12 +3,10 @@ namespace KPLab\Market\Orm;
 
 use Bitrix\Main\ArgumentException;
 use Bitrix\Main\Entity;
-use Bitrix\Main\Loader;
-use Bitrix\Highloadblock\HighloadBlockTable;
-use Bitrix\Main\Config\Option;
 use Bitrix\Main\LoaderException;
 use Bitrix\Main\ObjectPropertyException;
 use Bitrix\Main\SystemException;
+use KPLab\Market\Service\HighloadLocator;
 use KPLab\Market\Service\Rest;
 
 class InstallationsTable extends Entity\DataManager
@@ -26,21 +24,14 @@ class InstallationsTable extends Entity\DataManager
         if (self::$dataClass)
             return self::$dataClass;
 
-        Loader::includeModule('highloadblock');
+        $dataClass = HighloadLocator::getInstallationsDataClass();
+        Rest::log('installationsTable_getDataClass', $dataClass);
 
-        $hlId = (int)Option::get('kplab.market', 'HL_INSTALLS_ID');
-        if (!$hlId)
-            throw new \RuntimeException('HL_INSTALLS_ID not configured in module options');
-
-        $hl = HighloadBlockTable::getById($hlId)->fetch();
-        $entity = HighloadBlockTable::compileEntity($hl);
-        Rest::log('installationsTable_getDataClass', $entity->getDataClass());
-        return self::$dataClass = $entity->getDataClass();
+        return self::$dataClass = $dataClass;
     }
 
     public static function add(array $fields)
     {
-
         Rest::log('installationsTable_add', $fields);
         $c = static::getEntityDataClass();
         $result = $c::add($fields);
@@ -55,7 +46,6 @@ class InstallationsTable extends Entity\DataManager
 
     public static function update($id, array $fields)
     {
-
         Rest::log('installationsTable_update', $fields);
         $c = static::getEntityDataClass();
         return $c::update($id, $fields);
@@ -63,7 +53,6 @@ class InstallationsTable extends Entity\DataManager
 
     public static function getList(array $params = [])
     {
-
         Rest::log('installationsTable_getList', $params);
         $c = static::getEntityDataClass();
         return $c::getList($params);
