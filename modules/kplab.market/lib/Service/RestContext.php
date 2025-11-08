@@ -2,7 +2,6 @@
 
 namespace KPLab\Market\Service;
 
-use Bitrix\Main\Loader;
 use Bitrix\Main\Web\HttpClient;
 
 /**
@@ -18,7 +17,7 @@ class RestContext
     private array $auth;
 
     /**
-     * @var array Ключи приложения, полученные из HL-блока (UF_CLIENT_ID, UF_SECRET_KEY)
+     * @var array Ключи приложения, полученные из HL-блока (UF_CLIENT_ID, UF_CLIENT_SECRET)
      */
     private array $keys;
 
@@ -42,21 +41,23 @@ class RestContext
      */
     public static function fromRequest(array $data): self
     {
+        $appCode = $data['app'] ?? '';
+        if (empty($appCode)) {
+            throw new \RuntimeException('Missing app code in request');
+        }
+
+        $keys = self::loadAppKeysByAppCode($appCode);
+        if (!$keys) {
+            throw new \RuntimeException('App not registered in system');
+        }
+
         // 🔴 ПРОВЕРКА signature — ОБЯЗАТЕЛЬНО для установки/обновления/удаления
-        if (isset($data['signature'])) {
-            $appCode = $data['app'] ?? '';
-            if (empty($appCode)) {
-                throw new \RuntimeException('Missing app code in request');
-            }
+        if (isset($data['signature']) && !self::validateSignature($data, $keys['UF_CLIENT_SECRET'])) {
+            throw new \RuntimeException('Invalid signature');
+        }
 
-            $keys = self::loadAppKeysByAppCode($appCode);
-            if (!$keys) {
-                throw new \RuntimeException('App not registered in system');
-            }
-
-            if (!self::validateSignature($data, $keys['UF_SECRET_KEY'])) {
-                throw new \RuntimeException('Invalid signature');
-            }
+        if (!empty($keys['UF_STATUS']) && $keys['UF_STATUS'] !== 'ACTIVE') {
+            throw new \RuntimeException('App is not active');
         }
 
         $merged = array_merge($data, $data['auth'] ?? []);
@@ -67,21 +68,6 @@ class RestContext
         // 🔴 ОСНОВНОЕ ИСПРАВЛЕНИЕ: Проверяем только AUTH_ID
         if (empty($authId)) {
             throw new \RuntimeException('Missing AUTH_ID in request');
-        }
-
-        // 🔴 ACCESS_TOKEN может отсутствовать — это нормально при установке
-        // Мы не требуем его здесь — он будет получен через app.info
-
-        // 🔴 Извлекаем app_code — он ОБЯЗАТЕЛЕН
-        $appCode = $data['app'] ?? '';
-        if (empty($appCode)) {
-            throw new \RuntimeException('Missing app code in request');
-        }
-
-        // 🔴 Получаем ключи по AUTH_ID (из HL-блока)
-        $keys = self::loadAppKeys($authId);
-        if (!$keys) {
-            throw new \RuntimeException('App not registered in system');
         }
 
         // 🔴 Запрашиваем app.info — даже если ACCESS_TOKEN пустой
@@ -108,41 +94,6 @@ class RestContext
             'member_id' => $memberId,
             'auth_id' => $authId,
         ], $keys, $type, $appCode);
-    }
-
-    /**
-     * Загружает ключи приложения из HL-блока по AUTH_ID.
-     *
-     * @param string $authId
-     * @return array|null
-     */
-    private static function loadAppKeys(string $authId): ?array
-    {
-        Loader::includeModule('highloadblock');
-
-        $hlId = (int)\Bitrix\Main\Config\Option::get('kplab.market', 'HL_KEYS_ID');
-        if (!$hlId) {
-            return null;
-        }
-
-        $hlEntity = \Bitrix\Highloadblock\HighloadBlockTable::getById($hlId)->fetchObject();
-        $dataClass = $hlEntity->getDataClass();
-
-        $result = $dataClass::getList([
-            'filter' => ['=UF_AUTH_ID' => $authId],
-            'select' => ['UF_CLIENT_ID', 'UF_SECRET_KEY', 'UF_STATUS'],
-            'limit' => 1,
-        ])->fetchObject();
-
-        if (!$result) {
-            return null;
-        }
-
-        return [
-            'UF_CLIENT_ID' => $result->getUFClientId(),
-            'UF_SECRET_KEY' => $result->getUFSecretKey(),
-            'UF_STATUS' => $result->getUFStatus(),
-        ];
     }
 
     /**
@@ -317,19 +268,16 @@ class RestContext
      */
     private static function loadAppKeysByAppCode(string $appCode): ?array
     {
-        Loader::includeModule('highloadblock');
-
-        $hlId = (int)\Bitrix\Main\Config\Option::get('kplab.market', 'HL_KEYS_ID');
-        if (!$hlId) {
+        try {
+            $dataClass = HighloadLocator::getApplicationsDataClass();
+        } catch (\RuntimeException $exception) {
+            Rest::log('load_app_keys_by_code_missing_hl', ['message' => $exception->getMessage()]);
             return null;
         }
 
-        $hlEntity = \Bitrix\Highloadblock\HighloadBlockTable::getById($hlId)->fetchObject();
-        $dataClass = $hlEntity->getDataClass();
-
         $result = $dataClass::getList([
-            'filter' => ['=UF_APP_CODE' => $appCode],
-            'select' => ['UF_CLIENT_ID', 'UF_SECRET_KEY', 'UF_STATUS', 'UF_AUTH_ID'],
+            'filter' => ['=UF_CODE' => $appCode],
+            'select' => ['UF_CLIENT_ID', 'UF_CLIENT_SECRET', 'UF_STATUS', 'UF_AUTH_ID'],
             'limit' => 1,
         ])->fetchObject();
 
@@ -339,7 +287,7 @@ class RestContext
 
         return [
             'UF_CLIENT_ID' => $result->getUFClientId(),
-            'UF_SECRET_KEY' => $result->getUFSecretKey(),
+            'UF_CLIENT_SECRET' => $result->getUFClientSecret(),
             'UF_STATUS' => $result->getUFStatus(),
             'UF_AUTH_ID' => $result->getUFAuthId(), // для проверки совпадения
         ];
