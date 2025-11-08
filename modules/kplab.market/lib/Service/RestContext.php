@@ -41,21 +41,23 @@ class RestContext
      */
     public static function fromRequest(array $data): self
     {
+        $appCode = $data['app'] ?? '';
+        if (empty($appCode)) {
+            throw new \RuntimeException('Missing app code in request');
+        }
+
+        $keys = self::loadAppKeysByAppCode($appCode);
+        if (!$keys) {
+            throw new \RuntimeException('App not registered in system');
+        }
+
         // 🔴 ПРОВЕРКА signature — ОБЯЗАТЕЛЬНО для установки/обновления/удаления
-        if (isset($data['signature'])) {
-            $appCode = $data['app'] ?? '';
-            if (empty($appCode)) {
-                throw new \RuntimeException('Missing app code in request');
-            }
+        if (isset($data['signature']) && !self::validateSignature($data, $keys['UF_CLIENT_SECRET'])) {
+            throw new \RuntimeException('Invalid signature');
+        }
 
-            $keys = self::loadAppKeysByAppCode($appCode);
-            if (!$keys) {
-                throw new \RuntimeException('App not registered in system');
-            }
-
-            if (!self::validateSignature($data, $keys['UF_CLIENT_SECRET'])) {
-                throw new \RuntimeException('Invalid signature');
-            }
+        if (!empty($keys['UF_STATUS']) && $keys['UF_STATUS'] !== 'ACTIVE') {
+            throw new \RuntimeException('App is not active');
         }
 
         $merged = array_merge($data, $data['auth'] ?? []);
@@ -66,21 +68,6 @@ class RestContext
         // 🔴 ОСНОВНОЕ ИСПРАВЛЕНИЕ: Проверяем только AUTH_ID
         if (empty($authId)) {
             throw new \RuntimeException('Missing AUTH_ID in request');
-        }
-
-        // 🔴 ACCESS_TOKEN может отсутствовать — это нормально при установке
-        // Мы не требуем его здесь — он будет получен через app.info
-
-        // 🔴 Извлекаем app_code — он ОБЯЗАТЕЛЕН
-        $appCode = $data['app'] ?? '';
-        if (empty($appCode)) {
-            throw new \RuntimeException('Missing app code in request');
-        }
-
-        // 🔴 Получаем ключи по AUTH_ID (из HL-блока)
-        $keys = self::loadAppKeys($authId);
-        if (!$keys) {
-            throw new \RuntimeException('App not registered in system');
         }
 
         // 🔴 Запрашиваем app.info — даже если ACCESS_TOKEN пустой
@@ -107,38 +94,6 @@ class RestContext
             'member_id' => $memberId,
             'auth_id' => $authId,
         ], $keys, $type, $appCode);
-    }
-
-    /**
-     * Загружает ключи приложения из HL-блока по AUTH_ID.
-     *
-     * @param string $authId
-     * @return array|null
-     */
-    private static function loadAppKeys(string $authId): ?array
-    {
-        try {
-            $dataClass = HighloadLocator::getApplicationsDataClass();
-        } catch (\RuntimeException $exception) {
-            Rest::log('load_app_keys_missing_hl', ['message' => $exception->getMessage()]);
-            return null;
-        }
-
-        $result = $dataClass::getList([
-            'filter' => ['=UF_AUTH_ID' => $authId],
-            'select' => ['UF_CLIENT_ID', 'UF_CLIENT_SECRET', 'UF_STATUS'],
-            'limit' => 1,
-        ])->fetchObject();
-
-        if (!$result) {
-            return null;
-        }
-
-        return [
-            'UF_CLIENT_ID' => $result->getUFClientId(),
-            'UF_CLIENT_SECRET' => $result->getUFClientSecret(),
-            'UF_STATUS' => $result->getUFStatus(),
-        ];
     }
 
     /**

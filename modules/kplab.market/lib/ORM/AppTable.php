@@ -11,6 +11,7 @@ class AppTable extends Entity\DataManager
     public static function getEntityDataClass(): string
     {
         if (self::$dataClass) return self::$dataClass;
+
         $dataClass = HighloadLocator::getApplicationsDataClass();
         return self::$dataClass = $dataClass;
     }
