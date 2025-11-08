@@ -4,8 +4,25 @@ use Bitrix\Highloadblock\HighloadBlockTable;
 use KPLab\Market\Service\HighloadLocator;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php';
-Loader::includeModule('kplab.market');
 Loader::includeModule('highloadblock');
+
+if (!Loader::includeModule('kplab.market')) {
+    CAdminMessage::ShowMessage([
+        'MESSAGE' => 'Модуль kplab.market не установлен.',
+        'TYPE' => 'ERROR',
+    ]);
+    require $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/epilog_admin.php';
+    return;
+}
+
+if (!class_exists(HighloadLocator::class)) {
+    CAdminMessage::ShowMessage([
+        'MESSAGE' => 'Класс HighloadLocator недоступен. Очистите кеш автозагрузки.',
+        'TYPE' => 'ERROR',
+    ]);
+    require $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/epilog_admin.php';
+    return;
+}
 
 $APPLICATION->SetTitle('KPLab: Приложения Marketplace');
 
