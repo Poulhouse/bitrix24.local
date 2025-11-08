@@ -1,9 +1,7 @@
 <?php
 namespace KPLab\Market\Repository;
 
-use Bitrix\Main\Loader;
-use Bitrix\Main\Config\Option;
-use Bitrix\Highloadblock\HighloadBlockTable;
+use KPLab\Market\Service\HighloadLocator;
 
 class InstallationRepository implements InstallationRepositoryInterface
 {
@@ -59,9 +57,9 @@ class InstallationRepository implements InstallationRepositoryInterface
         return true;
     }
 
-    public function updateToken(string $memberId, array $tokens): bool
+    public function updateToken(string $memberId, string $appCode, array $tokens): bool
     {
-        $existing = $this->findByMemberAndApp($memberId, '');
+        $existing = $this->findByMemberAndApp($memberId, $appCode);
         if (!$existing) return false;
 
         $class = $this->getEntityClass();
@@ -94,12 +92,7 @@ class InstallationRepository implements InstallationRepositoryInterface
     {
         if ($this->hlClass) return $this->hlClass;
 
-        Loader::includeModule('highloadblock');
-        $hlId = (int)Option::get('kplab.market', 'HL_INSTALLS_ID');
-        if (!$hlId) throw new \RuntimeException('HL_INSTALLS_ID not configured');
-
-        $hl = HighloadBlockTable::getById($hlId)->fetch();
-        $this->hlClass = HighloadBlockTable::compileEntity($hl)->getDataClass();
+        $this->hlClass = HighloadLocator::getInstallationsDataClass();
 
         return $this->hlClass;
     }

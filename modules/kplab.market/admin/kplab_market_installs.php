@@ -1,51 +1,96 @@
 <?php
 use Bitrix\Main\Loader;
-use Bitrix\Main\Config\Option;
-use Bitrix\Highloadblock as HL;
+use Bitrix\Highloadblock\HighloadBlockTable;
+use KPLab\Market\Service\HighloadLocator;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_before.php';
 Loader::includeModule('highloadblock');
-Loader::includeModule('kplab.market');
+
+if (!Loader::includeModule('kplab.market')) {
+    CAdminMessage::ShowMessage([
+        'MESSAGE' => 'Модуль kplab.market не установлен.',
+        'TYPE' => 'ERROR',
+    ]);
+    require $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/epilog_admin.php';
+    return;
+}
+
+if (!class_exists(HighloadLocator::class)) {
+    CAdminMessage::ShowMessage([
+        'MESSAGE' => 'Класс HighloadLocator недоступен. Обновите кеш автозагрузки.',
+        'TYPE' => 'ERROR',
+    ]);
+    require $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/epilog_admin.php';
+    return;
+}
 
 $APPLICATION->SetTitle('KPLab: Установки приложений');
 
-$hlId = Option::get('kplab.market', 'HL_INSTALLS_ID');
-if (!$hlId) {
-    echo BeginNote()."HL-блок не найден. Проверьте установку модуля.".EndNote();
-    require $_SERVER["DOCUMENT_ROOT"].BX_ROOT."/modules/main/include/epilog_admin.php";
-    exit;
+try {
+    $hlDefinition = HighloadLocator::getInstallationsDefinition();
+} catch (\RuntimeException $exception) {
+    CAdminMessage::ShowMessage([
+        'MESSAGE' => $exception->getMessage(),
+        'TYPE' => 'ERROR',
+    ]);
+    require $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/epilog_admin.php';
+    return;
 }
 
-$hl = HL\HighloadBlockTable::getById($hlId)->fetch();
-$entity = HL\HighloadBlockTable::compileEntity($hl);
+$entity = HighloadBlockTable::compileEntity($hlDefinition);
 $dataClass = $entity->getDataClass();
 
-$rows = $dataClass::getList(['select'=>['*'], 'order'=>['UF_INSTALLED_AT'=>'DESC'], 'limit'=>50])->fetchAll();
+$sTableID = "tbl_kplab_installs";
+$oSort = new CAdminSorting($sTableID, "ID", "desc");
+$lAdmin = new CAdminList($sTableID, $oSort);
 
-require $_SERVER["DOCUMENT_ROOT"].BX_ROOT."/modules/main/include/prolog_admin_after.php";
-?>
+// -------------------------------------------------------------------
+// Таблица данных
+// -------------------------------------------------------------------
+$rsData = new CDBResult();
+$rsData->InitFromArray(
+    $dataClass::getList(['select' => ['*'], 'order' => ['ID' => 'DESC']])->fetchAll()
+);
+$rsData = new CAdminResult($rsData, $sTableID);
+$rsData->NavStart();
+$lAdmin->NavText($rsData->GetNavPrint('Установки приложений KPLab'));
 
-<h2>🧩 Установленные порталы</h2>
+$lAdmin->AddHeaders([
+    ['id'=>'ID', 'content'=>'ID', 'sort'=>'ID', 'default'=>true],
+    ['id'=>'UF_MEMBER_ID','content'=>'Member ID','sort'=>'UF_MEMBER_ID','default'=>true],
+    ['id'=>'UF_DOMAIN','content'=>'Домен','sort'=>'UF_DOMAIN','default'=>true],
+    ['id'=>'UF_APP_CODE','content'=>'Код приложения','sort'=>'UF_APP_CODE','default'=>true],
+    ['id'=>'UF_ACCESS_TOKEN','content'=>'Access Token','sort'=>'UF_ACCESS_TOKEN','default'=>true],
+    ['id'=>'UF_REFRESH_TOKEN','content'=>'Refresh Token','sort'=>'UF_REFRESH_TOKEN','default'=>true],
+    ['id'=>'UF_EXPIRES_AT','content'=>'Истекает','sort'=>'UF_EXPIRES_AT','default'=>true],
+    ['id'=>'UF_STATUS','content'=>'Статус','sort'=>'UF_STATUS','default'=>true],
+    ['id'=>'UF_INSTALLED_AT','content'=>'Дата установки','sort'=>'UF_INSTALLED_AT','default'=>true],
+    ['id'=>'UF_UNINSTALLED_AT','content'=>'Дата удаления','sort'=>'UF_UNINSTALLED_AT','default'=>true],
+]);
 
-<table class="adm-list-table">
-    <tr class="adm-list-table-header">
-        <td>Портал</td>
-        <td>Приложение</td>
-        <td>Member ID</td>
-        <td>Статус</td>
-        <td>Дата установки</td>
-        <td>Истекает</td>
-    </tr>
-    <?php foreach ($rows as $row): ?>
-        <tr>
-            <td><?=$row['UF_DOMAIN']?></td>
-            <td><?=$row['UF_APP_CODE']?></td>
-            <td><?=$row['UF_MEMBER_ID']?></td>
-            <td><?=$row['UF_STATUS']?></td>
-            <td><?=$row['UF_INSTALLED_AT']?></td>
-            <td><?=$row['UF_EXPIRES_AT']?></td>
-        </tr>
-    <?php endforeach; ?>
-</table>
+while ($arRes = $rsData->NavNext(true, "f_"))
+{
+    $row =& $lAdmin->AddRow($f_ID, $arRes);
 
-<?php require $_SERVER["DOCUMENT_ROOT"].BX_ROOT."/modules/main/include/epilog_admin.php"; ?>
+    $row->AddViewField("ID", $f_ID);
+    $row->AddViewField("UF_MEMBER_ID", $f_UF_MEMBER_ID);
+    $row->AddViewField("UF_DOMAIN", $f_UF_DOMAIN);
+    $row->AddViewField("UF_APP_CODE", $f_UF_APP_CODE);
+    $row->AddViewField("UF_ACCESS_TOKEN", $f_UF_ACCESS_TOKEN);
+    $row->AddViewField("UF_REFRESH_TOKEN", $f_UF_REFRESH_TOKEN);
+    $row->AddViewField("UF_EXPIRES_AT", $f_UF_EXPIRES_AT);
+    $row->AddViewField("UF_STATUS", $f_UF_STATUS);
+    $row->AddViewField("UF_INSTALLED_AT", $f_UF_INSTALLED_AT);
+    $row->AddViewField("UF_UNINSTALLED_AT", $f_UF_UNINSTALLED_AT);
+}
+
+$lAdmin->AddFooter([
+    ["title"=>"Всего","value"=>$rsData->SelectedRowsCount()],
+    ["counter"=>true,"title"=>"Выбрано","value"=>"0"],
+]);
+
+$lAdmin->CheckListMode();
+
+require $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/prolog_admin_after.php';
+$lAdmin->DisplayList();
+require $_SERVER['DOCUMENT_ROOT'].'/bitrix/modules/main/include/epilog_admin.php';
